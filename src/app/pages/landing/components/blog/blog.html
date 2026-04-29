@@ -1,0 +1,37 @@
+<section id="blog" class="py-24 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
+      <button class="flex items-center gap-2 text-[#B8860B] font-black group">
+        <lucide-icon name="arrow-left" class="w-5 h-5 transition-transform group-hover:-translate-x-1"></lucide-icon>
+        عرض جميع المقالات
+      </button>
+      <div class="text-right space-y-2">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F5ECD7] rounded-full border border-[#E8D9B0]">
+          <span class="text-[#B8860B] font-bold text-sm">✦ المدونة</span>
+        </div>
+        <h2 class="text-4xl font-black text-[#1A1A1A]">المدونة <span class="text-[#B8860B]">والنصائح</span></h2>
+        <div class="w-14 h-1 bg-[#B8860B] rounded-full mr-auto"></div>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10">
+      <article *ngFor="let post of blogPosts" class="group cursor-pointer">
+        <div class="relative aspect-video rounded-2xl overflow-hidden bg-[#F5ECD7]/30 mb-6 border border-[#E8D9B0] group-hover:border-[#B8860B] transition-all duration-300 group-hover:shadow-[0_8px_32px_rgba(184,134,11,0.15)]">
+          <img [src]="post.imageUrl" [alt]="post.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          <div class="absolute top-4 right-4 px-4 py-1 bg-white/95 rounded-full text-xs font-black text-[#B8860B] border border-[#E8D9B0]">
+            {{post.category}}
+          </div>
+        </div>
+        <div class="space-y-3 text-right px-1">
+          <p class="text-sm text-[#B8860B] font-bold">{{post.date | date:'yyyy/MM/dd'}}</p>
+          <h4 class="text-xl font-black text-[#1A1A1A] group-hover:text-[#B8860B] transition-colors leading-snug">{{post.title}}</h4>
+          <p class="text-[#666] text-sm leading-relaxed line-clamp-2">{{post.excerpt}}</p>
+          <button class="text-[#B8860B] font-black inline-flex items-center gap-2 pt-1 border-b-2 border-transparent hover:border-[#B8860B] transition-all">
+            اقرأ المزيد
+            <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

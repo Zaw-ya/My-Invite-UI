@@ -1,0 +1,84 @@
+<section class="py-20 bg-[#F5ECD7]/30">
+  <div class="container mx-auto px-6">
+    <div class="bg-white rounded-3xl shadow-gold-lg overflow-hidden border border-[#E8D9B0]">
+      <div class="grid lg:grid-cols-2">
+        <!-- Left Info -->
+        <div class="p-12 lg:p-16 space-y-8 text-right border-b lg:border-b-0 lg:border-l border-[#E8D9B0]">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F5ECD7] rounded-full border border-[#E8D9B0]">
+            <span class="text-[#B8860B] font-bold text-sm">✦ تجربة مجانية</span>
+          </div>
+          <h2 class="text-4xl font-black text-[#1A1A1A]">
+            جرب الخدمة<br><span class="text-[#B8860B]">الآن مجاناً</span>
+          </h2>
+          <p class="text-[#555] text-lg leading-relaxed">
+            أرسل لنفسك دعوة تجريبية الآن وشاهد تجربة ضيوفك الفاخرة قبل الشراء. التوصيل فوري عبر واتساب.
+          </p>
+          <div class="flex items-center gap-4 justify-end p-4 bg-[#F5ECD7]/50 rounded-xl border border-[#E8D9B0]">
+            <div class="text-right">
+              <p class="text-sm text-[#888]">تجربة سريعة ومجانية</p>
+              <p class="font-black text-[#1A1A1A]">توصيل فوري عبر واتساب</p>
+            </div>
+            <div class="w-14 h-14 bg-[#B8860B] rounded-xl flex items-center justify-center flex-shrink-0">
+              <lucide-icon name="phone" class="w-7 h-7 text-white"></lucide-icon>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Form -->
+        <div class="p-12 lg:p-16 bg-white">
+          <h3 class="text-2xl font-black text-[#1A1A1A] text-right mb-8">أدخل بياناتك</h3>
+          <form class="space-y-5 text-right" (ngSubmit)="onTryService()">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-bold text-[#1A1A1A] mb-2">اسمك</label>
+                <input
+                  type="text"
+                  [(ngModel)]="demoForm.name"
+                  name="name"
+                  class="form-input"
+                  placeholder="محمد أحمد"
+                >
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-[#1A1A1A] mb-2">نوع المناسبة</label>
+                <select
+                  [(ngModel)]="demoForm.type"
+                  name="type"
+                  class="form-input appearance-none"
+                >
+                  <option value="" disabled>اختر المناسبة</option>
+                  <option *ngFor="let type of eventTypes" [value]="type.id">{{type.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-bold text-[#1A1A1A] mb-2">تاريخ المناسبة</label>
+                <input
+                  type="date"
+                  [(ngModel)]="demoForm.date"
+                  name="date"
+                  class="form-input"
+                >
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-[#1A1A1A] mb-2">عدد الضيوف</label>
+                <input
+                  type="number"
+                  [(ngModel)]="demoForm.guests"
+                  name="guests"
+                  class="form-input"
+                  placeholder="مثال: 150"
+                >
+              </div>
+            </div>
+            <button type="submit" class="btn-gold w-full justify-center text-lg mt-4">
+              جرب الخدمة الآن
+              <lucide-icon name="send" class="w-5 h-5"></lucide-icon>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

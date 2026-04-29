@@ -1,0 +1,82 @@
+<header class="w-full bg-white border-b border-[#E8D9B0]">
+  <!-- Top Bar -->
+  <div class="bg-[#F5ECD7]/50 border-b border-[#E8D9B0] py-2">
+    <div class="container mx-auto px-6 flex justify-between items-center text-sm">
+      <div class="text-[#B8860B] font-medium">cs&#64;myinvite.org</div>
+      <div class="flex items-center gap-6 font-semibold text-[#1A1A1A]">
+        <a href="#blog" class="hover:text-[#B8860B] transition-colors">المدونة</a>
+        <a href="#about" class="hover:text-[#B8860B] transition-colors">من نحن !</a>
+        <a href="#" class="hover:text-[#B8860B] transition-colors">سياسة الحجز والإلغاء</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+  <nav class="bg-white py-4">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <!-- Icons + Search -->
+      <div class="flex items-center gap-3">
+        <button class="w-10 h-10 flex items-center justify-center rounded-xl border border-[#E8D9B0] hover:bg-[#F5ECD7] hover:border-[#B8860B] transition-all">
+          <lucide-icon name="shopping-bag" class="w-5 h-5 text-[#B8860B]"></lucide-icon>
+        </button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-xl border border-[#E8D9B0] hover:bg-[#F5ECD7] hover:border-[#B8860B] transition-all">
+          <lucide-icon name="user" class="w-5 h-5 text-[#B8860B]"></lucide-icon>
+        </button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-xl border border-[#E8D9B0] hover:bg-[#F5ECD7] hover:border-[#B8860B] transition-all">
+          <lucide-icon name="heart" class="w-5 h-5 text-[#B8860B]"></lucide-icon>
+        </button>
+        <div class="hidden md:flex items-center relative">
+          <input
+            type="text"
+            placeholder="ادخل كلمة البحث"
+            class="w-60 px-4 py-2 bg-[#FAFAFA] border border-[#E8D9B0] rounded-xl focus:border-[#B8860B] focus:ring-2 focus:ring-[#B8860B]/20 outline-none text-right pr-10 text-sm"
+          >
+          <lucide-icon name="search" class="w-4 h-4 absolute right-3 text-[#B8860B]"></lucide-icon>
+        </div>
+      </div>
+
+      <!-- Nav Links + Logo -->
+      <div class="flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-6 font-bold text-[#1A1A1A]">
+          <a href="#" class="hover:text-[#B8860B] transition-colors">حفلات زواج</a>
+          <a href="#" class="hover:text-[#B8860B] transition-colors">حفلات تخرج</a>
+          <a href="#" class="hover:text-[#B8860B] transition-colors">حفلات الشركات</a>
+          <a href="#" class="hover:text-[#B8860B] transition-colors">المناسبات الحكومية</a>
+          <button class="flex items-center gap-1 hover:text-[#B8860B] transition-colors">
+            حفلات <lucide-icon name="chevron-down" class="w-4 h-4"></lucide-icon>
+          </button>
+        </div>
+
+        <!-- Logo -->
+        <div class="border-r border-[#E8D9B0] pr-8 mr-2 flex items-center gap-3">
+          <div class="text-right">
+            <span class="block text-xl font-black tracking-widest text-[#B8860B] uppercase">MY INVITE</span>
+            <span class="block text-[10px] text-[#888] uppercase tracking-widest">SINCE 2018</span>
+          </div>
+          <div class="w-10 h-10 bg-[#B8860B] rounded-full flex items-center justify-center">
+            <lucide-icon name="star" class="w-5 h-5 text-white fill-current"></lucide-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button class="lg:hidden" (click)="toggleMenu()">
+        <lucide-icon [name]="isMenuOpen ? 'x' : 'menu'" class="w-6 h-6 text-[#B8860B]"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      class="lg:hidden absolute left-0 right-0 bg-white shadow-xl border-t border-[#E8D9B0] z-50 transition-all duration-300"
+      [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen}"
+    >
+      <div class="container mx-auto px-6 py-8 flex flex-col gap-5 text-right">
+        <a href="#" class="text-lg font-bold hover:text-[#B8860B]" (click)="isMenuOpen=false">حفلات زواج</a>
+        <a href="#" class="text-lg font-bold hover:text-[#B8860B]" (click)="isMenuOpen=false">حفلات تخرج</a>
+        <a href="#" class="text-lg font-bold hover:text-[#B8860B]" (click)="isMenuOpen=false">حفلات الشركات</a>
+        <a href="#about" class="text-lg font-bold hover:text-[#B8860B]" (click)="isMenuOpen=false">من نحن</a>
+        <a href="#blog" class="text-lg font-bold hover:text-[#B8860B]" (click)="isMenuOpen=false">المدونة</a>
+      </div>
+    </div>
+  </nav>
+</header>
