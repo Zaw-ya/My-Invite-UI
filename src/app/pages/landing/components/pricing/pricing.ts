@@ -57,7 +57,7 @@ export class PricingComponent {
       ],
       compensatoryPercent: 15,
       ctaLabel: 'حقل التطبيق',
-      ctaClass: 'bg-[#1D4ED8] hover:bg-[#1e40af] text-white',
+      ctaClass: 'bg-[#B8860B] hover:bg-[#9a6f09] text-white',
       contactThreshold: 400,
       contactLabel: 'للمناسبات أكثر من 400 مدعو'
     },
@@ -86,7 +86,7 @@ export class PricingComponent {
       ],
       compensatoryPercent: 20,
       ctaLabel: 'تواصل معنا',
-      ctaClass: 'bg-[#0369A1] hover:bg-[#075985] text-white',
+      ctaClass: 'bg-[#9a6f09] hover:bg-[#7a5807] text-white',
       contactThreshold: 500,
       contactLabel: 'لإعداد دعوات مخصصة'
     }
