@@ -7,7 +7,8 @@ import { InvitationCard } from '../../../../models/content.interface';
   selector: 'app-designs',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './designs.html'
+  templateUrl: './designs.html',
+  styleUrl: './designs.css'
 })
 export class DesignsComponent {
   @Input() invitations: InvitationCard[] = [];

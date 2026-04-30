@@ -1,0 +1,70 @@
+/* ===== EVENT IMAGE CARD ===== */
+.event-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.event-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.event-card:hover .event-img { transform: scale(1.08); }
+
+.event-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.event-label {
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 900;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  font-family: '29LTBukra', 'Cairo', sans-serif;
+}
+
+/* ===== TEXT CARDS ===== */
+.event-text-card {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  border: 1.5px solid var(--border);
+  background-color: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.event-text-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 6px 24px var(--shadow-gold);
+}
+
+.event-text-content {
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.5;
+  font-family: '29LTBukra', 'Cairo', sans-serif;
+}
+
+.event-text-content-inv {
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.5;
+  font-family: '29LTBukra', 'Cairo', sans-serif;
+}

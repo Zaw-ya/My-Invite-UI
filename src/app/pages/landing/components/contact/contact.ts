@@ -6,6 +6,7 @@ import { LucideAngularModule } from 'lucide-angular';
   selector: 'app-contact',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './contact.html'
+  templateUrl: './contact.html',
+  styleUrl: './contact.css'
 })
 export class ContactComponent {}

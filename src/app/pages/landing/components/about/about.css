@@ -1,0 +1,37 @@
+.about-check-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--gold-pale);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+}
+
+.about-image-wrap {
+  position: relative;
+  padding: 12px;
+}
+
+.about-image-border-1 {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  pointer-events: none;
+}
+.about-image-border-2 {
+  position: absolute;
+  inset: -12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.about-image-inner {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  overflow: hidden;
+}

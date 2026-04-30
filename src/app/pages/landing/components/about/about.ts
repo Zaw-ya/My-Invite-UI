@@ -6,6 +6,7 @@ import { LucideAngularModule } from 'lucide-angular';
   selector: 'app-about',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './about.html'
+  templateUrl: './about.html',
+  styleUrl: './about.css'
 })
 export class AboutComponent {}

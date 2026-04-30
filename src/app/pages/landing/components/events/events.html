@@ -1,56 +1,63 @@
-<section id="events" class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="text-center space-y-4 mb-image36">
-      <h2 class="text-4xl font-extrabold text-text-main">تصفح اقسامنا ..</h2>
-      <p class="text-text-secondary">استمتع بجمال الاقسام المختارة خصيصاً لك لتلبي جميع احتياجاتك</p>
+<section id="events" class="section-py" style="background-color: var(--bg);">
+  <div class="container mx-auto px-5">
+
+    <!-- Header -->
+    <div class="text-center space-y-4 mb-12">
+      <span class="badge-pill">✦ أقسامنا</span>
+      <h2 class="section-title">تصفح <span>أقسامنا</span></h2>
+      <p class="section-sub">استمتع بجمال الأقسام المختارة خصيصاً لتناسب جميع مناسباتك</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Row 1 -->
-      <div class="relative aspect-square overflow-hidden group rounded-lg">
-        <img src="image/image3.png" alt="حفلات زواج" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-all flex items-center justify-center">
-          <h3 class="text-white text-2xl font-bold">حفلات زواج</h3>
+    <!-- Events Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+      <!-- Row 1: 4 Image Cards -->
+      <div class="event-card group">
+        <img src="image/image3.png" alt="حفلات زواج" class="event-img">
+        <div class="event-overlay group-hover:opacity-100">
+          <h3 class="event-label">حفلات زواج</h3>
         </div>
       </div>
-      <div class="relative aspect-square overflow-hidden group rounded-lg">
-        <img src="image/image3.png" alt="حفلات تخرج" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-all flex items-center justify-center">
-          <h3 class="text-white text-2xl font-bold">حفلات تخرج</h3>
+      <div class="event-card group">
+        <img src="image/image3.png" alt="حفلات تخرج" class="event-img">
+        <div class="event-overlay group-hover:opacity-100">
+          <h3 class="event-label">حفلات تخرج</h3>
         </div>
       </div>
-      <div class="relative aspect-square overflow-hidden group rounded-lg">
-        <img src="image/image3.png" alt="حفلات شركات" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-all flex items-center justify-center">
-          <h3 class="text-white text-2xl font-bold">حفلات الشركات</h3>
+      <div class="event-card group">
+        <img src="image/image3.png" alt="حفلات الشركات" class="event-img">
+        <div class="event-overlay group-hover:opacity-100">
+          <h3 class="event-label">حفلات الشركات</h3>
         </div>
       </div>
-      <div class="relative aspect-square overflow-hidden group rounded-lg">
-        <img src="image/image3.png" alt="مناسبات حكومية" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-all flex items-center justify-center">
-          <h3 class="text-white text-2xl font-bold">المناسبات الحكومية</h3>
+      <div class="event-card group">
+        <img src="image/image3.png" alt="المناسبات الحكومية" class="event-img">
+        <div class="event-overlay group-hover:opacity-100">
+          <h3 class="event-label">المناسبات الحكومية</h3>
         </div>
       </div>
 
-      <!-- Row 2 (Matching text cards in screenshot) -->
-      <div class="bg-[#D2B48C]/30 aspect-square rounded-lg flex items-center justify-center p-8 text-center">
-        <p class="text-2xl font-bold text-text-main leading-relaxed">لأن أول خطوة للفرح دعوة تترك أثر</p>
+      <!-- Row 2: Mixed layout -->
+      <div class="event-text-card text-center">
+        <p class="event-text-content">لأن أول خطوة للفرح دعوة تترك أثر</p>
+        <lucide-icon name="sparkles" class="w-8 h-8 mt-3" style="color: var(--gold);"></lucide-icon>
       </div>
-      <div class="bg-[#D2B48C]/30 aspect-square rounded-lg flex items-center justify-center p-8 text-center">
-        <p class="text-2xl font-bold text-text-main leading-relaxed">أضف لمسة من الأناقة إلى مناسبتك !</p>
+      <div class="event-text-card text-center" style="background-color: var(--gold); border-color: var(--gold);">
+        <p class="event-text-content-inv">أضف لمسة من الأناقة إلى مناسبتك !</p>
       </div>
-      <div class="relative aspect-square overflow-hidden group rounded-lg">
-        <img src="image/image3.png" alt="حفلات أخرى" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-all flex items-center justify-center">
-          <h3 class="text-white text-2xl font-bold">حفلات أخرى</h3>
+      <div class="event-card group">
+        <img src="image/image3.png" alt="حفلات أخرى" class="event-img">
+        <div class="event-overlay group-hover:opacity-100">
+          <h3 class="event-label">حفلات أخرى</h3>
         </div>
       </div>
-      <div class="relative aspect-square overflow-hidden group rounded-lg">
-        <img src="image/image3.png" alt="فعاليات" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-all flex items-center justify-center">
-          <h3 class="text-white text-2xl font-bold">فعاليات عامة</h3>
+      <div class="event-card group">
+        <img src="image/image3.png" alt="فعاليات عامة" class="event-img">
+        <div class="event-overlay group-hover:opacity-100">
+          <h3 class="event-label">فعاليات عامة</h3>
         </div>
       </div>
+
     </div>
   </div>
 </section>

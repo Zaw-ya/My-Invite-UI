@@ -23,7 +23,8 @@ interface PlanData {
   selector: 'app-pricing',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './pricing.html'
+  templateUrl: './pricing.html',
+  styleUrl: './pricing.css'
 })
 export class PricingComponent {
   activeTab = signal<'personal' | 'business'>('personal');

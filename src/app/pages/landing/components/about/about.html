@@ -1,66 +1,106 @@
-<section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <!-- Section 1 -->
+<section id="about" class="section-py" style="background-color: var(--bg);">
+  <div class="container mx-auto px-5">
+
+    <!-- ===== SECTION 1: Exclusive Designs ===== -->
     <div class="grid lg:grid-cols-2 gap-16 items-center mb-28">
+
+      <!-- Text (right) -->
       <div class="text-right space-y-6 order-2 lg:order-1">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F5ECD7] rounded-full border border-[#E8D9B0]">
-          <span class="text-[#B8860B] font-bold text-sm">✦ تصاميم حصرية</span>
-        </div>
-        <h2 class="text-4xl font-black text-[#1A1A1A]">دعوة <span class="text-[#B8860B]">مصممة بعناية</span></h2>
-        <div class="w-14 h-1 bg-[#B8860B] rounded-full mr-auto"></div>
-        <p class="text-[#555] text-lg leading-relaxed">
-          صمم دعوتك الرقمية بأسلوب يعبر عنك وعن مناسبتك الخاصة. اختر من بين تصاميم فخمة وأنيقة تناسب جميع أنواع المناسبات. كل دعوة تُنشأ بعناية لتمنح ضيوفك تجربة فريدة، بكود خاص لكل مدعو، ومشاركة سهلة وسريعة.
+        <span class="badge-pill">✦ تصاميم حصرية</span>
+
+        <h2 class="section-title text-right">
+          دعوة <span>مصممة بعناية</span>
+        </h2>
+
+        <div class="gold-divider" style="margin-right: 0; margin-left: auto; width: 56px;"></div>
+
+        <p class="text-lg leading-relaxed" style="color: var(--text-secondary);">
+          صمم دعوتك الرقمية بأسلوب يعبّر عنك وعن مناسبتك الخاصة. اختر من بين تصاميم فخمة وأنيقة تناسب جميع أنواع المناسبات. كل دعوة تُنشأ بعناية لتمنح ضيوفك تجربة فريدة، بكود خاص لكل مدعو، ومشاركة سهلة وسريعة.
         </p>
-        <ul class="space-y-3">
+
+        <!-- Feature list -->
+        <ul class="space-y-4">
           <li class="flex items-center gap-3 justify-end">
-            <span class="text-[#444] font-medium">تجربة مخصصة لكل ضيف</span>
-            <div class="w-7 h-7 bg-[#F5ECD7] rounded-full flex items-center justify-center flex-shrink-0">
-              <lucide-icon name="check" class="w-4 h-4 text-[#B8860B]"></lucide-icon>
+            <span class="font-semibold" style="color: var(--text-secondary);">تجربة مخصصة لكل ضيف</span>
+            <div class="about-check-icon flex-shrink-0">
+              <lucide-icon name="check" class="w-4 h-4"></lucide-icon>
             </div>
           </li>
           <li class="flex items-center gap-3 justify-end">
-            <span class="text-[#444] font-medium">متابعة الحضور لحظة بلحظة</span>
-            <div class="w-7 h-7 bg-[#F5ECD7] rounded-full flex items-center justify-center flex-shrink-0">
-              <lucide-icon name="check" class="w-4 h-4 text-[#B8860B]"></lucide-icon>
+            <span class="font-semibold" style="color: var(--text-secondary);">متابعة الحضور لحظة بلحظة</span>
+            <div class="about-check-icon flex-shrink-0">
+              <lucide-icon name="check" class="w-4 h-4"></lucide-icon>
             </div>
           </li>
           <li class="flex items-center gap-3 justify-end">
-            <span class="text-[#444] font-medium">توصيل فوري عبر واتساب</span>
-            <div class="w-7 h-7 bg-[#F5ECD7] rounded-full flex items-center justify-center flex-shrink-0">
-              <lucide-icon name="check" class="w-4 h-4 text-[#B8860B]"></lucide-icon>
+            <span class="font-semibold" style="color: var(--text-secondary);">توصيل فوري عبر واتساب</span>
+            <div class="about-check-icon flex-shrink-0">
+              <lucide-icon name="check" class="w-4 h-4"></lucide-icon>
             </div>
           </li>
         </ul>
-        <button class="btn-gold">جرب الآن <lucide-icon name="arrow-left" class="w-5 h-5"></lucide-icon></button>
+
+        <button class="btn-gold">
+          جرب الآن
+          <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+        </button>
       </div>
-      <div class="relative order-1 lg:order-2">
-        <div class="absolute -inset-3 border-2 border-[#B8860B]/20 rounded-2xl"></div>
-        <div class="absolute -inset-6 border border-[#B8860B]/10 rounded-3xl"></div>
-        <div class="bg-[#F5ECD7]/30 rounded-2xl aspect-[4/3] flex items-center justify-center overflow-hidden">
-          <img src="image/image2.png" alt="تصميم بعناية" class="w-full h-full object-cover rounded-2xl shadow-lg">
+
+      <!-- Image (left) -->
+      <div class="about-image-wrap order-1 lg:order-2">
+        <div class="about-image-border-1"></div>
+        <div class="about-image-border-2"></div>
+        <div class="about-image-inner aspect-[4/3]">
+          <img src="image/image2.png" alt="تصميم بعناية" class="w-full h-full object-cover rounded-2xl shadow-xl">
         </div>
       </div>
     </div>
 
-    <!-- Section 2 -->
+    <!-- ===== SECTION 2: We celebrate with you ===== -->
     <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div class="relative">
-        <div class="absolute -inset-3 border-2 border-[#B8860B]/20 rounded-2xl"></div>
-        <div class="bg-[#F5ECD7]/30 rounded-2xl aspect-[4/3] flex items-center justify-center overflow-hidden">
-          <img src="image/image3.png" alt="نحتفل معك" class="w-full h-full object-cover rounded-2xl shadow-lg">
+
+      <!-- Image (right) -->
+      <div class="about-image-wrap">
+        <div class="about-image-border-1"></div>
+        <div class="about-image-border-2"></div>
+        <div class="about-image-inner aspect-[4/3]">
+          <img src="image/image3.png" alt="نحتفل معك" class="w-full h-full object-cover rounded-2xl shadow-xl">
         </div>
       </div>
+
+      <!-- Text (left) -->
       <div class="text-right space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F5ECD7] rounded-full border border-[#E8D9B0]">
-          <span class="text-[#B8860B] font-bold text-sm">✦ معك في كل لحظة</span>
-        </div>
-        <h2 class="text-4xl font-black text-[#1A1A1A]">فرحتك .. <span class="text-[#B8860B]">نحتفل بها معك</span></h2>
-        <div class="w-14 h-1 bg-[#B8860B] rounded-full mr-auto"></div>
-        <p class="text-[#555] text-lg leading-relaxed">
-          خلف كل لحظة تخرج تحكى تفاصيلها، مع دعوة رقمية تعبر عن إنجازك. أضيفي لمستك الخاصة وشاركي فرحتك بأسلوب يعكس تميزك مع ماي انفايت.. حيث تبدأ قصتك الجديدة.
+        <span class="badge-pill">✦ معك في كل لحظة</span>
+
+        <h2 class="section-title text-right">
+          فرحتك .. <span>نحتفل بها معك</span>
+        </h2>
+
+        <div class="gold-divider" style="margin-right: 0; margin-left: auto; width: 56px;"></div>
+
+        <p class="text-lg leading-relaxed" style="color: var(--text-secondary);">
+          خلف كل لحظة تخرج تحكى تفاصيلها، مع دعوة رقمية تعبّر عن إنجازك. أضيفي لمستك الخاصة وشاركي فرحتك بأسلوب يعكس تميزك مع ماي انفايت.. حيث تبدأ قصتك الجديدة.
         </p>
+
+        <!-- Mini stats -->
+        <div class="grid grid-cols-3 gap-4 py-4">
+          <div class="text-center p-4 rounded-2xl" style="background: var(--bg-surface); border: 1px solid var(--border);">
+            <p class="font-black text-2xl" style="color: var(--gold);">+5K</p>
+            <p class="text-xs mt-1" style="color: var(--text-muted);">عميل سعيد</p>
+          </div>
+          <div class="text-center p-4 rounded-2xl" style="background: var(--bg-surface); border: 1px solid var(--border);">
+            <p class="font-black text-2xl" style="color: var(--gold);">200+</p>
+            <p class="text-xs mt-1" style="color: var(--text-muted);">تصميم حصري</p>
+          </div>
+          <div class="text-center p-4 rounded-2xl" style="background: var(--bg-surface); border: 1px solid var(--border);">
+            <p class="font-black text-2xl" style="color: var(--gold);">5⭐</p>
+            <p class="text-xs mt-1" style="color: var(--text-muted);">تقييم العملاء</p>
+          </div>
+        </div>
+
         <button class="btn-outline-gold">اعرف المزيد</button>
       </div>
     </div>
+
   </div>
 </section>

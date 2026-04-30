@@ -1,7 +1,69 @@
-.animate-pulse-slow {
-  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+/* ===== SERVICE CARD ===== */
+.service-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  text-align: right;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .5; }
+.service-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 10px 32px var(--shadow-gold);
+  transform: translateY(-4px);
 }
+
+.service-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--gold-pale);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.service-icon-svg { color: var(--gold); }
+
+/* ===== VIP CARD ===== */
+.vip-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 28px;
+  padding: 48px 36px 52px;
+  overflow: hidden;
+}
+
+.vip-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: 0 8px 28px var(--shadow-gold);
+}
+
+/* Decorative corner dots */
+.vip-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+.vip-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  display: inline-block;
+}
+.vip-dots span:nth-child(2) { background: var(--gold); }

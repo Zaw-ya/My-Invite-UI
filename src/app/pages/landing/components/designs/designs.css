@@ -1,0 +1,93 @@
+/* ===== FILTER BAR ===== */
+.designs-filter-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.designs-filter-wrap::-webkit-scrollbar { display: none; }
+
+.designs-filter {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: max-content;
+  padding: 0 4px;
+}
+
+/* ===== DESIGN CARD ===== */
+.design-card {
+  cursor: pointer;
+}
+
+.design-card-image {
+  position: relative;
+  background-color: var(--bg-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.design-card:hover .design-card-image {
+  border-color: var(--gold);
+  box-shadow: 0 8px 28px var(--shadow-gold);
+}
+
+/* ===== NEW BADGE ===== */
+.design-badge-new {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #B22222;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* ===== HOVER OVERLAY ===== */
+.design-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 14px;
+}
+.design-card:hover .design-overlay { opacity: 1; }
+
+.design-overlay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 22px;
+  background: #FFFFFF;
+  color: #1A1A1A;
+  border: none;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  transform: translateY(8px);
+  transition: transform 0.3s ease;
+}
+.design-card:hover .design-overlay-btn { transform: translateY(0); }
+
+/* ===== CARD INFO ===== */
+.design-card-info {
+  text-align: right;
+  padding: 0 4px;
+}

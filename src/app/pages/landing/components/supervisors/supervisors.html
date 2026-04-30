@@ -1,198 +1,127 @@
-<section class="py-24 bg-[#FAFAFA]" dir="rtl">
-  <div class="container mx-auto px-6 max-w-5xl">
+<section class="section-py" style="background-color: var(--bg-secondary);" dir="rtl">
+  <div class="container mx-auto px-5 max-w-5xl">
 
     <!-- Header -->
-    <div class="text-center mb-12 space-y-2">
-      <h2 class="text-4xl font-black text-[#1A1A1A]">
-        مشرفين <span class="text-[#B8860B] italic font-black">ماي انفيت</span>
+    <div class="text-center mb-12 space-y-3">
+      <span class="badge-pill">✦ مشرفو البوابة</span>
+      <h2 class="section-title">
+        مشرفين <span>ماي انفيت</span>
       </h2>
     </div>
 
-    <!-- Two column layout (pricing tab) -->
+    <!-- Pricing Table View -->
     <div *ngIf="activeTab() === 'pricing'" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 
-      <!-- Left: Pricing Table -->
-      <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
-        <div class="bg-gray-50 border-b border-gray-200 px-6 py-3 text-center">
-          <span class="font-black text-[#1A1A1A] text-sm">الأسعار</span>
-        </div>
-
-        <!-- Row 1 -->
-        <div class="flex items-center border-b border-gray-100">
-          <div class="w-28 flex-shrink-0 px-4 py-4 border-l border-gray-100 text-right">
-            <span class="font-black text-[#1A1A1A] text-lg">785</span>
-            <span class="text-[#B8860B] text-sm font-bold mr-1">ريال</span>
-          </div>
-          <div class="flex-1 px-5 py-4 text-right text-sm text-[#333] leading-relaxed">
-            عدد <span class="font-black">1 مشرف</span> بوابة<br>
-            <span class="text-[#666] text-xs">(للمناسبات من <span class="text-[#B8860B] font-bold">50 مدعو</span> إلى <span class="text-[#B8860B] font-bold">100 مدعو</span>)</span>
+      <!-- Pricing Table -->
+      <div class="sup-table">
+        <div class="sup-table-header">الأسعار</div>
+        <div class="sup-row">
+          <div class="sup-price">785 <span>ريال</span></div>
+          <div class="sup-desc">
+            عدد <strong>1 مشرف</strong> بوابة<br>
+            <span class="sup-note">(للمناسبات من <b>50</b> إلى <b>100 مدعو</b>)</span>
           </div>
         </div>
-
-        <!-- Row 2 -->
-        <div class="flex items-center border-b border-gray-100">
-          <div class="w-28 flex-shrink-0 px-4 py-4 border-l border-gray-100 text-right">
-            <span class="font-black text-[#1A1A1A] text-lg">1,550</span>
-            <span class="text-[#B8860B] text-sm font-bold mr-1">ريال</span>
-          </div>
-          <div class="flex-1 px-5 py-4 text-right text-sm text-[#333] leading-relaxed">
-            عدد <span class="font-black">2 مشرفَين</span> بوابة<br>
-            <span class="text-[#666] text-xs">(للمناسبات أكثر من <span class="text-[#B8860B] font-bold">100 مدعو</span> إلى <span class="text-[#B8860B] font-bold">300 مدعو</span>)</span>
+        <div class="sup-row">
+          <div class="sup-price">1,550 <span>ريال</span></div>
+          <div class="sup-desc">
+            عدد <strong>2 مشرفَين</strong> بوابة<br>
+            <span class="sup-note">(للمناسبات أكثر من <b>100</b> إلى <b>300 مدعو</b>)</span>
           </div>
         </div>
-
-        <!-- Row 3 -->
-        <div class="flex items-center border-b border-gray-100">
-          <div class="w-28 flex-shrink-0 px-4 py-4 border-l border-gray-100 text-right">
-            <span class="font-black text-[#1A1A1A] text-lg">2,250</span>
-            <span class="text-[#B8860B] text-sm font-bold mr-1">ريال</span>
-          </div>
-          <div class="flex-1 px-5 py-4 text-right text-sm text-[#333] leading-relaxed">
-            عدد <span class="font-black">3 مشرفين</span> بوابة<br>
-            <span class="text-[#666] text-xs">(للمناسبات أكثر من <span class="text-[#B8860B] font-bold">300 مدعو</span> إلى <span class="text-[#B8860B] font-bold">500 مدعو</span>)</span>
+        <div class="sup-row">
+          <div class="sup-price">2,250 <span>ريال</span></div>
+          <div class="sup-desc">
+            عدد <strong>3 مشرفين</strong> بوابة<br>
+            <span class="sup-note">(للمناسبات أكثر من <b>300</b> إلى <b>500 مدعو</b>)</span>
           </div>
         </div>
-
-        <!-- Contact row -->
-        <div class="flex items-center">
-          <div class="w-28 flex-shrink-0 px-4 py-4 border-l border-gray-100 text-right">
-            <a href="#contact" class="text-[#B8860B] font-black text-sm hover:underline">تواصل معنا</a>
+        <div class="sup-row">
+          <div class="sup-price-contact">
+            <a href="#contact" class="hover:underline" style="color: var(--gold);">تواصل معنا</a>
           </div>
-          <div class="flex-1 px-5 py-4 text-right text-sm text-[#B8860B] font-bold">
-            للمناسبات أكثر من 500 مدعو
-          </div>
+          <div class="sup-desc" style="color: var(--gold); font-weight: 700;">للمناسبات أكثر من 500 مدعو</div>
         </div>
       </div>
 
-      <!-- Right: Supervisor Features -->
-      <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
-        <div class="bg-gray-50 border-b border-gray-200 px-6 py-3 text-center">
-          <span class="font-black text-[#1A1A1A] text-sm">عمل المشرفين</span>
-        </div>
-        <div class="px-6 py-5 space-y-4">
-          <!-- Feature 1 -->
-          <div class="flex items-center justify-end gap-3">
-            <div class="text-right text-sm text-[#333]">
-              مشرفين أو مشرفات <span class="text-[#B8860B] font-black">بزي موحد</span>.
-            </div>
-            <div class="w-6 h-6 rounded-full bg-[#B8860B] flex items-center justify-center flex-shrink-0">
-              <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
-            </div>
+      <!-- Features -->
+      <div class="sup-table">
+        <div class="sup-table-header">عمل المشرفين</div>
+        <div class="px-6 py-5 space-y-5">
+          <div class="sup-feature">
+            <span style="color: var(--text-secondary);">مشرفين أو مشرفات <strong style="color: var(--gold);">بزي موحد</strong>.</span>
+            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
           </div>
-          <!-- Feature 2 -->
-          <div class="flex items-center justify-end gap-3">
-            <div class="text-right text-sm text-[#333]">
-              <span class="text-[#B8860B] font-black">طاولة</span> تنظيم دخول.
-            </div>
-            <div class="w-6 h-6 rounded-full bg-[#B8860B] flex items-center justify-center flex-shrink-0">
-              <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
-            </div>
+          <div class="sup-feature">
+            <span style="color: var(--text-secondary);"><strong style="color: var(--gold);">طاولة</strong> تنظيم دخول.</span>
+            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
           </div>
-          <!-- Feature 3 -->
-          <div class="flex items-center justify-end gap-3">
-            <div class="text-right text-sm text-[#333]">
-              <span class="text-[#B8860B] font-black">مسح</span> أكواد الدخول.
-            </div>
-            <div class="w-6 h-6 rounded-full bg-[#B8860B] flex items-center justify-center flex-shrink-0">
-              <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
-            </div>
+          <div class="sup-feature">
+            <span style="color: var(--text-secondary);"><strong style="color: var(--gold);">مسح</strong> أكواد الدخول.</span>
+            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
           </div>
-          <!-- Feature 4 -->
-          <div class="flex items-center justify-end gap-3">
-            <div class="text-right text-sm text-[#333]">
-              التواجد لمدة <span class="text-[#B8860B] font-black">5 ساعات</span>.
-            </div>
-            <div class="w-6 h-6 rounded-full bg-[#B8860B] flex items-center justify-center flex-shrink-0">
-              <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
-            </div>
+          <div class="sup-feature">
+            <span style="color: var(--text-secondary);">التواجد لمدة <strong style="color: var(--gold);">5 ساعات</strong>.</span>
+            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Supervisors grid (supervisors tab) -->
+    <!-- Supervisors Grid View -->
     <div *ngIf="activeTab() === 'supervisors'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
       <div
         *ngFor="let s of supervisors()"
-        class="bg-white rounded-2xl border border-[#E8D9B0] overflow-hidden text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+        class="sup-card"
       >
-        <div class="bg-[#F5ECD7]/40 px-8 pt-8 pb-0 flex justify-center">
-          <div class="relative w-28 h-28">
-            <div class="w-full h-full rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#B8860B] overflow-hidden shadow-md">
-              <img
-                [src]="s.imageUrl"
-                [alt]="s.name"
-                class="w-full h-full object-cover"
-                (error)="showInitial($event)"
-              >
-              <span class="hidden text-white text-4xl font-black">{{ s.name.charAt(0) }}</span>
+        <div class="sup-card-top">
+          <div class="sup-avatar-wrap">
+            <div class="sup-avatar">
+              <img [src]="s.imageUrl" [alt]="s.name" class="w-full h-full object-cover" (error)="showInitial($event)">
             </div>
-            <div class="absolute -bottom-3 -right-3 w-8 h-8 bg-[#B8860B] rounded-full flex items-center justify-center border-2 border-white">
+            <div class="sup-check-badge">
               <lucide-icon name="check" class="w-4 h-4 text-white"></lucide-icon>
             </div>
           </div>
         </div>
-        <div class="p-6 pt-5 space-y-3">
-          <div>
-            <h3 class="text-lg font-black text-[#1A1A1A]">{{ s.name }}</h3>
-            <p class="text-[#B8860B] font-bold text-sm">{{ s.role }}</p>
-          </div>
-          <div class="inline-flex items-center gap-1 px-4 py-1.5 bg-[#F5ECD7] border border-[#E8D9B0] rounded-full">
-            <span class="text-[#B8860B] font-black text-sm">يبدأ من {{ s.cost }} ر.س</span>
-          </div>
-          <button class="w-full py-2.5 rounded-xl font-bold border-2 border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-white transition-all text-sm">
-            احجز الآن
-          </button>
+        <div class="sup-card-body">
+          <h3 class="font-black text-lg" style="color: var(--text);">{{ s.name }}</h3>
+          <p class="text-sm font-bold" style="color: var(--gold);">{{ s.role }}</p>
+          <span class="badge-pill mt-2">يبدأ من {{ s.cost }} ر.س</span>
+          <button class="btn-outline-gold w-full justify-center mt-3 text-sm py-2.5">احجز الآن</button>
         </div>
       </div>
     </div>
 
-    <!-- Cities -->
-    <div *ngIf="activeTab() === 'pricing'" class="text-right mb-10 space-y-1 px-2">
-      <p class="font-black text-[#1A1A1A] mb-2">المـدن:</p>
-      <p class="text-sm text-[#444]">
-        خدمة <span class="text-[#B8860B] font-bold">مشرفين البوابة</span> متوفرة فقط في <span class="text-[#B8860B] font-bold">المدن</span> التالية :
-      </p>
-      <p class="text-sm text-[#444]">
-        <span class="text-[#B8860B] font-bold">السعودية:</span>
-        الرياض - مكة - المدينة - جدة - القصيم - الدمام - الخير - الظهران - الأحساء - حائل.
-      </p>
-      <p class="text-sm text-[#444]">
-        <span class="text-[#B8860B] font-bold">الإمارات:</span> أبوظبي - دبي.
-      </p>
-      <p class="text-sm text-[#444]">
-        <span class="text-[#B8860B] font-bold">الكويت:</span> الكويت.
-      </p>
-      <p class="text-sm text-[#444]">
-        <span class="text-[#B8860B] font-bold">قطر:</span> الدوحة.
-      </p>
-      <p class="text-sm text-[#444]">
-        <span class="text-[#B8860B] font-bold">البحرين:</span> المنامة.
-      </p>
+    <!-- Cities (pricing tab) -->
+    <div *ngIf="activeTab() === 'pricing'" class="cities-box text-right mb-10">
+      <p class="font-black mb-3" style="color: var(--text);">المـدن المتاحة:</p>
+      <p class="text-sm mb-1" style="color: var(--text-secondary);">خدمة <span style="color: var(--gold); font-weight: 700;">مشرفين البوابة</span> متوفرة في المدن التالية:</p>
+      <div class="grid sm:grid-cols-2 gap-x-8 gap-y-1 mt-3">
+        <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">السعودية:</span> الرياض - مكة - المدينة - جدة - القصيم - الدمام - الخبر - الظهران - الأحساء - حائل.</p>
+        <div class="space-y-1">
+          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">الإمارات:</span> أبوظبي - دبي.</p>
+          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">الكويت:</span> الكويت.</p>
+          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">قطر:</span> الدوحة.</p>
+          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">البحرين:</span> المنامة.</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Bottom Tabs -->
+    <!-- Tab Toggle -->
     <div class="flex justify-center">
-      <div class="inline-flex border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+      <div class="pricing-tabs">
         <button
           (click)="activeTab.set('pricing')"
-          class="px-8 py-3 text-sm font-bold transition-all border-b-2"
-          [ngClass]="activeTab() === 'pricing'
-            ? 'text-[#B8860B] border-[#B8860B]'
-            : 'text-[#888] border-transparent hover:text-[#B8860B]'"
-        >
-          قائمة الأسعار
-        </button>
+          class="pricing-tab"
+          [class.active]="activeTab() === 'pricing'"
+        >قائمة الأسعار</button>
         <button
           (click)="activeTab.set('supervisors')"
-          class="px-8 py-3 text-sm font-bold transition-all border-b-2"
-          [ngClass]="activeTab() === 'supervisors'
-            ? 'text-[#B8860B] border-[#B8860B]'
-            : 'text-[#888] border-transparent hover:text-[#B8860B]'"
-        >
-          مشرفين البوابة
-        </button>
+          class="pricing-tab"
+          [class.active]="activeTab() === 'supervisors'"
+        >مشرفين البوابة</button>
       </div>
     </div>
 
