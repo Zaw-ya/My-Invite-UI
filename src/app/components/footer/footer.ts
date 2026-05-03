@@ -6,7 +6,8 @@ import { LucideAngularModule } from 'lucide-angular';
   selector: 'app-footer',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './footer.html'
+  templateUrl: './footer.html',
+  styleUrl: './footer.css'
 })
 export class FooterComponent {
   scrollToTop() {

@@ -13,7 +13,8 @@ interface PricingRow {
   selector: 'app-supervisors',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './supervisors.html'
+  templateUrl: './supervisors.html',
+  styleUrl: './supervisors.css'
 })
 export class SupervisorsComponent {
   private contentService = inject(ContentService);

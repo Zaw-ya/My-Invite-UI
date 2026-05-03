@@ -1,63 +1,181 @@
+/* Google Fonts must be first */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap');
+
+/* ===================================================
+   29LTBukra Display Font (from /ui/ folder)
+   =================================================== */
+@font-face {
+  font-family: '29LTBukra';
+  src: url('/fonts/29LTBUKRALIGHT.TTF') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: '29LTBukra';
+  src: url('/fonts/29LTBUKRAREGULAR.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: '29LTBukra';
+  src: url('/fonts/29LTBUKRABOLD.TTF') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: '29LTBukra';
+  src: url('/fonts/29LTBUKRABOLDITALIC.OTF') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ===== GLOBAL RTL + ARABIC SETUP ===== */
+/* ===================================================
+   THEME VARIABLES — Light (default) + Dark
+   =================================================== */
+:root {
+  --bg:            #FFFFFF;
+  --bg-secondary:  #F8F6F0;
+  --bg-surface:    #FAFAFA;
+  --bg-card:       #FFFFFF;
+  --bg-dark-hero:  #0D0D0D;
+
+  --text:          #1A1A1A;
+  --text-secondary:#555555;
+  --text-muted:    #888888;
+  --text-inverse:  #FFFFFF;
+
+  --border:        #E8D9B0;
+  --border-subtle: #F0EAD6;
+
+  --gold:          #B8860B;
+  --gold-light:    #D4AF37;
+  --gold-pale:     #F5ECD7;
+
+  --shadow:        rgba(0,0,0,0.08);
+  --shadow-gold:   rgba(184,134,11,0.20);
+
+  --navbar-bg:     #FFFFFF;
+  --navbar-border: #E8D9B0;
+  --ticker-bg:     #1A1A1A;
+  --ticker-text:   #FFFFFF;
+
+  --footer-bg:     #0D0D0D;
+  --footer-text:   rgba(255,255,255,0.5);
+  --footer-head:   #FFFFFF;
+}
+
+[data-theme="dark"] {
+  --bg:            #0D0D0D;
+  --bg-secondary:  #111111;
+  --bg-surface:    #161616;
+  --bg-card:       #1A1A1A;
+  --bg-dark-hero:  #050505;
+
+  --text:          #F0F0F0;
+  --text-secondary:#AAAAAA;
+  --text-muted:    #666666;
+  --text-inverse:  #0D0D0D;
+
+  --border:        #2A2A2A;
+  --border-subtle: #1F1F1F;
+
+  --gold:          #D4AF37;
+  --gold-light:    #F0C040;
+  --gold-pale:     #1E1800;
+
+  --shadow:        rgba(0,0,0,0.5);
+  --shadow-gold:   rgba(212,175,55,0.18);
+
+  --navbar-bg:     #111111;
+  --navbar-border: #222222;
+  --ticker-bg:     #D4AF37;
+  --ticker-text:   #0D0D0D;
+
+  --footer-bg:     #080808;
+  --footer-text:   rgba(255,255,255,0.4);
+  --footer-head:   #D4AF37;
+}
+
+/* ===================================================
+   BASE RESET & RTL
+   =================================================== */
 html {
   direction: rtl;
   font-family: 'Cairo', sans-serif;
   scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #FFFFFF;
-  color: #1A1A1A;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: 'Cairo', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ===== GOLD & WHITE THEME VARIABLES ===== */
-:root {
-  --gold: #B8860B;
-  --gold-light: #D4AF37;
-  --gold-pale: #F5ECD7;
-  --white: #FFFFFF;
-  --off-white: #FAFAFA;
-  --gray-light: #F5F5F5;
-  --text-dark: #1A1A1A;
-  --text-mid: #444444;
-  --text-muted: #888888;
-  --border: #E8D9B0;
+/* Smooth theme transitions on key properties */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
 }
 
-/* ===== GOLD TEXT HELPERS ===== */
-.text-gold { color: var(--gold); }
-.bg-gold { background-color: var(--gold); }
-.border-gold { border-color: var(--gold); }
+/* ===================================================
+   TYPOGRAPHY HELPERS
+   =================================================== */
+.font-display {
+  font-family: '29LTBukra', 'Cairo', sans-serif;
+}
 
-/* ===== GOLD BUTTON ===== */
+/* ===================================================
+   COLOR HELPERS
+   =================================================== */
+.text-gold        { color: var(--gold); }
+.bg-gold          { background-color: var(--gold); }
+.border-gold      { border-color: var(--gold); }
+.bg-theme         { background-color: var(--bg); }
+.bg-theme-surface { background-color: var(--bg-surface); }
+.bg-theme-card    { background-color: var(--bg-card); }
+.text-theme       { color: var(--text); }
+.text-theme-muted { color: var(--text-muted); }
+
+/* ===================================================
+   BUTTONS
+   =================================================== */
 .btn-gold {
   background-color: var(--gold);
   color: #FFFFFF;
   font-family: 'Cairo', sans-serif;
   font-weight: 700;
-  border-radius: 12px;
-  padding: 14px 32px;
+  border-radius: 50px;
+  padding: 13px 30px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease !important;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 .btn-gold:hover {
   background-color: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.3);
+  box-shadow: 0 8px 24px var(--shadow-gold);
 }
 
 .btn-outline-gold {
@@ -65,15 +183,16 @@ body {
   color: var(--gold);
   font-family: 'Cairo', sans-serif;
   font-weight: 700;
-  border-radius: 12px;
-  padding: 12px 32px;
+  border-radius: 50px;
+  padding: 11px 30px;
   border: 2px solid var(--gold);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease !important;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: 15px;
+  white-space: nowrap;
 }
 .btn-outline-gold:hover {
   background-color: var(--gold);
@@ -81,96 +200,325 @@ body {
   transform: translateY(-2px);
 }
 
-/* ===== FORM INPUTS ===== */
+.btn-dark {
+  background-color: var(--text);
+  color: var(--bg);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 13px 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.btn-dark:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 13px 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.btn-light:hover {
+  background-color: var(--gold-pale);
+  transform: translateY(-2px);
+}
+
+/* ===================================================
+   FORM INPUTS
+   =================================================== */
 .form-input {
   width: 100%;
-  padding: 14px 18px;
-  background-color: #FFFFFF;
+  padding: 13px 18px;
+  background-color: var(--bg-surface);
   border: 1.5px solid var(--border);
   border-radius: 12px;
   font-family: 'Cairo', sans-serif;
   font-size: 15px;
-  color: var(--text-dark);
+  color: var(--text);
   outline: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
   text-align: right;
+  box-sizing: border-box;
 }
 .form-input:focus {
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
 }
-.form-input::placeholder {
-  color: var(--text-muted);
-}
+.form-input::placeholder { color: var(--text-muted); }
 
-/* ===== SECTION TITLE ===== */
+/* ===================================================
+   SECTION TITLE
+   =================================================== */
 .section-title {
-  font-family: 'Cairo', sans-serif;
-  font-weight: 900;
-  font-size: 2.5rem;
-  color: var(--text-dark);
-  text-align: center;
+  font-family: '29LTBukra', 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--text);
+  line-height: 1.3;
 }
-.section-title span {
-  color: var(--gold);
-}
+.section-title span { color: var(--gold); }
 .section-sub {
-  text-align: center;
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin-top: 8px;
+  line-height: 1.7;
 }
 
-/* ===== GOLD DIVIDER ===== */
-.gold-divider {
-  width: 60px;
-  height: 3px;
+/* ===================================================
+   BADGE PILL
+   =================================================== */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  background-color: var(--gold-pale);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.25s ease !important;
+  white-space: nowrap;
+}
+.tag-pill:hover,
+.tag-pill.active {
   background: var(--gold);
-  border-radius: 999px;
-  margin: 12px auto;
+  border-color: var(--gold);
+  color: #FFFFFF;
+}
+.tag-pill.active-dark {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
 }
 
-/* ===== CARD ===== */
-.card-white {
-  background: #FFFFFF;
+/* ===================================================
+   CARD
+   =================================================== */
+.card {
+  background: var(--bg-card);
   border: 1.5px solid var(--border);
   border-radius: 20px;
   padding: 28px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease !important;
 }
-.card-white:hover {
-  box-shadow: 0 12px 40px rgba(184, 134, 11, 0.12);
+.card:hover {
+  box-shadow: 0 12px 40px var(--shadow-gold);
   transform: translateY(-4px);
+  border-color: var(--gold);
 }
 
-/* ===== NAV LINK ===== */
+/* ===================================================
+   GOLD DIVIDER
+   =================================================== */
+.gold-divider {
+  height: 3px;
+  background: var(--gold);
+  border-radius: 999px;
+}
+
+/* ===================================================
+   SCROLLING TICKER
+   =================================================== */
+.ticker-wrap {
+  overflow: hidden;
+  background-color: var(--ticker-bg);
+  color: var(--ticker-text);
+  padding: 11px 0;
+  position: relative;
+}
+.ticker-track {
+  display: inline-flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: ticker-scroll 28s linear infinite;
+  will-change: transform;
+}
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.ticker-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .ticker-dot { background: var(--ticker-text); }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ===================================================
+   GEOMETRIC HERO FRAMES (white overlapping rectangles)
+   =================================================== */
+.geo-frame {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 6px;
+}
+.geo-frame-1 {
+  width: 240px; height: 300px;
+  border: 3px solid rgba(255,255,255,0.12);
+  top: 10%; left: 5%;
+  transform: rotate(-12deg);
+}
+.geo-frame-2 {
+  width: 180px; height: 240px;
+  border: 3px solid rgba(255,255,255,0.08);
+  top: 30%; left: 20%;
+  transform: rotate(8deg);
+}
+.geo-frame-3 {
+  width: 120px; height: 160px;
+  border: 2px solid rgba(255,255,255,0.06);
+  top: 60%; left: 8%;
+  transform: rotate(-5deg);
+}
+.geo-frame-gold {
+  border-color: rgba(184,134,11,0.3) !important;
+}
+
+/* ===================================================
+   NAV LINK
+   =================================================== */
 .nav-link {
   font-family: 'Cairo', sans-serif;
-  font-weight: 700;
-  color: #1A1A1A;
-  transition: color 0.2s;
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.2s ease !important;
   position: relative;
   padding-bottom: 4px;
   text-decoration: none;
+  font-size: 14px;
+  white-space: nowrap;
 }
-.nav-link:hover {
-  color: var(--gold);
+.nav-link:hover { color: var(--gold); }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 999px;
+  transition: width 0.25s ease !important;
 }
+.nav-link:hover::after { width: 100%; }
+.nav-link.active { color: var(--gold); }
+.nav-link.active::after { width: 100%; }
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f5f5f5; }
+/* ===================================================
+   SCROLLBAR
+   =================================================== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-/* ===== ANIMATIONS ===== */
+/* ===================================================
+   ANIMATIONS
+   =================================================== */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .fade-up { animation: fadeUp 0.6s ease forwards; }
 
 @keyframes bounceSlow {
-  0%, 100% { transform: translateY(-4px); }
-  50% { transform: translateY(4px); }
+  0%, 100% { transform: translateY(-6px); }
+  50%       { transform: translateY(6px); }
 }
 .animate-bounce-slow { animation: bounceSlow 3s ease-in-out infinite; }
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--shadow-gold); }
+  50%       { box-shadow: 0 0 0 12px transparent; }
+}
+.pulse-glow { animation: pulseGlow 2.5s ease infinite; }
+
+/* ===================================================
+   SECTION SPACING
+   =================================================== */
+.section-py { padding-top: 96px; padding-bottom: 96px; }
+.section-py-sm { padding-top: 64px; padding-bottom: 64px; }
+
+/* ===================================================
+   DARK HERO SECTION OVERLAY
+   =================================================== */
+.hero-dark {
+  background-color: var(--bg-dark-hero);
+  color: #FFFFFF;
+}
+.hero-dark .section-title { color: #FFFFFF; }
+
+/* ===================================================
+   ALTERNATING SECTION BACKGROUNDS
+   =================================================== */
+.section-alt { background-color: var(--bg-secondary); }
+.section-dark { background-color: var(--bg-dark-hero); color: #FFFFFF; }
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease !important;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-pale);
+}

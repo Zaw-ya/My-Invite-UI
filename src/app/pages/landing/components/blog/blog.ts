@@ -7,7 +7,8 @@ import { BlogPost } from '../../../../models/content.interface';
   selector: 'app-blog',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './blog.html'
+  templateUrl: './blog.html',
+  styleUrl: './blog.css'
 })
 export class BlogComponent {
   @Input() blogPosts: BlogPost[] = [];

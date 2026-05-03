@@ -1,55 +1,79 @@
-<section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-16 space-y-3">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F5ECD7] rounded-full border border-[#E8D9B0]">
-        <span class="text-[#B8860B] font-bold text-sm">✦ خدماتنا</span>
-      </div>
-      <h2 class="text-4xl font-black text-[#1A1A1A]">أكثر من <span class="text-[#B8860B]">مجرد دعوات</span></h2>
-      <div class="w-16 h-1 bg-[#B8860B] rounded-full mx-auto"></div>
+<section class="as-section">
+
+  <!-- Geometric corner frames (same as demo-form) -->
+  <div class="as-geo as-geo-tl" aria-hidden="true">
+    <div class="as-geo-inner-1"></div>
+    <div class="as-geo-inner-2"></div>
+  </div>
+
+  <div class="container mx-auto px-5 relative z-10">
+
+    <!-- Header -->
+    <div class="as-heading-wrap">
+      <lucide-icon name="sparkles" class="as-heading-icon"></lucide-icon>
+      <h2 class="as-heading font-display">أكثر من مجرد دعوات</h2>
+      <lucide-icon name="sparkles" class="as-heading-icon"></lucide-icon>
     </div>
-    <div class="grid lg:grid-cols-2 gap-12 items-center text-right">
-      <div class="grid sm:grid-cols-2 gap-6">
-        <div class="bg-white p-7 rounded-2xl border-2 border-[#E8D9B0] hover:border-[#B8860B] hover:shadow-[0_8px_32px_rgba(184,134,11,0.12)] transition-all group text-right">
-          <div class="w-12 h-12 bg-[#F5ECD7] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#B8860B] transition-colors">
-            <lucide-icon name="briefcase" class="w-6 h-6 text-[#B8860B] group-hover:text-white transition-colors"></lucide-icon>
+
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+
+      <!-- LEFT: 2×2 Service Cards -->
+      <div class="grid sm:grid-cols-2 gap-5">
+
+        <div class="as-service-card group">
+          <div class="as-service-icon group-hover:border-gold transition-all">
+            <lucide-icon name="briefcase" class="w-6 h-6 as-service-icon-svg group-hover:text-white transition-colors"></lucide-icon>
           </div>
-          <h4 class="font-black text-[#1A1A1A] text-lg mb-2">حلول الشركات</h4>
-          <p class="text-[#888] text-sm leading-relaxed">تكامل API والعلامة التجارية الخاصة للشركات.</p>
+          <h4 class="font-black text-lg mt-4 mb-2 as-card-title">حلول الشركات</h4>
+          <p class="text-sm leading-relaxed as-card-body">تكامل API والعلامة التجارية الخاصة للشركات.</p>
         </div>
-        <div class="bg-white p-7 rounded-2xl border-2 border-[#E8D9B0] hover:border-[#B8860B] hover:shadow-[0_8px_32px_rgba(184,134,11,0.12)] transition-all group text-right">
-          <div class="w-12 h-12 bg-[#F5ECD7] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#B8860B] transition-colors">
-            <lucide-icon name="send" class="w-6 h-6 text-[#B8860B] group-hover:text-white transition-colors"></lucide-icon>
+
+        <div class="as-service-card group">
+          <div class="as-service-icon group-hover:border-gold transition-all">
+            <lucide-icon name="zap" class="w-6 h-6 as-service-icon-svg group-hover:text-white transition-colors"></lucide-icon>
           </div>
-          <h4 class="font-black text-[#1A1A1A] text-lg mb-2">التوصيل السريع</h4>
-          <p class="text-[#888] text-sm leading-relaxed">خدمة التسريع: التسليم خلال ساعة واحدة.</p>
+          <h4 class="font-black text-lg mt-4 mb-2 as-card-title">التوصيل السريع</h4>
+          <p class="text-sm leading-relaxed as-card-body">خدمة التسريع: التسليم خلال ساعة واحدة.</p>
         </div>
-        <div class="bg-white p-7 rounded-2xl border-2 border-[#E8D9B0] hover:border-[#B8860B] hover:shadow-[0_8px_32px_rgba(184,134,11,0.12)] transition-all group text-right">
-          <div class="w-12 h-12 bg-[#F5ECD7] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#B8860B] transition-colors">
-            <lucide-icon name="heart" class="w-6 h-6 text-[#B8860B] group-hover:text-white transition-colors"></lucide-icon>
+
+        <div class="as-service-card group">
+          <div class="as-service-icon group-hover:border-gold transition-all">
+            <lucide-icon name="palette" class="w-6 h-6 as-service-icon-svg group-hover:text-white transition-colors"></lucide-icon>
           </div>
-          <h4 class="font-black text-[#1A1A1A] text-lg mb-2">تصميم مخصص</h4>
-          <p class="text-[#888] text-sm leading-relaxed">رسومات فريدة مصممة خصيصاً لمناسبتك.</p>
+          <h4 class="font-black text-lg mt-4 mb-2 as-card-title">تصميم مخصص</h4>
+          <p class="text-sm leading-relaxed as-card-body">رسومات فريدة مصممة خصيصاً لمناسبتك.</p>
         </div>
-        <div class="bg-white p-7 rounded-2xl border-2 border-[#E8D9B0] hover:border-[#B8860B] hover:shadow-[0_8px_32px_rgba(184,134,11,0.12)] transition-all group text-right">
-          <div class="w-12 h-12 bg-[#F5ECD7] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#B8860B] transition-colors">
-            <lucide-icon name="landmark" class="w-6 h-6 text-[#B8860B] group-hover:text-white transition-colors"></lucide-icon>
+
+        <div class="as-service-card group">
+          <div class="as-service-icon group-hover:border-gold transition-all">
+            <lucide-icon name="landmark" class="w-6 h-6 as-service-icon-svg group-hover:text-white transition-colors"></lucide-icon>
           </div>
-          <h4 class="font-black text-[#1A1A1A] text-lg mb-2">المناسبات الرسمية</h4>
-          <p class="text-[#888] text-sm leading-relaxed">دعوات رسمية للحكومة والمؤسسات الكبرى.</p>
+          <h4 class="font-black text-lg mt-4 mb-2 as-card-title">المناسبات الرسمية</h4>
+          <p class="text-sm leading-relaxed as-card-body">دعوات رسمية للحكومة والمؤسسات الكبرى.</p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: VIP CTA Card -->
+      <div class="as-vip-card text-center">
+        <div class="as-vip-icon pulse-glow">
+          <lucide-icon name="crown" class="w-9 h-9 text-white"></lucide-icon>
+        </div>
+        <h3 class="text-3xl font-black mt-6 mb-3 as-card-title">جاهز لتجربة فريدة؟</h3>
+        <p class="leading-relaxed mb-8 as-card-body">
+          تواصل مع قسم VIP للحصول على خدمات حصرية تتجاوز توقعاتك وتجعل مناسبتك لا تُنسى.
+        </p>
+        <button class="btn-gold justify-center text-base px-10 py-4">
+          تواصل مع قسم VIP
+          <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+        </button>
+
+        <!-- Decorative dots -->
+        <div class="as-vip-dots" aria-hidden="true">
+          <span></span><span></span><span></span>
         </div>
       </div>
 
-      <!-- CTA Card -->
-      <div class="bg-[#F5ECD7]/50 border-2 border-[#E8D9B0] rounded-3xl p-12 text-center space-y-8">
-        <div class="w-20 h-20 bg-[#B8860B] rounded-2xl flex items-center justify-center mx-auto shadow-[0_8px_24px_rgba(184,134,11,0.3)]">
-          <lucide-icon name="star" class="w-10 h-10 text-white fill-current"></lucide-icon>
-        </div>
-        <h3 class="text-3xl font-black text-[#1A1A1A]">جاهز لتجربة فريدة؟</h3>
-        <p class="text-[#666] leading-relaxed">تواصل مع قسم VIP للحصول على خدمات حصرية تتجاوز توقعاتك.</p>
-        <button class="btn-gold mx-auto justify-center text-lg">
-          تواصل مع قسم VIP
-        </button>
-      </div>
     </div>
   </div>
 </section>

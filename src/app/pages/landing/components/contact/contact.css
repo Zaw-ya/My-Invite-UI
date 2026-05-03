@@ -1,0 +1,64 @@
+/* ===== CONTACT INFO ITEM ===== */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.contact-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--gold-pale);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.contact-item:hover .contact-icon-box {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #FFFFFF;
+}
+
+/* ===== CONTACT FORM CARD ===== */
+.contact-form-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+.contact-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+/* ===== SOCIAL BUTTONS ===== */
+.contact-social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.contact-social-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}

@@ -1,40 +1,102 @@
-<section id="designs" class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="text-center space-y-4 mb-16">
-      <h2 class="text-4xl font-extrabold text-text-main">منتجات وصلت حديثاً</h2>
-      <p class="text-text-secondary">استمتع بجمال الاقسام المختارة خصيصاً لك لتلبي جميع احتياجاتك</p>
+<section id="designs" class="section-py" style="background-color: var(--bg);">
+  <div class="container mx-auto px-5">
+
+    <!-- Header -->
+    <div class="text-center space-y-4 mb-12">
+      <span class="badge-pill">✦ تصاميمنا</span>
+      <h2 class="section-title">تصميمات <span>كروتنا</span></h2>
+      <p class="section-sub">استمتع بجمال الأقسام المختارة خصيصاً لتناسب جميع مناسباتك</p>
     </div>
-    
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div *ngFor="let card of invitations" class="group cursor-pointer text-center">
-        <div class="relative bg-secondary/30 rounded-2xl overflow-hidden mb-4 aspect-[3/4] flex items-center justify-center p-4">
-          <!-- New Badge -->
-          <div class="absolute top-4 left-4 bg-[#B22222] text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm z-20">
-            جديد
-          </div>
-          
-          <!-- Product Image -->
-          <img 
-            [src]="card.imageUrl" 
-            [alt]="card.title" 
-            class="max-w-full max-h-full object-contain shadow-2xl group-hover:scale-105 transition-transform duration-500"
-          >
-          
-          <!-- Hover Overlay -->
-          <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-all"></div>
-        </div>
-        
-        <div class="space-y-1">
-          <p class="text-sm text-text-secondary">{{card.category}}</p>
-          <h4 class="text-lg font-bold text-text-main">{{card.title}}</h4>
-        </div>
+
+    <!-- Category Filter -->
+    <div class="designs-filter-wrap mb-6">
+      <div class="designs-filter">
+        @for (cat of categories; track cat) {
+          <button
+            class="tag-pill"
+            [class.active]="activeFilter() === cat"
+            (click)="setFilter(cat)"
+          >{{ cat }}</button>
+        }
       </div>
     </div>
-    
-    <div class="mt-16 text-center">
-      <button class="px-12 py-3 border border-text-main text-text-main rounded-lg font-bold hover:bg-text-main hover:text-white transition-all">
-        تصفح جميع المنتجات
+
+    <!-- Gender Filter -->
+    <div class="flex justify-center gap-3 mb-10">
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">
+        <lucide-icon name="mars" class="w-3.5 h-3.5 me-1"></lucide-icon>
+        تصميمات ذكورية
+      </button>
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">
+        <lucide-icon name="venus" class="w-3.5 h-3.5 me-1"></lucide-icon>
+        تصميمات أنثوية
       </button>
     </div>
+
+    <!-- Carousel -->
+    <div class="carousel-root">
+
+      <!-- Prev Arrow -->
+      <button class="carousel-arrow carousel-arrow-prev" (click)="prev()" [disabled]="currentIndex() === 0">
+        <lucide-icon name="arrow-right" class="w-5 h-5"></lucide-icon>
+      </button>
+
+      <!-- Track viewport -->
+      <div class="carousel-viewport" (mousedown)="onDragStart($event)" (touchstart)="onDragStart($event)">
+        <div
+          class="carousel-track"
+          [style.transform]="'translateX(' + translateX() + '%)'"
+        >
+          @for (card of filtered(); track card.id) {
+            <div class="carousel-slide">
+              <div class="design-card group">
+                <div class="design-card-image">
+                  <span class="design-badge-new">جديد</span>
+                  <img [src]="card.imageUrl" [alt]="card.title"
+                       class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                  <div class="design-overlay">
+                    <button class="design-overlay-btn">
+                      <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
+                      معاينة
+                    </button>
+                  </div>
+                </div>
+                <div class="design-card-info">
+                  <p class="text-xs mb-1" style="color: var(--text-muted);">{{ card.category }}</p>
+                  <h4 class="font-bold text-sm" style="color: var(--text);">{{ card.title }}</h4>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Next Arrow -->
+      <button class="carousel-arrow carousel-arrow-next" (click)="next()" [disabled]="currentIndex() === maxIndex()">
+        <lucide-icon name="arrow-left" class="w-5 h-5"></lucide-icon>
+      </button>
+
+    </div>
+
+    <!-- Dot Indicators -->
+    <div class="carousel-dots">
+      @for (d of dots(); track d) {
+        <button
+          class="carousel-dot"
+          [class.active]="currentIndex() === d"
+          (click)="goTo(d)"
+        ></button>
+      }
+    </div>
+
+    <!-- Browse All CTA -->
+    <div class="mt-14 text-center">
+      <button class="btn-outline-gold px-16 py-4 text-base">
+        تصفح جميع التصميمات
+        <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+      </button>
+    </div>
+
   </div>
 </section>

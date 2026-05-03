@@ -7,7 +7,8 @@ import { Testimonial } from '../../../../models/content.interface';
   selector: 'app-testimonials',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './testimonials.html'
+  templateUrl: './testimonials.html',
+  styleUrl: './testimonials.css'
 })
 export class TestimonialsComponent {
   @Input() testimonials: Testimonial[] = [];

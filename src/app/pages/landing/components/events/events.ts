@@ -7,7 +7,8 @@ import { EventType } from '../../../../models/content.interface';
   selector: 'app-events',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './events.html'
+  templateUrl: './events.html',
+  styleUrl: './events.css'
 })
 export class EventsComponent {
   @Input() eventTypes: EventType[] = [];
