@@ -8,31 +8,7 @@
       <p class="section-sub">استمتع بجمال الأقسام المختارة خصيصاً لتناسب جميع مناسباتك</p>
     </div>
 
-    <!-- Category Filter -->
-    <div class="designs-filter-wrap mb-6">
-      <div class="designs-filter">
-        @for (cat of categories; track cat) {
-          <button
-            class="tag-pill"
-            [class.active]="activeFilter() === cat"
-            (click)="setFilter(cat)"
-          >{{ cat }}</button>
-        }
-      </div>
-    </div>
-
-    <!-- Gender Filter -->
-    <div class="flex justify-center gap-3 mb-10">
-      <button class="tag-pill" [class.active-dark]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
-      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">
-        <lucide-icon name="mars" class="w-3.5 h-3.5 me-1"></lucide-icon>
-        تصميمات ذكورية
-      </button>
-      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">
-        <lucide-icon name="venus" class="w-3.5 h-3.5 me-1"></lucide-icon>
-        تصميمات أنثوية
-      </button>
-    </div>
+ 
 
     <!-- Carousel -->
     <div class="carousel-root">
@@ -78,6 +54,32 @@
       </button>
 
     </div>
+<br/>
+       <!-- Category Filter -->
+    <div class="designs-filter-wrap mb-6">
+      <div class="designs-filter">
+        @for (cat of categories; track cat) {
+          <button
+            class="tag-pill"
+            [class.active]="activeFilter() === cat"
+            (click)="setFilter(cat)"
+          >{{ cat }}</button>
+        }
+      </div>
+    </div>
+
+    <!-- Gender Filter -->
+    <div class="flex justify-center gap-3 mb-10">
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">
+        <lucide-icon name="mars" class="w-3.5 h-3.5 me-1"></lucide-icon>
+        تصميمات ذكورية
+      </button>
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">
+        <lucide-icon name="venus" class="w-3.5 h-3.5 me-1"></lucide-icon>
+        تصميمات أنثوية
+      </button>
+    </div>
 
     <!-- Dot Indicators -->
     <div class="carousel-dots">
@@ -90,13 +92,13 @@
       }
     </div>
 
-    <!-- Browse All CTA -->
-    <div class="mt-14 text-center">
-      <button class="btn-outline-gold px-16 py-4 text-base">
-        تصفح جميع التصميمات
-        <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
-      </button>
-    </div>
+     <!-- Browse All CTA -->
+     <div class="mt-14 text-center">
+       <button class="btn-outline-gold px-16 py-4 text-base" (click)="navigateToDesigns()">
+         تصفح جميع التصميمات
+         <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+       </button>
+     </div>
 
   </div>
 </section>

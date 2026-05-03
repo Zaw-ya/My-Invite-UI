@@ -1,0 +1,88 @@
+<app-navbar></app-navbar>
+
+<section class="blog-detail-section">
+  <div class="container mx-auto px-5 py-16">
+
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb mb-8">
+      <a href="/" class="breadcrumb-link">الرئيسية</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="/blog" class="breadcrumb-link">المدونة</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">{{ getPost().title }}</span>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="blog-article-header mb-12">
+      <span class="blog-category-tag mb-4">{{ getPost().category }}</span>
+      <h1 class="blog-article-title">{{ getPost().title }}</h1>
+      
+      <div class="blog-meta flex items-center gap-4 mt-4">
+        <span class="meta-item">
+          <lucide-icon name="calendar" class="w-4 h-4 inline me-1"></lucide-icon>
+          {{ getPost().date }}
+        </span>
+        <span class="meta-item">
+          <lucide-icon name="clock" class="w-4 h-4 inline me-1"></lucide-icon>
+          {{ getPost().readTime }}
+        </span>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <figure class="blog-featured-image mb-12">
+      <img [src]="getPost().imageUrl" [alt]="getPost().title" class="rounded-2xl">
+    </figure>
+
+    <!-- Article Content -->
+    <article class="blog-article-content">
+      <div class="blog-text" [innerHTML]="getPost().content"></div>
+
+      <!-- Share Buttons -->
+      <div class="blog-share-section mt-12 pt-8 border-t" style="border-color: var(--border);">
+        <h4 class="share-title mb-4">شارك المقال</h4>
+        <div class="share-buttons flex gap-3">
+          <button class="share-btn share-twitter">
+            <lucide-icon name="twitter" class="w-4 h-4"></lucide-icon>
+            Twitter
+          </button>
+          <button class="share-btn share-facebook">
+            <lucide-icon name="facebook" class="w-4 h-4"></lucide-icon>
+            Facebook
+          </button>
+          <button class="share-btn share-linkedin">
+            <lucide-icon name="linkedin" class="w-4 h-4"></lucide-icon>
+            LinkedIn
+          </button>
+          <button class="share-btn share-whatsapp" (click)="shareWhatsApp()">
+            <lucide-icon name="message-circle" class="w-4 h-4"></lucide-icon>
+            WhatsApp
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Posts -->
+    @if (getRelatedPosts().length > 0) {
+      <section class="blog-related mt-16">
+        <h3 class="related-title mb-8">مقالات مشابهة</h3>
+        <div class="related-grid grid md:grid-cols-3 gap-6">
+          @for (related of getRelatedPosts(); track related.id) {
+            <article class="related-card group" (click)="navigateToPost(related.id)">
+              <div class="related-img-wrap">
+                <img [src]="related.imageUrl" [alt]="related.title" class="w-full h-full object-cover">
+              </div>
+              <div class="related-content">
+                <span class="related-category text-xs font-bold mb-2">{{ related.category }}</span>
+                <h4 class="related-title-text group-hover:text-gold transition-colors">{{ related.title }}</h4>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+  </div>
+</section>
+
+<app-footer></app-footer>

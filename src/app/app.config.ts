@@ -6,12 +6,12 @@ import {
   LucideAngularModule,
   // existing icons
   Heart, GraduationCap, Briefcase, Landmark, Users, User, Check,
-  Star, ArrowRight, ArrowLeft, Play, Calendar, MapPin, Mail, Phone, MessageSquare,
+  Star, ArrowRight, ArrowLeft, Play, Calendar, Clock, MapPin, Mail, Phone, MessageSquare,
   Send, Menu, X, ChevronDown, ChevronUp, Instagram, Twitter, Facebook, Linkedin,
   ShoppingBag, Search,
-  // new icons added by redesign
+  // new icons
   Sparkles, Moon, Sun, Eye, Crown, Zap, Palette, Smartphone, Puzzle,
-  Mars, Venus,
+  Mars, Venus, FileX, MessageCircle,
 } from 'lucide-angular';
 
 import { routes } from './app.routes';
@@ -25,12 +25,12 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(LucideAngularModule.pick({
       // existing
       Heart, GraduationCap, Briefcase, Landmark, Users, User, Check,
-      Star, ArrowRight, ArrowLeft, Play, Calendar, MapPin, Mail, Phone, MessageSquare,
+      Star, ArrowRight, ArrowLeft, Play, Calendar, Clock, MapPin, Mail, Phone, MessageSquare,
       Send, Menu, X, ChevronDown, ChevronUp, Instagram, Twitter, Facebook, Linkedin,
       ShoppingBag, Search,
       // new
       Sparkles, Moon, Sun, Eye, Crown, Zap, Palette, Smartphone, Puzzle,
-      Mars, Venus,
+      Mars, Venus, FileX, MessageCircle,
     }))
   ]
 };
