@@ -45,7 +45,7 @@
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.03em;
-  justify-content: flex-end;
+  justify-content: flex-start;
 
   /* dark */
   color: rgba(255,255,255,0.6);
@@ -63,7 +63,7 @@
 .hero-logo-area {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 14px;
 }
 
@@ -115,7 +115,7 @@
 }
 .hero-logo-geo {
   position: absolute;
-  background: transparent;
+  background-color: transparent;
   border-radius: 3px;
 }
 
