@@ -11,6 +11,7 @@ import {
   ShoppingBag, Search,
   // new icons added by redesign
   Sparkles, Moon, Sun, Eye, Crown, Zap, Palette, Smartphone, Puzzle,
+  Mars, Venus,
 } from 'lucide-angular';
 
 import { routes } from './app.routes';
@@ -29,6 +30,7 @@ export const appConfig: ApplicationConfig = {
       ShoppingBag, Search,
       // new
       Sparkles, Moon, Sun, Eye, Crown, Zap, Palette, Smartphone, Puzzle,
+      Mars, Venus,
     }))
   ]
 };
