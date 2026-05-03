@@ -3,7 +3,7 @@
 
     <!-- Header row -->
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-14">
-      <button class="flex items-center gap-2 font-black group" style="color: var(--gold);">
+      <button class="flex items-center gap-2 font-black group" style="color: var(--gold);" (click)="navigateToBlog()">
         <lucide-icon name="arrow-left" class="w-5 h-5 transition-transform group-hover:-translate-x-1"></lucide-icon>
         عرض جميع المقالات
       </button>
@@ -30,15 +30,15 @@
           </div>
 
           <!-- Content -->
-          <div class="blog-content space-y-3 text-right">
-            <p class="text-sm font-bold" style="color: var(--gold);">{{ post.date | date:'yyyy/MM/dd' }}</p>
-            <h4 class="blog-title group-hover:text-gold transition-colors">{{ post.title }}</h4>
-            <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt">{{ post.excerpt }}</p>
-            <button class="blog-read-more">
-              اقرأ المزيد
-              <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
-            </button>
-          </div>
+           <div class="blog-content space-y-3 text-right">
+             <p class="text-sm font-bold" style="color: var(--gold);">{{ post.date | date:'yyyy/MM/dd' }}</p>
+             <h4 class="blog-title group-hover:text-gold transition-colors">{{ post.title }}</h4>
+             <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt">{{ post.excerpt }}</p>
+             <button class="blog-read-more" (click)="navigateToPost(post.id)">
+               اقرأ المزيد
+               <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+             </button>
+           </div>
         </article>
       }
     </div>

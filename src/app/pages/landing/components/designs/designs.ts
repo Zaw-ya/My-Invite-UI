@@ -1,5 +1,6 @@
 import { Component, Input, signal, computed, HostListener, ElementRef, ViewChild, AfterViewInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { InvitationCard } from '../../../../models/content.interface';
 
@@ -37,7 +38,7 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
 
   dots = computed(() => Array.from({ length: this.maxIndex() + 1 }, (_, i) => i));
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object, private router: Router) {}
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) this.startAutoPlay();
@@ -71,6 +72,10 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
   }
 
   translateX = computed(() => -(this.currentIndex() * (100 / this.VISIBLE)));
+
+  navigateToDesigns() {
+    this.router.navigate(['/designs']);
+  }
 
   private startAutoPlay() {
     this.autoPlayTimer = setInterval(() => this.next(), 3500);

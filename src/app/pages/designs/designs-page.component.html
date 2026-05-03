@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+
+<section id="designs-page" class="designs-page-section">
+  <div class="container mx-auto px-5 py-16">
+
+    <!-- Page Header -->
+    <div class="text-center mb-16">
+      <span class="badge-pill">✦ معرض التصاميم</span>
+      <h1 class="section-title mt-4">
+        استكشف <span>جميع التصاميم</span>
+      </h1>
+      <p class="section-sub mt-4">
+        تصفح مجموعتنا الواسعة من التصاميم الحصرية لكل مناسبة
+      </p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="designs-filter-wrap mb-10">
+      <div class="designs-filter justify-center">
+        @for (cat of categories; track cat) {
+          <button
+            class="tag-pill"
+            [class.active]="activeCategory === cat"
+            (click)="activeCategory = cat"
+          >{{ cat }}</button>
+        }
+      </div>
+    </div>
+
+    <!-- Designs Grid -->
+    <div class="designs-grid">
+      @for (design of filteredDesigns(); track design.id) {
+        <div class="design-card-large group">
+          <div class="design-card-image">
+            @if (design.isNew) {
+              <span class="design-badge-new">جديد</span>
+            }
+            <img [src]="design.imageUrl" [alt]="design.title"
+                 class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+            <div class="design-overlay">
+              <button class="design-overlay-btn">
+                <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
+                معاينة سريعة
+              </button>
+            </div>
+          </div>
+           <div class="design-card-info">
+             <p class="text-xs mb-1" style="color: var(--text-muted);">{{ design.category }}</p>
+             <h4 class="font-bold text-base mb-2" style="color: var(--text);">{{ design.title }}</h4>
+             <div class="flex items-center justify-between">
+               <span class="text-gold font-bold text-lg">{{ design.price }} ر.س</span>
+               <button class="btn-gold-sm">
+                 اختر التصميم
+                 <lucide-icon name="arrow-left" class="w-3.5 h-3.5"></lucide-icon>
+               </button>
+             </div>
+           </div>
+         </div>
+       }
+     </div>
+
+     <!-- Empty State -->
+     @if (filteredDesigns().length === 0) {
+       <div class="text-center py-16">
+         <lucide-icon name="search" class="w-16 h-16 mx-auto mb-4" style="color: var(--text-muted);"></lucide-icon>
+         <p class="text-lg" style="color: var(--text-muted);">لا توجد تصاميم في هذا القسم</p>
+       </div>
+     }
+
+   </div>
+</section>
+
+<app-footer></app-footer>
