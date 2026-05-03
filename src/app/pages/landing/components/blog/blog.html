@@ -1,4 +1,4 @@
-<section id="blog" class="section-py" style="background-color: var(--bg);">
+<section id="blog" class="blog-dark-section">
   <div class="container mx-auto px-5">
 
     <!-- Header row -->
@@ -8,8 +8,8 @@
         عرض جميع المقالات
       </button>
       <div class="text-right space-y-2">
-        <span class="badge-pill">✦ المدونة</span>
-        <h2 class="section-title text-right">المدونة <span>والنصائح</span></h2>
+        <span class="blog-badge-pill">✦ المدونة</span>
+        <h2 class="blog-heading font-display text-right">المدونة <span style="color: var(--gold);">والنصائح</span></h2>
         <div class="gold-divider" style="margin-right: 0; margin-left: auto; width: 48px;"></div>
       </div>
     </div>
@@ -33,7 +33,7 @@
           <div class="blog-content space-y-3 text-right">
             <p class="text-sm font-bold" style="color: var(--gold);">{{ post.date | date:'yyyy/MM/dd' }}</p>
             <h4 class="blog-title group-hover:text-gold transition-colors">{{ post.title }}</h4>
-            <p class="text-sm leading-relaxed line-clamp-2" style="color: var(--text-muted);">{{ post.excerpt }}</p>
+            <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt">{{ post.excerpt }}</p>
             <button class="blog-read-more">
               اقرأ المزيد
               <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>

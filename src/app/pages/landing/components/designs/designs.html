@@ -8,62 +8,85 @@
       <p class="section-sub">استمتع بجمال الأقسام المختارة خصيصاً لتناسب جميع مناسباتك</p>
     </div>
 
-    <!-- Category Filter Tabs (matching PDF style) -->
-    <div class="designs-filter-wrap mb-10">
+    <!-- Category Filter -->
+    <div class="designs-filter-wrap mb-6">
       <div class="designs-filter">
-        <button class="tag-pill active">كل التصميمات</button>
-        <button class="tag-pill">حفل زفاف</button>
-        <button class="tag-pill">خطبة / حناء</button>
-        <button class="tag-pill">حفل تخرج</button>
-        <button class="tag-pill">مناقشة رسالة</button>
-        <button class="tag-pill">حدث تقني / خاص</button>
-        <button class="tag-pill">عيد ميلاد</button>
-        <button class="tag-pill">سبوع</button>
-        <button class="tag-pill">تهنئة</button>
+        @for (cat of categories; track cat) {
+          <button
+            class="tag-pill"
+            [class.active]="activeFilter() === cat"
+            (click)="setFilter(cat)"
+          >{{ cat }}</button>
+        }
       </div>
     </div>
 
-    <!-- Gender Filter Row -->
+    <!-- Gender Filter -->
     <div class="flex justify-center gap-3 mb-10">
-      <button class="tag-pill active-dark">كل التصميمات</button>
-      <button class="tag-pill">
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">
         <lucide-icon name="mars" class="w-3.5 h-3.5 me-1"></lucide-icon>
         تصميمات ذكورية
       </button>
-      <button class="tag-pill">
+      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">
         <lucide-icon name="venus" class="w-3.5 h-3.5 me-1"></lucide-icon>
         تصميمات أنثوية
       </button>
     </div>
 
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-      @for (card of invitations; track card.id) {
-        <div class="design-card group">
-          <div class="design-card-image">
-            <!-- New Badge -->
-            <span class="design-badge-new">جديد</span>
+    <!-- Carousel -->
+    <div class="carousel-root">
 
-            <img
-              [src]="card.imageUrl"
-              [alt]="card.title"
-              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-            >
+      <!-- Prev Arrow -->
+      <button class="carousel-arrow carousel-arrow-prev" (click)="prev()" [disabled]="currentIndex() === 0">
+        <lucide-icon name="arrow-right" class="w-5 h-5"></lucide-icon>
+      </button>
 
-            <!-- Hover overlay with quick action -->
-            <div class="design-overlay">
-              <button class="design-overlay-btn">
-                <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
-                معاينة
-              </button>
+      <!-- Track viewport -->
+      <div class="carousel-viewport" (mousedown)="onDragStart($event)" (touchstart)="onDragStart($event)">
+        <div
+          class="carousel-track"
+          [style.transform]="'translateX(' + translateX() + '%)'"
+        >
+          @for (card of filtered(); track card.id) {
+            <div class="carousel-slide">
+              <div class="design-card group">
+                <div class="design-card-image">
+                  <span class="design-badge-new">جديد</span>
+                  <img [src]="card.imageUrl" [alt]="card.title"
+                       class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                  <div class="design-overlay">
+                    <button class="design-overlay-btn">
+                      <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
+                      معاينة
+                    </button>
+                  </div>
+                </div>
+                <div class="design-card-info">
+                  <p class="text-xs mb-1" style="color: var(--text-muted);">{{ card.category }}</p>
+                  <h4 class="font-bold text-sm" style="color: var(--text);">{{ card.title }}</h4>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="design-card-info">
-            <p class="text-xs mb-1" style="color: var(--text-muted);">{{card.category}}</p>
-            <h4 class="font-bold text-sm" style="color: var(--text);">{{card.title}}</h4>
-          </div>
+          }
         </div>
+      </div>
+
+      <!-- Next Arrow -->
+      <button class="carousel-arrow carousel-arrow-next" (click)="next()" [disabled]="currentIndex() === maxIndex()">
+        <lucide-icon name="arrow-left" class="w-5 h-5"></lucide-icon>
+      </button>
+
+    </div>
+
+    <!-- Dot Indicators -->
+    <div class="carousel-dots">
+      @for (d of dots(); track d) {
+        <button
+          class="carousel-dot"
+          [class.active]="currentIndex() === d"
+          (click)="goTo(d)"
+        ></button>
       }
     </div>
 

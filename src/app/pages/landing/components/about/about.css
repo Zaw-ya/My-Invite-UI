@@ -2,8 +2,8 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: var(--gold-pale);
-  border: 1px solid var(--border);
+  background-color: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,20 +18,115 @@
 .about-image-border-1 {
   position: absolute;
   inset: 0;
-  border: 2px solid var(--border);
+  border: 2px solid rgba(255, 215, 0, 0.2);
   border-radius: 20px;
   pointer-events: none;
 }
 .about-image-border-2 {
   position: absolute;
   inset: -12px;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(255, 215, 0, 0.1);
   border-radius: 24px;
   pointer-events: none;
 }
 
 .about-image-inner {
-  background-color: var(--bg-secondary);
+  background-color: #1A1A1A;
   border-radius: 16px;
   overflow: hidden;
+}
+
+.about-section {
+  background-color: #0D0D0D;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Geometric corner frames */
+.about-geo {
+  position: absolute;
+  pointer-events: none;
+}
+.about-geo-br {
+  bottom: -20px;
+  left: -30px;
+}
+.about-geo-inner-1 {
+  width: 140px;
+  height: 180px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  transform: rotate(20deg);
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+}
+.about-geo-inner-2 {
+  width: 90px;
+  height: 120px;
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  transform: rotate(-10deg);
+  position: absolute;
+  bottom: 80px;
+  left: 100px;
+}
+
+/* Text colors for dark theme */
+.about-section .section-title {
+  color: #FFFFFF;
+}
+
+.about-section .text-lg,
+.about-section .font-semibold,
+.about-section p {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Badge pill */
+.about-section .badge-pill {
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--gold);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Gold divider */
+.about-section .gold-divider {
+  background: var(--gold);
+  height: 2px;
+}
+
+/* Stats cards */
+.about-section .grid.grid-cols-3 > div {
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.about-section .font-black {
+  color: var(--gold);
+}
+
+.about-section .text-xs {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Buttons */
+.about-section .btn-gold {
+  background: var(--gold);
+  color: #000;
+  font-weight: 900;
+}
+
+.about-section .btn-gold:hover {
+  background: var(--gold-light);
+}
+
+.about-section .btn-outline-gold {
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+
+.about-section .btn-outline-gold:hover {
+  background: rgba(255, 215, 0, 0.1);
 }
