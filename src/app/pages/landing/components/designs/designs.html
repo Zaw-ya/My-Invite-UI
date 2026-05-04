@@ -2,13 +2,23 @@
   <div class="container mx-auto px-5">
 
     <!-- Header -->
-    <div class="text-center space-y-4 mb-12">
-      <span class="badge-pill">✦ تصاميمنا</span>
+    <div class="text-center space-y-4 mb-8">
       <h2 class="section-title">تصميمات <span>كروتنا</span></h2>
       <p class="section-sub">استمتع بجمال الأقسام المختارة خصيصاً لتناسب جميع مناسباتك</p>
     </div>
 
- 
+    <!-- Category Filter (above carousel) -->
+    <div class="designs-filter-wrap mb-6">
+      <div class="designs-filter">
+        @for (cat of categories; track cat) {
+          <button
+            class="tag-pill"
+            [class.active]="activeFilter() === cat"
+            (click)="setFilter(cat)"
+          >{{ cat }}</button>
+        }
+      </div>
+    </div>
 
     <!-- Carousel -->
     <div class="carousel-root">
@@ -32,7 +42,7 @@
                   <img [src]="card.imageUrl" [alt]="card.title"
                        class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
                   <div class="design-overlay">
-                    <button class="design-overlay-btn">
+                    <button class="design-overlay-btn" (click)="openPreview(card)">
                       <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
                       معاينة
                     </button>
@@ -54,31 +64,12 @@
       </button>
 
     </div>
-<br/>
-       <!-- Category Filter -->
-    <div class="designs-filter-wrap mb-6">
-      <div class="designs-filter">
-        @for (cat of categories; track cat) {
-          <button
-            class="tag-pill"
-            [class.active]="activeFilter() === cat"
-            (click)="setFilter(cat)"
-          >{{ cat }}</button>
-        }
-      </div>
-    </div>
 
-    <!-- Gender Filter -->
-    <div class="flex justify-center gap-3 mb-10">
-      <button class="tag-pill" [class.active-dark]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
-      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">
-        <lucide-icon name="mars" class="w-3.5 h-3.5 me-1"></lucide-icon>
-        تصميمات ذكورية
-      </button>
-      <button class="tag-pill" [class.active-dark]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">
-        <lucide-icon name="venus" class="w-3.5 h-3.5 me-1"></lucide-icon>
-        تصميمات أنثوية
-      </button>
+    <!-- Gender Filter (below carousel, small gap) -->
+    <div class="flex justify-center gap-3 mt-6 mb-4">
+      <button class="tag-pill" [class.active]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
+      <button class="tag-pill" [class.active]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">تصميمات ذكورية</button>
+      <button class="tag-pill" [class.active]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">تصميمات أنثوية</button>
     </div>
 
     <!-- Dot Indicators -->
@@ -102,3 +93,16 @@
 
   </div>
 </section>
+
+<!-- ===== IMAGE PREVIEW LIGHTBOX ===== -->
+@if (previewCard()) {
+  <div class="lightbox-backdrop" (click)="closePreview()">
+    <div class="lightbox-box" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closePreview()">
+        <lucide-icon name="x" class="w-5 h-5"></lucide-icon>
+      </button>
+      <img [src]="previewCard()!.imageUrl" [alt]="previewCard()!.title" class="lightbox-img">
+      <p class="lightbox-title">{{ previewCard()!.title }}</p>
+    </div>
+  </div>
+}

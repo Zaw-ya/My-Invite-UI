@@ -45,10 +45,10 @@ export class ContentService {
 
   // Arabic Invitations (Matching Screenshots)
   invitations = signal<InvitationCard[]>([
-    { id: '1', title: 'تصميم 1092', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/1.png' },
-    { id: '2', title: 'تصميم 1095', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/2.png' },
-    { id: '3', title: 'تصميم 1096', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/3.png' },
-    { id: '4', title: 'تصميم 1097', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/4.png' }
+    { id: '1', title: 'تصميم 1092', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/1.png', gender: 'ذكوري' },
+    { id: '2', title: 'تصميم 1095', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/2.png', gender: 'أنثوي' },
+    { id: '3', title: 'تصميم 1096', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/3.png', gender: 'ذكوري' },
+    { id: '4', title: 'تصميم 1097', category: 'حفلات الزواج والمناسبات الخاصة', price: '150', imageUrl: 'image/4.png', gender: 'أنثوي' }
   ]);
 
   // Arabic Supervisors

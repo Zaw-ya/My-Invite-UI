@@ -1,24 +1,22 @@
 <section class="hero-section">
 
-  <!-- ===== RIGHT (first in RTL DOM = visually right): Text Content ===== -->
+  <!-- ===== RIGHT: Text Content ===== -->
   <div class="hero-content-side">
 
-    <!-- Top tagline — flush to top right -->
+    <!-- Top tagline -->
     <div class="hero-tagline">
       <lucide-icon name="puzzle" class="hero-tagline-icon"></lucide-icon>
       <span>كروت خاصة ... للأيام الخاصة</span>
     </div>
 
-    <!-- Logo — large, right-aligned -->
+    <!-- Logo -->
     <div class="hero-logo-area">
-      <!-- Geo icon -->
       <div class="hero-logo-icon" aria-hidden="true">
         <div class="hlg-1"></div>
         <div class="hlg-2"></div>
         <div class="hlg-3"></div>
         <div class="hlg-4"></div>
       </div>
-      <!-- Brand text -->
       <div class="hero-logo-text">
         <span class="hero-logo-name">كروتي<br>الخاصة.</span>
         <span class="hero-logo-tld">نت</span>
@@ -44,26 +42,36 @@
       </p>
     </div>
 
-    <!-- Event type tags -->
-    <div class="hero-tags">
-      <span class="hero-tag">حفل زفاف</span>
-      <span class="hero-tag">خطبة / حناء</span>
-      <span class="hero-tag">حفل تخرج</span>
-      <span class="hero-tag">مناقشة رسالة</span>
-      <span class="hero-tag">حدث تقني / أدبي / خاص بشركتك/ خلافه..</span>
-      <span class="hero-tag">عيد ميلاد</span>
-      <span class="hero-tag">سبوع</span>
-      <span class="hero-tag">تهنئة</span>
+    <!-- Event type tags (clickable, RTL) -->
+    <div class="hero-tags" dir="rtl">
+      @for (tag of tags; track tag.label) {
+        <button
+          class="hero-tag"
+          [class.active]="activeTag()?.label === tag.label"
+          (click)="selectTag(tag)"
+          type="button"
+        >{{ tag.label }}</button>
+      }
     </div>
 
   </div>
 
-  <!-- ===== LEFT (second in RTL DOM = visually left): Geometric Frames ===== -->
+  <!-- ===== LEFT: Geometric Frames + active tag image ===== -->
   <div class="hero-geo-side" aria-hidden="true">
+    <!-- Geo frames always visible -->
     <div class="geo-rect geo-rect-1"></div>
     <div class="geo-rect geo-rect-2"></div>
     <div class="geo-rect geo-rect-3"></div>
     <div class="geo-rect geo-rect-4"></div>
+
+    <!-- Active tag image overlay -->
+    @if (activeTag()) {
+      <img
+        [src]="activeTag()!.imageUrl"
+        [alt]="activeTag()!.label"
+        class="geo-tag-image"
+      >
+    }
   </div>
 
 </section>

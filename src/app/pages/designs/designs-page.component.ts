@@ -16,17 +16,36 @@ export class DesignsPageComponent {
   designs = Array.from({ length: 24 }, (_, i) => ({
     id: String(i + 1),
     title: `تصميم ${String(i + 1001).padStart(4, '0')}`,
-    category: ['حفلات زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني', 'عيد ميلاد', 'سبوع', 'تهنئة'][i % 8],
+    category: ['حفل زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني / خاص', 'عيد ميلاد', 'سبوع', 'تهنئة'][i % 8],
+    gender: (i % 2 === 0 ? 'ذكوري' : 'أنثوي') as 'ذكوري' | 'أنثوي',
     price: ['120', '150', '180', '200', '250'][i % 5],
     imageUrl: `image/${(i % 8) + 1}.png`,
     isNew: i < 6
   }));
 
-  categories = ['الكل', 'حفلات زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني', 'عيد ميلاد', 'سبوع', 'تهنئة'];
-  activeCategory = 'الكل';
+  categories = ['كل التصميمات', 'حفل زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني / خاص', 'عيد ميلاد', 'سبوع', 'تهنئة'];
+  activeCategory = 'كل التصميمات';
+
+  genders = ['كل التصميمات', 'تصميمات ذكورية', 'تصميمات أنثوية'];
+  activeGender = 'كل التصميمات';
 
   filteredDesigns() {
-    if (this.activeCategory === 'الكل') return this.designs;
-    return this.designs.filter(d => d.category === this.activeCategory);
+    let items = this.designs;
+    if (this.activeCategory !== 'كل التصميمات') items = items.filter(d => d.category === this.activeCategory);
+    if (this.activeGender === 'تصميمات ذكورية') items = items.filter(d => d.gender === 'ذكوري');
+    else if (this.activeGender === 'تصميمات أنثوية') items = items.filter(d => d.gender === 'أنثوي');
+    return items;
+  }
+
+  previewDesign: typeof this.designs[0] | null = null;
+
+  openPreview(design: typeof this.designs[0]) {
+    this.previewDesign = design;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closePreview() {
+    this.previewDesign = null;
+    document.body.style.overflow = '';
   }
 }

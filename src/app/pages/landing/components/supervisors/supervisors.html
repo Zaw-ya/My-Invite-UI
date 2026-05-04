@@ -4,110 +4,114 @@
     <!-- Header -->
     <div class="text-center mb-12 space-y-3">
       <span class="badge-pill">✦ مشرفو البوابة</span>
-      <h2 class="section-title">
-        مشرفين <span>ماي انفيت</span>
-      </h2>
+      <h2 class="section-title">مشرفين <span>ماي انفيت</span></h2>
     </div>
 
-    <!-- Pricing Table View -->
-    <div *ngIf="activeTab() === 'pricing'" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <!-- ===== PRICING TAB ===== -->
+    @if (activeTab() === 'pricing') {
 
-      <!-- Pricing Table -->
-      <div class="sup-table">
-        <div class="sup-table-header">الأسعار</div>
-        <div class="sup-row">
-          <div class="sup-price">785 <span>ريال</span></div>
-          <div class="sup-desc">
-            عدد <strong>1 مشرف</strong> بوابة<br>
-            <span class="sup-note">(للمناسبات من <b>50</b> إلى <b>100 مدعو</b>)</span>
-          </div>
-        </div>
-        <div class="sup-row">
-          <div class="sup-price">1,550 <span>ريال</span></div>
-          <div class="sup-desc">
-            عدد <strong>2 مشرفَين</strong> بوابة<br>
-            <span class="sup-note">(للمناسبات أكثر من <b>100</b> إلى <b>300 مدعو</b>)</span>
-          </div>
-        </div>
-        <div class="sup-row">
-          <div class="sup-price">2,250 <span>ريال</span></div>
-          <div class="sup-desc">
-            عدد <strong>3 مشرفين</strong> بوابة<br>
-            <span class="sup-note">(للمناسبات أكثر من <b>300</b> إلى <b>500 مدعو</b>)</span>
-          </div>
-        </div>
-        <div class="sup-row">
-          <div class="sup-price-contact">
-            <a href="#contact" class="hover:underline" style="color: var(--gold);">تواصل معنا</a>
-          </div>
-          <div class="sup-desc" style="color: var(--gold); font-weight: 700;">للمناسبات أكثر من 500 مدعو</div>
-        </div>
-      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 
-      <!-- Features -->
-      <div class="sup-table">
-        <div class="sup-table-header">عمل المشرفين</div>
-        <div class="px-6 py-5 space-y-5">
-          <div class="sup-feature">
-            <span style="color: var(--text-secondary);">مشرفين أو مشرفات <strong style="color: var(--gold);">بزي موحد</strong>.</span>
-            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
-          </div>
-          <div class="sup-feature">
-            <span style="color: var(--text-secondary);"><strong style="color: var(--gold);">طاولة</strong> تنظيم دخول.</span>
-            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
-          </div>
-          <div class="sup-feature">
-            <span style="color: var(--text-secondary);"><strong style="color: var(--gold);">مسح</strong> أكواد الدخول.</span>
-            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
-          </div>
-          <div class="sup-feature">
-            <span style="color: var(--text-secondary);">التواجد لمدة <strong style="color: var(--gold);">5 ساعات</strong>.</span>
-            <div class="sup-check"><lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon></div>
-          </div>
-        </div>
-      </div>
+        <!-- Pricing Table -->
+        <div class="sup-table">
+          <div class="sup-table-header">الأسعار</div>
 
-    </div>
+          @for (row of pricingRows; track row.price; let i = $index) {
+            <div
+              class="sup-row"
+              [class.selected]="selectedPlan() === i"
+              (click)="selectedPlan.set(i)"
+            >
+              <!-- Radio button (left) -->
+              <div class="sup-radio-col">
+                <div class="sup-radio" [class.checked]="selectedPlan() === i">
+                  @if (selectedPlan() === i) {
+                    <div class="sup-radio-dot"></div>
+                  }
+                </div>
+              </div>
 
-    <!-- Supervisors Grid View -->
-    <div *ngIf="activeTab() === 'supervisors'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
-      <div
-        *ngFor="let s of supervisors()"
-        class="sup-card"
-      >
-        <div class="sup-card-top">
-          <div class="sup-avatar-wrap">
-            <div class="sup-avatar">
-              <img [src]="s.imageUrl" [alt]="s.name" class="w-full h-full object-cover" (error)="showInitial($event)">
+              <!-- Description (center) -->
+              <div class="sup-desc">
+                {{ row.label }} <strong>{{ row.count }}</strong> {{ row.suffix }}<br>
+                <span class="sup-note">({{ row.note }})</span>
+              </div>
+
+              <!-- Price (right) -->
+              <div class="sup-price">{{ row.price }} <span>ريال</span></div>
             </div>
-            <div class="sup-check-badge">
-              <lucide-icon name="check" class="w-4 h-4 text-white"></lucide-icon>
+          }
+
+          <!-- Contact row -->
+          <div class="sup-row sup-row-contact">
+            <div class="sup-radio-col"></div>
+            <div class="sup-desc" style="color: var(--gold); font-weight: 700;">للمناسبات أكثر من 500 مدعو</div>
+            <div class="sup-price-contact">
+              <a href="#contact" style="color: var(--gold);">تواصل معنا</a>
             </div>
           </div>
         </div>
-        <div class="sup-card-body">
-          <h3 class="font-black text-lg" style="color: var(--text);">{{ s.name }}</h3>
-          <p class="text-sm font-bold" style="color: var(--gold);">{{ s.role }}</p>
-          <span class="badge-pill mt-2">يبدأ من {{ s.cost }} ر.س</span>
-          <button class="btn-outline-gold w-full justify-center mt-3 text-sm py-2.5">احجز الآن</button>
-        </div>
-      </div>
-    </div>
 
-    <!-- Cities (pricing tab) -->
-    <div *ngIf="activeTab() === 'pricing'" class="cities-box text-right mb-10">
-      <p class="font-black mb-3" style="color: var(--text);">المـدن المتاحة:</p>
-      <p class="text-sm mb-1" style="color: var(--text-secondary);">خدمة <span style="color: var(--gold); font-weight: 700;">مشرفين البوابة</span> متوفرة في المدن التالية:</p>
-      <div class="grid sm:grid-cols-2 gap-x-8 gap-y-1 mt-3">
-        <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">السعودية:</span> الرياض - مكة - المدينة - جدة - القصيم - الدمام - الخبر - الظهران - الأحساء - حائل.</p>
-        <div class="space-y-1">
-          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">الإمارات:</span> أبوظبي - دبي.</p>
-          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">الكويت:</span> الكويت.</p>
-          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">قطر:</span> الدوحة.</p>
-          <p class="text-sm" style="color: var(--text-secondary);"><span style="color: var(--gold); font-weight: 700;">البحرين:</span> المنامة.</p>
+        <!-- Features Table -->
+        <div class="sup-table">
+          <div class="sup-table-header">عمل المشرفين</div>
+          <div class="px-6 py-5 space-y-5">
+            @for (f of supervisorFeatures; track f.bold) {
+              <div class="sup-feature">
+                <span style="color: var(--text-secondary);">
+                  {{ f.text }}
+                  <strong style="color: var(--gold);">{{ f.bold }}</strong>
+                  {{ f.after }}
+                </span>
+                <div class="sup-check">
+                  <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cities (black) -->
+      <div class="cities-box text-right mb-10">
+        <p class="font-black mb-3 cities-title">المـدن المتاحة:</p>
+        <p class="text-sm mb-3 cities-sub">
+          خدمة <span class="cities-highlight">مشرفين البوابة</span> متوفرة في المدن التالية:
+        </p>
+        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-2">
+          <p class="text-sm cities-text">
+            <span class="cities-highlight">السعودية:</span>
+            الرياض - مكة - المدينة - جدة - القصيم - الدمام - الخبر - الظهران - الأحساء - حائل.
+          </p>
+          <div class="space-y-1">
+            @for (c of cities.slice(1); track c.country) {
+              <p class="text-sm cities-text">
+                <span class="cities-highlight">{{ c.country }}:</span> {{ c.cities }}
+              </p>
+            }
+          </div>
         </div>
       </div>
-    </div>
+
+    }
+
+    <!-- ===== SUPERVISORS TAB (photos only) ===== -->
+    @if (activeTab() === 'supervisors') {
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+        @for (s of supervisors(); track s.id) {
+          <div class="sup-card">
+            <div class="sup-card-img-fill">
+              <img [src]="s.imageUrl" [alt]="s.name" (error)="showInitial($event)">
+            </div>
+            <div class="sup-card-body">
+              <h3 class="font-black text-lg" style="color: var(--text);">{{ s.name }}</h3>
+              <p class="text-sm font-bold" style="color: var(--gold);">{{ s.role }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
 
     <!-- Tab Toggle -->
     <div class="flex justify-center">
