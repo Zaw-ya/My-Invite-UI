@@ -66,27 +66,91 @@
       <!-- RIGHT: Contact Form -->
       <div class="contact-form-card">
         <h3 class="text-xl font-black mb-6 text-right" style="color: var(--text);">أرسل رسالة</h3>
-        <form class="space-y-5 text-right">
+        <form class="space-y-5 text-right" (ngSubmit)="submit()">
+
+          <!-- Name -->
           <div>
             <label class="contact-label">الاسم الكامل</label>
-            <input type="text" class="form-input" placeholder="أدخل اسمك الكامل">
+            <input type="text" class="form-input" placeholder="أدخل اسمك الكامل" [(ngModel)]="form.name" name="name">
           </div>
+
+          <!-- Email -->
           <div>
             <label class="contact-label">البريد الإلكتروني</label>
-            <input type="email" class="form-input" placeholder="أدخل بريدك الإلكتروني">
+            <input type="email" class="form-input" placeholder="أدخل بريدك الإلكتروني" [(ngModel)]="form.email" name="email">
           </div>
+
+          <!-- Phone with Country Picker -->
           <div>
             <label class="contact-label">رقم الجوال</label>
-            <input type="tel" class="form-input" placeholder="05xxxxxxxx" dir="ltr">
+            <div class="phone-field" #dropdownRef>
+
+              <!-- Country Trigger -->
+              <button type="button" class="country-trigger" (click)="toggleDropdown()">
+                @if (selectedCountry()) {
+                  <img [src]="selectedCountry()!.flags.png" [alt]="selectedCountry()!.name" class="country-flag">
+                  <span class="country-code" dir="ltr">+{{ callingCode }}</span>
+                }
+                @if (loading()) {
+                  <span class="country-code">...</span>
+                }
+                <lucide-icon name="chevron-down" class="w-3.5 h-3.5 country-chevron" [class.rotated]="dropdownOpen()"></lucide-icon>
+              </button>
+
+              <!-- Number Input -->
+              <input
+                type="tel"
+                class="phone-number-input"
+                placeholder="5xxxxxxxx"
+                dir="ltr"
+                [(ngModel)]="form.phone"
+                name="phone"
+              >
+
+              <!-- Dropdown -->
+              @if (dropdownOpen()) {
+                <div class="country-dropdown">
+                  <!-- Search -->
+                  <div class="country-search-wrap">
+                    <input
+                      type="text"
+                      class="country-search"
+                      placeholder="بحث عن دولة..."
+                      [ngModel]="searchQuery()"
+                      (ngModelChange)="searchQuery.set($event)"
+                      name="countrySearch"
+                      (click)="$event.stopPropagation()"
+                    >
+                  </div>
+                  <!-- List -->
+                  <ul class="country-list">
+                    @for (c of filteredCountries(); track c.alpha2Code) {
+                      <li class="country-option" (click)="selectCountry(c)" [class.selected]="selectedCountry()?.alpha2Code === c.alpha2Code">
+                        <img [src]="c.flags.png" [alt]="c.name" class="country-flag-sm">
+                        <span class="country-name-text">{{ c.name }}</span>
+                        <span class="country-dial" dir="ltr">+{{ c.callingCodes[0] }}</span>
+                      </li>
+                    }
+                    @if (filteredCountries().length === 0) {
+                      <li class="country-no-result">لا توجد نتائج</li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
           </div>
+
+          <!-- Message -->
           <div>
             <label class="contact-label">رسالتك</label>
-            <textarea rows="4" class="form-input resize-none" placeholder="كيف يمكننا مساعدتك؟"></textarea>
+            <textarea rows="4" class="form-input resize-none" placeholder="كيف يمكننا مساعدتك؟" [(ngModel)]="form.message" name="message"></textarea>
           </div>
+
           <button type="submit" class="btn-gold w-full justify-center text-base">
             إرسال الرسالة
             <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
           </button>
+
         </form>
       </div>
 
