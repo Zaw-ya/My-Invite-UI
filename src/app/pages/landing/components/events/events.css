@@ -68,3 +68,15 @@
   line-height: 1.5;
   font-family: '29LTBukra', 'Cairo', sans-serif;
 }
+
+@media (max-width: 768px) {
+  .event-card, .event-text-card { border-radius: 12px; padding: 16px; }
+  .event-label { font-size: 15px; }
+  .event-text-content, .event-text-content-inv { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  .event-card, .event-text-card { padding: 12px; }
+  .event-overlay { padding-bottom: 12px; }
+  .event-label { font-size: 13px; }
+}

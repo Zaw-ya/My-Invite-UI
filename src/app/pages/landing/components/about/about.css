@@ -130,3 +130,21 @@
 .about-section .btn-outline-gold:hover {
   background: rgba(255, 215, 0, 0.1);
 }
+
+@media (max-width: 1024px) {
+  .about-image-wrap { padding: 8px; margin-bottom: 32px; }
+  .about-image-border-2 { inset: -8px; }
+  .about-geo-inner-1 { width: 100px; height: 130px; }
+  .about-geo-inner-2 { width: 70px; height: 90px; }
+}
+
+@media (max-width: 640px) {
+  .about-section { text-align: center; }
+  .about-section .section-title { font-size: 1.75rem; }
+  .about-section .grid.grid-cols-3 { gap: 8px; }
+  .about-section .grid.grid-cols-3 > div { padding: 12px 8px; }
+  .about-section .font-black { font-size: 1.25rem; }
+  .about-section .text-xs { font-size: 10px; }
+  .about-check-icon { width: 24px; height: 24px; }
+  .about-section .btn-gold, .about-section .btn-outline-gold { width: 100%; justify-content: center; }
+}

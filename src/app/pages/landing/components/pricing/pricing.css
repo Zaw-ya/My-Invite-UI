@@ -10,6 +10,14 @@
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  .pricing-section { padding: 60px 0 80px; }
+}
+
+@media (max-width: 640px) {
+  .pricing-section { padding: 40px 0 60px; }
+}
+
 [data-theme="dark"] .pricing-section {
   background: #0D0D0D;
 }
@@ -361,15 +369,33 @@
 }
 
 @media (max-width: 768px) {
-  .pricing-left-panel { padding: 32px 24px; }
+  .pricing-left-panel { padding: 24px 20px; }
   .pricing-right-panel {
-    padding: 32px 24px;
+    padding: 24px 20px;
     border-left: none;
     border-bottom: 2px solid #111;
     max-height: none;
     order: -1;
   }
   [data-theme="dark"] .pricing-right-panel { border-bottom-color: rgba(255,255,255,0.1); }
-  .pricing-card { box-shadow: 4px 4px 0 #111; }
+  .pricing-card {
+    box-shadow: 4px 4px 0 #111;
+    margin: 0 16px;
+    grid-template-columns: 1fr;
+  }
   [data-theme="dark"] .pricing-card { box-shadow: none; }
+  
+  .pricing-amount { font-size: 2.2rem; }
+  .count-btn { padding: 5px 12px; font-size: 12px; }
+  .pricing-features-list { gap: 10px; }
+  .pricing-feature-item { font-size: 12.5px; }
+}
+
+@media (max-width: 480px) {
+  .pricing-left-panel { padding: 20px 16px; }
+  .pricing-right-panel { padding: 20px 16px; }
+  .pricing-heading { font-size: 1.75rem; }
+  .pricing-sub { font-size: 13px; }
+  .pricing-tabs { width: 100%; display: flex; }
+  .pricing-tab { flex: 1; padding: 8px 12px; font-size: 12px; }
 }

@@ -506,6 +506,16 @@ body {
 .section-py { padding-top: 96px; padding-bottom: 96px; }
 .section-py-sm { padding-top: 64px; padding-bottom: 64px; }
 
+@media (max-width: 1024px) {
+  .section-py { padding-top: 64px; padding-bottom: 64px; }
+  .section-py-sm { padding-top: 48px; padding-bottom: 48px; }
+}
+
+@media (max-width: 640px) {
+  .section-py { padding-top: 48px; padding-bottom: 48px; }
+  .section-py-sm { padding-top: 32px; padding-bottom: 32px; }
+}
+
 /* ===================================================
    DARK HERO SECTION OVERLAY
    =================================================== */

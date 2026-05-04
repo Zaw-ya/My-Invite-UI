@@ -5,6 +5,14 @@
   position: relative;
 }
 
+@media (max-width: 1024px) {
+  .blog-dark-section { padding: 60px 0 80px; }
+}
+
+@media (max-width: 640px) {
+  .blog-dark-section { padding: 40px 0 60px; }
+}
+
 .blog-heading {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
@@ -102,3 +110,17 @@
   transition: border-color 0.2s ease;
 }
 .blog-read-more:hover { border-color: var(--gold); }
+
+@media (max-width: 1024px) {
+  .blog-heading { font-size: 2.4rem; }
+  .blog-card { gap: 16px; }
+  .blog-img-wrap { border-radius: 16px; }
+}
+
+@media (max-width: 640px) {
+  .blog-heading { font-size: 1.8rem; }
+  .blog-badge-pill { padding: 4px 14px; font-size: 12px; }
+  .blog-title { font-size: 17px; }
+  .blog-excerpt { font-size: 13px; }
+  .blog-card { gap: 12px; }
+}

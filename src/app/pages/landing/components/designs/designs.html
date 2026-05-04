@@ -66,10 +66,12 @@
     </div>
 
     <!-- Gender Filter (below carousel, small gap) -->
-    <div class="flex justify-center gap-3 mt-6 mb-4">
-      <button class="tag-pill" [class.active]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
-      <button class="tag-pill" [class.active]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">تصميمات ذكورية</button>
-      <button class="tag-pill" [class.active]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">تصميمات أنثوية</button>
+    <div class="designs-filter-wrap mt-6 mb-4">
+      <div class="designs-filter">
+        <button class="tag-pill" [class.active]="activeGender() === 'كل التصميمات'" (click)="setGender('كل التصميمات')">كل التصميمات</button>
+        <button class="tag-pill" [class.active]="activeGender() === 'تصميمات ذكورية'" (click)="setGender('تصميمات ذكورية')">تصميمات ذكورية</button>
+        <button class="tag-pill" [class.active]="activeGender() === 'تصميمات أنثوية'" (click)="setGender('تصميمات أنثوية')">تصميمات أنثوية</button>
+      </div>
     </div>
 
     <!-- Dot Indicators -->
