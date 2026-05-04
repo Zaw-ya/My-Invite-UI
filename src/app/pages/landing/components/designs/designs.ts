@@ -27,10 +27,15 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
 
   categories = ['كل التصميمات', 'حفل زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني / خاص', 'عيد ميلاد', 'سبوع', 'تهنئة'];
 
+  previewCard = signal<InvitationCard | null>(null);
+
   filtered = computed(() => {
     const cat = this.activeFilter();
+    const gender = this.activeGender();
     let items = this.invitations;
     if (cat !== 'كل التصميمات') items = items.filter(i => i.category === cat);
+    if (gender === 'تصميمات ذكورية') items = items.filter(i => i.gender === 'ذكوري');
+    else if (gender === 'تصميمات أنثوية') items = items.filter(i => i.gender === 'أنثوي');
     return items;
   });
 
@@ -103,6 +108,16 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
     if (!this.isDragging) return;
     const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
     this.dragDelta = x - this.dragStartX;
+  }
+
+  openPreview(card: InvitationCard) {
+    this.previewCard.set(card);
+    document.body.style.overflow = 'hidden';
+  }
+
+  closePreview() {
+    this.previewCard.set(null);
+    document.body.style.overflow = '';
   }
 
   @HostListener('window:mouseup')

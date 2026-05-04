@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 
+<br/>
 <section id="designs-page" class="designs-page-section">
   <div class="container mx-auto px-5 py-16">
 
@@ -15,7 +16,7 @@
     </div>
 
     <!-- Category Filter -->
-    <div class="designs-filter-wrap mb-10">
+    <div class="designs-filter-wrap mb-5">
       <div class="designs-filter justify-center">
         @for (cat of categories; track cat) {
           <button
@@ -25,6 +26,17 @@
           >{{ cat }}</button>
         }
       </div>
+    </div>
+
+    <!-- Gender Filter -->
+    <div class="flex justify-center gap-3 mb-10">
+      @for (g of genders; track g) {
+        <button
+          class="tag-pill"
+          [class.active]="activeGender === g"
+          (click)="activeGender = g"
+        >{{ g }}</button>
+      }
     </div>
 
     <!-- Designs Grid -->
@@ -38,7 +50,7 @@
             <img [src]="design.imageUrl" [alt]="design.title"
                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
             <div class="design-overlay">
-              <button class="design-overlay-btn">
+              <button class="design-overlay-btn" (click)="openPreview(design)">
                 <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
                 معاينة سريعة
               </button>
@@ -48,11 +60,11 @@
              <p class="text-xs mb-1" style="color: var(--text-muted);">{{ design.category }}</p>
              <h4 class="font-bold text-base mb-2" style="color: var(--text);">{{ design.title }}</h4>
              <div class="flex items-center justify-between">
-               <span class="text-gold font-bold text-lg">{{ design.price }} ر.س</span>
-               <button class="btn-gold-sm">
+               <!-- <span class="text-gold font-bold text-lg">{{ design.price }} ر.س</span> -->
+               <!-- <button class="btn-gold-sm">
                  اختر التصميم
                  <lucide-icon name="arrow-left" class="w-3.5 h-3.5"></lucide-icon>
-               </button>
+               </button> -->
              </div>
            </div>
          </div>
@@ -71,3 +83,16 @@
 </section>
 
 <app-footer></app-footer>
+
+<!-- ===== IMAGE PREVIEW LIGHTBOX ===== -->
+@if (previewDesign) {
+  <div class="lightbox-backdrop" (click)="closePreview()">
+    <div class="lightbox-box" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closePreview()">
+        <lucide-icon name="x" class="w-5 h-5"></lucide-icon>
+      </button>
+      <img [src]="previewDesign.imageUrl" [alt]="previewDesign.title" class="lightbox-img">
+      <p class="lightbox-title">{{ previewDesign.title }}</p>
+    </div>
+  </div>
+}

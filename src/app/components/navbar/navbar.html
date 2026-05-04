@@ -1,30 +1,24 @@
-<header class="w-full sticky top-0 z-50" style="background-color: var(--navbar-bg); border-bottom: 1px solid var(--navbar-border); box-shadow: 0 1px 12px var(--shadow);">
+<header class="w-full fixed top-0 left-0 right-0 z-50" style="background-color: var(--navbar-bg); border-bottom: 1px solid var(--navbar-border); box-shadow: 0 1px 12px var(--shadow);">
 
   <!-- ===== SCROLLING TICKER ===== -->
-  <div class="ticker-wrap">
+  <a href="#demo" class="ticker-wrap" title="جرب الخدمة مجاناً">
     <div class="ticker-track" aria-hidden="true">
+      <!-- Copy 1 -->
       <span class="ticker-item">
-        <span class="ticker-dot"></span>جرب الخدمة الآن مجاناً!
-        <span class="ticker-dot"></span>كروت دعوة رقمية لجميع مناسباتك
-        <span class="ticker-dot"></span>توصيل فوري عبر واتساب
-        <span class="ticker-dot"></span>حفلات زفاف • تخرج • مناسبات خاصة
         <span class="ticker-dot"></span>جرب الخدمة الآن مجاناً!
         <span class="ticker-dot"></span>كروت دعوة رقمية لجميع مناسباتك
         <span class="ticker-dot"></span>توصيل فوري عبر واتساب
         <span class="ticker-dot"></span>حفلات زفاف • تخرج • مناسبات خاصة
       </span>
-      <span class="ticker-item">
-        <span class="ticker-dot"></span>جرب الخدمة الآن مجاناً!
-        <span class="ticker-dot"></span>كروت دعوة رقمية لجميع مناسباتك
-        <span class="ticker-dot"></span>توصيل فوري عبر واتساب
-        <span class="ticker-dot"></span>حفلات زفاف • تخرج • مناسبات خاصة
+      <!-- Copy 2 — identical, placed immediately after for seamless loop -->
+      <span class="ticker-item" aria-hidden="true">
         <span class="ticker-dot"></span>جرب الخدمة الآن مجاناً!
         <span class="ticker-dot"></span>كروت دعوة رقمية لجميع مناسباتك
         <span class="ticker-dot"></span>توصيل فوري عبر واتساب
         <span class="ticker-dot"></span>حفلات زفاف • تخرج • مناسبات خاصة
       </span>
     </div>
-  </div>
+  </a>
 
   <!-- ===== MAIN NAVBAR ===== -->
   <nav class="py-3">
@@ -45,7 +39,7 @@
       </a>
 
       <!-- CENTER: Nav Links (desktop) -->
-      <div class="hidden lg:flex items-center gap-5 flex-1 justify-center">
+      <div class="hidden md:flex items-center gap-5 flex-1 justify-center">
         <a href="#"                   class="nav-link">الرئيسية</a>
         <a href="#designs"            class="nav-link">التصاميم</a>
         <a href="#demo"               class="nav-link">تجربة الخدمة</a>
@@ -58,46 +52,15 @@
 
       <!-- LEFT: Actions -->
       <div class="flex items-center gap-2 flex-shrink-0">
-
-        <!-- Search (desktop) -->
-        <div class="hidden md:flex items-center relative">
-          <input
-            type="text"
-            placeholder="بحث..."
-            class="w-40 px-4 py-2 text-sm rounded-full outline-none"
-            style="background: var(--bg-surface); border: 1.5px solid var(--border); color: var(--text); padding-left: 34px;"
-          >
-          <lucide-icon name="search" class="w-4 h-4 absolute left-3 pointer-events-none" style="color: var(--text-muted);"></lucide-icon>
-        </div>
-
-        <button class="icon-btn" title="الحقيبة">
-          <lucide-icon name="shopping-bag" class="w-4 h-4"></lucide-icon>
-        </button>
-        <button class="icon-btn" title="المفضلة">
-          <lucide-icon name="heart" class="w-4 h-4"></lucide-icon>
-        </button>
-        <button class="icon-btn" title="الحساب">
-          <lucide-icon name="user" class="w-4 h-4"></lucide-icon>
-        </button>
-
-        <!-- Theme Toggle -->
-        <button
-          class="theme-toggle"
-          (click)="toggleTheme()"
-          [title]="isDarkMode() ? 'الوضع النهاري' : 'الوضع الليلي'"
-        >
-          <lucide-icon [name]="isDarkMode() ? 'sun' : 'moon'" class="w-4 h-4"></lucide-icon>
-        </button>
-
         <!-- Mobile Hamburger -->
-        <button class="lg:hidden icon-btn" (click)="toggleMenu()" title="القائمة">
+        <button class="md:hidden icon-btn" (click)="toggleMenu()" title="القائمة">
           <lucide-icon [name]="isMenuOpen ? 'x' : 'menu'" class="w-5 h-5"></lucide-icon>
         </button>
       </div>
     </div>
 
     <!-- ===== MOBILE MENU ===== -->
-    <div class="lg:hidden mobile-menu" [class.open]="isMenuOpen">
+    <div class="md:hidden mobile-menu" [class.open]="isMenuOpen">
       <div class="container mx-auto px-5 py-6 flex flex-col gap-4 text-right">
         <a href="#"                    class="mobile-link" (click)="isMenuOpen=false">الرئيسية</a>
         <a href="#designs"             class="mobile-link" (click)="isMenuOpen=false">التصاميم</a>

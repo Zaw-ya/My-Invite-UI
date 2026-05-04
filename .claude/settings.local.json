@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(npx ng *)",
-      "Bash(dir \"D:\\\\ui myinvite\\\\My-Invite-UI\\\\dist\\\\browser\" /s /b)"
+      "Bash(dir \"D:\\\\ui myinvite\\\\My-Invite-UI\\\\dist\\\\browser\" /s /b)",
+      "Bash(ng build *)",
+      "Bash(copy dist\\\\browser\\\\browser\\\\index.html dist\\\\browser\\\\browser\\\\404.html)",
+      "Bash(npx angular-cli-ghpages *)"
     ]
   }
 }

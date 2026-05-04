@@ -1,3 +1,65 @@
+/* ===== LIGHTBOX ===== */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: lbFadeIn 0.2s ease;
+}
+@keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox-box {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: lbScaleIn 0.2s ease;
+}
+@keyframes lbScaleIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.lightbox-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+
+.lightbox-img {
+  max-width: 75vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.lightbox-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  text-align: center;
+}
+
 /* ===== FILTER BAR ===== */
 .designs-filter-wrap {
   overflow-x: auto;
@@ -39,7 +101,7 @@
 
 .carousel-slide {
   flex: 0 0 calc(100% / 4);
-  padding: 0 10px;
+  padding: 10px;
   box-sizing: border-box;
 }
 
@@ -169,6 +231,6 @@
 .design-card:hover .design-overlay-btn { transform: translateY(0); }
 
 .design-card-info {
-  text-align: right;
+  text-align: center;
   padding: 0 4px;
 }
