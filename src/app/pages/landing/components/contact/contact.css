@@ -1,3 +1,100 @@
+/* ===== DARK SECTION ===== */
+.contact-dark-section {
+  background-color: #0D0D0D;
+}
+
+.contact-dark-section .section-title,
+.contact-dark-section h3,
+.contact-dark-section h4 {
+  color: #FFFFFF !important;
+}
+
+.contact-dark-section p,
+.contact-dark-section .contact-label {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+.contact-dark-section .badge-pill {
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.05);
+}
+
+.contact-dark-section .gold-divider {
+  background: var(--gold);
+}
+
+.contact-dark-section .contact-form-card {
+  background: #1A1A1A;
+  border-color: rgba(255,255,255,0.1);
+}
+
+.contact-dark-section .contact-icon-box {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.contact-dark-section .contact-social-btn {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+}
+
+.contact-dark-section .payment-badge {
+  background: #1A1A1A;
+  border-color: rgba(255,255,255,0.1);
+}
+
+.contact-dark-section .form-input,
+.contact-dark-section .phone-field,
+.contact-dark-section .phone-number-input,
+.contact-dark-section .country-trigger {
+  background: #111111 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #FFFFFF !important;
+}
+
+.contact-dark-section .phone-field {
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.contact-dark-section .phone-field:focus-within {
+  border-color: var(--gold) !important;
+}
+
+.contact-dark-section .country-trigger {
+  border-right-color: rgba(255,255,255,0.12) !important;
+}
+
+.contact-dark-section .country-code {
+  color: #FFFFFF !important;
+}
+
+.contact-dark-section .country-dropdown {
+  background: #1A1A1A;
+  border-color: rgba(255,255,255,0.12);
+}
+
+.contact-dark-section .country-search {
+  background: #111111;
+  border-color: rgba(255,255,255,0.12);
+  color: #FFFFFF;
+}
+
+.contact-dark-section .country-name-text {
+  color: #FFFFFF;
+}
+
+.contact-dark-section .country-option:hover,
+.contact-dark-section .country-option.selected {
+  background: rgba(255,255,255,0.08);
+}
+
+.contact-dark-section .country-dial,
+.contact-dark-section .country-no-result {
+  color: rgba(255,255,255,0.45);
+}
+
 /* ===== PAYMENT BADGES ===== */
 .payment-badge {
   display: flex;
