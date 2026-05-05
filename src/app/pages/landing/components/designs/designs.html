@@ -2,9 +2,10 @@
   <div class="container mx-auto px-5">
 
     <!-- Header -->
-    <div class="text-center space-y-4 mb-8">
+    <div class="text-center space-y-3 mb-10">
       <h2 class="section-title">تصميمات <span>كروتنا</span></h2>
-      <p class="section-sub">استمتع بجمال الأقسام المختارة خصيصاً لتناسب جميع مناسباتك</p>
+      <p class="section-sub">مكتبة حصرية ومتجددة تناسب جميع مناسباتك</p>
+      <div class="gold-divider mx-auto" style="width:48px; margin-top:12px;"></div>
     </div>
 
     <!-- Category Filter (above carousel) -->
@@ -38,7 +39,9 @@
             <div class="carousel-slide">
               <div class="design-card group">
                 <div class="design-card-image">
-                  <span class="design-badge-new">جديد</span>
+                  @if (card.isNew) {
+                    <span class="design-badge-new">جديد</span>
+                  }
                   <img [src]="card.imageUrl" [alt]="card.title"
                        class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
                   <div class="design-overlay">

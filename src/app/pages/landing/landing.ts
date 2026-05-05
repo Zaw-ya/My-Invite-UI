@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { ContentService } from '../../services/content.service';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
@@ -21,8 +22,9 @@ import { ContactComponent } from './components/contact/contact';
   selector: 'app-landing',
   standalone: true,
   imports: [
-    CommonModule, 
-    NavbarComponent, 
+    CommonModule,
+    ScrollRevealDirective,
+    NavbarComponent,
     FooterComponent,
     HeroComponent,
     AboutComponent,

@@ -1,3 +1,13 @@
+/* Offset fixed navbar (ticker ~28px + nav ~50px = ~78px desktop, ~100px mobile) */
+.landing-main {
+  padding-top: 78px;
+}
+@media (max-width: 767px) {
+  .landing-main {
+    padding-top: 100px;
+  }
+}
+
 .animate-bounce-slow {
   animation: bounce 3s infinite;
 }

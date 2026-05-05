@@ -71,7 +71,14 @@
   border-top: 1px solid var(--border);
 }
 
-@media (max-width: 640px) {
+/* Hamburger: desktop always hidden, mobile always visible */
+.hamburger-btn {
+  display: none;
+}
+@media (max-width: 767px) {
+  .hamburger-btn {
+    display: flex;
+  }
   .icon-btn { width: 32px; height: 32px; }
 }
 

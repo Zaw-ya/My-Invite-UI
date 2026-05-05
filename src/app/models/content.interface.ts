@@ -21,6 +21,7 @@ export interface InvitationCard {
   price: string;
   imageUrl: string;
   gender?: 'ذكوري' | 'أنثوي';
+  isNew?: boolean;
 }
 
 export interface Supervisor {

@@ -2,9 +2,25 @@
   <div class="container mx-auto px-5 max-w-5xl">
 
     <!-- Header -->
-    <div class="text-center mb-12 space-y-3">
-      <span class="badge-pill">✦ مشرفو البوابة</span>
+    <div class="text-center mb-10 space-y-3">
       <h2 class="section-title">مشرفين <span>كروتي الخاصة</span></h2>
+      <div class="gold-divider mx-auto" style="width:48px;"></div>
+    </div>
+
+    <!-- Tab Toggle — top for better UX -->
+    <div class="flex justify-center mb-10">
+      <div class="pricing-tabs">
+        <button
+          (click)="activeTab.set('pricing')"
+          class="pricing-tab"
+          [class.active]="activeTab() === 'pricing'"
+        >قائمة الأسعار</button>
+        <button
+          (click)="activeTab.set('supervisors')"
+          class="pricing-tab"
+          [class.active]="activeTab() === 'supervisors'"
+        >مشرفين البوابة</button>
+      </div>
     </div>
 
     <!-- ===== PRICING TAB ===== -->
@@ -113,21 +129,6 @@
       </div>
     }
 
-    <!-- Tab Toggle -->
-    <div class="flex justify-center">
-      <div class="pricing-tabs">
-        <button
-          (click)="activeTab.set('pricing')"
-          class="pricing-tab"
-          [class.active]="activeTab() === 'pricing'"
-        >قائمة الأسعار</button>
-        <button
-          (click)="activeTab.set('supervisors')"
-          class="pricing-tab"
-          [class.active]="activeTab() === 'supervisors'"
-        >مشرفين البوابة</button>
-      </div>
-    </div>
 
   </div>
 </section>

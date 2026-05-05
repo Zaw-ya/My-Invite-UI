@@ -6,8 +6,18 @@
 }
 
 [data-theme="dark"] .blog-dark-section {
-  background-color: #F8F8F8;
+  background-color: #111111;
 }
+
+[data-theme="dark"] .blog-heading { color: #FFFFFF; }
+[data-theme="dark"] .blog-title   { color: #FFFFFF; }
+[data-theme="dark"] .blog-excerpt { color: rgba(255,255,255,0.55); }
+[data-theme="dark"] .blog-badge-pill {
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.05);
+}
+[data-theme="dark"] .blog-img-wrap { border-color: rgba(255,255,255,0.08); }
 
 @media (max-width: 1024px) {
   .blog-dark-section { padding: 60px 0 80px; }
