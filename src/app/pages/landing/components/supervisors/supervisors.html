@@ -74,14 +74,14 @@
           <div class="px-6 py-5 space-y-5">
             @for (f of supervisorFeatures; track f.bold) {
               <div class="sup-feature">
+                <div class="sup-check">
+                  <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
+                </div>
                 <span style="color: var(--text-secondary);">
                   {{ f.text }}
                   <strong style="color: var(--gold);">{{ f.bold }}</strong>
                   {{ f.after }}
                 </span>
-                <div class="sup-check">
-                  <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
-                </div>
               </div>
             }
           </div>

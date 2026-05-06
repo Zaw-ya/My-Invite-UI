@@ -18,12 +18,12 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
   activeFilter = signal('كل التصميمات');
   activeGender = signal('كل التصميمات');
   currentIndex = signal(0);
+  visibleCount = signal(this.getVisible());
 
   private autoPlayTimer: ReturnType<typeof setInterval> | null = null;
   private isDragging = false;
   private dragStartX = 0;
   private dragDelta = 0;
-  readonly VISIBLE = 4;
 
   categories = ['كل التصميمات', 'حفل زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني / خاص', 'عيد ميلاد', 'سبوع', 'تهنئة'];
 
@@ -39,14 +39,32 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
     return items;
   });
 
-  maxIndex = computed(() => Math.max(0, this.filtered().length - this.VISIBLE));
+  maxIndex = computed(() => Math.max(0, this.filtered().length - this.visibleCount()));
 
   dots = computed(() => Array.from({ length: this.maxIndex() + 1 }, (_, i) => i));
+
+  private getVisible(): number {
+    if (typeof window === 'undefined') return 1;
+    const w = window.innerWidth;
+    if (w > 1200) return 4;
+    if (w > 992) return 3;
+    if (w > 640) return 2;
+    return 1;
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.visibleCount.set(this.getVisible());
+    this.currentIndex.set(0);
+  }
 
   constructor(@Inject(PLATFORM_ID) private platformId: object, private router: Router) {}
 
   ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) this.startAutoPlay();
+    if (isPlatformBrowser(this.platformId)) {
+      this.visibleCount.set(this.getVisible());
+      this.startAutoPlay();
+    }
   }
 
   ngOnDestroy() { this.stopAutoPlay(); }
@@ -76,7 +94,7 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
     this.resetAutoPlay();
   }
 
-  translateX = computed(() => -(this.currentIndex() * (100 / this.VISIBLE)));
+  translateX = computed(() => -(this.currentIndex() * (100 / this.visibleCount())));
 
   navigateToDesigns() {
     this.router.navigate(['/designs']);

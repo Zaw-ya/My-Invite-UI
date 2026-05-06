@@ -1,11 +1,5 @@
-/* Offset fixed navbar (ticker ~28px + nav ~50px = ~78px desktop, ~100px mobile) */
 .landing-main {
-  padding-top: 78px;
-}
-@media (max-width: 767px) {
-  .landing-main {
-    padding-top: 100px;
-  }
+  /* Removed padding-top to allow hero to be 100vh from the top */
 }
 
 .animate-bounce-slow {

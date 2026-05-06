@@ -36,7 +36,7 @@
           [style.transform]="'translateX(' + translateX() + '%)'"
         >
           @for (card of filtered(); track card.id) {
-            <div class="carousel-slide">
+            <div class="carousel-slide" [style.flex-basis]="(100 / visibleCount()) + '%'">
               <div class="design-card group">
                 <div class="design-card-image">
                   @if (card.isNew) {

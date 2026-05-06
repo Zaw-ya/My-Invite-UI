@@ -3,9 +3,17 @@
 <main class="landing-main" style="overflow-x: hidden;">
   <app-hero></app-hero>
 
+  <!-- <div appScrollReveal revealDirection="up">
+    <app-about></app-about>
+  </div> -->
+
   <div appScrollReveal revealDirection="right">
     <app-designs [invitations]="invitations()"></app-designs>
   </div>
+
+  <!-- <div appScrollReveal revealDirection="up">
+    <app-events></app-events>
+  </div> -->
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-demo-form [eventTypes]="eventTypes()"></app-demo-form>
@@ -22,6 +30,10 @@
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-supervisors></app-supervisors>
   </div>
+
+  <!-- <div appScrollReveal revealDirection="up" [revealDelay]="50">
+    <app-testimonials [testimonials]="testimonials()"></app-testimonials>
+  </div> -->
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-contact></app-contact>
