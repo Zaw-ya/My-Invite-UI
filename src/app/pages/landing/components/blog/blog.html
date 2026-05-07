@@ -2,22 +2,19 @@
   <div class="container mx-auto px-5">
 
     <!-- Header row -->
-    <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-14">
+    <div class="flex flex-col items-start gap-4 mb-14 text-right" dir="rtl">
+      <h2 class="blog-heading font-display">المدونة <span style="color: var(--gold);">والنصائح</span></h2>
+      <div class="gold-divider" style="width: 48px;"></div>
       <button class="flex items-center gap-2 font-black group" style="color: var(--gold);" (click)="navigateToBlog()">
         <lucide-icon name="arrow-left" class="w-5 h-5 transition-transform group-hover:-translate-x-1"></lucide-icon>
         عرض جميع المقالات
       </button>
-      <div class="text-right space-y-2">
-        <span class="blog-badge-pill">✦ المدونة</span>
-        <h2 class="blog-heading font-display text-right">المدونة <span style="color: var(--gold);">والنصائح</span></h2>
-        <div class="gold-divider" style="margin-right: 0; margin-left: auto; width: 48px;"></div>
-      </div>
     </div>
 
     <!-- Blog Posts Grid -->
-    <div class="grid md:grid-cols-2 gap-10">
+    <div class="grid md:grid-cols-3 gap-6">
       @for (post of blogPosts; track post.id) {
-        <article class="blog-card group cursor-pointer">
+        <article class="blog-card group cursor-pointer" (click)="navigateToPost(post.id)">
 
           <!-- Image -->
           <div class="blog-img-wrap">
@@ -34,10 +31,10 @@
              <p class="text-sm font-bold" style="color: var(--gold);">{{ post.date | date:'yyyy/MM/dd' }}</p>
              <h4 class="blog-title group-hover:text-gold transition-colors">{{ post.title }}</h4>
              <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt">{{ post.excerpt }}</p>
-             <button class="blog-read-more" (click)="navigateToPost(post.id)">
+             <span class="blog-read-more">
                اقرأ المزيد
                <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
-             </button>
+             </span>
            </div>
         </article>
       }

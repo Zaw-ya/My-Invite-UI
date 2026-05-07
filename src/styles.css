@@ -358,43 +358,48 @@ body {
 }
 
 /* ===================================================
-   SCROLLING TICKER
+   SCROLLING TICKER  –  TV news-bar style
+   Two identical copies side-by-side; animates -50% so
+   when copy-1 exits left, copy-2 fills in seamlessly.
    =================================================== */
 .ticker-wrap {
   display: block;
-  overflow: hidden;
+  overflow: hidden;          /* clip anything outside the bar */
   background-color: var(--ticker-bg);
   color: var(--ticker-text);
-  padding: 11px 0;
-  position: relative;
+  padding: 9px 0;
   cursor: pointer;
   text-decoration: none;
-  /* pause animation when hovering anywhere on the bar */
+  /* prevent the bar from ever wrapping to a second line */
+  white-space: nowrap;
 }
 .ticker-wrap:hover .ticker-track {
   animation-play-state: paused;
 }
 
+/* The moving strip — always LTR so copy-1 and copy-2
+   sit left→right regardless of the page's RTL direction */
 .ticker-track {
-  display: flex;
+  display: inline-flex;      /* shrinks to content width naturally */
+  flex-direction: row;
+  direction: ltr;
   white-space: nowrap;
-  /* two identical copies → move exactly -50% for seamless infinite loop */
+  /* animate exactly one copy-width to the left, then snap back */
   animation: ticker-scroll 22s linear infinite;
   will-change: transform;
 }
 
+/* Each copy: natural width, never wrap */
 .ticker-item {
   display: inline-flex;
   align-items: center;
-  gap: 24px;
-  padding: 0 32px;
+  gap: 36px;
+  padding: 0 36px;
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  /* each item is exactly half the total track width */
+  letter-spacing: 0.03em;
   flex-shrink: 0;
-  min-width: 100vw;
-  justify-content: space-around;
+  white-space: nowrap;
 }
 
 .ticker-dot {
@@ -405,8 +410,9 @@ body {
   display: inline-block;
   flex-shrink: 0;
 }
-[data-theme="dark"] .ticker-dot { background: var(--ticker-text); }
+[data-theme="dark"] .ticker-dot { background: rgba(255,255,255,0.6); }
 
+/* Move exactly -50% of the track (= one copy) then reset to 0 */
 @keyframes ticker-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -501,10 +507,66 @@ body {
 .pulse-glow { animation: pulseGlow 2.5s ease infinite; }
 
 /* ===================================================
+   CARD STAGGER ANIMATIONS
+   Child cards inside grids animate in with delay
+   =================================================== */
+.as-grid .as-card,
+.grid .blog-card,
+.grid .sup-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Triggered when parent section is revealed */
+.sr-visible .as-grid .as-card,
+.sr-visible .grid .blog-card,
+.sr-visible .grid .sup-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.as-grid .as-card:nth-child(1), .grid .blog-card:nth-child(1), .grid .sup-card:nth-child(1) { transition-delay: 0.05s; }
+.as-grid .as-card:nth-child(2), .grid .blog-card:nth-child(2), .grid .sup-card:nth-child(2) { transition-delay: 0.12s; }
+.as-grid .as-card:nth-child(3), .grid .blog-card:nth-child(3), .grid .sup-card:nth-child(3) { transition-delay: 0.19s; }
+.as-grid .as-card:nth-child(4), .grid .blog-card:nth-child(4), .grid .sup-card:nth-child(4) { transition-delay: 0.26s; }
+.as-grid .as-card:nth-child(5), .grid .blog-card:nth-child(5), .grid .sup-card:nth-child(5) { transition-delay: 0.33s; }
+.as-grid .as-card:nth-child(6), .grid .blog-card:nth-child(6), .grid .sup-card:nth-child(6) { transition-delay: 0.40s; }
+
+/* ===================================================
+   SCROLL REVEAL ANIMATIONS
+   =================================================== */
+.sr-hidden {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* RTL: "from right" means entering from the right edge (positive X in LTR = right side) */
+.sr-from-right  { transform: translateX(60px); }
+.sr-from-left   { transform: translateX(-60px); }
+.sr-from-up     { transform: translateY(40px); }
+
+.sr-visible {
+  opacity: 1 !important;
+  transform: translateX(0) translateY(0) !important;
+}
+
+/* ===================================================
    SECTION SPACING
    =================================================== */
 .section-py { padding-top: 96px; padding-bottom: 96px; }
 .section-py-sm { padding-top: 64px; padding-bottom: 64px; }
+
+@media (max-width: 1024px) {
+  .section-py { padding-top: 64px; padding-bottom: 64px; }
+  .section-py-sm { padding-top: 48px; padding-bottom: 48px; }
+}
+
+@media (max-width: 640px) {
+  .section-py { padding-top: 48px; padding-bottom: 48px; }
+  .section-py-sm { padding-top: 32px; padding-bottom: 32px; }
+}
 
 /* ===================================================
    DARK HERO SECTION OVERLAY

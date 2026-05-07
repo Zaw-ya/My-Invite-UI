@@ -1,3 +1,138 @@
+/* ===== DARK SECTION ===== */
+.contact-dark-section {
+  background-color: #0D0D0D;
+}
+
+.contact-dark-section .section-title,
+.contact-dark-section h3,
+.contact-dark-section h4 {
+  color: #FFFFFF !important;
+}
+
+.contact-dark-section p,
+.contact-dark-section .contact-label {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+.contact-dark-section .badge-pill {
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.05);
+}
+
+.contact-dark-section .gold-divider {
+  background: var(--gold);
+}
+
+.contact-dark-section .contact-form-card {
+  background: #FFFFFF;
+  border-color: var(--border);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.contact-dark-section .contact-form-card h3,
+.contact-dark-section .contact-form-card .contact-label {
+  color: var(--text) !important;
+}
+
+.contact-dark-section .contact-form-card .form-input,
+.contact-dark-section .contact-form-card .phone-field,
+.contact-dark-section .contact-form-card .phone-number-input,
+.contact-dark-section .contact-form-card .country-trigger {
+  background: var(--bg-surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+.contact-dark-section .contact-form-card .country-code {
+  color: var(--text) !important;
+}
+
+.contact-dark-section .contact-form-card .country-dropdown {
+  background: #FFFFFF;
+  border-color: var(--border);
+}
+
+.contact-dark-section .contact-form-card .country-search {
+  background: var(--bg-surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.contact-dark-section .contact-form-card .country-name-text {
+  color: var(--text);
+}
+
+.contact-dark-section .contact-form-card .country-dial {
+  color: var(--text-muted);
+}
+
+.contact-dark-section .contact-icon-box {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.contact-dark-section .contact-social-btn {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+}
+
+.contact-dark-section .payment-badge {
+  background: #FFFFFF;
+  border-color: #E8E8E8;
+}
+
+.contact-dark-section .form-input,
+.contact-dark-section .phone-field,
+.contact-dark-section .phone-number-input,
+.contact-dark-section .country-trigger {
+  background: #111111 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #FFFFFF !important;
+}
+
+.contact-dark-section .phone-field {
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.contact-dark-section .phone-field:focus-within {
+  border-color: var(--gold) !important;
+}
+
+.contact-dark-section .country-trigger {
+  border-right-color: rgba(255,255,255,0.12) !important;
+}
+
+.contact-dark-section .country-code {
+  color: #FFFFFF !important;
+}
+
+.contact-dark-section .country-dropdown {
+  background: #1A1A1A;
+  border-color: rgba(255,255,255,0.12);
+}
+
+.contact-dark-section .country-search {
+  background: #111111;
+  border-color: rgba(255,255,255,0.12);
+  color: #FFFFFF;
+}
+
+.contact-dark-section .country-name-text {
+  color: #FFFFFF;
+}
+
+.contact-dark-section .country-option:hover,
+.contact-dark-section .country-option.selected {
+  background: rgba(255,255,255,0.08);
+}
+
+.contact-dark-section .country-dial,
+.contact-dark-section .country-no-result {
+  color: rgba(255,255,255,0.45);
+}
+
 /* ===== PAYMENT BADGES ===== */
 .payment-badge {
   display: flex;
@@ -5,12 +140,12 @@
   justify-content: center;
   gap: 6px;
   padding: 10px 18px;
-  background: var(--bg-card);
-  border: 1.5px solid var(--border);
+  background: #FFFFFF;
+  border: 1.5px solid #E8E8E8;
   border-radius: 14px;
   min-width: 80px;
   height: 46px;
-  box-shadow: 0 2px 8px var(--shadow);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 /* ===== CONTACT INFO ITEM ===== */
@@ -18,7 +153,8 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  direction: rtl;
 }
 
 .contact-icon-box {
@@ -57,6 +193,165 @@
   color: var(--text);
 }
 
+/* ===== PHONE FIELD ===== */
+.phone-field {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-surface);
+  overflow: visible;
+  transition: border-color 0.2s ease;
+  direction: rtl; /* RTL for correct component placement */
+}
+.phone-field:focus-within {
+  border-color: var(--gold);
+}
+
+.country-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  height: 46px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-left: 1.5px solid var(--border);
+  flex-shrink: 0;
+  color: var(--text);
+}
+
+.country-flag {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.country-code {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.country-chevron {
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+.country-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.phone-number-input {
+  flex: 1;
+  height: 46px;
+  padding: 0 12px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  font-family: inherit;
+}
+.phone-number-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ===== COUNTRY DROPDOWN ===== */
+.country-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px var(--shadow);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.country-search-wrap {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.country-search {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+  text-align: right;
+  direction: rtl;
+}
+.country-search:focus {
+  border-color: var(--gold);
+}
+.country-search::placeholder {
+  color: var(--text-muted);
+}
+
+.country-list {
+  max-height: 220px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.country-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.country-option:hover,
+.country-option.selected {
+  background: var(--gold-pale);
+}
+
+.country-flag-sm {
+  width: 22px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.country-name-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text);
+  text-align: right;
+  direction: rtl;
+}
+
+.country-dial {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.country-no-result {
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
 /* ===== SOCIAL BUTTONS ===== */
 .contact-social-btn {
   width: 40px;
@@ -76,4 +371,10 @@
   border-color: var(--gold);
   color: #FFFFFF;
   transform: translateY(-2px);
+}
+
+/* RTL icon flipping */
+[dir="rtl"] lucide-icon[name="send"],
+.rtl lucide-icon[name="send"] {
+  transform: scaleX(-1);
 }

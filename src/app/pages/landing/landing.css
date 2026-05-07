@@ -1,3 +1,7 @@
+.landing-main {
+  /* Removed padding-top to allow hero to be 100vh from the top */
+}
+
 .animate-bounce-slow {
   animation: bounce 3s infinite;
 }

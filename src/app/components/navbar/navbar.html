@@ -1,16 +1,15 @@
-<header class="w-full fixed top-0 left-0 right-0 z-50" style="background-color: var(--navbar-bg); border-bottom: 1px solid var(--navbar-border); box-shadow: 0 1px 12px var(--shadow);">
+<header class="w-full fixed top-0 left-0 right-0 z-50"
+  style="background-color: var(--navbar-bg); border-bottom: 1px solid var(--navbar-border); box-shadow: 0 1px 12px var(--shadow);">
 
   <!-- ===== SCROLLING TICKER ===== -->
-  <a href="#demo" class="ticker-wrap" title="جرب الخدمة مجاناً">
+  <!-- <a href="#demo" class="ticker-wrap" title="جرب الخدمة مجاناً" (click)="smoothScroll($event, '#demo')">
     <div class="ticker-track" aria-hidden="true">
-      <!-- Copy 1 -->
       <span class="ticker-item">
         <span class="ticker-dot"></span>جرب الخدمة الآن مجاناً!
         <span class="ticker-dot"></span>كروت دعوة رقمية لجميع مناسباتك
         <span class="ticker-dot"></span>توصيل فوري عبر واتساب
         <span class="ticker-dot"></span>حفلات زفاف • تخرج • مناسبات خاصة
       </span>
-      <!-- Copy 2 — identical, placed immediately after for seamless loop -->
       <span class="ticker-item" aria-hidden="true">
         <span class="ticker-dot"></span>جرب الخدمة الآن مجاناً!
         <span class="ticker-dot"></span>كروت دعوة رقمية لجميع مناسباتك
@@ -18,14 +17,14 @@
         <span class="ticker-dot"></span>حفلات زفاف • تخرج • مناسبات خاصة
       </span>
     </div>
-  </a>
+  </a> -->
 
   <!-- ===== MAIN NAVBAR ===== -->
   <nav class="py-3">
     <div class="container mx-auto px-5 flex items-center justify-between gap-4">
 
       <!-- RIGHT: Logo (brand = كروتي الخاصة) -->
-      <a href="#" class="flex items-center gap-3 flex-shrink-0">
+      <a href="#" class="flex items-center gap-3 flex-shrink-0" (click)="smoothScroll($event, '#')">
         <!-- Small geo icon -->
         <div class="navbar-logo-icon" aria-hidden="true">
           <div class="nlg-1"></div>
@@ -33,27 +32,29 @@
           <div class="nlg-3"></div>
         </div>
         <div class="text-right leading-tight">
-          <span class="block font-black text-base tracking-wide font-display" style="color: var(--text); line-height:1.1;">كروتي الخاصة</span>
+          <span class="block font-black text-base tracking-wide font-display"
+            style="color: var(--text); line-height:1.1;">كروتي الخاصة</span>
           <span class="block text-[10px] tracking-widest" style="color: var(--text-muted);">.نت</span>
         </div>
       </a>
 
-      <!-- CENTER: Nav Links (desktop) -->
+      <!-- CENTER: Nav Links (desktop always visible) -->
       <div class="hidden md:flex items-center gap-5 flex-1 justify-center">
-        <a href="#"                   class="nav-link">الرئيسية</a>
-        <a href="#designs"            class="nav-link">التصاميم</a>
-        <a href="#demo"               class="nav-link">تجربة الخدمة</a>
-        <a href="#packages"           class="nav-link">الباقات</a>
-        <a href="#additional-services" class="nav-link">مميزات الخدمة</a>
-        <a href="#about"              class="nav-link">عن كرت</a>
-        <a href="#blog"               class="nav-link">المدونة</a>
-        <a href="#contact"            class="nav-link">تواصل معنا</a>
+        <a href="#" class="nav-link" (click)="smoothScroll($event, '#')">الرئيسية</a>
+        <a href="#designs" class="nav-link" (click)="smoothScroll($event, '#designs')">التصاميم</a>
+        <a href="#demo" class="nav-link" (click)="smoothScroll($event, '#demo')">تجربة الخدمة</a>
+        <a href="#packages" class="nav-link" (click)="smoothScroll($event, '#packages')">الباقات</a>
+        <a href="#additional-services" class="nav-link" (click)="smoothScroll($event, '#additional-services')">مميزات
+          الخدمة</a>
+        <!-- <a href="#about" class="nav-link" (click)="smoothScroll($event, '#about')">عن كروتي الخاصه</a> -->
+        <a href="#blog" class="nav-link" (click)="smoothScroll($event, '#blog')">المدونة</a>
+        <a href="#contact" class="nav-link" (click)="smoothScroll($event, '#contact')">تواصل معنا</a>
       </div>
 
       <!-- LEFT: Actions -->
       <div class="flex items-center gap-2 flex-shrink-0">
-        <!-- Mobile Hamburger -->
-        <button class="md:hidden icon-btn" (click)="toggleMenu()" title="القائمة">
+        <!-- Hamburger: always on mobile, on desktop only when scrolled -->
+        <button class="icon-btn hamburger-btn" [class.is-scrolled]="isScrolled" (click)="toggleMenu()" title="القائمة">
           <lucide-icon [name]="isMenuOpen ? 'x' : 'menu'" class="w-5 h-5"></lucide-icon>
         </button>
       </div>
@@ -62,14 +63,15 @@
     <!-- ===== MOBILE MENU ===== -->
     <div class="md:hidden mobile-menu" [class.open]="isMenuOpen">
       <div class="container mx-auto px-5 py-6 flex flex-col gap-4 text-right">
-        <a href="#"                    class="mobile-link" (click)="isMenuOpen=false">الرئيسية</a>
-        <a href="#designs"             class="mobile-link" (click)="isMenuOpen=false">التصاميم</a>
-        <a href="#demo"                class="mobile-link" (click)="isMenuOpen=false">تجربة الخدمة</a>
-        <a href="#packages"            class="mobile-link" (click)="isMenuOpen=false">الباقات</a>
-        <a href="#additional-services" class="mobile-link" (click)="isMenuOpen=false">مميزات الخدمة</a>
-        <a href="#about"               class="mobile-link" (click)="isMenuOpen=false">عن كرت</a>
-        <a href="#blog"                class="mobile-link" (click)="isMenuOpen=false">المدونة</a>
-        <a href="#contact"             class="mobile-link" (click)="isMenuOpen=false">تواصل معنا</a>
+        <a href="#" class="mobile-link" (click)="smoothScroll($event, '#')">الرئيسية</a>
+        <a href="#designs" class="mobile-link" (click)="smoothScroll($event, '#designs')">التصاميم</a>
+        <a href="#demo" class="mobile-link" (click)="smoothScroll($event, '#demo')">تجربة الخدمة</a>
+        <a href="#packages" class="mobile-link" (click)="smoothScroll($event, '#packages')">الباقات</a>
+        <a href="#additional-services" class="mobile-link" (click)="smoothScroll($event, '#additional-services')">مميزات
+          الخدمة</a>
+        <a href="#about" class="mobile-link" (click)="smoothScroll($event, '#about')">عن كروتي الخاصة</a>
+        <a href="#blog" class="mobile-link" (click)="smoothScroll($event, '#blog')">المدونة</a>
+        <a href="#contact" class="mobile-link" (click)="smoothScroll($event, '#contact')">تواصل معنا</a>
         <div class="pt-4 border-t" style="border-color: var(--border);">
           <p class="text-sm mb-1" style="color: var(--text-muted);">البريد الإلكتروني</p>
           <p class="font-bold text-sm" style="color: var(--gold);">cs&#64;krotialkhaseh.net</p>

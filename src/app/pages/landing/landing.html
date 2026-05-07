@@ -1,17 +1,47 @@
 <app-navbar></app-navbar>
 
-<main style="overflow-x: hidden; padding-top: var(--navbar-height, 80px);">
+<main class="landing-main" style="overflow-x: hidden;">
   <app-hero></app-hero>
-  <app-designs [invitations]="invitations()"></app-designs>
-  <app-demo-form [eventTypes]="eventTypes()"></app-demo-form>
-  <app-pricing></app-pricing>
-  <app-additional-services></app-additional-services>
-  <app-supervisors></app-supervisors>
-  <app-about></app-about>
-  <app-events [eventTypes]="eventTypes()"></app-events>
-  <app-blog [blogPosts]="blogPosts()"></app-blog>
-  <!-- <app-testimonials [testimonials]="testimonials()"></app-testimonials> -->
-  <app-contact></app-contact>
+
+  <!-- <div appScrollReveal revealDirection="up">
+    <app-about></app-about>
+  </div> -->
+
+  <div appScrollReveal revealDirection="right">
+    <app-designs [invitations]="invitations()"></app-designs>
+  </div>
+
+  <!-- <div appScrollReveal revealDirection="up">
+    <app-events></app-events>
+  </div> -->
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-demo-form [eventTypes]="eventTypes()"></app-demo-form>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-pricing></app-pricing>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-additional-services></app-additional-services>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-supervisors></app-supervisors>
+  </div>
+
+  <!-- <div appScrollReveal revealDirection="up" [revealDelay]="50">
+    <app-testimonials [testimonials]="testimonials()"></app-testimonials>
+  </div> -->
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-contact></app-contact>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-blog [blogPosts]="blogPosts()"></app-blog>
+  </div>
 </main>
 
 <app-footer></app-footer>

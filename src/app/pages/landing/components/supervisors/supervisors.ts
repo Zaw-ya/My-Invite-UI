@@ -29,8 +29,8 @@ export class SupervisorsComponent {
 
   supervisorFeatures = [
     { text: 'مشرفين أو مشرفات', bold: 'بزي موحد' },
-    { text: '', bold: 'طاولة', after: 'تنظيم دخول.' },
-    { text: '', bold: 'مسح', after: 'أكواد الدخول.' },
+    { text: 'طاولة', bold: 'تنظيم دخول.' },
+    { text: 'مسح', bold: 'أكواد الدخول.' },
     { text: 'التواجد لمدة', bold: '5 ساعات', after: '.' },
   ];
 

@@ -9,4 +9,9 @@ import { LucideAngularModule } from 'lucide-angular';
   templateUrl: './additional-services.html',
   styleUrl: './additional-services.css'
 })
-export class AdditionalServicesComponent {}
+export class AdditionalServicesComponent {
+  smoothNav(e: Event) {
+    e.preventDefault();
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
