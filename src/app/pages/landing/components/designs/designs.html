@@ -11,7 +11,7 @@
     <!-- Category Filter (above carousel) -->
     <div class="designs-filter-wrap mb-6">
       <div class="designs-filter">
-        @for (cat of categories; track cat) {
+        @for (cat of categories(); track cat) {
           <button
             class="tag-pill"
             [class.active]="activeFilter() === cat"

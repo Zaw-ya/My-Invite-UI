@@ -1,4 +1,4 @@
-import { Component, Input, signal, computed, HostListener, ElementRef, ViewChild, AfterViewInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, input, signal, computed, HostListener, ElementRef, ViewChild, AfterViewInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -12,7 +12,8 @@ import { InvitationCard } from '../../../../models/content.interface';
   styleUrl: './designs.css'
 })
 export class DesignsComponent implements AfterViewInit, OnDestroy {
-  @Input() invitations: InvitationCard[] = [];
+  invitations = input<InvitationCard[]>([]);
+  categories = input<string[]>(['كل التصميمات']);
   @ViewChild('track') trackRef!: ElementRef<HTMLElement>;
 
   activeFilter = signal('كل التصميمات');
@@ -25,14 +26,12 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
   private dragStartX = 0;
   private dragDelta = 0;
 
-  categories = ['كل التصميمات', 'حفل زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني / خاص', 'عيد ميلاد', 'سبوع', 'تهنئة'];
-
   previewCard = signal<InvitationCard | null>(null);
 
   filtered = computed(() => {
     const cat = this.activeFilter();
     const gender = this.activeGender();
-    let items = this.invitations;
+    let items = this.invitations();
     if (cat !== 'كل التصميمات') items = items.filter(i => i.category === cat);
     if (gender === 'تصميمات ذكورية') items = items.filter(i => i.gender === 'ذكوري');
     else if (gender === 'تصميمات أنثوية') items = items.filter(i => i.gender === 'أنثوي');

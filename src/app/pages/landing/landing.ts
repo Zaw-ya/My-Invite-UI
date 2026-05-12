@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { ContentService } from '../../services/content.service';
@@ -7,12 +7,10 @@ import { FooterComponent } from '../../components/footer/footer';
 
 // Sub-components
 import { HeroComponent } from './components/hero/hero';
-import { AboutComponent } from './components/about/about';
 import { DemoFormComponent } from './components/demo-form/demo-form';
 import { PricingComponent } from './components/pricing/pricing';
 import { DesignsComponent } from './components/designs/designs';
 import { SupervisorsComponent } from './components/supervisors/supervisors';
-import { EventsComponent } from './components/events/events';
 import { AdditionalServicesComponent } from './components/additional-services/additional-services';
 import { BlogComponent } from './components/blog/blog';
 import { TestimonialsComponent } from './components/testimonials/testimonials';
@@ -27,12 +25,10 @@ import { ContactComponent } from './components/contact/contact';
     NavbarComponent,
     FooterComponent,
     HeroComponent,
-    AboutComponent,
     DemoFormComponent,
     PricingComponent,
     DesignsComponent,
     SupervisorsComponent,
-    EventsComponent,
     AdditionalServicesComponent,
     BlogComponent,
     TestimonialsComponent,
@@ -51,4 +47,6 @@ export class LandingPageComponent {
   eventTypes = this.contentService.eventTypes;
   blogPosts = this.contentService.blogPosts;
   testimonials = this.contentService.testimonials;
+
+  categories = computed(() => ['كل التصميمات', ...this.eventTypes().map(et => et.name)]);
 }

@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { ContentService } from '../../../../services/content.service';
 
 interface EventTag {
   label: string;
@@ -15,16 +16,16 @@ interface EventTag {
   styleUrl: './hero.css'
 })
 export class HeroComponent {
-  tags: EventTag[] = [
-    { label: 'حفل زفاف',                                      imageUrl: 'image/1.png' },
-    { label: 'خطبة / حناء',                                   imageUrl: 'image/2.png' },
-    { label: 'حفل تخرج',                                      imageUrl: 'image/3.png' },
-    { label: 'مناقشة رسالة',                                  imageUrl: 'image/4.png' },
-    { label: 'حدث تقني / أدبي / خاص بشركتك/ خلافه..', imageUrl: 'image/5.png' },
-    { label: 'عيد ميلاد',                                     imageUrl: 'image/6.png' },
-    { label: 'سبوع',                                           imageUrl: 'image/7.png' },
-    { label: 'تهنئة',                                          imageUrl: 'image/8.png' },
-  ];
+  private contentService = inject(ContentService);
+  
+  eventTypes = this.contentService.eventTypes;
+
+  tags = computed<EventTag[]>(() => {
+    return this.eventTypes().map(et => ({
+      label: et.name,
+      imageUrl: et.icon // Using icon as image if available, otherwise would need mapping
+    }));
+  });
 
   activeTag = signal<EventTag | null>(null);
 

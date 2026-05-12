@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -12,7 +12,7 @@ import { BlogPost } from '../../../../models/content.interface';
   styleUrl: './blog.css'
 })
 export class BlogComponent {
-  @Input() blogPosts: BlogPost[] = [];
+  blogPosts = input<BlogPost[]>([]);
 
   constructor(private router: Router) {}
 
