@@ -42,3 +42,9 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+Data_of_backend/Api.json
+.gitignore
+Data_of_backend/backend_knowledge_base.txt
+Data_of_backend/apiLink.txt
+.env.local
+src/environments/env.config.ts

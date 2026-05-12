@@ -65,6 +65,20 @@
       <!-- RIGHT: Contact Form -->
       <div class="contact-form-card">
         <h3 class="text-xl font-black mb-6 text-right" style="color: var(--text);">أرسل رسالة</h3>
+
+        @if (submitSuccess()) {
+          <div class="contact-success">
+            <lucide-icon name="circle-check" class="w-5 h-5"></lucide-icon>
+            تم إرسال رسالتك بنجاح، سنتواصل معك قريباً!
+          </div>
+        }
+        @if (submitError()) {
+          <div class="contact-error">
+            <lucide-icon name="circle-x" class="w-5 h-5"></lucide-icon>
+            {{ submitError() }}
+          </div>
+        }
+
         <form class="space-y-5 text-right" (ngSubmit)="submit()">
 
           <!-- Name -->
@@ -145,9 +159,14 @@
             <textarea rows="4" class="form-input resize-none" placeholder="كيف يمكننا مساعدتك؟" [(ngModel)]="form.message" name="message"></textarea>
           </div>
 
-          <button type="submit" class="btn-gold w-full justify-center text-base">
-            إرسال الرسالة
-            <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
+          <button type="submit" class="btn-gold w-full justify-center text-base" [disabled]="submitting()">
+            @if (submitting()) {
+              <span class="contact-spinner"></span>
+              جاري الإرسال...
+            } @else {
+              إرسال الرسالة
+              <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
+            }
           </button>
 
         </form>

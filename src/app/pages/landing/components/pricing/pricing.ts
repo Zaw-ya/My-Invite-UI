@@ -64,7 +64,7 @@ export class PricingComponent {
         });
         this.selectedCounts.set(counts);
       }
-    }, { allowSignalWrites: true });
+    });
   }
 
   activePlan = computed<PlanData>(() => {

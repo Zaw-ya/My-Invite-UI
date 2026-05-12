@@ -67,7 +67,7 @@ export class ContentService {
         const formatted = data.map(item => ({
           id: item.id.toString(),
           name: item.name,
-          icon: item.icon || 'star'
+          imageUrl: item.imageUrl
         }));
         this.eventTypes.set(formatted);
       },

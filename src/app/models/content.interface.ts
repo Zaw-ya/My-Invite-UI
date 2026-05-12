@@ -56,5 +56,5 @@ export interface BlogPost {
 export interface EventType {
   id: string;
   name: string;
-  icon: string;
+  imageUrl: string;
 }

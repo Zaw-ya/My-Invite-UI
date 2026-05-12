@@ -23,7 +23,7 @@ export class HeroComponent {
   tags = computed<EventTag[]>(() => {
     return this.eventTypes().map(et => ({
       label: et.name,
-      imageUrl: et.icon // Using icon as image if available, otherwise would need mapping
+      imageUrl: et.imageUrl
     }));
   });
 
