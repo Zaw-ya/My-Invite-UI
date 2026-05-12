@@ -20,6 +20,7 @@ export interface InvitationCard {
   id: string;
   title: string;
   category: string;
+  allCategories?: string[];
   price: string;
   imageUrl: string;
   gender?: 'ذكوري' | 'أنثوي';

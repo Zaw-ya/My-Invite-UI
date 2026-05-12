@@ -33,9 +33,21 @@ export class DesignsPageComponent {
     const cat = this.activeCategory();
     const gender = this.activeGender();
     let items = this.invitations();
-    if (cat !== 'كل التصميمات') items = items.filter(i => i.category === cat);
-    if (gender === 'تصميمات ذكورية') items = items.filter(i => i.gender === 'ذكوري');
-    else if (gender === 'تصميمات أنثوية') items = items.filter(i => i.gender === 'أنثوي');
+
+    if (cat && cat !== 'كل التصميمات') {
+      const searchCat = cat.trim();
+      items = items.filter(i =>
+        (i.category && i.category.trim() === searchCat) ||
+        (i.allCategories && i.allCategories.some(c => c.trim() === searchCat))
+      );
+    }
+
+    if (gender === 'تصميمات ذكورية') {
+      items = items.filter(i => i.gender === 'ذكوري');
+    } else if (gender === 'تصميمات أنثوية') {
+      items = items.filter(i => i.gender === 'أنثوي');
+    }
+
     return items;
   });
 

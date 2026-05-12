@@ -5,12 +5,11 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import {
   LucideAngularModule,
-  // existing icons
   Heart, GraduationCap, Briefcase, Landmark, Users, User, Check,
   Star, ArrowRight, ArrowLeft, Play, Calendar, Clock, MapPin, Mail, Phone, MessageSquare,
-  Send, Menu, X, ChevronDown, ChevronUp, Instagram, Twitter, Facebook, Linkedin,
+  Send, Menu, X, ChevronDown, ChevronUp, ChevronRight, ChevronLeft,
+  Instagram, Twitter, Facebook, Linkedin,
   ShoppingBag, Search,
-  // new icons
   Sparkles, Moon, Sun, Eye, Crown, Zap, Palette, Smartphone, Puzzle,
   Mars, Venus, FileX, MessageCircle,
 } from 'lucide-angular';
@@ -28,9 +27,9 @@ export const appConfig: ApplicationConfig = {
       // existing
       Heart, GraduationCap, Briefcase, Landmark, Users, User, Check,
       Star, ArrowRight, ArrowLeft, Play, Calendar, Clock, MapPin, Mail, Phone, MessageSquare,
-      Send, Menu, X, ChevronDown, ChevronUp, Instagram, Twitter, Facebook, Linkedin,
+      Send, Menu, X, ChevronDown, ChevronUp, ChevronRight, ChevronLeft,
+      Instagram, Twitter, Facebook, Linkedin,
       ShoppingBag, Search,
-      // new
       Sparkles, Moon, Sun, Eye, Crown, Zap, Palette, Smartphone, Puzzle,
       Mars, Venus, FileX, MessageCircle,
     }))

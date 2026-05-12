@@ -42,10 +42,30 @@ export class ContentService {
     this.fetchAllData();
   }
 
+
+
   private fetchAllData() {
-    this.fetchEventTypes();
+    // Fetch event types first so invitations can resolve names from IDs
+    this.http.get<any>(`${this.apiUrl}/EventTypes`).subscribe({
+      next: (res) => {
+        const data = this.extractData(res);
+        if (!Array.isArray(data)) return;
+        const formatted = data.map((item: any) => ({
+          id: (item.id || item.Id || '').toString(),
+          name: item.name || item.Name || '',
+          imageUrl: this.resolveUrl(item.imageUrl || item.ImageUrl || '')
+        }));
+        this.eventTypes.set(formatted);
+        // Build id→name lookup then fetch invitations
+        const idToName = new Map<string, string>(formatted.map(e => [e.id, e.name]));
+        this.fetchInvitations(idToName);
+      },
+      error: (err) => {
+        console.error('Error fetching event types:', err);
+        this.fetchInvitations(new Map());
+      }
+    });
     this.fetchPackages();
-    this.fetchInvitations();
     this.fetchSupervisors();
     this.fetchBlogPosts();
     this.fetchTestimonials();
@@ -59,60 +79,69 @@ export class ContentService {
     return res;
   }
 
-  private fetchEventTypes() {
-    this.http.get<any>(`${this.apiUrl}/EventTypes`).subscribe({
-      next: (res) => {
-        const data = this.extractData(res);
-        if (!Array.isArray(data)) return;
-        const formatted = data.map(item => ({
-          id: item.id.toString(),
-          name: item.name,
-          imageUrl: item.imageUrl
-        }));
-        this.eventTypes.set(formatted);
-      },
-      error: (err) => console.error('Error fetching event types:', err)
-    });
-  }
-
   private fetchPackages() {
     this.http.get<any>(`${this.apiUrl}/Packages/active`).subscribe({
       next: (res) => {
         const data = this.extractData(res);
         if (!Array.isArray(data)) return;
-        const formatted = data.map(item => ({
-          id: item.id.toString(),
-          name: item.name,
-          price: item.pricingTiers?.[0]?.price?.toString() || '0',
-          description: item.description,
-          features: item.features?.map((f: any) => f.description) || [],
-          isPopular: item.isPopular,
-          compensationPercentage: item.compensationPercentage,
-          tiers: item.pricingTiers?.map((t: any) => ({
-            count: t.maxInvitations,
-            price: t.price
-          })) || []
-        }));
+        const formatted = data.map(item => {
+          const tiers = item.pricingTiers || item.PricingTiers || [];
+          return {
+            id: (item.id || item.Id || '').toString(),
+            name: item.name || item.Name || '',
+            price: (tiers?.[0]?.price || tiers?.[0]?.Price || '0').toString(),
+            description: item.description || item.Description || '',
+            features: (item.features || item.Features || []).map((f: any) => f.description || f.Description || ''),
+            isPopular: item.isPopular || item.IsPopular || false,
+            compensationPercentage: item.compensationPercentage || item.CompensationPercentage || 0,
+            tiers: tiers.map((t: any) => ({
+              count: t.maxInvitations || t.MaxInvitations || 0,
+              price: t.price || t.Price || 0
+            })) || []
+          };
+        });
         this.packages.set(formatted);
       },
       error: (err) => console.error('Error fetching packages:', err)
     });
   }
 
-  private fetchInvitations() {
+  private resolveUrl(url: string): string {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    const base = this.apiUrl.replace(/\/api\/?$/, '');
+    return `${base}${url.startsWith('/') ? '' : '/'}${url}`;
+  }
+
+  private fetchInvitations(idToName: Map<string, string>) {
     this.http.get<any>(`${this.apiUrl}/InvitationCards/visible`).subscribe({
       next: (res) => {
         const data = this.extractData(res);
         if (!Array.isArray(data)) return;
-        const formatted = data.map(item => ({
-          id: item.id.toString(),
-          title: item.title,
-          category: item.eventTypes?.[0]?.name || item.category || 'عام',
-          price: item.price?.toString() || '0',
-          imageUrl: item.imageUrl,
-          gender: (item.gender === 0 ? 'ذكوري' : 'أنثوي') as 'ذكوري' | 'أنثوي',
-          isNew: item.rating >= 4
-        }));
+
+        const formatted = data
+          .filter((item: any) => item && (item.id || item.Id) && (item.imageUrl || item.ImageUrl)?.trim())
+          .map((item: any) => {
+            // Resolve category names from eventTypeIds array using the id→name map
+            const ids: any[] = item.eventTypeIds || item.EventTypeIds || [];
+            const eventTypeNames: string[] = ids
+              .map((id: any) => idToName.get(id.toString()))
+              .filter((n): n is string => !!n);
+
+            const rawGender = item.gender ?? item.Gender;
+            const gender = rawGender === 0 ? 'ذكوري' : rawGender === 1 ? 'أنثوي' : undefined;
+
+            return {
+              id: (item.id || item.Id || Math.random()).toString(),
+              title: item.title || item.Title || 'بدون عنوان',
+              category: eventTypeNames[0] || item.category || item.Category || 'عام',
+              allCategories: eventTypeNames,
+              price: (item.price || item.Price || '0').toString(),
+              imageUrl: this.resolveUrl(item.imageUrl || item.ImageUrl),
+              gender,
+              isNew: (item.rating || item.Rating || 0) >= 4
+            };
+          });
         this.invitations.set(formatted as InvitationCard[]);
       },
       error: (err) => console.error('Error fetching invitations:', err)
@@ -125,10 +154,10 @@ export class ContentService {
         const data = this.extractData(res);
         if (!Array.isArray(data)) return;
         const formatted = data.map(item => ({
-          id: item.id.toString(),
-          name: item.name,
-          role: item.nickname || 'مشرف',
-          imageUrl: item.imageUrl,
+          id: (item.id || item.Id || '').toString(),
+          name: item.name || item.Name || '',
+          role: item.nickname || item.Nickname || item.role || item.Role || 'مشرف',
+          imageUrl: this.resolveUrl(item.imageUrl || item.ImageUrl || ''),
           cost: '100'
         }));
         this.supervisors.set(formatted);
@@ -148,7 +177,7 @@ export class ContentService {
           category: 'نصائح',
           date: new Date(item.createdAt || item.createdDate || Date.now()).toISOString().split('T')[0],
           excerpt: (item.content || '').substring(0, 100) + '...',
-          imageUrl: item.imageUrl,
+          imageUrl: this.resolveUrl(item.imageUrl),
           readTime: '5 دقائق'
         }));
         this.blogPosts.set(formatted);
@@ -188,6 +217,7 @@ export class ContentService {
       error: (err) => console.error('Error fetching countries:', err)
     });
   }
+
 
   private fetchCities() {
     this.http.get<any>(`${this.apiUrl}/Cities`).subscribe({
