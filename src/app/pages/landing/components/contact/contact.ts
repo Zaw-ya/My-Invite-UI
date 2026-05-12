@@ -152,7 +152,7 @@ export class ContactComponent implements OnInit {
     this.http.post(`${environment.apiUrl}/Contacts`, {
       name: this.form.name,
       email: this.form.email,
-      subject: `+${this.callingCode}${this.form.phone}`,
+      phoneNumber: `+${this.callingCode}${this.form.phone}`,
       message: this.form.message,
     }).subscribe({
       next: () => {
