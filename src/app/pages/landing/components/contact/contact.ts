@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LucideAngularModule } from 'lucide-angular';
+import { environment } from '../../../../../environments/environment';
 
 interface RawCountry {
   name: { common: string };
@@ -42,6 +43,9 @@ export class ContactComponent implements OnInit {
   @ViewChild('dropdownRef') dropdownRef!: ElementRef;
 
   form = { name: '', email: '', phone: '', message: '' };
+  submitting = signal(false);
+  submitSuccess = signal(false);
+  submitError = signal('');
 
   countries = signal<Country[]>([]);
   selectedCountry = signal<Country | null>(null);
@@ -135,7 +139,31 @@ export class ContactComponent implements OnInit {
   }
 
   submit() {
-    const full = `+${this.callingCode}${this.form.phone}`;
-    console.log({ ...this.form, phone: full });
+    if (this.submitting()) return;
+    if (!this.form.name || !this.form.email || !this.form.phone || !this.form.message) {
+      this.submitError.set('يرجى ملء جميع الحقول المطلوبة.');
+      return;
+    }
+
+    this.submitting.set(true);
+    this.submitError.set('');
+    this.submitSuccess.set(false);
+
+    this.http.post(`${environment.apiUrl}/Contacts`, {
+      name: this.form.name,
+      email: this.form.email,
+      subject: `+${this.callingCode}${this.form.phone}`,
+      message: this.form.message,
+    }).subscribe({
+      next: () => {
+        this.submitSuccess.set(true);
+        this.submitting.set(false);
+        this.form = { name: '', email: '', phone: '', message: '' };
+      },
+      error: (err) => {
+        this.submitting.set(false);
+        this.submitError.set(err?.error?.message || 'حدث خطأ أثناء الإرسال، يرجى المحاولة مجدداً.');
+      }
+    });
   }
 }

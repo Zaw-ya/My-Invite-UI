@@ -1,6 +1,7 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { ContentService } from '../../../../services/content.service';
 
 interface PricingTier {
   count: number;
@@ -8,7 +9,7 @@ interface PricingTier {
 }
 
 interface PlanData {
-  id: 'personal' | 'business';
+  id: string;
   label: string;
   tiers: PricingTier[];
   features: string[];
@@ -27,81 +28,58 @@ interface PlanData {
   styleUrl: './pricing.css'
 })
 export class PricingComponent {
-  activeTab = signal<'personal' | 'business'>('personal');
+  private contentService = inject(ContentService);
+  
+  activeTab = signal<string>('');
 
-  plans: PlanData[] = [
-    {
-      id: 'personal',
-      label: 'باقة كرت',
-      tiers: [
-        { count: 25,  price: 99.95 },
-        { count: 50,  price: 189.95 },
-        { count: 100, price: 384.99 },
-        { count: 150, price: 549.99 },
-        { count: 200, price: 699.99 },
-        { count: 300, price: 999.99 },
-        { count: 400, price: 1299.99 }
-      ],
-      features: [
-        'إرسال الدعوات من خلال التطبيق',
-        'وصول الدعوات على الواتساب أو الرسائل النصية',
-        'إحصائيات لمعرفة القبول والاعتذار بالاسم و الرقم',
-        'إمكانية مسح أكواد الدخول من التطبيق بدون جهاز خاص',
-        'الاختيار من بين العديد من التصاميم الجاهزة',
-        'إرسال دعوة تجريبية قبل إرسال الدعوات',
-        'إمكانية تعيين داعي إضافي للمناسبة',
-        'إرسال تذكير قبل المناسبة بيوم',
-        'باركود دخول خاص لكل مدعو',
-        'إمكانية تعيين أي شخص "كحارس البوابة أو مسؤولة القاعة" مشرف لمسح باركود الدخول',
-        'استقبال رسائل المدعوين (شكر - دعاء) من التطبيق',
-        '15% رصيد دعوات تعويضية - في حال إعتذار المدعو - من إجمالي عدد الدعوات'
-      ],
-      compensatoryPercent: 15,
-      ctaLabel: 'حقل التطبيق',
-      ctaClass: 'bg-[#B8860B] hover:bg-[#9a6f09] text-white',
-      contactThreshold: 400,
-      contactLabel: 'للمناسبات أكثر من 400 مدعو'
-    },
-    {
-      id: 'business',
-      label: 'باقة كرت للأعمال',
-      tiers: [
-        { count: 50,  price: 299.99 },
-        { count: 100, price: 549.99 },
-        { count: 150, price: 799.99 },
-        { count: 200, price: 1049.99 },
-        { count: 250, price: 1299.99 },
-        { count: 300, price: 1499.99 },
-        { count: 400, price: 1899.99 },
-        { count: 500, price: 2299.99 }
-      ],
-      features: [
-        'جميع مميزات باقة كرت الأساسية',
-        'وصول الدعوات برقم هوية الجهة الرسمي',
-        'تخصيص صفحة ويب للدعوة بلون هوية الجهة مع إضافة الشعار',
-        'تصميم الدعوة حسب تيم المناسبة',
-        'تخصيص 5 قوالب لإرسال الواتساب',
-        'إرسال الدعوات من فريق كرت',
-        'تتبع حالة الرسائل (تم الإرسال/ التسليم الفعراء/ ردود المدعوين في الوقت الفعلي',
-        '20% رصيد دعوات تعويضية - في حال إعتذار المدعو - من إجمالي عدد الدعوات'
-      ],
-      compensatoryPercent: 20,
-      ctaLabel: 'تواصل معنا',
-      ctaClass: 'bg-[#9a6f09] hover:bg-[#7a5807] text-white',
-      contactThreshold: 500,
-      contactLabel: 'لإعداد دعوات مخصصة'
-    }
-  ];
-
-  selectedCounts = signal<Record<'personal' | 'business', number>>({
-    personal: 25,
-    business: 50
+  plans = computed<PlanData[]>(() => {
+    const pkgs = this.contentService.packages();
+    return pkgs.map(p => ({
+      id: p.id,
+      label: p.name,
+      tiers: p.tiers || [],
+      features: p.features,
+      compensatoryPercent: p.compensationPercentage || 0,
+      ctaLabel: p.name.includes('الأعمال') ? 'تواصل معنا' : 'حقل التطبيق',
+      ctaClass: p.name.includes('الأعمال') ? 'bg-[#9a6f09] hover:bg-[#7a5807] text-white' : 'bg-[#B8860B] hover:bg-[#9a6f09] text-white',
+      contactThreshold: (p.tiers && p.tiers.length > 0) ? p.tiers[p.tiers.length - 1].count : 400,
+      contactLabel: `للمناسبات أكثر من ${p.tiers?.[p.tiers.length-1]?.count || 400} مدعو`
+    }));
   });
 
-  activePlan = computed(() => this.plans.find(p => p.id === this.activeTab())!);
+  selectedCounts = signal<Record<string, number>>({});
+
+  constructor() {
+    effect(() => {
+      const currentPlans = this.plans();
+      if (currentPlans.length > 0 && !this.activeTab()) {
+        const firstPlan = currentPlans[0];
+        this.activeTab.set(firstPlan.id);
+        
+        const counts: Record<string, number> = {};
+        currentPlans.forEach(p => {
+          if (p.tiers && p.tiers.length > 0) {
+            counts[p.id] = p.tiers[0].count;
+          }
+        });
+        this.selectedCounts.set(counts);
+      }
+    });
+  }
+
+  activePlan = computed<PlanData>(() => {
+    const p = this.plans();
+    const tab = this.activeTab();
+    return p.find(plan => plan.id === tab) ?? p[0] ?? {
+      id: '', label: '', tiers: [], features: [],
+      compensatoryPercent: 0, ctaLabel: '', ctaClass: '',
+      contactThreshold: 0, contactLabel: ''
+    };
+  });
 
   selectedTier = computed(() => {
     const plan = this.activePlan();
+    if (!plan || !plan.tiers?.length) return { count: 0, price: 0 };
     const count = this.selectedCounts()[plan.id];
     return plan.tiers.find(t => t.count === count) ?? plan.tiers[0];
   });
@@ -109,10 +87,11 @@ export class PricingComponent {
   compensatoryCount = computed(() => {
     const tier = this.selectedTier();
     const plan = this.activePlan();
+    if (!tier || !plan) return 0;
     return Math.floor(tier.count * plan.compensatoryPercent / 100);
   });
 
-  setTab(tab: 'personal' | 'business') {
+  setTab(tab: string) {
     this.activeTab.set(tab);
   }
 

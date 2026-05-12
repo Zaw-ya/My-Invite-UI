@@ -95,13 +95,9 @@
         <p class="text-sm mb-3 cities-sub">
           خدمة <span class="cities-highlight">مشرفين البوابة</span> متوفرة في المدن التالية:
         </p>
-        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-2">
-          <p class="text-sm cities-text">
-            <span class="cities-highlight">السعودية:</span>
-            الرياض - مكة - المدينة - جدة - القصيم - الدمام - الخبر - الظهران - الأحساء - حائل.
-          </p>
+        <div class="grid sm:grid-cols-1 gap-x-8 gap-y-2">
           <div class="space-y-1">
-            @for (c of cities.slice(1); track c.country) {
+            @for (c of dynamicCities(); track c.country) {
               <p class="text-sm cities-text">
                 <span class="cities-highlight">{{ c.country }}:</span> {{ c.cities }}
               </p>

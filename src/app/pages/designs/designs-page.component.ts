@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
+import { ContentService } from '../../services/content.service';
+import { InvitationCard } from '../../models/content.interface';
 
 @Component({
   selector: 'app-designs-page',
@@ -13,39 +15,39 @@ import { FooterComponent } from '../../components/footer/footer';
   styleUrl: './designs-page.component.css'
 })
 export class DesignsPageComponent {
-  designs = Array.from({ length: 24 }, (_, i) => ({
-    id: String(i + 1),
-    title: `تصميم ${String(i + 1001).padStart(4, '0')}`,
-    category: ['حفل زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني / خاص', 'عيد ميلاد', 'سبوع', 'تهنئة'][i % 8],
-    gender: (i % 2 === 0 ? 'ذكوري' : 'أنثوي') as 'ذكوري' | 'أنثوي',
-    price: ['120', '150', '180', '200', '250'][i % 5],
-    imageUrl: `image/${(i % 8) + 1}.png`,
-    isNew: i < 6
-  }));
+  private contentService = inject(ContentService);
 
-  categories = ['كل التصميمات', 'حفل زفاف', 'خطبة / حناء', 'حفل تخرج', 'مناقشة رسالة', 'حدث تقني / خاص', 'عيد ميلاد', 'سبوع', 'تهنئة'];
-  activeCategory = 'كل التصميمات';
+  activeCategory = signal('كل التصميمات');
+  activeGender = signal('كل التصميمات');
+  previewCard = signal<InvitationCard | null>(null);
 
-  genders = ['كل التصميمات', 'تصميمات ذكورية', 'تصميمات أنثوية'];
-  activeGender = 'كل التصميمات';
+  invitations = this.contentService.invitations;
+  eventTypes = this.contentService.eventTypes;
 
-  filteredDesigns() {
-    let items = this.designs;
-    if (this.activeCategory !== 'كل التصميمات') items = items.filter(d => d.category === this.activeCategory);
-    if (this.activeGender === 'تصميمات ذكورية') items = items.filter(d => d.gender === 'ذكوري');
-    else if (this.activeGender === 'تصميمات أنثوية') items = items.filter(d => d.gender === 'أنثوي');
+  categories = computed(() => {
+    const names = this.eventTypes().map(e => e.name);
+    return ['كل التصميمات', ...names];
+  });
+
+  filtered = computed(() => {
+    const cat = this.activeCategory();
+    const gender = this.activeGender();
+    let items = this.invitations();
+    if (cat !== 'كل التصميمات') items = items.filter(i => i.category === cat);
+    if (gender === 'تصميمات ذكورية') items = items.filter(i => i.gender === 'ذكوري');
+    else if (gender === 'تصميمات أنثوية') items = items.filter(i => i.gender === 'أنثوي');
     return items;
-  }
+  });
 
-  previewDesign: typeof this.designs[0] | null = null;
+  isLoading = computed(() => this.invitations().length === 0);
 
-  openPreview(design: typeof this.designs[0]) {
-    this.previewDesign = design;
+  openPreview(card: InvitationCard) {
+    this.previewCard.set(card);
     document.body.style.overflow = 'hidden';
   }
 
   closePreview() {
-    this.previewDesign = null;
+    this.previewCard.set(null);
     document.body.style.overflow = '';
   }
 }

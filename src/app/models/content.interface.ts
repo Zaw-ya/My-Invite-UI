@@ -12,6 +12,8 @@ export interface Package {
   description: string;
   features: string[];
   isPopular?: boolean;
+  compensationPercentage?: number;
+  tiers?: { count: number; price: number }[];
 }
 
 export interface InvitationCard {
@@ -48,10 +50,11 @@ export interface BlogPost {
   date: string;
   excerpt: string;
   imageUrl: string;
+  readTime: string;
 }
 
 export interface EventType {
   id: string;
   name: string;
-  icon: string;
+  imageUrl: string;
 }

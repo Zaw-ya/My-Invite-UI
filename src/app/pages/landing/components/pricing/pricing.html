@@ -10,16 +10,13 @@
     <!-- Tab Switcher -->
     <div class="flex justify-center mb-10">
       <div class="pricing-tabs">
-        <button
-          (click)="setTab('personal')"
-          class="pricing-tab"
-          [class.active]="activeTab() === 'personal'"
-        >باقة الافراد</button>
-        <button
-          (click)="setTab('business')"
-          class="pricing-tab"
-          [class.active]="activeTab() === 'business'"
-        >باقة للأعمال</button>
+        @for (plan of plans(); track plan.id) {
+          <button
+            (click)="setTab(plan.id)"
+            class="pricing-tab"
+            [class.active]="activeTab() === plan.id"
+          >{{ plan.label }}</button>
+        }
       </div>
     </div>
 

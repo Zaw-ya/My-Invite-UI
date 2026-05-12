@@ -45,7 +45,7 @@
 
     <!-- Event type tags (clickable, RTL) -->
     <div class="hero-tags" dir="rtl">
-      @for (tag of tags; track tag.label) {
+      @for (tag of tags(); track tag.label) {
         <button
           class="hero-tag"
           [class.active]="activeTag()?.label === tag.label"

@@ -1,11 +1,10 @@
 <app-navbar></app-navbar>
 
-<br/>
-<section id="designs-page" class="designs-page-section">
+<section id="designs-page" class="designs-page-section" dir="rtl">
   <div class="container mx-auto px-5 py-16">
 
     <!-- Page Header -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-12">
       <h1 class="section-title mt-4">
         استكشف <span>جميع التصاميم</span>
       </h1>
@@ -17,81 +16,147 @@
     <!-- Category Filter -->
     <div class="designs-filter-wrap mb-5">
       <div class="designs-filter justify-center">
-        @for (cat of categories; track cat) {
+        @for (cat of categories(); track cat) {
           <button
             class="tag-pill"
-            [class.active]="activeCategory === cat"
-            (click)="activeCategory = cat"
+            [class.active]="activeCategory() === cat"
+            (click)="activeCategory.set(cat)"
           >{{ cat }}</button>
         }
       </div>
     </div>
 
     <!-- Gender Filter -->
-    <div class="flex justify-center gap-3 mb-10">
-      @for (g of genders; track g) {
+    <div class="flex justify-center gap-3 mb-10 flex-wrap">
+      @for (g of ['كل التصميمات', 'تصميمات ذكورية', 'تصميمات أنثوية']; track g) {
         <button
           class="tag-pill"
-          [class.active]="activeGender === g"
-          (click)="activeGender = g"
+          [class.active]="activeGender() === g"
+          (click)="activeGender.set(g)"
         >{{ g }}</button>
       }
     </div>
 
-    <!-- Designs Grid -->
-    <div class="designs-grid">
-      @for (design of filteredDesigns(); track design.id) {
-        <div class="design-card-large group">
-          <div class="design-card-image">
-            @if (design.isNew) {
-              <span class="design-badge-new">جديد</span>
-            }
-            <img [src]="design.imageUrl" [alt]="design.title"
-                 class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
-            <div class="design-overlay">
-              <button class="design-overlay-btn" (click)="openPreview(design)">
-                <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
-                معاينة سريعة
-              </button>
-            </div>
+    <!-- Loading Skeleton -->
+    @if (isLoading()) {
+      <div class="designs-grid">
+        @for (s of [1,2,3,4,5,6,7,8]; track s) {
+          <div class="design-skeleton">
+            <div class="skeleton-img"></div>
+            <div class="skeleton-line w-1/2"></div>
+            <div class="skeleton-line w-3/4"></div>
+            <div class="skeleton-line w-1/3"></div>
           </div>
-           <div class="design-card-info">
-             <p class="text-xs mb-1" style="color: var(--text-muted);">{{ design.category }}</p>
-             <h4 class="font-bold text-base mb-2" style="color: var(--text);">{{ design.title }}</h4>
-             <div class="flex items-center justify-between">
-               <!-- <span class="text-gold font-bold text-lg">{{ design.price }} ر.س</span> -->
-               <!-- <button class="btn-gold-sm">
-                 اختر التصميم
-                 <lucide-icon name="arrow-left" class="w-3.5 h-3.5"></lucide-icon>
-               </button> -->
-             </div>
-           </div>
-         </div>
-       }
-     </div>
+        }
+      </div>
+    }
 
-     <!-- Empty State -->
-     @if (filteredDesigns().length === 0) {
-       <div class="text-center py-16">
-         <lucide-icon name="search" class="w-16 h-16 mx-auto mb-4" style="color: var(--text-muted);"></lucide-icon>
-         <p class="text-lg" style="color: var(--text-muted);">لا توجد تصاميم في هذا القسم</p>
-       </div>
-     }
+    <!-- Designs Grid -->
+    @if (!isLoading()) {
+      <div class="designs-grid">
+        @for (card of filtered(); track card.id) {
+          <div class="design-card-large group" (click)="openPreview(card)">
 
-   </div>
+            <!-- Image -->
+            <div class="design-card-image">
+              @if (card.isNew) {
+                <span class="design-badge-new">جديد</span>
+              }
+              @if (card.gender) {
+                <span class="design-badge-gender" [class.male]="card.gender === 'ذكوري'">
+                  {{ card.gender === 'ذكوري' ? '♂' : '♀' }} {{ card.gender }}
+                </span>
+              }
+              <img [src]="card.imageUrl" [alt]="card.title"
+                   class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                   loading="lazy">
+              <div class="design-overlay">
+                <button class="design-overlay-btn" (click)="$event.stopPropagation(); openPreview(card)">
+                  <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
+                  معاينة سريعة
+                </button>
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div class="design-card-info">
+              <span class="design-card-category">{{ card.category }}</span>
+              <h4 class="design-card-title">{{ card.title }}</h4>
+              <div class="design-card-footer">
+                <span class="design-card-price">
+                  {{ card.price | number }} <small>ريال</small>
+                </span>
+                <button class="design-card-cta" (click)="$event.stopPropagation(); openPreview(card)">
+                  <lucide-icon name="eye" class="w-3 h-3"></lucide-icon>
+                  تفاصيل
+                </button>
+              </div>
+            </div>
+
+          </div>
+        }
+      </div>
+
+      <!-- Empty State -->
+      @if (filtered().length === 0) {
+        <div class="text-center py-20">
+          <lucide-icon name="search-x" class="w-16 h-16 mx-auto mb-4" style="color: var(--text-muted);"></lucide-icon>
+          <p class="text-lg font-semibold" style="color: var(--text-muted);">لا توجد تصاميم في هذا القسم</p>
+          <p class="text-sm mt-2" style="color: var(--text-muted);">جرّب تصفية مختلفة</p>
+        </div>
+      }
+    }
+
+  </div>
 </section>
 
 <app-footer></app-footer>
 
-<!-- ===== IMAGE PREVIEW LIGHTBOX ===== -->
-@if (previewDesign) {
+<!-- ===== LIGHTBOX ===== -->
+@if (previewCard()) {
   <div class="lightbox-backdrop" (click)="closePreview()">
     <div class="lightbox-box" (click)="$event.stopPropagation()">
+
       <button class="lightbox-close" (click)="closePreview()">
         <lucide-icon name="x" class="w-5 h-5"></lucide-icon>
       </button>
-      <img [src]="previewDesign.imageUrl" [alt]="previewDesign.title" class="lightbox-img">
-      <p class="lightbox-title">{{ previewDesign.title }}</p>
+
+      <div class="lightbox-inner" dir="rtl">
+
+        <div class="lightbox-img-wrap">
+          @if (previewCard()!.isNew) {
+            <span class="lb-badge-new">جديد</span>
+          }
+          <img [src]="previewCard()!.imageUrl" [alt]="previewCard()!.title" class="lightbox-img">
+        </div>
+
+        <div class="lightbox-details">
+          <span class="lb-category">{{ previewCard()!.category }}</span>
+          <h3 class="lb-title">{{ previewCard()!.title }}</h3>
+
+          @if (previewCard()!.gender) {
+            <div class="lb-gender" [class.male]="previewCard()!.gender === 'ذكوري'">
+              <lucide-icon name="user" class="w-4 h-4"></lucide-icon>
+              {{ previewCard()!.gender }}
+            </div>
+          }
+
+          <div class="lb-divider"></div>
+
+          <div class="lb-price-row">
+            <span class="lb-price-label">السعر</span>
+            <span class="lb-price-value">{{ previewCard()!.price | number }} <small>ريال</small></span>
+          </div>
+
+          <div class="lb-divider"></div>
+
+          <a href="#contact" class="lb-cta" (click)="closePreview()">
+            <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
+            اطلب هذا التصميم
+          </a>
+        </div>
+
+      </div>
     </div>
   </div>
 }
