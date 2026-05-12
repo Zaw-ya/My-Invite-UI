@@ -21,10 +21,12 @@ if (fs.existsSync(envFile)) {
   console.warn('[generate-env] .env.local not found — using empty config');
 }
 
-const apiUrl = vars['NG_APP_API_URL'] || vars['VITE_API_URL'] || '';
+// Also read from process.env (Vercel / CI inject env vars this way)
+const apiUrl = vars['NG_APP_API_URL'] || vars['VITE_API_URL']
+            || process.env['NG_APP_API_URL'] || process.env['VITE_API_URL'] || '';
 
 if (!apiUrl) {
-  console.error('[generate-env] ERROR: NG_APP_API_URL is not set in .env.local');
+  console.error('[generate-env] ERROR: NG_APP_API_URL is not set. Add it to .env.local or Vercel environment variables.');
   process.exit(1);
 }
 
