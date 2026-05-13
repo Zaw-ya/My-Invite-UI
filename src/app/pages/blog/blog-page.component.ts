@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -18,16 +18,29 @@ export class BlogPageComponent {
   private router = inject(Router);
 
   blogPosts = this.contentService.blogPosts;
-  categories = ['الكل', 'نصائح وتنظيم', 'تصاميم', 'إدارة الفعاليات', 'تقنية'];
+
   activeCategory = 'الكل';
 
-  filteredPosts() {
+  /** Build category list dynamically from API data */
+  categories = computed(() => {
+    const cats = new Set<string>();
+    this.blogPosts().forEach(p => { if (p.category) cats.add(p.category); });
+    return ['الكل', ...Array.from(cats)];
+  });
+
+  filteredPosts = computed(() => {
     const posts = this.blogPosts();
     if (this.activeCategory === 'الكل') return posts;
     return posts.filter(p => p.category === this.activeCategory);
+  });
+
+  setCategory(cat: string) {
+    this.activeCategory = cat;
   }
 
-  navigateToPost(postId: string) {
-    this.router.navigate(['/blog', postId]);
+  navigateToPost(post: any) {
+    // Navigate by slug if available, otherwise by id
+    const segment = post.slug || post.id;
+    this.router.navigate(['/blog', segment]);
   }
 }

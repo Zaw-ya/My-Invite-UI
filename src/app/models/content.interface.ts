@@ -52,6 +52,13 @@ export interface BlogPost {
   excerpt: string;
   imageUrl: string;
   readTime: string;
+  slug?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  altText?: string;
+  author?: string;
+  tags?: string;
+  content?: string;
 }
 
 export interface EventType {

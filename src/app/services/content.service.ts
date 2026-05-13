@@ -182,15 +182,29 @@ export class ContentService {
       next: (res) => {
         const data = this.extractData(res);
         if (!Array.isArray(data)) return;
-        const formatted = data.map(item => ({
-          id: item.id.toString(),
-          title: item.title,
-          category: 'نصائح',
-          date: new Date(item.createdAt || item.createdDate || Date.now()).toISOString().split('T')[0],
-          excerpt: (item.content || '').substring(0, 100) + '...',
-          imageUrl: this.resolveUrl(item.imageUrl),
-          readTime: '5 دقائق'
-        }));
+        const formatted = data.map(item => {
+          const rawContent = item.content || '';
+          const wordCount = rawContent.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
+          const readMinutes = Math.max(1, Math.ceil(wordCount / 200));
+          const excerpt = rawContent.replace(/<[^>]+>/g, '').substring(0, 150).trim();
+
+          return {
+            id: item.id.toString(),
+            title: item.title || '',
+            category: item.category || 'نصائح',
+            date: new Date(item.createdAt || item.createdDate || Date.now()).toISOString().split('T')[0],
+            excerpt: excerpt ? excerpt + '…' : '',
+            imageUrl: this.resolveUrl(item.imageUrl),
+            readTime: `${readMinutes} دقائق`,
+            slug: item.slug || item.id.toString(),
+            metaTitle: item.metaTitle || item.title || '',
+            metaDescription: item.metaDescription || '',
+            altText: item.altText || item.title || '',
+            author: item.author || 'فريق My Invite',
+            tags: item.tags || '',
+            content: rawContent
+          };
+        });
         this.blogPosts.set(formatted);
       },
       error: (err) => console.error('Error fetching blog posts:', err)
