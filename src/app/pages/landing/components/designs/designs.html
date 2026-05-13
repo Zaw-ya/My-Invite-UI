@@ -108,14 +108,14 @@
           }
           <div class="ds-lb-divider"></div>
           <div class="ds-lb-price-row">
-            <span class="ds-lb-price-label">السعر</span>
-            <span class="ds-lb-price">{{ previewCard()!.price | number }}<small> ريال</small></span>
+            <span class="ds-lb-price-label">الكود</span>
+            <span class="ds-lb-price">#{{ previewCard()!.id }}</span>
           </div>
           <div class="ds-lb-divider"></div>
-          <a href="#contact" class="ds-lb-cta" (click)="closePreview()">
+          <button class="ds-lb-cta" (click)="orderDesign(previewCard()!)">
             <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
             اطلب هذا التصميم
-          </a>
+          </button>
         </div>
       </div>
 

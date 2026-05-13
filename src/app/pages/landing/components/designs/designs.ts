@@ -1,8 +1,9 @@
-import { Component, input, signal, computed, HostListener, AfterViewInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, input, signal, computed, HostListener, AfterViewInit, OnDestroy, PLATFORM_ID, Inject, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { InvitationCard } from '../../../../models/content.interface';
+import { DesignOrderService } from '../../../../services/design-order.service';
 
 @Component({
   selector: 'app-designs',
@@ -43,6 +44,8 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
   dots = computed(() => Array.from({ length: Math.ceil(this.filtered().length / this.perPage()) }, (_, i) => i));
   translateX = computed(() => -(this.currentIndex() * (100 / this.perPage())));
 
+  private designOrderService = inject(DesignOrderService);
+
   constructor(@Inject(PLATFORM_ID) private platformId: object, private router: Router) {
     if (isPlatformBrowser(this.platformId)) {
       this.perPage.set(window.innerWidth < 640 ? 3 : 6);
@@ -74,6 +77,11 @@ export class DesignsComponent implements AfterViewInit, OnDestroy {
   goTo(page: number) { this.currentIndex.set(page * this.perPage()); this.resetAutoPlay(); }
 
   navigateToDesigns() { this.router.navigate(['/designs']); }
+
+  orderDesign(card: InvitationCard) {
+    this.closePreview();
+    this.designOrderService.openModal(card.id);
+  }
 
   openPreview(card: InvitationCard) {
     this.previewCard.set(card);

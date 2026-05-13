@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Service, Package, InvitationCard, Supervisor, Testimonial, BlogPost, EventType } from '../models/content.interface';
+import { DesignOrderService } from './design-order.service';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +39,21 @@ export class ContentService {
     { id: '2', title: 'مناسبات الشركات', description: 'حلول احترافية لفعاليات أعمالكم.', icon: 'briefcase' }
   ]);
 
+  private designOrderService = inject(DesignOrderService);
+
   constructor() {
     this.fetchAllData();
+    this.fetchDesignOrderMessage();
   }
 
 
+
+  private fetchDesignOrderMessage() {
+    this.http.get<{ key: string; value: string }>(`${this.apiUrl}/SiteSettings/design-order-message`).subscribe({
+      next: (res) => this.designOrderService.setTemplate(res.value),
+      error: () => { /* keep default */ }
+    });
+  }
 
   private fetchAllData() {
     // Fetch event types first so invitations can resolve names from IDs

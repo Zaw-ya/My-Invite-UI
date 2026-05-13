@@ -1,21 +1,25 @@
-import { Component, signal, computed, inject, OnInit } from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 import { ContentService } from '../../services/content.service';
+import { DesignOrderService } from '../../services/design-order.service';
+import { OrderModalComponent } from '../../components/order-modal/order-modal.component';
 import { InvitationCard } from '../../models/content.interface';
 
 @Component({
   selector: 'app-designs-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, LucideAngularModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, RouterModule, LucideAngularModule, NavbarComponent, FooterComponent, OrderModalComponent],
   templateUrl: './designs-page.component.html',
   styleUrl: './designs-page.component.css'
 })
 export class DesignsPageComponent {
   private contentService = inject(ContentService);
+  private designOrderService = inject(DesignOrderService);
+  showOrderModal = this.designOrderService.showModal;
 
   activeCategory = signal('كل التصميمات');
   activeGender = signal('كل التصميمات');
@@ -61,5 +65,10 @@ export class DesignsPageComponent {
   closePreview() {
     this.previewCard.set(null);
     document.body.style.overflow = '';
+  }
+
+  orderDesign(card: InvitationCard) {
+    this.closePreview();
+    this.designOrderService.openModal(card.id);
   }
 }

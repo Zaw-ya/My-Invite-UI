@@ -2,6 +2,7 @@ import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { ContentService } from '../../services/content.service';
+import { DesignOrderService } from '../../services/design-order.service';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 
@@ -15,6 +16,7 @@ import { AdditionalServicesComponent } from './components/additional-services/ad
 import { BlogComponent } from './components/blog/blog';
 import { TestimonialsComponent } from './components/testimonials/testimonials';
 import { ContactComponent } from './components/contact/contact';
+import { OrderModalComponent } from '../../components/order-modal/order-modal.component';
 
 @Component({
   selector: 'app-landing',
@@ -32,13 +34,16 @@ import { ContactComponent } from './components/contact/contact';
     AdditionalServicesComponent,
     BlogComponent,
     TestimonialsComponent,
-    ContactComponent
+    ContactComponent,
+    OrderModalComponent
   ],
   templateUrl: './landing.html',
   styleUrl: './landing.css'
 })
 export class LandingPageComponent {
   private contentService = inject(ContentService);
+  private designOrderService = inject(DesignOrderService);
+  showOrderModal = this.designOrderService.showModal;
   
   services = this.contentService.services;
   packages = this.contentService.packages;

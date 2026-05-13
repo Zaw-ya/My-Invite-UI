@@ -1,4 +1,7 @@
 <app-navbar></app-navbar>
+@if (showOrderModal()) {
+  <app-order-modal></app-order-modal>
+}
 
 <main class="landing-main" style="overflow-x: hidden;">
   <app-hero></app-hero>
@@ -31,9 +34,9 @@
     <app-supervisors></app-supervisors>
   </div>
 
-  <div appScrollReveal revealDirection="up" [revealDelay]="50">
+  <!-- <div appScrollReveal revealDirection="up" [revealDelay]="50">
     <app-testimonials [testimonials]="testimonials()"></app-testimonials>
-  </div>
+  </div> -->
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-contact></app-contact>
