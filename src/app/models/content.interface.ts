@@ -66,3 +66,14 @@ export interface EventType {
   name: string;
   imageUrl: string;
 }
+
+export interface SiteSettings {
+  'site-name': string;
+  'contact-email': string;
+  'contact-phone': string;
+  'whatsapp-number': string;
+  'facebook-url': string;
+  'instagram-url': string;
+  'address': string;
+  'design-order-message': string;
+}

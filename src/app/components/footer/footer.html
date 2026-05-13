@@ -14,7 +14,7 @@
             <div style="position:absolute; width:13px; height:17px; border:2px solid var(--gold); border-radius:2px; bottom:0; right:5px; transform:rotate(-5deg); opacity:0.8;"></div>
           </div>
           <div class="text-right leading-tight">
-            <span class="block font-black text-xl font-display" style="color: var(--footer-head); line-height:1.1;">كروتي الخاصة</span>
+            <span class="block font-black text-xl font-display" style="color: var(--footer-head); line-height:1.1;">{{ settings()['site-name'] }}</span>
             <span class="block text-xs mt-1" style="color: rgba(255,255,255,0.35);">.نت</span>
           </div>
         </div>
@@ -22,15 +22,16 @@
           حلول دعوات رقمية متكاملة ومبتكرة لجميع مناسباتك في المملكة العربية السعودية والخليج.
         </p>
         <div class="flex gap-2">
-          <a href="#" class="footer-social">
-            <lucide-icon name="instagram" class="w-4 h-4"></lucide-icon>
-          </a>
-          <a href="#" class="footer-social">
-            <lucide-icon name="twitter" class="w-4 h-4"></lucide-icon>
-          </a>
-          <a href="#" class="footer-social">
-            <lucide-icon name="facebook" class="w-4 h-4"></lucide-icon>
-          </a>
+          @if (settings()['instagram-url']) {
+            <a [href]="settings()['instagram-url']" target="_blank" class="footer-social">
+              <lucide-icon name="instagram" class="w-4 h-4"></lucide-icon>
+            </a>
+          }
+          @if (settings()['facebook-url']) {
+            <a [href]="settings()['facebook-url']" target="_blank" class="footer-social">
+              <lucide-icon name="facebook" class="w-4 h-4"></lucide-icon>
+            </a>
+          }
         </div>
       </div>
 
@@ -61,17 +62,17 @@
       <div dir="rtl">
         <h4 class="footer-heading mb-5">تواصل معنا</h4>
         <div class="space-y-4 text-sm">
-          <div class="flex items-start gap-3">
+          <div class="flex items-start gap-3" *ngIf="settings()['address']">
             <lucide-icon name="map-pin" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--gold);"></lucide-icon>
-            <span style="color: var(--footer-text);">الرياض، المملكة العربية السعودية</span>
+            <span style="color: var(--footer-text);">{{ settings()['address'] }}</span>
           </div>
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3" *ngIf="settings()['contact-phone']">
             <lucide-icon name="phone" class="w-4 h-4 flex-shrink-0" style="color: var(--gold);"></lucide-icon>
-            <span dir="ltr" style="color: var(--footer-text);">+966 58299 1740</span>
+            <span dir="ltr" style="color: var(--footer-text);">{{ settings()['contact-phone'] }}</span>
           </div>
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3" *ngIf="settings()['contact-email']">
             <lucide-icon name="mail" class="w-4 h-4 flex-shrink-0" style="color: var(--gold);"></lucide-icon>
-            <span style="color: var(--footer-text);">cs&#64;myinvite.org</span>
+            <span style="color: var(--footer-text);">{{ settings()['contact-email'] }}</span>
           </div>
         </div>
       </div>
@@ -80,7 +81,7 @@
 
     <!-- Bottom Bar -->
     <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-5">
-      <p class="text-xs" style="color: rgba(255,255,255,0.25);">© 2026 My Invite. جميع الحقوق محفوظة.</p>
+      <p class="text-xs" style="color: rgba(255,255,255,0.25);">© 2026 {{ settings()['site-name'] }}. جميع الحقوق محفوظة.</p>
 
       <!-- Payment Methods -->
       <div class="flex flex-wrap items-center justify-center gap-3">
@@ -109,7 +110,8 @@
 
   <!-- Floating: WhatsApp (left side) -->
   <a
-    href="https://wa.me/966582991740"
+    *ngIf="settings()['whatsapp-number']"
+    [href]="'https://wa.me/' + settings()['whatsapp-number']"
     target="_blank"
     rel="noopener noreferrer"
     class="fixed bottom-5 left-5 rounded-full flex items-center justify-center shadow-xl hover:-translate-y-1 transition-all z-40"

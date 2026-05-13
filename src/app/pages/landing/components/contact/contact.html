@@ -16,48 +16,49 @@
         </p>
 
         <div class="space-y-6" dir="rtl">
-          <div class="contact-item group">
+          <div class="contact-item group" *ngIf="settings()['address']">
             <div class="contact-icon-box">
               <lucide-icon name="map-pin" class="w-5 h-5"></lucide-icon>
             </div>
             <div>
               <h4 class="font-black text-lg" style="color: var(--text);">الموقع</h4>
-              <p style="color: var(--text-secondary);">الرياض، المملكة العربية السعودية</p>
+              <p style="color: var(--text-secondary);">{{ settings()['address'] }}</p>
             </div>
           </div>
 
-          <div class="contact-item group">
+          <div class="contact-item group" *ngIf="settings()['contact-phone']">
             <div class="contact-icon-box">
               <lucide-icon name="phone" class="w-5 h-5"></lucide-icon>
             </div>
             <div>
               <h4 class="font-black text-lg" style="color: var(--text);">الهاتف</h4>
-              <p dir="ltr" style="color: var(--text-secondary);">+966 58299 1740</p>
+              <p dir="ltr" style="color: var(--text-secondary);">{{ settings()['contact-phone'] }}</p>
             </div>
           </div>
 
-          <div class="contact-item group">
+          <div class="contact-item group" *ngIf="settings()['contact-email']">
             <div class="contact-icon-box">
               <lucide-icon name="mail" class="w-5 h-5"></lucide-icon>
             </div>
             <div>
               <h4 class="font-black text-lg" style="color: var(--text);">البريد الإلكتروني</h4>
-              <p style="color: var(--text-secondary);">cs&#64;myinvite.org</p>
+              <p style="color: var(--text-secondary);">{{ settings()['contact-email'] }}</p>
             </div>
           </div>
         </div>
 
         <!-- Social links -->
         <div class="flex gap-3 justify-start">
-          <a href="#" class="contact-social-btn" title="Facebook">
-            <lucide-icon name="facebook" class="w-4 h-4"></lucide-icon>
-          </a>
-          <a href="#" class="contact-social-btn" title="Instagram">
-            <lucide-icon name="instagram" class="w-4 h-4"></lucide-icon>
-          </a>
-          <a href="#" class="contact-social-btn" title="Twitter">
-            <lucide-icon name="twitter" class="w-4 h-4"></lucide-icon>
-          </a>
+          @if (settings()['facebook-url']) {
+            <a [href]="settings()['facebook-url']" target="_blank" class="contact-social-btn" title="Facebook">
+              <lucide-icon name="facebook" class="w-4 h-4"></lucide-icon>
+            </a>
+          }
+          @if (settings()['instagram-url']) {
+            <a [href]="settings()['instagram-url']" target="_blank" class="contact-social-btn" title="Instagram">
+              <lucide-icon name="instagram" class="w-4 h-4"></lucide-icon>
+            </a>
+          }
         </div>
       </div>
       

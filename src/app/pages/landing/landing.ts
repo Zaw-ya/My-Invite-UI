@@ -48,6 +48,7 @@ export class LandingPageComponent {
   services = this.contentService.services;
   packages = this.contentService.packages;
   invitations = this.contentService.invitations;
+  carouselCards = this.contentService.carouselCards;
   supervisors = this.contentService.supervisors;
   eventTypes = this.contentService.eventTypes;
   blogPosts = this.contentService.blogPosts;

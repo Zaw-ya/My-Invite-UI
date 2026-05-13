@@ -217,6 +217,50 @@
   z-index: 2;
   animation: geoImgFade 0.3s ease;
 }
+
+/* ---------- CAROUSEL ---------- */
+.hero-cards-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.hero-carousel-card {
+  position: absolute;
+  width: 280px;
+  height: 370px;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.9) translateY(30px) rotate(-5deg);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.hero-carousel-card.active {
+  opacity: 1;
+  transform: scale(1) translateY(0) rotate(-18deg); /* Matches geo-rect-1 angle */
+  z-index: 15;
+}
+
+.hero-carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+  pointer-events: none;
+}
+
 @keyframes geoImgFade {
   from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1); }
@@ -298,6 +342,11 @@
   .geo-rect-2 { width: 140px; height: 180px; top: 25%; right: 35%; }
   .geo-rect-3 { width: 100px; height: 130px; top: 3%; right: 50%; }
   .geo-rect-4 { display: none; }
+  
+  .hero-carousel-card {
+    width: 160px;
+    height: 210px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -324,4 +373,9 @@
   .geo-rect-1 { width: 120px; height: 160px; top: 10%; right: 25%; }
   .geo-rect-2 { width: 100px; height: 130px; top: 20%; right: 45%; }
   .geo-rect-3 { display: none; }
+
+  .hero-carousel-card {
+    width: 120px;
+    height: 160px;
+  }
 }

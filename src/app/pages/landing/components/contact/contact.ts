@@ -1,9 +1,10 @@
-import { Component, OnInit, signal, computed, ElementRef, ViewChild, HostListener, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, signal, computed, ElementRef, ViewChild, HostListener, PLATFORM_ID, Inject, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LucideAngularModule } from 'lucide-angular';
 import { environment } from '../../../../../environments/environment';
+import { ContentService } from '../../../../services/content.service';
 
 interface RawCountry {
   name: { common: string };
@@ -40,6 +41,9 @@ function toCountry(r: RawCountry): Country | null {
   styleUrl: './contact.css'
 })
 export class ContactComponent implements OnInit {
+  contentService = inject(ContentService);
+  settings = this.contentService.siteSettings;
+  
   @ViewChild('dropdownRef') dropdownRef!: ElementRef;
 
   form = { name: '', email: '', phone: '', message: '' };

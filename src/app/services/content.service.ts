@@ -2,7 +2,7 @@ import { Injectable, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Service, Package, InvitationCard, Supervisor, Testimonial, BlogPost, EventType } from '../models/content.interface';
+import { Service, Package, InvitationCard, Supervisor, Testimonial, BlogPost, EventType, SiteSettings } from '../models/content.interface';
 import { DesignOrderService } from './design-order.service';
 
 @Injectable({
@@ -20,6 +20,9 @@ export class ContentService {
 
   // Arabic Invitations
   invitations = signal<InvitationCard[]>([]);
+  
+  // Carousel Invitations
+  carouselCards = signal<InvitationCard[]>([]);
 
   // Arabic Supervisors
   supervisors = signal<Supervisor[]>([]);
@@ -38,20 +41,39 @@ export class ContentService {
     { id: '1', title: 'دعوات الزفاف', description: 'تصاميم فاخرة تليق بليلة العمر.', icon: 'heart' },
     { id: '2', title: 'مناسبات الشركات', description: 'حلول احترافية لفعاليات أعمالكم.', icon: 'briefcase' }
   ]);
+  
+  siteSettings = signal<SiteSettings>({
+    'site-name': 'My Invite',
+    'contact-email': '',
+    'contact-phone': '',
+    'whatsapp-number': '',
+    'facebook-url': '',
+    'instagram-url': '',
+    'address': '',
+    'design-order-message': 'يعجبني تصميم الكارت بالكود "{id}"'
+  });
 
   private designOrderService = inject(DesignOrderService);
 
   constructor() {
     this.fetchAllData();
-    this.fetchDesignOrderMessage();
+    this.fetchSiteSettings();
   }
 
 
 
-  private fetchDesignOrderMessage() {
-    this.http.get<{ key: string; value: string }>(`${this.apiUrl}/SiteSettings/design-order-message`).subscribe({
-      next: (res) => this.designOrderService.setTemplate(res.value),
-      error: () => { /* keep default */ }
+  private fetchSiteSettings() {
+    this.http.get<any>(`${this.apiUrl}/SiteSettings`).subscribe({
+      next: (res) => {
+        const data = this.extractData(res);
+        if (data) {
+          this.siteSettings.update(current => ({ ...current, ...data }));
+          if (data['design-order-message']) {
+            this.designOrderService.setTemplate(data['design-order-message']);
+          }
+        }
+      },
+      error: (err) => console.error('Error fetching site settings:', err)
     });
   }
 
@@ -70,6 +92,7 @@ export class ContentService {
         // Build id→name lookup then fetch invitations
         const idToName = new Map<string, string>(formatted.map(e => [e.id, e.name]));
         this.fetchInvitations(idToName);
+        this.fetchCarouselCards(idToName);
       },
       error: (err) => {
         console.error('Error fetching event types:', err);
@@ -132,30 +155,44 @@ export class ContentService {
 
         const formatted = data
           .filter((item: any) => item && (item.id || item.Id) && (item.imageUrl || item.ImageUrl)?.trim())
-          .map((item: any) => {
-            // Resolve category names from eventTypeIds array using the id→name map
-            const ids: any[] = item.eventTypeIds || item.EventTypeIds || [];
-            const eventTypeNames: string[] = ids
-              .map((id: any) => idToName.get(id.toString()))
-              .filter((n): n is string => !!n);
-
-            const rawGender = item.gender ?? item.Gender;
-            const gender = rawGender === 0 ? 'ذكوري' : rawGender === 1 ? 'أنثوي' : undefined;
-
-            return {
-              id: (item.id || item.Id || Math.random()).toString(),
-              title: item.title || item.Title || 'بدون عنوان',
-              category: eventTypeNames[0] || item.category || item.Category || 'عام',
-              allCategories: eventTypeNames,
-              price: (item.price || item.Price || '0').toString(),
-              imageUrl: this.resolveUrl(item.imageUrl || item.ImageUrl),
-              gender,
-              isNew: (item.rating || item.Rating || 0) >= 4
-            };
-          });
-        this.invitations.set(formatted as InvitationCard[]);
+          .map((item: any) => this.mapCard(item, idToName));
+        this.invitations.set(formatted);
       },
       error: (err) => console.error('Error fetching invitations:', err)
+    });
+  }
+
+  private mapCard(item: any, idToName: Map<string, string>): InvitationCard {
+    const ids: any[] = item.eventTypeIds || item.EventTypeIds || [];
+    const eventTypeNames: string[] = ids
+      .map((id: any) => idToName.get(id.toString()))
+      .filter((n): n is string => !!n);
+
+    const rawGender = item.gender ?? item.Gender;
+    const gender = rawGender === 0 ? 'ذكوري' : rawGender === 1 ? 'أنثوي' : undefined;
+
+    return {
+      id: (item.id || item.Id || Math.random()).toString(),
+      title: item.title || item.Title || 'بدون عنوان',
+      category: eventTypeNames[0] || item.category || item.Category || 'عام',
+      allCategories: eventTypeNames,
+      price: (item.price || item.Price || '0').toString(),
+      imageUrl: this.resolveUrl(item.imageUrl || item.ImageUrl),
+      gender,
+      isNew: (item.rating || item.Rating || 0) >= 4
+    };
+  }
+
+  private fetchCarouselCards(idToName?: Map<string, string>) {
+    const lookup = idToName || new Map<string, string>(this.eventTypes().map(e => [e.id, e.name]));
+    this.http.get<any>(`${this.apiUrl}/InvitationCards/carousel`).subscribe({
+      next: (res) => {
+        const data = this.extractData(res);
+        if (!Array.isArray(data)) return;
+        const formatted = data.map((item: any) => this.mapCard(item, lookup));
+        this.carouselCards.set(formatted as InvitationCard[]);
+      },
+      error: (err) => console.error('Error fetching carousel cards:', err)
     });
   }
 

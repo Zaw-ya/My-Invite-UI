@@ -14,8 +14,8 @@
         <div class="hlg-4"></div>
       </div>
       <div class="hero-logo-text">
-        <span class="hero-logo-name">كروتي<br>الخاصة.</span>
-        <span class="hero-logo-tld">نت</span>
+        <span class="hero-logo-name">{{ brandParts().p1 }}<br>{{ brandParts().p2 }}</span>
+        <span class="hero-logo-tld">.نت</span>
       </div>
     </div>
         <!-- Top tagline -->
@@ -57,7 +57,7 @@
 
   </div>
 
-  <!-- ===== LEFT: Geometric Frames + active tag image ===== -->
+  <!-- ===== LEFT: Dynamic Card Carousel / Geo side ===== -->
   <div class="hero-geo-side" aria-hidden="true">
     <!-- Geo frames always visible -->
     <div class="geo-rect geo-rect-1"></div>
@@ -65,13 +65,24 @@
     <div class="geo-rect geo-rect-3"></div>
     <div class="geo-rect geo-rect-4"></div>
 
-    <!-- Active tag image overlay -->
+    <!-- 1. Priority: Active tag image -->
     @if (activeTag()) {
       <img
         [src]="activeTag()!.imageUrl"
         [alt]="activeTag()!.label"
         class="geo-tag-image"
       >
+    }
+    <!-- 2. Fallback: Carousel Cards -->
+    @else if (carouselCards().length > 0) {
+      <div class="hero-cards-wrapper">
+        @for (card of carouselCards(); track card.id; let idx = $index) {
+          <div class="hero-carousel-card" [class.active]="idx === currentCardIndex()">
+            <img [src]="card.imageUrl" [alt]="card.title">
+            <div class="card-glow"></div>
+          </div>
+        }
+      </div>
     }
   </div>
 

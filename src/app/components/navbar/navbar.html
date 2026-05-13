@@ -33,7 +33,7 @@
         </div>
         <div class="text-right leading-tight">
           <span class="block font-black text-base tracking-wide font-display"
-            style="color: var(--text); line-height:1.1;">كروتي الخاصة</span>
+            style="color: var(--text); line-height:1.1;">{{ settings()['site-name'] }}</span>
           <span class="block text-[10px] tracking-widest" style="color: var(--text-muted);">.نت</span>
         </div>
       </a>
@@ -74,7 +74,7 @@
         <a href="#contact" class="mobile-link" (click)="smoothScroll($event, '#contact')">تواصل معنا</a>
         <div class="pt-4 border-t" style="border-color: var(--border);">
           <p class="text-sm mb-1" style="color: var(--text-muted);">البريد الإلكتروني</p>
-          <p class="font-bold text-sm" style="color: var(--gold);">cs&#64;krotialkhaseh.net</p>
+          <p class="font-bold text-sm" style="color: var(--gold);">{{ settings()['contact-email'] }}</p>
         </div>
       </div>
     </div>

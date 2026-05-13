@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,6 +11,9 @@ import { LucideAngularModule } from 'lucide-angular';
   styleUrl: './footer.css'
 })
 export class FooterComponent {
+  contentService = inject(ContentService);
+  settings = this.contentService.siteSettings;
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,9 @@ import { LucideAngularModule } from 'lucide-angular';
   styleUrl: './navbar.css'
 })
 export class NavbarComponent {
+  contentService = inject(ContentService);
+  settings = this.contentService.siteSettings;
+  
   isMenuOpen = false;
   isScrolled = false;
 
