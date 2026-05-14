@@ -43,7 +43,7 @@ export class ContentService {
   ]);
   
   siteSettings = signal<SiteSettings>({
-    'site-name': 'My Invite',
+    'site-name': 'كروتي الخاصة',
     'contact-email': '',
     'contact-phone': '',
     'whatsapp-number': '',
@@ -237,7 +237,7 @@ export class ContentService {
             metaTitle: item.metaTitle || item.title || '',
             metaDescription: item.metaDescription || '',
             altText: item.altText || item.title || '',
-            author: item.author || 'فريق My Invite',
+            author: item.author || 'فريق كروتي الخاصة',
             tags: item.tags || '',
             content: rawContent
           };

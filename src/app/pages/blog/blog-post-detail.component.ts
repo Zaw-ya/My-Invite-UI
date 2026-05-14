@@ -57,7 +57,7 @@ export class BlogPostDetailComponent implements OnInit {
             imageUrl: data.imageUrl || '',
             altText: data.altText || data.title || '',
             content: rawContent,
-            author: data.author || 'فريق My Invite',
+            author: data.author || 'فريق كروتي الخاصة',
             slug: data.slug || data.id?.toString() || '',
             metaTitle: data.metaTitle || data.title || '',
             metaDescription: data.metaDescription || '',
@@ -77,6 +77,19 @@ export class BlogPostDetailComponent implements OnInit {
           }
           this.metaService.updateTag({ property: 'og:title', content: formatted.metaTitle || formatted.title });
           this.metaService.updateTag({ property: 'og:type', content: 'article' });
+
+          // Dynamic Canonical Link
+          if (typeof document !== 'undefined') {
+            let canonical = document.querySelector('link[rel="canonical"]');
+            if (!canonical) {
+              canonical = document.createElement('link');
+              canonical.setAttribute('rel', 'canonical');
+              document.head.appendChild(canonical);
+            }
+            const fullUrl = `https://specialcards.net/blog/${formatted.slug || formatted.id}`;
+            canonical.setAttribute('href', fullUrl);
+            this.metaService.updateTag({ property: 'og:url', content: fullUrl });
+          }
         }
       },
       error: (err) => {
