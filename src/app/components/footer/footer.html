@@ -1,18 +1,13 @@
-<footer style="background-color: var(--footer-bg); color: var(--footer-text);" class="pt-16 pb-8">
+<footer style="background-color: var(--footer-bg); color: var(--footer-text);" class="pt-10 lg:pt-16 pb-6 lg:pb-8">
   <div class="container mx-auto px-5">
 
     <!-- Top Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b text-right" style="border-color: rgba(255,255,255,0.07);">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 pb-8 lg:pb-12 border-b text-right" style="border-color: rgba(255,255,255,0.07);">
 
       <!-- Brand -->
       <div class="space-y-5" dir="rtl">
         <div class="flex items-center gap-3">
-          <!-- Mini geo icon -->
-          <div style="position:relative; width:40px; height:44px; flex-shrink:0;">
-            <div style="position:absolute; width:22px; height:28px; border:2.5px solid #fff; border-radius:2px; top:0; right:0; transform:rotate(-16deg);"></div>
-            <div style="position:absolute; width:17px; height:22px; border:2.5px solid #fff; border-radius:2px; top:11px; right:11px; transform:rotate(12deg); opacity:0.55;"></div>
-            <div style="position:absolute; width:13px; height:17px; border:2px solid var(--gold); border-radius:2px; bottom:0; right:5px; transform:rotate(-5deg); opacity:0.8;"></div>
-          </div>
+          <img src="/image/logo.png" alt="Logo" class="h-10 md:h-12 w-auto object-contain">
           <div class="text-right leading-tight">
             <span class="block font-black text-xl font-display" style="color: var(--footer-head); line-height:1.1;">{{ settings()['site-name'] }}</span>
             <span class="block text-xs mt-1" style="color: rgba(255,255,255,0.35);">.نت</span>
@@ -37,7 +32,7 @@
 
       <!-- Quick Links -->
       <div>
-        <h4 class="footer-heading mb-5">روابط سريعة</h4>
+        <h4 class="footer-heading mb-3 lg:mb-5">روابط سريعة</h4>
         <ul class="space-y-3 text-sm">
           <li><a href="#"            class="footer-link">الرئيسية</a></li>
           <li><a href="#designs"     class="footer-link">التصاميم</a></li>
@@ -49,7 +44,7 @@
 
       <!-- Support -->
       <div>
-        <h4 class="footer-heading mb-5">الدعم</h4>
+        <h4 class="footer-heading mb-3 lg:mb-5">الدعم</h4>
         <ul class="space-y-3 text-sm">
           <li><a href="#" class="footer-link">سياسة الخصوصية</a></li>
           <li><a href="#" class="footer-link">الشروط والأحكام</a></li>
@@ -60,7 +55,7 @@
 
       <!-- Contact -->
       <div dir="rtl">
-        <h4 class="footer-heading mb-5">تواصل معنا</h4>
+        <h4 class="footer-heading mb-3 lg:mb-5">تواصل معنا</h4>
         <div class="space-y-4 text-sm">
           <div class="flex items-start gap-3" *ngIf="settings()['address']">
             <lucide-icon name="map-pin" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--gold);"></lucide-icon>
@@ -80,7 +75,7 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-5">
+    <div class="pt-6 lg:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-5">
       <p class="text-xs" style="color: rgba(255,255,255,0.25);">© 2026 {{ settings()['site-name'] }}. جميع الحقوق محفوظة.</p>
 
       <!-- Payment Methods -->

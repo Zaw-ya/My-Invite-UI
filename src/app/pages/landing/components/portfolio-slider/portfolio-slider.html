@@ -1,0 +1,129 @@
+<div class="portfolio-slider-section" dir="rtl">
+  <div class="slider-top-section">
+    <div class="slider-title-wrapper">
+      <h2 class="slider-title font-display">تصميمات كروتنا</h2>
+      <p class="slider-subtitle">مكتبة حصرية ومتجددة تناسب جميع مناسباتك</p>
+      <div class="title-divider"></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-container">
+      <div class="filter-group categories-filter">
+        @for (cat of categories; track cat) {
+          <button 
+            class="filter-pill" 
+            [class.active-gold]="activeCategory() === cat"
+            (click)="setCategory(cat)">
+            {{ cat }}
+          </button>
+        }
+      </div>
+
+      <div class="filter-group gender-filter">
+        @for (gender of genderOptions; track gender) {
+          <button 
+            class="filter-pill" 
+            [class.active-dark]="activeGender() === gender"
+            (click)="setGender(gender)">
+            {{ gender }}
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-navigation">
+    <button class="nav-btn prev-btn" (click)="scrollPrev()" aria-label="السابق">
+      <lucide-icon name="chevron-right"></lucide-icon>
+    </button>
+    
+    <!-- Native scroll snapping container for flawless mobile swipe & dynamic layout -->
+    <div class="slider-container" #sliderContainer (scroll)="onScroll()">
+      <div class="slider-track" [style.--card-width.px]="cardWidth()">
+        @for (card of filteredInvitations(); track card.id) {
+          <div class="slider-card" [style.width.px]="cardWidth()" (click)="openPreview(card)">
+            <!-- Premium Card UI -->
+            <div class="card-image-wrapper">
+              <img [src]="card.imageUrl" [alt]="card.title" loading="lazy">
+              <!-- <div class="card-overlay">
+                <span class="card-category">{{ card.category }}</span>
+              </div> -->
+              @if (card.isNew) {
+                <div class="card-badge">جديد</div>
+              }
+              <div class="design-overlay">
+                <button class="design-overlay-btn" (click)="$event.stopPropagation(); openPreview(card)">
+                  <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
+                  معاينة سريعة
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+        
+        @if (filteredInvitations().length === 0) {
+           <div class="empty-state">
+             <p>لا توجد تصميمات مطابقة لخياراتك.</p>
+           </div>
+        }
+      </div>
+    </div>
+    
+    <button class="nav-btn next-btn" (click)="scrollNext()" aria-label="التالي">
+      <lucide-icon name="chevron-left"></lucide-icon>
+    </button>
+  </div>
+
+  <div class="slider-footer">
+    <a routerLink="/designs" class="view-all-btn">
+      تصفح جميع التصميمات
+      <lucide-icon name="arrow-left" class="w-4 h-4" dir="ltr"></lucide-icon>
+    </a>
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+@if (previewCard()) {
+  <div class="lightbox-backdrop" (click)="closePreview()">
+    <div class="lightbox-box" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closePreview()">
+        <lucide-icon name="x" class="w-5 h-5"></lucide-icon>
+      </button>
+
+      <div class="lightbox-inner" dir="rtl">
+        <div class="lightbox-img-wrap">
+          @if (previewCard()!.isNew) {
+            <span class="lb-badge-new">جديد</span>
+          }
+          <img [src]="previewCard()!.imageUrl" [alt]="previewCard()!.title" class="lightbox-img">
+        </div>
+
+        <div class="lightbox-details">
+          <span class="lb-category">{{ previewCard()!.category }}</span>
+          <h3 class="lb-title">{{ previewCard()!.title }}</h3>
+
+          @if (previewCard()!.gender) {
+            <div class="lb-gender" [class.male]="previewCard()!.gender === 'ذكوري'">
+              <lucide-icon name="user" class="w-4 h-4"></lucide-icon>
+              {{ previewCard()!.gender }}
+            </div>
+          }
+
+          <div class="lb-divider"></div>
+
+          <div class="lb-price-row">
+            <span class="lb-price-label">الكود</span>
+            <span class="lb-price-value">#{{ previewCard()!.id }}</span>
+          </div>
+
+          <div class="lb-divider"></div>
+
+          <button class="lb-cta" (click)="orderDesign(previewCard()!)">
+            <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
+            اطلب هذا التصميم
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

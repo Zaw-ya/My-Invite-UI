@@ -564,7 +564,14 @@ body {
 }
 
 @media (max-width: 640px) {
-  .section-py { padding-top: 48px; padding-bottom: 48px; }
+  .section-py { 
+    padding-top: 48px; 
+    padding-bottom: 48px; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   .section-py-sm { padding-top: 32px; padding-bottom: 32px; }
 }
 

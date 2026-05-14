@@ -10,11 +10,10 @@ import { FooterComponent } from '../../components/footer/footer';
 import { HeroComponent } from './components/hero/hero';
 import { DemoFormComponent } from './components/demo-form/demo-form';
 import { PricingComponent } from './components/pricing/pricing';
-import { DesignsComponent } from './components/designs/designs';
+import { PortfolioSliderComponent } from './components/portfolio-slider/portfolio-slider';
 import { SupervisorsComponent } from './components/supervisors/supervisors';
 import { AdditionalServicesComponent } from './components/additional-services/additional-services';
 import { BlogComponent } from './components/blog/blog';
-import { TestimonialsComponent } from './components/testimonials/testimonials';
 import { ContactComponent } from './components/contact/contact';
 import { OrderModalComponent } from '../../components/order-modal/order-modal.component';
 
@@ -29,11 +28,10 @@ import { OrderModalComponent } from '../../components/order-modal/order-modal.co
     HeroComponent,
     DemoFormComponent,
     PricingComponent,
-    DesignsComponent,
+    PortfolioSliderComponent,
     SupervisorsComponent,
     AdditionalServicesComponent,
     BlogComponent,
-    TestimonialsComponent,
     ContactComponent,
     OrderModalComponent
   ],
