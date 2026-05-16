@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild, AfterViewInit, HostListener, signal, computed, inject } from '@angular/core';
+import { Component, input, ElementRef, ViewChild, AfterViewInit, HostListener, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -15,8 +15,8 @@ import { DesignOrderService } from '../../../../services/design-order.service';
 export class PortfolioSliderComponent implements AfterViewInit {
   private designOrderService = inject(DesignOrderService);
 
-  @Input() invitations: InvitationCard[] = [];
-  @Input() categories: string[] = ['كل التصميمات'];
+  invitations = input<InvitationCard[]>([]);
+  categories = input<string[]>(['كل التصميمات']);
   @ViewChild('sliderContainer') container!: ElementRef<HTMLDivElement>;
 
   cardWidth = signal(300);
@@ -30,7 +30,7 @@ export class PortfolioSliderComponent implements AfterViewInit {
   genderOptions = ['كل التصميمات', 'تصميمات ذكورية', 'تصميمات أنثوية'];
 
   filteredInvitations = computed(() => {
-    let items = this.invitations;
+    let items = this.invitations();
     const cat = this.activeCategory();
     const gender = this.activeGender();
 
@@ -126,8 +126,8 @@ export class PortfolioSliderComponent implements AfterViewInit {
   scrollNext() {
     if (typeof window === 'undefined' || !this.container) return;
     const visible = this.getVisibleCards(window.innerWidth);
-    const maxIndex = Math.max(0, this.invitations.length - visible);
-    
+    const maxIndex = Math.max(0, this.invitations().length - visible);
+
     let nextIndex = this.currentIndex() + 1;
     if (nextIndex > maxIndex) {
       nextIndex = 0; // Loop seamlessly to start
@@ -139,8 +139,8 @@ export class PortfolioSliderComponent implements AfterViewInit {
   scrollPrev() {
     if (typeof window === 'undefined' || !this.container) return;
     const visible = this.getVisibleCards(window.innerWidth);
-    const maxIndex = Math.max(0, this.invitations.length - visible);
-    
+    const maxIndex = Math.max(0, this.invitations().length - visible);
+
     let prevIndex = this.currentIndex() - 1;
     if (prevIndex < 0) {
       prevIndex = maxIndex; // Loop to end

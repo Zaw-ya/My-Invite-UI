@@ -9,7 +9,7 @@
     <!-- Filters -->
     <div class="filters-container">
       <div class="filter-group categories-filter">
-        @for (cat of categories; track cat) {
+        @for (cat of categories(); track cat) {
           <button 
             class="filter-pill" 
             [class.active-gold]="activeCategory() === cat"
