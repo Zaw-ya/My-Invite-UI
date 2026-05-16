@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, importProvidersF
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withNoHttpTransferCache } from '@angular/common/http';
 import {
   LucideAngularModule,
   Heart, GraduationCap, Briefcase, Landmark, Users, User, Check,
@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withNoHttpTransferCache()),
     provideClientHydration(withEventReplay()),
     provideAnimations(),
     importProvidersFrom(LucideAngularModule.pick({
