@@ -34,47 +34,139 @@
 
       <!-- LEFT: Form Panel (white/light) -->
       <div class="demo-form-panel text-right">
-        <form class="space-y-5" (ngSubmit)="onTryService()">
 
-          <!-- Name -->
-          <div>
-            <label class="demo-label">الاسم</label>
-            <input
-              type="text"
-              [(ngModel)]="demoForm.name"
-              name="name"
-              class="demo-input"
-              placeholder="محمد أحمد"
-            >
-          </div>
+        <!-- ===== STEP 1: Name + WhatsApp ===== -->
+        @if (step() === 'form') {
+          <form class="space-y-5" (ngSubmit)="sendOtp()">
 
-          <!-- Phone -->
-          <div>
-            <label class="demo-label">رقم الجوال</label>
-            <div class="demo-phone-row">
-              <div class="demo-flag">🇸🇦</div>
+            <div>
+              <label class="demo-label">الاسم</label>
               <input
-                type="tel"
-                name="phone"
+                type="text"
+                [(ngModel)]="name"
+                name="name"
                 class="demo-input"
-                placeholder="05xxxxxxxx"
-                dir="ltr"
-                style="flex:1; min-width:0;"
+                placeholder="محمد أحمد"
+                required
               >
             </div>
+
+            <div style="position:relative;">
+              <label class="demo-label">رقم الواتساب</label>
+              <div class="demo-phone-row">
+                <!-- Country selector -->
+                <button type="button" class="demo-country-btn" (click)="showCountryDropdown = !showCountryDropdown">
+                  <span>{{ selectedCountry.flag }}</span>
+                  <span class="demo-dial-code" dir="ltr">+{{ selectedCountry.dialCode }}</span>
+                  <lucide-icon name="chevron-down" class="demo-chevron"></lucide-icon>
+                </button>
+                <input
+                  type="tel"
+                  [(ngModel)]="phoneLocal"
+                  name="phoneLocal"
+                  class="demo-input"
+                  placeholder="5xxxxxxxx"
+                  dir="ltr"
+                  style="flex:1; min-width:0;"
+                  required
+                >
+              </div>
+              <small class="demo-note">أدخل الرقم بدون رمز الدولة ودون +</small>
+
+              <!-- Dropdown -->
+              @if (showCountryDropdown) {
+                <div class="demo-country-dropdown" dir="rtl">
+                  @for (c of countries; track c.code) {
+                    <button type="button" class="demo-country-option" [class.selected]="c.code === selectedCountry.code" (click)="selectCountry(c)">
+                      <span>{{ c.flag }}</span>
+                      <span class="demo-country-name">{{ c.name }}</span>
+                      <span class="demo-dial-code" dir="ltr">+{{ c.dialCode }}</span>
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+
+            @if (selectedCardId) {
+              <p class="demo-note" style="color:#666;">
+                ✓ تم اختيار تصميم — سيُرسل إليك على الواتساب
+              </p>
+            } @else {
+              <p class="demo-note">* يمكنك اختيار تصميم كارت معين من القسم السابق</p>
+            }
+
+            @if (errorMsg()) {
+              <p class="demo-error">{{ errorMsg() }}</p>
+            }
+
+            <button type="submit" class="demo-submit-btn" [disabled]="loading()">
+              @if (loading()) {
+                <span class="demo-spinner"></span> جارٍ الإرسال...
+              } @else {
+                إرسال رمز التحقق
+              }
+            </button>
+
+          </form>
+        }
+
+        <!-- ===== STEP 2: OTP ===== -->
+        @if (step() === 'otp') {
+          <div class="space-y-5">
+            <div class="demo-otp-header">
+              <lucide-icon name="message-circle" class="demo-otp-icon"></lucide-icon>
+              <div>
+                <p class="demo-otp-title">تم إرسال رمز التحقق</p>
+                <p class="demo-otp-sub">تفقد واتساب على الرقم: <strong dir="ltr">+{{ whatsAppNumber }}</strong></p>
+              </div>
+            </div>
+
+            <div>
+              <label class="demo-label">رمز التحقق</label>
+              <input
+                type="text"
+                [(ngModel)]="otp"
+                name="otp"
+                class="demo-input demo-otp-input"
+                placeholder="XXXXXX"
+                dir="ltr"
+                maxlength="8"
+              >
+            </div>
+
+            @if (errorMsg()) {
+              <p class="demo-error">{{ errorMsg() }}</p>
+            }
+
+            <button class="demo-submit-btn" (click)="verifyOtp()" [disabled]="loading()">
+              @if (loading()) {
+                <span class="demo-spinner"></span> جارٍ التحقق...
+              } @else {
+                تأكيد ومشاهدة الكارت
+              }
+            </button>
+
+            <button class="demo-resend-btn" (click)="resend()" [disabled]="loading()">
+              تغيير الرقم أو إعادة الإرسال
+            </button>
           </div>
+        }
 
-          <!-- Note -->
-          <p class="demo-note">* يمكنك اختيار تصميم كارت معين من القسم السابق</p>
+        <!-- ===== STEP 3: Success ===== -->
+        @if (step() === 'success') {
+          <div class="demo-success">
+            <div class="demo-success-icon">
+              <lucide-icon name="check-circle" style="width:48px;height:48px;color:#22c55e;"></lucide-icon>
+            </div>
+            <h4 class="demo-success-title">تم بنجاح! 🎉</h4>
+            <p class="demo-success-body">
+              تم إرسال كارت الدعوة التجريبي على واتسابك.<br>
+              تفقد رسائلك الآن وشاهد التجربة بنفسك!
+            </p>
+          </div>
+        }
 
-          <!-- Submit -->
-          <button type="submit" class="demo-submit-btn">
-            إرسل الدعوة
-          </button>
-
-        </form>
       </div>
-
     </div>
   </div>
 </section>
