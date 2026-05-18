@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -6,6 +6,7 @@ import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 import { ContentService } from '../../services/content.service';
 import { DesignOrderService } from '../../services/design-order.service';
+import { SeoService } from '../../services/seo.service';
 import { OrderModalComponent } from '../../components/order-modal/order-modal.component';
 import { InvitationCard } from '../../models/content.interface';
 
@@ -16,9 +17,11 @@ import { InvitationCard } from '../../models/content.interface';
   templateUrl: './designs-page.component.html',
   styleUrl: './designs-page.component.css'
 })
-export class DesignsPageComponent {
+export class DesignsPageComponent implements OnInit {
   private contentService = inject(ContentService);
   private designOrderService = inject(DesignOrderService);
+  private seoService = inject(SeoService);
+
   showOrderModal = this.designOrderService.showModal;
 
   activeCategory = signal('كل التصميمات');
@@ -56,6 +59,28 @@ export class DesignsPageComponent {
   });
 
   isLoading = computed(() => this.invitations().length === 0);
+
+  ngOnInit() {
+    this.seoService.updateSeo({
+      title: 'تصاميم الدعوات الرقمية | كروتي الخاصة',
+      description: 'اكتشف مجموعتنا الواسعة من تصاميم كروت الدعوة الرقمية الفاخرة لحفلات الزواج، التخرج، وكل المناسبات الخاصة.',
+      canonical: 'https://specialcards.net/designs',
+      keywords: 'تصاميم دعوات رقمية, كروت زواج, كروت تخرج, تصميم دعوة, بطاقات دعوة فاخرة',
+      ogType: 'website',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'تصاميم الدعوات الرقمية',
+        description: 'مجموعة تصاميم كروت الدعوة الرقمية الفاخرة',
+        url: 'https://specialcards.net/designs',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'كروتي الخاصة .نت',
+          url: 'https://specialcards.net'
+        }
+      }
+    });
+  }
 
   openPreview(card: InvitationCard) {
     this.previewCard.set(card);

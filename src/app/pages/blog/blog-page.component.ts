@@ -1,10 +1,11 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 import { ContentService } from '../../services/content.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-blog-page',
@@ -13,9 +14,10 @@ import { ContentService } from '../../services/content.service';
   templateUrl: './blog-page.component.html',
   styleUrl: './blog-page.component.css'
 })
-export class BlogPageComponent {
+export class BlogPageComponent implements OnInit {
   private contentService = inject(ContentService);
   private router = inject(Router);
+  private seoService = inject(SeoService);
 
   blogPosts = this.contentService.blogPosts;
 
@@ -33,6 +35,29 @@ export class BlogPageComponent {
     if (this.activeCategory === 'الكل') return posts;
     return posts.filter(p => p.category === this.activeCategory);
   });
+
+  ngOnInit() {
+    this.seoService.updateSeo({
+      title: 'مدونة كروتي الخاصة | نصائح وأفكار للمناسبات',
+      description: 'اقرأ أحدث المقالات والنصائح حول تنظيم المناسبات وتصميم الدعوات الرقمية من خبراء كروتي الخاصة .نت.',
+      canonical: 'https://specialcards.net/blog',
+      keywords: 'مدونة مناسبات, نصائح تنظيم حفلات, أفكار دعوات, تصميم دعوة, كروتي الخاصة',
+      ogType: 'website',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        name: 'مدونة كروتي الخاصة',
+        description: 'نصائح وأفكار للمناسبات وتصميم الدعوات الرقمية',
+        url: 'https://specialcards.net/blog',
+        publisher: {
+          '@type': 'Organization',
+          name: 'كروتي الخاصة',
+          url: 'https://specialcards.net',
+          logo: 'https://specialcards.net/image/logo.png'
+        }
+      }
+    });
+  }
 
   setCategory(cat: string) {
     this.activeCategory = cat;

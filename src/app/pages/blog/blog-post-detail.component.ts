@@ -1,11 +1,11 @@
 import { Component, inject, signal, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
 import { LucideAngularModule } from 'lucide-angular';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 import { ContentService } from '../../services/content.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-blog-post-detail',
@@ -18,9 +18,8 @@ export class BlogPostDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private contentService = inject(ContentService);
+  private seoService = inject(SeoService);
   private platformId = inject(PLATFORM_ID);
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
 
   postId = signal<string>('');
   currentPost = signal<any>(null);
@@ -67,29 +66,18 @@ export class BlogPostDetailComponent implements OnInit {
           this.currentPost.set(formatted);
           this.loading.set(false);
 
-          // Update SEO meta tags
-          this.titleService.setTitle(formatted.metaTitle || formatted.title);
-          if (formatted.metaDescription) {
-            this.metaService.updateTag({ name: 'description', content: formatted.metaDescription });
-          }
-          if (formatted.imageUrl) {
-            this.metaService.updateTag({ property: 'og:image', content: formatted.imageUrl });
-          }
-          this.metaService.updateTag({ property: 'og:title', content: formatted.metaTitle || formatted.title });
-          this.metaService.updateTag({ property: 'og:type', content: 'article' });
-
-          // Dynamic Canonical Link
-          if (typeof document !== 'undefined') {
-            let canonical = document.querySelector('link[rel="canonical"]');
-            if (!canonical) {
-              canonical = document.createElement('link');
-              canonical.setAttribute('rel', 'canonical');
-              document.head.appendChild(canonical);
-            }
-            const fullUrl = `https://specialcards.net/blog/${formatted.slug || formatted.id}`;
-            canonical.setAttribute('href', fullUrl);
-            this.metaService.updateTag({ property: 'og:url', content: fullUrl });
-          }
+          // Update SEO via centralized SeoService
+          this.seoService.updateBlogPostSeo({
+            title: formatted.title,
+            metaTitle: formatted.metaTitle,
+            metaDescription: formatted.metaDescription,
+            imageUrl: formatted.imageUrl,
+            slug: formatted.slug,
+            id: formatted.id,
+            author: formatted.author,
+            date: formatted.date,
+            category: formatted.category
+          });
         }
       },
       error: (err) => {
