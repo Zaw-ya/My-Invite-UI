@@ -1,6 +1,6 @@
 Add-Type -AssemblyName System.Drawing
 
-$srcPath = "d:\ui myinvite\My-Invite-UI\public\image\logo.png"
+$srcPath = "d:\ui myinvite\My-Invite-UI\public\image\PNGs\HeroLogo.png"
 $destDir = "d:\ui myinvite\My-Invite-UI\public"
 
 if (-not (Test-Path $srcPath)) {
