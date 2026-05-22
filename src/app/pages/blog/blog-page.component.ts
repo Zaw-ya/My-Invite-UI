@@ -53,7 +53,7 @@ export class BlogPageComponent implements OnInit {
           '@type': 'Organization',
           name: 'كروتي الخاصة',
           url: 'https://specialcards.net',
-          logo: 'https://specialcards.net/image/logo.png'
+          logo: 'https://specialcards.net/assets/images/logo.png'
         }
       }
     });

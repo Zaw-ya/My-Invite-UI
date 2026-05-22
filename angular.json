@@ -25,6 +25,11 @@
                 "input": "public"
               },
               {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              },
+              {
                 "glob": "*.{ttf,otf,woff,woff2}",
                 "input": "ui",
                 "output": "fonts"

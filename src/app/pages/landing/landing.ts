@@ -69,7 +69,7 @@ export class LandingPageComponent implements OnInit {
         '@type': 'LocalBusiness',
         name: 'كروتي الخاصة',
         url: 'https://specialcards.net',
-        logo: 'https://specialcards.net/image/logo.png',
+        logo: 'https://specialcards.net/assets/images/logo.png',
         description: 'كروت دعوة رقمية فاخرة لجميع مناسباتك - حفلات زواج، تخرج، مناسبات خاصة',
         priceRange: '$$',
         serviceType: 'Digital Invitation Cards',
