@@ -7,7 +7,7 @@
   ],
   "redirects": [
     {
-      "source": "https://www.specialcards.net/(.*)",
+      "source": "/(.*)",
       "destination": "https://specialcards.net/$1",
       "permanent": true
     }
