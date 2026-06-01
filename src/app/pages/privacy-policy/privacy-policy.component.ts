@@ -21,8 +21,8 @@ export class PrivacyPolicyComponent implements OnInit {
 
   ngOnInit() {
     this.seoService.updateSeo({
-      title: 'سياسة الخصوصية | كروتي الخاصة .نت',
-      description: 'تعرف على سياسة الخصوصية الخاصة بموقع كروتي الخاصة .نت وكيف نحمي بياناتك الشخصية.',
+      title: 'سياسة الخصوصية | مؤسسة بطاقتي الخاصة .نت',
+      description: 'تعرف على سياسة الخصوصية الخاصة بموقع مؤسسة بطاقتي الخاصة .نت وكيف نحمي بياناتك الشخصية.',
       canonical: 'https://specialcards.net/privacy-policy',
       ogType: 'website',
     });

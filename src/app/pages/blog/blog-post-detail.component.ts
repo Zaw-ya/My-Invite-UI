@@ -56,7 +56,7 @@ export class BlogPostDetailComponent implements OnInit {
             imageUrl: data.imageUrl || '',
             altText: data.altText || data.title || '',
             content: rawContent,
-            author: data.author || 'فريق كروتي الخاصة',
+            author: data.author || 'فريق مؤسسة بطاقتي الخاصة',
             slug: data.slug || data.id?.toString() || '',
             metaTitle: data.metaTitle || data.title || '',
             metaDescription: data.metaDescription || '',
