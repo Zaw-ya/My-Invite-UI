@@ -38,20 +38,20 @@ export class BlogPageComponent implements OnInit {
 
   ngOnInit() {
     this.seoService.updateSeo({
-      title: 'مدونة مؤسسة بطاقتي الخاصة | نصائح وأفكار للمناسبات',
-      description: 'اقرأ أحدث المقالات والنصائح حول تنظيم المناسبات وتصميم الدعوات الرقمية من خبراء مؤسسة بطاقتي الخاصة .نت.',
+      title: 'مدونة Special Cards | مؤسسة بطاقتي الخاصة | نصائح وأفكار للمناسبات',
+      description: 'اقرأ أحدث المقالات والنصائح حول تنظيم المناسبات وتصميم الدعوات الرقمية من خبراء Special Cards مؤسسة بطاقتي الخاصة.',
       canonical: 'https://specialcards.net/blog',
-      keywords: 'مدونة مناسبات, نصائح تنظيم حفلات, أفكار دعوات, تصميم دعوة, مؤسسة بطاقتي الخاصة',
+      keywords: 'مدونة مناسبات, نصائح تنظيم حفلات, أفكار دعوات, تصميم دعوة, Special Cards, مؤسسة بطاقتي الخاصة',
       ogType: 'website',
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'Blog',
-        name: 'مدونة مؤسسة بطاقتي الخاصة',
+        name: 'مدونة Special Cards | مؤسسة بطاقتي الخاصة',
         description: 'نصائح وأفكار للمناسبات وتصميم الدعوات الرقمية',
         url: 'https://specialcards.net/blog',
         publisher: {
           '@type': 'Organization',
-          name: 'مؤسسة بطاقتي الخاصة',
+          name: 'Special Cards | مؤسسة بطاقتي الخاصة',
           url: 'https://specialcards.net',
           logo: 'https://specialcards.net/assets/images/logo.png'
         }

@@ -17,8 +17,8 @@ export class CancellationPolicyComponent implements OnInit {
 
   ngOnInit() {
     this.seoService.updateSeo({
-      title: 'سياسة الإلغاء | مؤسسة بطاقتي الخاصة .نت',
-      description: 'تعرف على سياسة الإلغاء واسترداد الأموال الخاصة بخدمات مؤسسة بطاقتي الخاصة .نت.',
+      title: 'سياسة الإلغاء | Special Cards | مؤسسة بطاقتي الخاصة',
+      description: 'تعرف على سياسة الإلغاء واسترداد الأموال الخاصة بخدمات Special Cards مؤسسة بطاقتي الخاصة.',
       canonical: 'https://specialcards.net/cancellation-policy',
       ogType: 'website',
     });

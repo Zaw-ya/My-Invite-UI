@@ -22,43 +22,43 @@ const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/images/logo.png`;
 
 const PAGE_SEO: Record<string, SeoConfig> = {
   '/': {
-    title: 'مؤسسة بطاقتي الخاصة .نت | كروت دعوة رقمية للأيام الخاصة',
-    description: 'كروت دعوة رقمية فاخرة لجميع مناسباتك - حفلات زواج، تخرج، أعياد ميلاد، ومناسبات خاصة. صمّم دعوتك الرقمية الآن مع مؤسسة بطاقتي الخاصة.',
+    title: 'Special Cards | مؤسسة بطاقتي الخاصة | كروت دعوة رقمية للأيام الخاصة',
+    description: 'كروت دعوة رقمية فاخرة لجميع مناسباتك - حفلات زواج، تخرج، أعياد ميلاد، ومناسبات خاصة. صمّم دعوتك الرقمية الآن مع Special Cards مؤسسة بطاقتي الخاصة.',
     canonical: `${SITE_URL}/`,
     ogType: 'website',
-    keywords: 'كروت دعوة رقمية, دعوات زواج, دعوات تخرج, بطاقات دعوة, مناسبات خاصة, مؤسسة بطاقتي الخاصة',
+    keywords: 'كروت دعوة رقمية, دعوات زواج, دعوات تخرج, بطاقات دعوة, مناسبات خاصة, Special Cards, مؤسسة بطاقتي الخاصة',
   },
   '/designs': {
-    title: 'تصاميم الدعوات | مؤسسة بطاقتي الخاصة',
-    description: 'اكتشف مجموعتنا الواسعة من تصاميم كروت الدعوة الرقمية الفاخرة لحفلات الزواج، التخرج، وكل المناسبات الخاصة.',
+    title: 'تصاميم الدعوات | Special Cards | مؤسسة بطاقتي الخاصة',
+    description: 'اكتشف مجموعتنا الواسعة من تصاميم كروت الدعوة الرقمية الفاخرة لحفلات الزواج، التخرج، وكل المناسبات الخاصة من Special Cards.',
     canonical: `${SITE_URL}/designs`,
     ogType: 'website',
-    keywords: 'تصاميم دعوات, كروت زواج, كروت تخرج, تصميم دعوة رقمية',
+    keywords: 'تصاميم دعوات, كروت زواج, كروت تخرج, تصميم دعوة رقمية, Special Cards, مؤسسة بطاقتي الخاصة',
   },
   '/blog': {
-    title: 'المدونة | مؤسسة بطاقتي الخاصة - نصائح وأفكار للمناسبات',
-    description: 'اقرأ أحدث المقالات والنصائح حول تنظيم المناسبات وتصميم الدعوات الرقمية من خبراء مؤسسة بطاقتي الخاصة.',
+    title: 'المدونة | Special Cards | مؤسسة بطاقتي الخاصة - نصائح وأفكار للمناسبات',
+    description: 'اقرأ أحدث المقالات والنصائح حول تنظيم المناسبات وتصميم الدعوات الرقمية من خبراء Special Cards مؤسسة بطاقتي الخاصة.',
     canonical: `${SITE_URL}/blog`,
     ogType: 'website',
-    keywords: 'مدونة مناسبات, نصائح تنظيم حفلات, أفكار دعوات',
+    keywords: 'مدونة مناسبات, نصائح تنظيم حفلات, أفكار دعوات, Special Cards, مؤسسة بطاقتي الخاصة',
   },
   '/privacy-policy': {
-    title: 'سياسة الخصوصية | مؤسسة بطاقتي الخاصة',
-    description: 'تعرف على سياسة الخصوصية الخاصة بموقع مؤسسة بطاقتي الخاصة وكيف نحمي بياناتك الشخصية.',
+    title: 'سياسة الخصوصية | Special Cards | مؤسسة بطاقتي الخاصة',
+    description: 'تعرف على سياسة الخصوصية الخاصة بموقع Special Cards مؤسسة بطاقتي الخاصة وكيف نحمي بياناتك الشخصية.',
     canonical: `${SITE_URL}/privacy-policy`,
     ogType: 'website',
     noIndex: false,
   },
   '/terms': {
-    title: 'الشروط والأحكام | مؤسسة بطاقتي الخاصة',
-    description: 'اقرأ شروط الاستخدام والأحكام الخاصة بخدمات موقع مؤسسة بطاقتي الخاصة.',
+    title: 'الشروط والأحكام | Special Cards | مؤسسة بطاقتي الخاصة',
+    description: 'اقرأ شروط الاستخدام والأحكام الخاصة بخدمات موقع Special Cards مؤسسة بطاقتي الخاصة.',
     canonical: `${SITE_URL}/terms`,
     ogType: 'website',
     noIndex: false,
   },
   '/cancellation-policy': {
-    title: 'سياسة الإلغاء | مؤسسة بطاقتي الخاصة',
-    description: 'تعرف على سياسة الإلغاء واسترداد الأموال الخاصة بخدمات مؤسسة بطاقتي الخاصة.',
+    title: 'سياسة الإلغاء | Special Cards | مؤسسة بطاقتي الخاصة',
+    description: 'تعرف على سياسة الإلغاء واسترداد الأموال الخاصة بخدمات Special Cards مؤسسة بطاقتي الخاصة.',
     canonical: `${SITE_URL}/cancellation-policy`,
     ogType: 'website',
     noIndex: false,
@@ -93,9 +93,9 @@ export class SeoService {
 
   /** Apply full SEO config — call from any component for custom overrides */
   updateSeo(config: SeoConfig) {
-    const siteTitle = config.title || 'مؤسسة بطاقتي الخاصة .نت';
+    const siteTitle = config.title || 'Special Cards | مؤسسة بطاقتي الخاصة';
     const description = config.description || 'كروت دعوة رقمية فاخرة لجميع مناسباتك';
-    const ogTitle = config.ogTitle || config.title || 'مؤسسة بطاقتي الخاصة';
+    const ogTitle = config.ogTitle || config.title || 'Special Cards | مؤسسة بطاقتي الخاصة';
     const ogDescription = config.ogDescription || description;
     const ogImage = config.ogImage || DEFAULT_OG_IMAGE;
     const ogType = config.ogType || 'website';
@@ -180,7 +180,7 @@ export class SeoService {
     const metaDesc = post.metaDescription || post.title;
 
     this.updateSeo({
-      title: `${metaTitle} | مؤسسة بطاقتي الخاصة`,
+      title: `${metaTitle} | Special Cards | مؤسسة بطاقتي الخاصة`,
       description: metaDesc,
       canonical,
       ogTitle: metaTitle,
@@ -199,11 +199,11 @@ export class SeoService {
       datePublished: post.date || new Date().toISOString(),
       author: {
         '@type': 'Person',
-        name: post.author || 'فريق مؤسسة بطاقتي الخاصة'
+        name: post.author || 'فريق Special Cards | مؤسسة بطاقتي الخاصة'
       },
       publisher: {
         '@type': 'Organization',
-        name: 'مؤسسة بطاقتي الخاصة',
+        name: 'Special Cards | مؤسسة بطاقتي الخاصة',
         url: SITE_URL,
         logo: {
           '@type': 'ImageObject',

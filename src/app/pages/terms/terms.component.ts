@@ -21,8 +21,8 @@ export class TermsComponent implements OnInit {
 
   ngOnInit() {
     this.seoService.updateSeo({
-      title: 'الشروط والأحكام | مؤسسة بطاقتي الخاصة .نت',
-      description: 'اقرأ شروط الاستخدام والأحكام الخاصة بخدمات موقع مؤسسة بطاقتي الخاصة .نت.',
+      title: 'الشروط والأحكام | Special Cards | مؤسسة بطاقتي الخاصة',
+      description: 'اقرأ شروط الاستخدام والأحكام الخاصة بخدمات موقع Special Cards مؤسسة بطاقتي الخاصة.',
       canonical: 'https://specialcards.net/terms',
       ogType: 'website',
     });

@@ -62,10 +62,10 @@ export class DesignsPageComponent implements OnInit {
 
   ngOnInit() {
     this.seoService.updateSeo({
-      title: 'تصاميم الدعوات الرقمية | مؤسسة بطاقتي الخاصة',
-      description: 'اكتشف مجموعتنا الواسعة من تصاميم كروت الدعوة الرقمية الفاخرة لحفلات الزواج، التخرج، وكل المناسبات الخاصة.',
+      title: 'تصاميم الدعوات الرقمية | Special Cards | مؤسسة بطاقتي الخاصة',
+      description: 'اكتشف مجموعتنا الواسعة من تصاميم كروت الدعوة الرقمية الفاخرة لحفلات الزواج، التخرج، وكل المناسبات الخاصة من Special Cards.',
       canonical: 'https://specialcards.net/designs',
-      keywords: 'تصاميم دعوات رقمية, كروت زواج, كروت تخرج, تصميم دعوة, بطاقات دعوة فاخرة',
+      keywords: 'تصاميم دعوات رقمية, كروت زواج, كروت تخرج, تصميم دعوة, بطاقات دعوة فاخرة, Special Cards, مؤسسة بطاقتي الخاصة',
       ogType: 'website',
       jsonLd: {
         '@context': 'https://schema.org',
@@ -75,7 +75,7 @@ export class DesignsPageComponent implements OnInit {
         url: 'https://specialcards.net/designs',
         isPartOf: {
           '@type': 'WebSite',
-          name: 'مؤسسة بطاقتي الخاصة .نت',
+          name: 'Special Cards | مؤسسة بطاقتي الخاصة',
           url: 'https://specialcards.net'
         }
       }
