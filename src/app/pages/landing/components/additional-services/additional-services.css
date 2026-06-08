@@ -1,6 +1,6 @@
 /* ===== SECTION ===== */
 .as-section {
-  background-color: #0D0D0D;
+  background-color: var(--bg-dark-hero);
   padding: 72px 0 80px;
 }
 
@@ -60,12 +60,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .as-card:hover {
-  border-color: rgba(255,255,255,0.35);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 15px var(--shadow-gold);
+  transform: translateY(-5px);
 }
 
 .as-num {
@@ -110,15 +112,17 @@
   border-color: var(--gold);
   justify-content: flex-start;
   align-items: flex-start;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.as-card-cta .as-num      { color: rgba(0,0,0,0.18) !important; }
-.as-card-cta .as-card-title { color: #0D0D0D !important; }
-.as-card-cta .as-card-text  { color: rgba(0,0,0,0.6) !important; }
+.as-card-cta .as-num      { color: rgba(11, 19, 32, 0.4) !important; }
+.as-card-cta .as-card-title { color: #0B1320 !important; }
+.as-card-cta .as-card-text  { color: rgba(11, 19, 32, 0.7) !important; }
 
 .as-card-cta:hover {
   border-color: var(--gold-light);
-  box-shadow: 0 8px 32px rgba(184,134,11,0.45);
+  box-shadow: 0 15px 35px var(--shadow-gold);
+  transform: translateY(-5px);
 }
 
 .as-cta-btn {
@@ -127,17 +131,17 @@
   gap: 6px;
   margin-top: auto;
   padding: 9px 20px;
-  background: #0D0D0D;
+  background: #0B1320;
   color: #FFFFFF;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 900;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 .as-cta-btn:hover {
-  background: #1A1A1A;
-  transform: translateX(-3px);
+  background: #15243C;
+  transform: translateX(-4px);
 }
 
 /* ===== RESPONSIVE ===== */

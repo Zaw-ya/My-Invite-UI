@@ -15,9 +15,12 @@
   overflow: hidden;
   direction: rtl;
 
-  /* Always black for premium look as requested */
-  background-color: #000000;
+  /* Brand slate navy background color from the second image */
+  background-color: #262938;
 }
+
+
+
 
 /* ===================================================
    RIGHT: Text Content (first in DOM → right in RTL)
@@ -38,14 +41,29 @@
 .hero-tagline {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  gap: 12px;
+  font-size: 39px;
   font-weight: 600;
   letter-spacing: 0.03em;
   justify-content: flex-start;
 
   /* dark */
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.7);
+}
+
+.hero-tagline-logo {
+  animation: spinSlow 20s linear infinite;
+  filter: drop-shadow(0 2px 8px rgba(197, 168, 128, 0.25));
+  transition: transform 0.3s ease;
+}
+.hero-tagline-logo:hover {
+  transform: scale(1.1);
+  animation-play-state: paused;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .hero-tagline-icon {
@@ -187,24 +205,43 @@
   background: transparent;
 }
 .hero-tag:hover {
-  border-color: rgba(255,255,255,0.55);
+  border-color: var(--gold);
   color: #FFFFFF;
-  background: rgba(255,255,255,0.08);
+  background: rgba(197, 168, 128, 0.08);
 }
 .hero-tag.active {
-  background: #FFFFFF;
-  border-color: #FFFFFF;
-  color: #0D0D0D;
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0B1320;
+  box-shadow: 0 4px 15px var(--shadow-gold);
 }
 
 /* ===================================================
-   LEFT: Geometric Overlapping Frames
-   (second in DOM → left in RTL)
+   LEFT: Brand Logo Full Height
    =================================================== */
 .hero-geo-side {
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
+
+/* The brand emblem fills the full viewport height.
+   Centered vertically, right portion visible — left portion cropped */
+.hero-brand-emblem {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  height: 100vh !important;
+  width: auto !important;
+  transform: translate(-30%, -50%) !important;
+  opacity: 0.22 !important;
+  filter: brightness(0) invert(1) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
 
 /* Image shown when a tag is active */
 .geo-tag-image {
@@ -213,7 +250,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 40px;
+  padding: 100px;
   z-index: 2;
   animation: geoImgFade 0.3s ease;
 }
@@ -269,10 +306,10 @@
 .geo-rect {
   position: absolute;
   background: transparent;
-  border-radius: 6px;
-
-  /* dark: white borders */
-  border: 4px solid #FFFFFF;
+  border-radius: 8px;
+  border: 2px solid rgba(197, 168, 128, 0.35);
+  box-shadow: 0 0 20px rgba(197, 168, 128, 0.05);
+  pointer-events: none;
 }
 
 /* Frame 1 — large, main tilted */
@@ -282,7 +319,8 @@
   top: 15%;
   right: 8%;
   transform: rotate(-18deg);
-  opacity: 1;
+  opacity: 0.95;
+  animation: floatF1 8s ease-in-out infinite;
 }
 
 /* Frame 2 — medium, opposite tilt */
@@ -293,6 +331,7 @@
   right: 38%;
   transform: rotate(13deg);
   opacity: 0.75;
+  animation: floatF2 10s ease-in-out infinite;
 }
 
 /* Frame 3 — smaller, top-right area */
@@ -303,6 +342,7 @@
   right: 45%;
   transform: rotate(-7deg);
   opacity: 0.5;
+  animation: floatF3 12s ease-in-out infinite;
 }
 
 /* Frame 4 — small accent, bottom */
@@ -313,6 +353,24 @@
   right: 20%;
   transform: rotate(24deg);
   opacity: 0.35;
+  animation: floatF4 9s ease-in-out infinite;
+}
+
+@keyframes floatF1 {
+  0%, 100% { transform: rotate(-18deg) translateY(0); }
+  50% { transform: rotate(-17deg) translateY(-10px) translateX(-5px); }
+}
+@keyframes floatF2 {
+  0%, 100% { transform: rotate(13deg) translateY(0); }
+  50% { transform: rotate(15deg) translateY(12px) translateX(6px); }
+}
+@keyframes floatF3 {
+  0%, 100% { transform: rotate(-7deg) translateY(0); }
+  50% { transform: rotate(-9deg) translateY(-8px) translateX(4px); }
+}
+@keyframes floatF4 {
+  0%, 100% { transform: rotate(24deg) translateY(0); }
+  50% { transform: rotate(22deg) translateY(10px) translateX(-6px); }
 }
 
 /* ===================================================

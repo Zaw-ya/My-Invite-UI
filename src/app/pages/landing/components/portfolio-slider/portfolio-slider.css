@@ -1,18 +1,24 @@
 .portfolio-slider-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-slider-inner {
   padding: 4rem 1rem;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
+  z-index: 2;
 }
 
 @media (min-width: 768px) {
-  .portfolio-slider-section {
+  .portfolio-slider-inner {
     padding: 5rem 2rem;
   }
 }
 
 @media (max-width: 640px) {
-  .portfolio-slider-section {
+  .portfolio-slider-inner {
     padding: 60px 1rem;
     min-height: 100vh;
     display: flex;
@@ -49,7 +55,7 @@
 .title-divider {
   width: 60px;
   height: 3px;
-  background: #b68d40; /* Darker Gold for visibility */
+  background: var(--gold);
   border-radius: 2px;
 }
 
@@ -74,9 +80,9 @@
 }
 
 .filter-pill {
-  background: white;
-  border: 1px solid #e0e0e0;
-  color: #555;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
   padding: 0.6rem 1.8rem;
   border-radius: 30px;
   font-size: 0.95rem;
@@ -88,22 +94,22 @@
 }
 
 .filter-pill:hover, .filter-pill:focus-visible {
-  border-color: #b68d40;
-  color: #b68d40;
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 .filter-pill.active-gold {
-  background: #b68d40;
-  border-color: #b68d40;
-  color: white;
-  box-shadow: 0 4px 12px rgba(182, 141, 64, 0.3);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg-card);
+  box-shadow: 0 4px 12px var(--shadow-gold);
 }
 
 .filter-pill.active-dark {
-  background: #1a1a1a;
-  border-color: #1a1a1a;
-  color: white;
-  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.3);
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+  box-shadow: 0 4px 12px var(--shadow);
 }
 
 .slider-navigation {
@@ -208,20 +214,20 @@
 .slider-card {
   flex: 0 0 auto;
   scroll-snap-align: start;
-  background: white;
+  background: var(--bg-card);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 30px var(--shadow);
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
-  border: 1px solid rgba(0,0,0,0.04);
+  border: 1.5px solid var(--border);
   position: relative;
 }
 
 .slider-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.12);
-  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 20px 40px var(--shadow-gold);
+  border-color: var(--gold);
 }
 
 .card-image-wrapper {

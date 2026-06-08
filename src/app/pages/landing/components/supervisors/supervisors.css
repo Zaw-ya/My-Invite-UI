@@ -1,13 +1,14 @@
 /* ===== TAB TOGGLE ===== */
 .pricing-tabs {
   display: inline-flex;
-  border: 2px solid #1A1A1A;
-  border-radius: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
   overflow: hidden;
   background: var(--bg-card);
+  padding: 4px;
 }
 .pricing-tab {
-  padding: 10px 28px;
+  padding: 8px 24px;
   font-size: 14px;
   font-weight: 700;
   font-family: 'Cairo', sans-serif;
@@ -15,28 +16,29 @@
   border: none;
   background: transparent;
   color: var(--text-secondary);
-  transition: all 0.2s ease;
-  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 50px;
 }
 .pricing-tab.active {
   background: var(--gold);
-  color: #FFFFFF;
+  color: #0B1320;
 }
 .pricing-tab:not(.active):hover { color: var(--gold); }
 
 /* ===== TABLE (sharp corners, black & white) ===== */
 .sup-table {
   background: var(--bg-card);
-  border: 2px solid #1A1A1A;
-  border-radius: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 10px 30px var(--shadow);
 }
-[data-theme="light"] .sup-table { border-color: #1A1A1A; }
+[data-theme="light"] .sup-table { border-color: var(--border); }
 
 .sup-table-header {
-  background: #1A1A1A;
-  border-bottom: none;
-  padding: 14px 20px;
+  background: var(--bg-dark-hero);
+  border-bottom: 1.5px solid var(--border);
+  padding: 16px 20px;
   text-align: center;
   font-weight: 900;
   font-size: 14px;
@@ -47,14 +49,14 @@
 .sup-row {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--border-subtle);
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.25s ease;
   direction: rtl;
 }
 .sup-row:last-child { border-bottom: none; }
-.sup-row:hover { background: rgba(0,0,0,0.03); }
-.sup-row.selected { background: rgba(184,134,11,0.06); }
+.sup-row:hover { background: rgba(197, 168, 128, 0.05); }
+.sup-row.selected { background: rgba(197, 168, 128, 0.08); }
 .sup-row-contact { cursor: default; }
 .sup-row-contact:hover { background: transparent; }
 
@@ -74,7 +76,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 2px solid #1A1A1A;
+  border: 2px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,11 +95,11 @@
 .sup-price {
   min-width: 110px;
   padding: 14px 16px;
-  border-left: 1px solid rgba(0,0,0,0.1);
+  border-left: 1.5px solid var(--border);
   text-align: right;
   font-weight: 900;
   font-size: 17px;
-  color: #1A1A1A;
+  color: var(--text);
   flex-shrink: 0;
   order: 1;
 }
@@ -113,7 +115,7 @@
 .sup-price-contact {
   min-width: 110px;
   padding: 14px 16px;
-  border-left: 1px solid rgba(0,0,0,0.1);
+  border-left: 1.5px solid var(--border);
   text-align: right;
   font-size: 13px;
   flex-shrink: 0;
@@ -157,11 +159,11 @@
 /* ===== SUPERVISOR CARD ===== */
 .sup-card {
   background: var(--bg-card);
-  border: 2px solid #1A1A1A;
-  border-radius: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
   overflow: hidden;
   text-align: center;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .sup-card:hover {
   box-shadow: 0 8px 32px var(--shadow-gold);
@@ -196,10 +198,11 @@
 
 /* ===== CITIES BOX (black) ===== */
 .cities-box {
-  background: #1A1A1A;
-  border: 2px solid #1A1A1A;
-  border-radius: 0;
+  background: var(--bg-dark-hero);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
   padding: 24px 28px;
+  box-shadow: 0 15px 35px var(--shadow);
 }
 .cities-title {
   color: #FFFFFF;
