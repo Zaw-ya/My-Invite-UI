@@ -46,9 +46,22 @@
   font-weight: 600;
   letter-spacing: 0.03em;
   justify-content: flex-start;
+  margin-bottom: 0;
 
   /* dark */
   color: rgba(255,255,255,0.7);
+}
+
+/* "من نحن" subtitle below the brand name */
+.hero-about-label {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  font-family: '29LTBukra', 'Cairo', sans-serif;
+  color: var(--gold);
+  margin: 12px 0 0 0; /* Add positive space below brand name */
+  letter-spacing: 0.04em;
+  position: relative;
+  padding-right: 0;
 }
 
 .hero-tagline-logo {
@@ -248,16 +261,10 @@
 }
 
 
-/* Image shown when a tag is active */
+/* Image shown when a tag is active — now uses carousel card style */
+/* (Kept for backward compat — no longer used in template) */
 .geo-tag-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 100px;
-  z-index: 2;
-  animation: geoImgFade 0.3s ease;
+  display: none;
 }
 
 /* ---------- CAROUSEL ---------- */
@@ -272,9 +279,9 @@
 
 .hero-carousel-card {
   position: absolute;
-  width: 280px;
-  height: 370px;
-  border-radius: 12px;
+  width: 340px;
+  height: 450px;
+  border-radius: 14px;
   overflow: hidden;
   opacity: 0;
   transform: scale(0.9) translateY(30px) rotate(-5deg);
@@ -384,7 +391,7 @@
 @media (max-width: 1024px) {
   .hero-section {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 220px;
+    grid-template-rows: auto 300px;
     min-height: 100vh;
     width: 100%;
   }
@@ -396,7 +403,7 @@
     gap: 16px;
   }
   .hero-geo-side {
-    height: 220px;
+    height: 300px;
     order: 2;
     width: 100%;
     overflow: hidden;
@@ -407,8 +414,17 @@
   .geo-rect-4 { display: none; }
   
   .hero-carousel-card {
-    width: 160px;
-    height: 210px;
+    width: 200px;
+    height: 265px;
+  }
+
+  .hero-tagline {
+    font-size: 28px;
+  }
+
+  .hero-about-label {
+    font-size: 1.4rem;
+    margin: 10px 0 0 0;
   }
 }
 
@@ -417,7 +433,7 @@
     grid-template-rows: auto auto;
   }
   .hero-geo-side {
-    height: 160px;
+    height: 220px;
     display: flex; /* Show small preview instead of hiding completely */
     justify-content: center;
     align-items: center;
@@ -438,7 +454,17 @@
   .geo-rect-3 { display: none; }
 
   .hero-carousel-card {
-    width: 120px;
-    height: 160px;
+    width: 140px;
+    height: 185px;
+  }
+
+  .hero-tagline {
+    font-size: 22px;
+    gap: 8px;
+  }
+
+  .hero-about-label {
+    font-size: 1.15rem;
+    margin: 8px 0 0 0;
   }
 }

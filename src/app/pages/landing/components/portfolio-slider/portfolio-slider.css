@@ -9,6 +9,8 @@
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -20,10 +22,12 @@
 @media (max-width: 640px) {
   .portfolio-slider-inner {
     padding: 60px 1rem;
-    min-height: 100vh;
+    min-height: auto; /* Allow height to adjust to content */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -185,8 +189,9 @@
   transform: translateY(0);
 }
 
-/* Slider Track & Container */
 .slider-container {
+  flex: 1;
+  min-width: 0;
   width: 100%;
   overflow-x: auto;
   scroll-behavior: smooth;
@@ -505,3 +510,13 @@
   .lb-title { font-size: 16px; }
   .lb-price-value { font-size: 20px; }
 }
+
+@media (max-width: 640px) {
+  .nav-btn {
+    display: none !important;
+  }
+  .slider-navigation {
+    gap: 0;
+  }
+}
+

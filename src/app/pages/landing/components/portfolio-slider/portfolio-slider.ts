@@ -151,15 +151,18 @@ export class PortfolioSliderComponent implements AfterViewInit {
 
   scrollToIndex(index: number) {
     if (!this.container) return;
-    const track = this.container.nativeElement.querySelector('.slider-track');
-    if (!track) return;
+    const container = this.container.nativeElement;
+    const cardPlusGap = this.cardWidth() + this.gap;
+    const targetScroll = index * cardPlusGap;
+
+    // Use container.scrollTo instead of scrollIntoView to prevent 
+    // the whole page/body from scrolling horizontally in RTL mode.
+    container.scrollTo({
+      left: -targetScroll,
+      behavior: 'smooth'
+    });
     
-    const card = track.children[index] as HTMLElement;
-    if (card) {
-      // scrollIntoView native alignment works perfectly across all devices and RTL/LTR
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      this.currentIndex.set(index);
-    }
+    this.currentIndex.set(index);
   }
 
   onScroll() {
