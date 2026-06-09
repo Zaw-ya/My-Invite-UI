@@ -53,19 +53,18 @@
 
     <!-- ===== MOBILE MENU ===== -->
     <div class="md:hidden mobile-menu" [class.open]="isMenuOpen">
-      <div class="container mx-auto px-5 py-6 flex flex-col gap-4 text-right">
+      <div class="container mx-auto px-5 py-3 flex flex-col gap-2 text-right">
         <a href="#" class="mobile-link" (click)="smoothScroll($event, '#')">الرئيسية</a>
         <a href="#designs" class="mobile-link" (click)="smoothScroll($event, '#designs')">التصاميم</a>
         <a href="#demo" class="mobile-link" (click)="smoothScroll($event, '#demo')">تجربة الخدمة</a>
         <a href="#packages" class="mobile-link" (click)="smoothScroll($event, '#packages')">الباقات</a>
         <a href="#additional-services" class="mobile-link" (click)="smoothScroll($event, '#additional-services')">مميزات
           الخدمة</a>
-        <a href="#about" class="mobile-link" (click)="smoothScroll($event, '#about')">عن مؤسسة بطاقتي الخاصة</a>
         <a href="#blog" class="mobile-link" (click)="smoothScroll($event, '#blog')">المدونة</a>
         <a href="#contact" class="mobile-link" (click)="smoothScroll($event, '#contact')">تواصل معنا</a>
-        <div class="pt-4 border-t" style="border-color: var(--border);">
-          <p class="text-sm mb-1" style="color: var(--text-muted);">البريد الإلكتروني</p>
-          <p class="font-bold text-sm" style="color: var(--gold);">{{ settings()['contact-email'] }}</p>
+        <div class="pt-2 border-t" style="border-color: var(--border);">
+          <p class="text-xs mb-0.5" style="color: var(--text-muted);">البريد الإلكتروني</p>
+          <p class="font-bold text-xs" style="color: var(--gold);">{{ settings()['contact-email'] }}</p>
         </div>
       </div>
     </div>
