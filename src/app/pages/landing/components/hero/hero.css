@@ -284,6 +284,7 @@
   border-radius: 14px;
   overflow: hidden;
   opacity: 0;
+  visibility: hidden;
   transform: scale(0.9) translateY(30px) rotate(-5deg);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 30px 60px rgba(0,0,0,0.8);
@@ -293,6 +294,7 @@
 
 .hero-carousel-card.active {
   opacity: 1;
+  visibility: visible;
   transform: scale(1) translateY(0) rotate(-18deg); /* Matches geo-rect-1 angle */
   z-index: 15;
 }
@@ -391,7 +393,7 @@
 @media (max-width: 1024px) {
   .hero-section {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 300px;
+    grid-template-rows: auto 360px;
     min-height: 100vh;
     width: 100%;
   }
@@ -403,7 +405,7 @@
     gap: 16px;
   }
   .hero-geo-side {
-    height: 300px;
+    height: 360px;
     order: 2;
     width: 100%;
     overflow: hidden;
@@ -414,8 +416,9 @@
   .geo-rect-4 { display: none; }
   
   .hero-carousel-card {
-    width: 200px;
-    height: 265px;
+    width: 180px;
+    height: 240px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   }
 
   .hero-tagline {
@@ -433,7 +436,7 @@
     grid-template-rows: auto auto;
   }
   .hero-geo-side {
-    height: 220px;
+    height: 260px;
     display: flex; /* Show small preview instead of hiding completely */
     justify-content: center;
     align-items: center;
@@ -454,8 +457,9 @@
   .geo-rect-3 { display: none; }
 
   .hero-carousel-card {
-    width: 140px;
-    height: 185px;
+    width: 130px;
+    height: 170px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   }
 
   .hero-tagline {
