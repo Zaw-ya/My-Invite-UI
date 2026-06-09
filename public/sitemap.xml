@@ -4,34 +4,34 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://specialcards.net/</loc>
+    <loc>https://www.specialcards.net/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://specialcards.net/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.specialcards.net/"/>
   </url>
 
   <!-- Designs Catalog -->
   <url>
-    <loc>https://specialcards.net/designs</loc>
+    <loc>https://www.specialcards.net/designs</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://specialcards.net/designs"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.specialcards.net/designs"/>
   </url>
 
   <!-- Blog Listing -->
   <url>
-    <loc>https://specialcards.net/blog</loc>
+    <loc>https://www.specialcards.net/blog</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://specialcards.net/blog"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.specialcards.net/blog"/>
   </url>
 
   <!-- Privacy Policy -->
   <url>
-    <loc>https://specialcards.net/privacy-policy</loc>
+    <loc>https://www.specialcards.net/privacy-policy</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -39,7 +39,7 @@
 
   <!-- Terms & Conditions -->
   <url>
-    <loc>https://specialcards.net/terms</loc>
+    <loc>https://www.specialcards.net/terms</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -47,7 +47,7 @@
 
   <!-- Cancellation Policy -->
   <url>
-    <loc>https://specialcards.net/cancellation-policy</loc>
+    <loc>https://www.specialcards.net/cancellation-policy</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>

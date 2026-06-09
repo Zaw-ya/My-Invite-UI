@@ -23,7 +23,7 @@ export class PrivacyPolicyComponent implements OnInit {
     this.seoService.updateSeo({
       title: 'سياسة الخصوصية | Special Cards | مؤسسة بطاقتي الخاصة',
       description: 'تعرف على سياسة الخصوصية الخاصة بموقع Special Cards مؤسسة بطاقتي الخاصة وكيف نحمي بياناتك الشخصية.',
-      canonical: 'https://specialcards.net/privacy-policy',
+      canonical: 'https://www.specialcards.net/privacy-policy',
       ogType: 'website',
     });
   }

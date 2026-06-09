@@ -61,15 +61,15 @@ export class LandingPageComponent implements OnInit {
     this.seoService.updateSeo({
       title: 'Special Cards | مؤسسة بطاقتي الخاصة | كروت دعوة رقمية للأيام الخاصة',
       description: 'كروت دعوة رقمية فاخرة لجميع مناسباتك - حفلات زواج، تخرج، أعياد ميلاد، ومناسبات خاصة. صمّم دعوتك الرقمية الآن مع Special Cards مؤسسة بطاقتي الخاصة.',
-      canonical: 'https://specialcards.net/',
+      canonical: 'https://www.specialcards.net/',
       keywords: 'كروت دعوة رقمية, دعوات زواج, دعوات تخرج, بطاقات دعوة, مناسبات خاصة, Special Cards, مؤسسة بطاقتي الخاصة',
       ogType: 'website',
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         name: 'Special Cards | مؤسسة بطاقتي الخاصة',
-        url: 'https://specialcards.net',
-        logo: 'https://specialcards.net/assets/images/logo.png',
+        url: 'https://www.specialcards.net',
+        logo: 'https://www.specialcards.net/assets/images/logo.png',
         description: 'كروت دعوة رقمية فاخرة لجميع مناسباتك - حفلات زواج، تخرج، مناسبات خاصة',
         priceRange: '$$',
         serviceType: 'Digital Invitation Cards',

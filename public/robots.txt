@@ -17,7 +17,7 @@ Allow: /site.webmanifest
 Allow: /favicon.ico
 
 # Primary sitemap
-Sitemap: https://specialcards.net/sitemap.xml
+Sitemap: https://www.specialcards.net/sitemap.xml
 
 # Crawl-delay hint (optional, respected by some bots)
 Crawl-delay: 1

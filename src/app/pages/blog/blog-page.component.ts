@@ -40,7 +40,7 @@ export class BlogPageComponent implements OnInit {
     this.seoService.updateSeo({
       title: 'مدونة Special Cards | مؤسسة بطاقتي الخاصة | نصائح وأفكار للمناسبات',
       description: 'اقرأ أحدث المقالات والنصائح حول تنظيم المناسبات وتصميم الدعوات الرقمية من خبراء Special Cards مؤسسة بطاقتي الخاصة.',
-      canonical: 'https://specialcards.net/blog',
+      canonical: 'https://www.specialcards.net/blog',
       keywords: 'مدونة مناسبات, نصائح تنظيم حفلات, أفكار دعوات, تصميم دعوة, Special Cards, مؤسسة بطاقتي الخاصة',
       ogType: 'website',
       jsonLd: {
@@ -48,12 +48,12 @@ export class BlogPageComponent implements OnInit {
         '@type': 'Blog',
         name: 'مدونة Special Cards | مؤسسة بطاقتي الخاصة',
         description: 'نصائح وأفكار للمناسبات وتصميم الدعوات الرقمية',
-        url: 'https://specialcards.net/blog',
+        url: 'https://www.specialcards.net/blog',
         publisher: {
           '@type': 'Organization',
           name: 'Special Cards | مؤسسة بطاقتي الخاصة',
-          url: 'https://specialcards.net',
-          logo: 'https://specialcards.net/assets/images/logo.png'
+          url: 'https://www.specialcards.net',
+          logo: 'https://www.specialcards.net/assets/images/logo.png'
         }
       }
     });

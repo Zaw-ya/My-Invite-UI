@@ -23,7 +23,7 @@ export class TermsComponent implements OnInit {
     this.seoService.updateSeo({
       title: 'الشروط والأحكام | Special Cards | مؤسسة بطاقتي الخاصة',
       description: 'اقرأ شروط الاستخدام والأحكام الخاصة بخدمات موقع Special Cards مؤسسة بطاقتي الخاصة.',
-      canonical: 'https://specialcards.net/terms',
+      canonical: 'https://www.specialcards.net/terms',
       ogType: 'website',
     });
   }
