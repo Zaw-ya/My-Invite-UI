@@ -425,23 +425,58 @@ button[disabled] { opacity: 0.7; cursor: not-allowed; }
 
 /* ===== MOBILE RESPONSIVENESS ===== */
 @media (max-width: 640px) {
-  .contact-form-card {
-    padding: 24px;
-    border-radius: 20px;
+  /* Override the global section-py centering — content is too tall to fit 100vh */
+  .contact-dark-section.section-py {
+    min-height: auto !important;
+    justify-content: flex-start !important;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
-  
+
+  .contact-dark-section .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .contact-form-card {
+    padding: 20px 16px;
+    border-radius: 18px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-form-card .form-input,
+  .contact-form-card textarea.form-input {
+    font-size: 14px;
+    padding: 11px 14px;
+  }
+
+  .contact-form-card .btn-gold {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
   .contact-icon-box {
     width: 44px;
     height: 44px;
   }
-  
+
   .contact-item {
     gap: 12px;
   }
-  
+
   .payment-badge {
     padding: 8px 14px;
     min-width: 70px;
     height: 40px;
+  }
+
+  .phone-field {
+    flex-wrap: nowrap;
+  }
+
+  .phone-number-input {
+    min-width: 0;
+    flex: 1;
   }
 }
