@@ -462,3 +462,23 @@
   .demo-heading { font-size: 1.8rem; }
   .demo-heading-icon { width: 26px; height: 26px; }
 }
+
+@media (max-width: 640px) {
+  .demo-card {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .demo-form-panel {
+    padding: 24px 16px;
+  }
+  .demo-text-panel {
+    padding: 24px 16px;
+  }
+  .demo-phone-row {
+    gap: 6px;
+  }
+  .demo-country-btn {
+    padding: 0 8px;
+  }
+}

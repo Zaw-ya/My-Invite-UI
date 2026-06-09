@@ -436,12 +436,16 @@ button[disabled] { opacity: 0.7; cursor: not-allowed; }
   .contact-dark-section .container {
     padding-left: 16px;
     padding-right: 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .contact-form-card {
     padding: 20px 16px;
     border-radius: 18px;
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
   }
 
