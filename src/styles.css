@@ -137,6 +137,16 @@
   --footer-bg: #1E202C;
   --footer-text: rgba(237, 234, 228, 0.6);
   --footer-head: #edeae4;
+
+  /* ── GLOBAL WATERMARK — single source of truth ─── */
+  --wm-width: 120%;
+  --wm-height: 160%;
+  --wm-translate-x: -25%;
+  --wm-translate-y: 30%;
+  --wm-opacity-light: 0.1;
+  --wm-opacity-dark: 0.08;
+  --wm-light-img: url('/assets/images/PNGs/tab.png');
+  --wm-dark-img: url('/assets/images/PNGs/logos-08.png');
 }
 
 [data-theme="dark"] {
@@ -936,49 +946,87 @@ body {
 }
 
 /* ===================================================
-   LIGHT SECTIONS — Cream background + bottom-left watermark
+   GLOBAL WATERMARK — Unified bottom-left positioning
+   Single source of truth for ALL sections.
+   Uses --wm-* variables from :root.
    =================================================== */
-/* ── LIGHT SECTIONS ─────────────────────────────────── */
+
+/* ── Shared section setup (position context + clip) ── */
+.portfolio-slider-section,
+.pricing-section,
+.blog-dark-section,
+.supervisors-section,
+.demo-section,
+.as-section,
+.about-section,
+.contact-dark-section {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* ── Light section backgrounds ────────────────────── */
 .portfolio-slider-section,
 .pricing-section,
 .blog-dark-section,
 .supervisors-section {
   background-color: #edeae4 !important;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Watermark: dark logo, bottom-left, large */
+/* ── THE watermark pseudo-element (one rule for all) ─ */
+.portfolio-slider-section::before,
+.pricing-section::before,
+.blog-dark-section::before,
+.supervisors-section::before,
+.demo-section::before,
+.as-section::before,
+.about-section::before,
+.contact-dark-section::before {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: var(--wm-width) !important;
+  height: var(--wm-height) !important;
+  background-repeat: no-repeat !important;
+  background-position: left bottom !important;
+  background-size: contain !important;
+  transform: translate(var(--wm-translate-x), var(--wm-translate-y)) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Light sections → dark logo watermark */
 .portfolio-slider-section::before,
 .pricing-section::before,
 .blog-dark-section::before,
 .supervisors-section::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50%;
-  height: 70%;
-  background-image: url('/assets/images/PNGs/tab.png');
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: contain;
-  transform: translate(-25%, 30%);
-  opacity: 0.1;
-  pointer-events: none;
-  z-index: 0;
+  background-image: var(--wm-light-img) !important;
+  opacity: var(--wm-opacity-light) !important;
 }
 
-/* Keep light section content above watermark */
+/* Dark sections → gold/light logo watermark */
+.demo-section::before,
+.as-section::before,
+.about-section::before,
+.contact-dark-section::before {
+  background-image: var(--wm-dark-img) !important;
+  opacity: var(--wm-opacity-dark) !important;
+}
+
+/* ── Keep ALL section content above watermark ──────── */
 .portfolio-slider-inner,
-.pricing-section>.container,
-.blog-dark-section>.container,
-.supervisors-section>.container {
+.pricing-section > .container,
+.blog-dark-section > .container,
+.supervisors-section > .container,
+.demo-section > .container,
+.as-section > .container,
+.about-section > .container,
+.contact-dark-section > .container {
   position: relative;
   z-index: 2;
 }
 
-/* Dark Theme: restore backgrounds, hide light watermark */
+/* ── Dark theme overrides ─────────────────────────── */
 [data-theme="dark"] .portfolio-slider-section,
 [data-theme="dark"] .pricing-section,
 [data-theme="dark"] .blog-dark-section,
@@ -986,48 +1034,10 @@ body {
   background-color: var(--bg) !important;
 }
 
+/* Hide light-section watermark in dark theme */
 [data-theme="dark"] .portfolio-slider-section::before,
 [data-theme="dark"] .pricing-section::before,
 [data-theme="dark"] .blog-dark-section::before,
 [data-theme="dark"] .supervisors-section::before {
   display: none !important;
-}
-
-/* ── DARK SECTIONS ───────────────────────────────────── */
-.demo-section,
-.as-section,
-.about-section,
-.contact-dark-section {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Watermark: gold logo, bottom-left, large */
-.demo-section::before,
-.as-section::before,
-.about-section::before,
-.contact-dark-section::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 120%;
-  height: 160%;
-  background-image: url('/assets/images/PNGs/logos-08.png');
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: contain;
-  transform: translate(-25%, 30%);
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Keep dark section content above watermark */
-.demo-section > .container,
-.as-section > .container,
-.about-section > .container,
-.contact-dark-section > .container {
-  position: relative;
-  z-index: 2;
 }

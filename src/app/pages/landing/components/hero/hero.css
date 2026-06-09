@@ -227,15 +227,20 @@
   justify-content: flex-start;
 }
 
-/* The brand emblem fills the full viewport height.
-   Centered vertically, right portion visible — left portion cropped */
+/* The brand emblem — unified bottom-left watermark positioning.
+   Uses the SAME coordinates as the global --wm-* system in styles.css
+   to guarantee pixel-perfect consistency across all sections. */
 .hero-brand-emblem {
   position: absolute !important;
-  top: 50% !important;
+  bottom: 0 !important;
   left: 0 !important;
-  height: 100vh !important;
-  width: auto !important;
-  transform: translate(-30%, -50%) !important;
+  top: auto !important;
+  right: auto !important;
+  width: var(--wm-width, 120%) !important;
+  height: var(--wm-height, 160%) !important;
+  object-fit: contain !important;
+  object-position: left bottom !important;
+  transform: translate(var(--wm-translate-x, -25%), var(--wm-translate-y, 30%)) !important;
   opacity: 0.22 !important;
   filter: brightness(0) invert(1) !important;
   pointer-events: none !important;
