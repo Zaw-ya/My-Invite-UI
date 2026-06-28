@@ -5,7 +5,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.specialcards.net/</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.specialcards.net/"/>
@@ -14,7 +14,7 @@
   <!-- Designs Catalog -->
   <url>
     <loc>https://www.specialcards.net/designs</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.specialcards.net/designs"/>
@@ -23,7 +23,7 @@
   <!-- Blog Listing -->
   <url>
     <loc>https://www.specialcards.net/blog</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.specialcards.net/blog"/>
@@ -51,6 +51,13 @@
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <!-- Blog Post: 🎉 مرحبًا بكم في SpecialCards – بداية رحلة جديدة في عالم البطاقات الخاصة -->
+  <url>
+    <loc>https://www.specialcards.net/blog/specialcards</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

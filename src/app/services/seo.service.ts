@@ -18,7 +18,7 @@ export interface SeoConfig {
 }
 
 const SITE_URL = 'https://www.specialcards.net';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/images/logo.png`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/images/tab.png`;
 
 const PAGE_SEO: Record<string, SeoConfig> = {
   '/': {

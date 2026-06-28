@@ -4,7 +4,6 @@ Allow: /
 # Block crawling of Angular-internal and admin-only paths
 Disallow: /api/
 Disallow: /*.json$
-Disallow: /*?*
 
 # Allow critical assets explicitly
 Allow: /image/

@@ -53,7 +53,7 @@ export class BlogPageComponent implements OnInit {
           '@type': 'Organization',
           name: 'Special Cards | مؤسسة بطاقتي الخاصة',
           url: 'https://www.specialcards.net',
-          logo: 'https://www.specialcards.net/assets/images/logo.png'
+          logo: 'https://www.specialcards.net/assets/images/tab.png'
         }
       }
     });
