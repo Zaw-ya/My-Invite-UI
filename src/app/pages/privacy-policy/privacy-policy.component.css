@@ -8,7 +8,7 @@
   background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,215,0,0.04) 100%);
   border-bottom: 1px solid rgba(255,215,0,0.12);
   padding: 100px 0 48px;
-  text-align: right;
+  text-align: start;
 }
 .policy-title {
   font-size: clamp(2rem, 4vw, 3rem);
@@ -66,8 +66,8 @@
   font-weight: 800;
   color: var(--heading);
   margin-bottom: 18px;
-  padding-right: 14px;
-  border-right: 3px solid var(--gold);
+  padding-inline-start: 14px;
+  border-inline-start: 3px solid var(--gold);
 }
 .policy-section p {
   color: var(--text, rgba(255,255,255,0.75));
@@ -87,13 +87,13 @@
   color: var(--text, rgba(255,255,255,0.75));
   line-height: 1.8;
   font-size: 15px;
-  padding-right: 18px;
+  padding-inline-start: 18px;
   position: relative;
 }
 .policy-section ul li::before {
   content: '';
   position: absolute;
-  right: 0;
+  inset-inline-start: 0;
   top: 10px;
   width: 6px;
   height: 6px;

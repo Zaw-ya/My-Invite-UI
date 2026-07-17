@@ -8,15 +8,22 @@
 /* ---------- SECTION BASE ---------- */
 .hero-section {
   position: relative;
-  height: 100vh;
   min-height: 700px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
-  direction: rtl;
+  /* No explicit direction here — inherits the document's dir (set by
+     LanguageService), so the grid's column order mirrors automatically:
+     text-content stays first in the reading direction, geo-side second. */
 
-  /* Brand slate navy background color from the second image */
-  background-color: #262938;
+  /* Routed through the same dark-ground token every other dark section
+     (cities-box, sup-table-header) already uses, so the hero darkens
+     correctly in dark mode instead of staying pinned to the light-mode
+     value. height is intentionally NOT forced to 100vh — the section's
+     own generous content padding (see .hero-content-side) already gives
+     it a tall, unhurried feel without hard-clipping content on short
+     viewports; min-height keeps a floor for very short screens only. */
+  background-color: var(--bg-dark-hero);
 }
 
 
@@ -30,8 +37,9 @@
   flex-direction: column;
   justify-content: center;
   /* padding-top increased to 140px to account for fixed navbar (~80-100px) */
-  padding: 140px 56px 60px 32px;
-  text-align: right;
+  padding-block: 140px 60px;
+  padding-inline: 32px 56px;
+  text-align: start;
   gap: 22px;
   position: relative;
   z-index: 2;
@@ -42,7 +50,10 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-size: 39px;
+  /* Fluid scale, matching the clamp() pattern already used by
+     .hero-about-label/.hero-heading below, instead of a fixed size
+     overridden per-breakpoint. */
+  font-size: clamp(1.375rem, 4vw, 2.4375rem);
   font-weight: 600;
   letter-spacing: 0.03em;
   justify-content: flex-start;
@@ -56,12 +67,11 @@
 .hero-about-label {
   font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 700;
-  font-family: '29LTBukra', 'Cairo', sans-serif;
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
   color: var(--gold);
   margin: 12px 0 0 0; /* Add positive space below brand name */
   letter-spacing: 0.04em;
   position: relative;
-  padding-right: 0;
 }
 
 .hero-tagline-logo {
@@ -77,87 +87,6 @@
 @keyframes spinSlow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-.hero-tagline-icon {
-  width: 15px;
-  height: 15px;
-}
-
-/* ---------- LOGO ---------- */
-.hero-logo-area {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 14px;
-}
-
-.hero-logo-text {
-  text-align: right;
-  line-height: 1.0;
-}
-
-.hero-logo-name {
-  display: block;
-  font-size: clamp(1.9rem, 3.8vw, 3rem);
-  font-weight: 900;
-  font-family: '29LTBukra', 'Cairo', sans-serif;
-  line-height: 1.0;
-
-  /* dark */
-  color: #FFFFFF;
-}
-
-.hero-logo-tld {
-  display: block;
-  font-size: clamp(0.85rem, 1.4vw, 1.2rem);
-  font-weight: 400;
-  font-family: '29LTBukra', 'Cairo', sans-serif;
-  margin-top: 2px;
-  text-align: left;
-
-  /* dark */
-  color: rgba(255,255,255,0.5);
-}
-
-/* Mini logo geo icon */
-.hero-logo-icon {
-  width: 68px;
-  height: 70px;
-  position: relative;
-  flex-shrink: 0;
-}
-.hero-logo-geo-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.hero-logo-geo {
-  position: absolute;
-  background-color: transparent;
-  border-radius: 3px;
-}
-
-/* dark: white borders */
-.hero-logo-geo-1 {
-  width: 36px; height: 48px;
-  top: 0; right: 0;
-  transform: rotate(-16deg);
-  border: 3px solid #FFFFFF;
-}
-.hero-logo-geo-2 {
-  width: 28px; height: 36px;
-  top: 14px; right: 18px;
-  transform: rotate(12deg);
-  opacity: 0.6;
-  border: 3px solid #FFFFFF;
-}
-.hero-logo-geo-3 {
-  width: 20px; height: 26px;
-  bottom: 2px; right: 5px;
-  transform: rotate(-6deg);
-  opacity: 0.35;
-  border: 2.5px solid #FFFFFF;
 }
 
 /* ---------- MAIN HEADING ---------- */
@@ -192,6 +121,14 @@
 }
 
 /* ---------- EVENT TAGS ---------- */
+.hero-tags-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
 .hero-tags {
   display: flex;
   flex-wrap: wrap;
@@ -207,7 +144,7 @@
   border-radius: 50px;
   font-size: 12px;
   font-weight: 600;
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-body, 'Cairo', sans-serif);
   transition: all 0.25s ease;
   cursor: pointer;
   white-space: nowrap;
@@ -261,12 +198,6 @@
 }
 
 
-/* Image shown when a tag is active — now uses carousel card style */
-/* (Kept for backward compat — no longer used in template) */
-.geo-tag-image {
-  display: none;
-}
-
 /* ---------- CAROUSEL ---------- */
 .hero-cards-wrapper {
   position: absolute;
@@ -297,6 +228,7 @@
   visibility: visible;
   transform: scale(1) translateY(0) rotate(-18deg); /* Matches geo-rect-1 angle */
   z-index: 15;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 45px var(--shadow-gold);
 }
 
 .hero-carousel-card img {
@@ -312,9 +244,34 @@
   pointer-events: none;
 }
 
-@keyframes geoImgFade {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+/* One-time shine sweep — plays when a card becomes the featured one
+   (tag selected, or the auto-rotation lands on it). Reuses the same
+   diagonal-sweep gesture already established on .btn-gold/.demo-submit-btn,
+   applied here as the hero's signature "reveal" flourish. */
+.card-shine {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.card-shine::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 40%;
+  height: 140%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: translateX(-100%) rotate(8deg);
+  opacity: 0;
+}
+.hero-carousel-card.active .card-shine::after {
+  animation: heroCardShine 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s 1;
+}
+@keyframes heroCardShine {
+  0% { transform: translateX(-100%) rotate(8deg); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateX(320%) rotate(8deg); opacity: 0; }
 }
 
 .geo-rect {
@@ -326,65 +283,28 @@
   pointer-events: none;
 }
 
-/* Frame 1 — large, main tilted */
+/* Frame 1 — the sole remaining geo frame. Kept because its rotation
+   (-18deg) deliberately echoes the active carousel card's own rotation,
+   so it reads as a depth/frame echo behind the one real focal point
+   rather than a second competing shape. Frames 2-4 were pure ambient
+   decoration with no content relationship and were removed: four
+   independently-animated empty frames plus the carousel plus the brand
+   watermark meant up to six simultaneously-moving elements competing
+   for attention in one view, which is what the hero's single-focal-point
+   composition rule argues against. */
 .geo-rect-1 {
   width: 300px;
   height: 390px;
   top: 15%;
-  right: 8%;
+  inset-inline-end: 8%;
   transform: rotate(-18deg);
   opacity: 0.95;
   animation: floatF1 8s ease-in-out infinite;
 }
 
-/* Frame 2 — medium, opposite tilt */
-.geo-rect-2 {
-  width: 240px;
-  height: 310px;
-  top: 28%;
-  right: 38%;
-  transform: rotate(13deg);
-  opacity: 0.75;
-  animation: floatF2 10s ease-in-out infinite;
-}
-
-/* Frame 3 — smaller, top-right area */
-.geo-rect-3 {
-  width: 180px;
-  height: 240px;
-  top: 4%;
-  right: 45%;
-  transform: rotate(-7deg);
-  opacity: 0.5;
-  animation: floatF3 12s ease-in-out infinite;
-}
-
-/* Frame 4 — small accent, bottom */
-.geo-rect-4 {
-  width: 120px;
-  height: 160px;
-  bottom: 10%;
-  right: 20%;
-  transform: rotate(24deg);
-  opacity: 0.35;
-  animation: floatF4 9s ease-in-out infinite;
-}
-
 @keyframes floatF1 {
   0%, 100% { transform: rotate(-18deg) translateY(0); }
   50% { transform: rotate(-17deg) translateY(-10px) translateX(-5px); }
-}
-@keyframes floatF2 {
-  0%, 100% { transform: rotate(13deg) translateY(0); }
-  50% { transform: rotate(15deg) translateY(12px) translateX(6px); }
-}
-@keyframes floatF3 {
-  0%, 100% { transform: rotate(-7deg) translateY(0); }
-  50% { transform: rotate(-9deg) translateY(-8px) translateX(4px); }
-}
-@keyframes floatF4 {
-  0%, 100% { transform: rotate(24deg) translateY(0); }
-  50% { transform: rotate(22deg) translateY(10px) translateX(-6px); }
 }
 
 /* ===================================================
@@ -410,19 +330,12 @@
     width: 100%;
     overflow: hidden;
   }
-  .geo-rect-1 { width: 180px; height: 230px; top: 10%; right: 10%; }
-  .geo-rect-2 { width: 140px; height: 180px; top: 25%; right: 35%; }
-  .geo-rect-3 { width: 100px; height: 130px; top: 3%; right: 50%; }
-  .geo-rect-4 { display: none; }
-  
+  .geo-rect-1 { width: 180px; height: 230px; top: 10%; inset-inline-end: 10%; }
+
   .hero-carousel-card {
     width: 180px;
     height: 240px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  }
-
-  .hero-tagline {
-    font-size: 28px;
   }
 
   .hero-about-label {
@@ -446,15 +359,12 @@
     justify-content: center;
     gap: 14px;
   }
-  .hero-logo-name { font-size: 1.75rem; }
   .hero-heading { font-size: 1.25rem; line-height: 1.3; }
   .hero-tags { justify-content: center; gap: 6px; }
   .hero-tag { padding: 4px 12px; font-size: 11px; }
   .hero-body-text p { font-size: 12px; line-height: 1.7; }
 
-  .geo-rect-1 { width: 120px; height: 160px; top: 10%; right: 25%; }
-  .geo-rect-2 { width: 100px; height: 130px; top: 20%; right: 45%; }
-  .geo-rect-3 { display: none; }
+  .geo-rect-1 { width: 120px; height: 160px; top: 10%; inset-inline-end: 25%; }
 
   .hero-carousel-card {
     width: 130px;
@@ -463,7 +373,6 @@
   }
 
   .hero-tagline {
-    font-size: 22px;
     gap: 8px;
   }
 

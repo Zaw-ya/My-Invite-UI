@@ -6,17 +6,17 @@
 <main class="landing-main" style="overflow-x: hidden;">
   <app-hero></app-hero>
 
-  <!-- <div appScrollReveal revealDirection="up">
-    <app-about></app-about>
-  </div> -->
-
   <div id="designs" appScrollReveal revealDirection="right">
     <app-portfolio-slider [invitations]="invitations()" [categories]="categories()"></app-portfolio-slider>
   </div>
 
-  <!-- <div appScrollReveal revealDirection="up">
-    <app-events></app-events>
-  </div> -->
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-additional-services></app-additional-services>
+  </div>
+
+  <div id="how-it-works" appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-how-it-works></app-how-it-works>
+  </div>
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-demo-form></app-demo-form>
@@ -27,16 +27,8 @@
   </div>
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
-    <app-additional-services></app-additional-services>
-  </div>
-
-  <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-supervisors></app-supervisors>
   </div>
-
-  <!-- <div appScrollReveal revealDirection="up" [revealDelay]="50">
-    <app-testimonials [testimonials]="testimonials()"></app-testimonials>
-  </div> -->
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-contact></app-contact>

@@ -5,22 +5,25 @@
 
     <!-- Page Header -->
     <div class="text-center mb-16">
-      <span class="blog-label">المدونة</span>
-      <h1 class="section-title mt-4">
-        أفكار وإلهام <span>لمناسبتك</span>
-      </h1>
+      <span class="blog-label">{{ 'blogPage.label' | transloco }}</span>
+      <h1 class="section-title mt-4" [innerHTML]="'blogPage.heading' | transloco"></h1>
       <p class="section-sub mt-4">
-        نصائح وتصاميم وأفكار من فريق My Invite لتنظيم مناسبتك بأسلوب فاخر
+        {{ 'blogPage.subtitle' | transloco }}
       </p>
     </div>
 
-    <!-- Category Filter -->
+    <!-- Category Filter (backend-provided category names, unchanged) -->
     <div class="blog-filter-wrap mb-10">
       <div class="blog-filter">
+        <button
+          class="tag-pill"
+          [class.active]="activeCategory() === null"
+          (click)="setCategory(null)"
+        >{{ 'blogPage.categoryAll' | transloco }}</button>
         @for (cat of categories(); track cat) {
           <button
             class="tag-pill"
-            [class.active]="activeCategory === cat"
+            [class.active]="activeCategory() === cat"
             (click)="setCategory(cat)"
           >{{ cat }}</button>
         }
@@ -46,27 +49,25 @@
     <!-- Blog Posts Grid -->
     @if (filteredPosts().length > 0) {
       <!-- Featured first post (large) -->
-      @if (activeCategory === 'الكل' && filteredPosts().length > 0) {
+      @if (activeCategory() === null && filteredPosts().length > 0) {
         <article class="blog-card-featured group" (click)="navigateToPost(filteredPosts()[0])">
           <div class="featured-img-wrap">
             <img [src]="filteredPosts()[0].imageUrl"
                  [alt]="filteredPosts()[0].altText || filteredPosts()[0].title"
                  class="featured-img group-hover:scale-105">
             <div class="featured-gradient"></div>
-            <span class="blog-cat-badge">{{ filteredPosts()[0].category }}</span>
+            <span class="blog-cat-badge" dir="rtl">{{ filteredPosts()[0].category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
           </div>
           <div class="featured-content">
             <div class="blog-meta-row">
               <span class="blog-date">{{ filteredPosts()[0].date | date:'yyyy/MM/dd' }}</span>
               <span class="blog-dot">•</span>
-              <span class="blog-read-time">{{ filteredPosts()[0].readTime }}</span>
-              @if (filteredPosts()[0].author) {
-                <span class="blog-dot">•</span>
-                <span class="blog-author">{{ filteredPosts()[0].author }}</span>
-              }
+              <span class="blog-read-time">{{ 'blogPostDetail.readTimeTemplate' | transloco: { count: filteredPosts()[0].readMinutes } }}</span>
+              <span class="blog-dot">•</span>
+              <span class="blog-author">{{ filteredPosts()[0].author || ('blogPostDetail.defaultAuthor' | transloco) }}</span>
             </div>
-            <h2 class="featured-title">{{ filteredPosts()[0].title }}</h2>
-            <p class="featured-excerpt">{{ filteredPosts()[0].excerpt }}</p>
+            <h2 class="featured-title" dir="rtl">{{ filteredPosts()[0].title }}</h2>
+            <p class="featured-excerpt" dir="rtl">{{ filteredPosts()[0].excerpt }}</p>
             <div class="featured-footer">
               @if (filteredPosts()[0].tags) {
                 <div class="tag-list">
@@ -76,7 +77,7 @@
                 </div>
               }
               <button class="blog-read-more-btn">
-                اقرأ المقال
+                {{ 'blogPage.readArticle' | transloco }}
                 <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
               </button>
             </div>
@@ -86,7 +87,7 @@
 
       <!-- Regular Grid (rest of posts) -->
       <div class="blog-grid mt-8">
-        @for (post of (activeCategory === 'الكل' ? filteredPosts().slice(1) : filteredPosts()); track post.id) {
+        @for (post of (activeCategory() === null ? filteredPosts().slice(1) : filteredPosts()); track post.id) {
           <article class="blog-card-large group" (click)="navigateToPost(post)">
             <!-- Image -->
             <div class="blog-img-wrap">
@@ -94,7 +95,7 @@
                    [alt]="post.altText || post.title"
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <div class="blog-img-gradient"></div>
-              <span class="blog-cat-badge">{{ post.category }}</span>
+              <span class="blog-cat-badge" dir="rtl">{{ post.category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
             </div>
 
             <!-- Content -->
@@ -102,21 +103,19 @@
               <div class="blog-meta-row">
                 <span class="blog-date">{{ post.date | date:'yyyy/MM/dd' }}</span>
                 <span class="blog-dot">•</span>
-                <span class="blog-read-time">{{ post.readTime }}</span>
+                <span class="blog-read-time">{{ 'blogPostDetail.readTimeTemplate' | transloco: { count: post.readMinutes } }}</span>
               </div>
 
-              <h3 class="blog-title">{{ post.title }}</h3>
-              <p class="blog-excerpt">{{ post.excerpt }}</p>
+              <h3 class="blog-title" dir="rtl">{{ post.title }}</h3>
+              <p class="blog-excerpt" dir="rtl">{{ post.excerpt }}</p>
 
               <div class="blog-card-footer">
-                @if (post.author) {
-                  <span class="blog-author-chip">
-                    <lucide-icon name="user" class="w-3 h-3"></lucide-icon>
-                    {{ post.author }}
-                  </span>
-                }
+                <span class="blog-author-chip">
+                  <lucide-icon name="user" class="w-3 h-3"></lucide-icon>
+                  {{ post.author || ('blogPostDetail.defaultAuthor' | transloco) }}
+                </span>
                 <button class="blog-read-more-btn">
-                  اقرأ المزيد
+                  {{ 'blogPage.readMore' | transloco }}
                   <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
                 </button>
               </div>
@@ -130,7 +129,7 @@
     @if (filteredPosts().length === 0 && blogPosts().length > 0) {
       <div class="text-center py-16">
         <lucide-icon name="file-x" class="w-16 h-16 mx-auto mb-4" style="color: var(--text-muted);"></lucide-icon>
-        <p class="text-lg" style="color: var(--text-muted);">لا توجد مقالات في هذا القسم</p>
+        <p class="text-lg" style="color: var(--text-muted);">{{ 'blogPage.emptyState' | transloco }}</p>
       </div>
     }
 

@@ -1,5 +1,11 @@
 /* Google Fonts must be first */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap');
+/* English kicker/eyebrow voice (Section 5, bilingual typography plan) — a
+   tiny CSS import, not a font download: browsers only fetch the actual
+   font file once something renders with this font-family, so Arabic
+   visitors never pay for this even though the @font-face rule is present
+   globally. See FontService for how each language's fonts get applied. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* ===================================================
    BRAND TYPOGRAPHY — ManchetteFine & Thmanyah Serif
@@ -129,6 +135,24 @@
   --shadow: rgba(38, 41, 56, 0.06);
   --shadow-gold: rgba(197, 168, 128, 0.15);
 
+  /* ── CARD RADIUS SCALE — the only two radii any card/panel should use ── */
+  --radius-card: 16px;
+  /* standard content card: feature/step cards, image wrappers, panels */
+  --radius-card-lg: 20px;
+  /* showcase card: portfolio, pricing, form panels — the page's "biggest" cards */
+
+  /* ── CARD SHADOW SCALE — cards are flat/bordered at rest, shadow is earned on hover only ── */
+  --shadow-card-resting: 0 10px 30px var(--shadow);
+  /* showcase cards that read as already-elevated at rest (portfolio, pricing) */
+  --shadow-card-hover: 0 12px 40px var(--shadow-gold);
+  /* standard card hover */
+  --shadow-card-hover-lg: 0 20px 40px var(--shadow-gold);
+  /* showcase card hover (portfolio) */
+  --shadow-card-hover-xl: 0 25px 50px var(--shadow-gold);
+  /* highest-stakes card hover (pricing) */
+  --shadow-card-hover-dark: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 15px var(--shadow-gold);
+  /* card sitting directly on a dark section background */
+
   --navbar-bg: rgba(255, 255, 255, 0.85);
   --navbar-border: rgba(38, 41, 56, 0.08);
   --ticker-bg: #262938;
@@ -147,6 +171,19 @@
   --wm-opacity-dark: 0.08;
   --wm-light-img: url('/assets/images/PNGs/tab.png');
   --wm-dark-img: url('/assets/images/PNGs/logos-08.png');
+
+  /* ── TYPOGRAPHY TOKENS — set per-language by FontService ──
+     Arabic values here are the defaults (Arabic is the default language),
+     identical to what html/body/.font-display/.section-title already
+     hardcoded, so nothing visually changes until a language switch
+     actually occurs. FontService overwrites these on document.documentElement
+     at runtime; component CSS should read fonts through these variables
+     rather than hardcoding a family, exactly like the existing --gold/
+     --bg-card token pattern already used throughout this stylesheet. */
+  --font-display: 'ManchetteFine', 'Thmanyah Serif Display', '29LTBukra', 'Cairo', sans-serif;
+  --font-heading: '29LTBukra', 'Cairo', sans-serif;
+  --font-body: 'ManchetteFine', 'Thmanyah Serif', 'Cairo', sans-serif;
+  --font-kicker: '29LTBukra', 'Cairo', sans-serif;
 }
 
 [data-theme="dark"] {
@@ -187,8 +224,13 @@
    BASE RESET & RTL
    =================================================== */
 html {
-  direction: rtl;
-  font-family: 'ManchetteFine', 'Thmanyah Serif', 'Cairo', sans-serif;
+  /* `direction` is intentionally NOT hardcoded here — the `dir` attribute
+     on <html> is now set dynamically by LanguageService (per the active
+     language's registry entry), server-side before render, so it stays
+     correct for both RTL and LTR languages. A CSS `direction` declaration
+     here would take cascade precedence over the attribute and silently
+     break LTR. See Phase 0 Discovery Report's RTL/LTR findings. */
+  font-family: var(--font-body, 'ManchetteFine', 'Thmanyah Serif', 'Cairo', sans-serif);
   scroll-behavior: smooth;
   background-color: var(--bg);
   color: var(--text);
@@ -201,7 +243,7 @@ body {
   padding: 0;
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'ManchetteFine', 'Thmanyah Serif', 'Cairo', sans-serif;
+  font-family: var(--font-body, 'ManchetteFine', 'Thmanyah Serif', 'Cairo', sans-serif);
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   max-width: 100vw;
@@ -221,7 +263,7 @@ body {
    TYPOGRAPHY HELPERS
    =================================================== */
 .font-display {
-  font-family: 'ManchetteFine', 'Thmanyah Serif Display', '29LTBukra', 'Cairo', sans-serif;
+  font-family: var(--font-display, 'ManchetteFine', 'Thmanyah Serif Display', '29LTBukra', 'Cairo', sans-serif);
 }
 
 /* ===================================================
@@ -264,7 +306,10 @@ body {
    =================================================== */
 .btn-gold {
   background-color: var(--gold);
-  color: #FFFFFF;
+  /* #0B1320 matches the text-on-gold convention already used
+     independently 14+ times elsewhere (hero tags, pricing tab, feature
+     checks, demo/pricing CTAs) — this was the one outlier at white. */
+  color: #0B1320;
   font-family: 'Cairo', sans-serif;
   font-weight: 700;
   border-radius: 50px;
@@ -384,7 +429,7 @@ body {
    SECTION TITLE
    =================================================== */
 .section-title {
-  font-family: '29LTBukra', 'Cairo', sans-serif;
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
   font-weight: 700;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   color: var(--text);
@@ -453,13 +498,13 @@ body {
 .card {
   background: var(--bg-card);
   border: 1.5px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-card);
   padding: 28px;
   transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease !important;
 }
 
 .card:hover {
-  box-shadow: 0 12px 40px var(--shadow-gold);
+  box-shadow: var(--shadow-card-hover);
   transform: translateY(-4px);
   border-color: var(--gold);
 }
@@ -744,7 +789,8 @@ body {
    =================================================== */
 .as-grid .as-card,
 .grid .blog-card,
-.grid .sup-card {
+.grid .sup-card,
+.how-grid .how-card {
   opacity: 0;
   transform: translateY(30px) scale(0.96);
   filter: blur(4px);
@@ -756,7 +802,8 @@ body {
 /* Triggered when parent section is revealed */
 .sr-visible .as-grid .as-card,
 .sr-visible .grid .blog-card,
-.sr-visible .grid .sup-card {
+.sr-visible .grid .sup-card,
+.sr-visible .how-grid .how-card {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
@@ -798,6 +845,15 @@ body {
 .grid .sup-card:nth-child(6) {
   transition-delay: 0.40s;
 }
+
+/* How It Works: a slower, more deliberate cascade than the standard
+   feature-grid stagger above — this is the page's "trust turn," so
+   each step is meant to be read as it arrives, not popped in at once. */
+.how-grid .how-card:nth-child(1) { transition-delay: 0.1s; }
+.how-grid .how-card:nth-child(2) { transition-delay: 0.22s; }
+.how-grid .how-card:nth-child(3) { transition-delay: 0.34s; }
+.how-grid .how-card:nth-child(4) { transition-delay: 0.46s; }
+.how-grid .how-card:nth-child(5) { transition-delay: 0.58s; }
 
 /* ===================================================
    SCROLL REVEAL ANIMATIONS
@@ -946,9 +1002,11 @@ body {
 }
 
 /* ===================================================
-   GLOBAL WATERMARK — Unified bottom-left positioning
-   Single source of truth for ALL sections.
-   Uses --wm-* variables from :root.
+   GLOBAL WATERMARK — shared mechanics, per-section geometry
+   Base --wm-* variables live in :root; each of the three
+   sanctioned sections below tunes its own size/position so
+   the mark stays a contained, intentional emblem rather than
+   an oversized shape bleeding behind functional content.
    =================================================== */
 
 /* ── Shared section setup (position context + clip) ── */
@@ -958,7 +1016,7 @@ body {
 .supervisors-section,
 .demo-section,
 .as-section,
-.about-section,
+.how-section,
 .contact-dark-section {
   position: relative !important;
   overflow: hidden !important;
@@ -968,18 +1026,18 @@ body {
 .portfolio-slider-section,
 .pricing-section,
 .blog-dark-section,
-.supervisors-section {
+.supervisors-section,
+.how-section {
   background-color: #edeae4 !important;
 }
 
-/* ── THE watermark pseudo-element (one rule for all) ─ */
+/* ── THE watermark pseudo-element ─────────────────────
+   Narrative signature, not default decoration: sanctioned
+   only at the page's three major story transitions —
+   Portfolio (the craft), How It Works (the trust turn),
+   Contact (the commitment). Everything else stays plain. */
 .portfolio-slider-section::before,
-.pricing-section::before,
-.blog-dark-section::before,
-.supervisors-section::before,
-.demo-section::before,
-.as-section::before,
-.about-section::before,
+.how-section::before,
 .contact-dark-section::before {
   content: "" !important;
   position: absolute !important;
@@ -997,30 +1055,58 @@ body {
 
 /* Light sections → dark logo watermark */
 .portfolio-slider-section::before,
-.pricing-section::before,
-.blog-dark-section::before,
-.supervisors-section::before {
+.how-section::before {
   background-image: var(--wm-light-img) !important;
   opacity: var(--wm-opacity-light) !important;
 }
 
 /* Dark sections → gold/light logo watermark */
-.demo-section::before,
-.as-section::before,
-.about-section::before,
 .contact-dark-section::before {
   background-image: var(--wm-dark-img) !important;
   opacity: var(--wm-opacity-dark) !important;
 }
 
-/* ── Keep ALL section content above watermark ──────── */
+/* ── Per-section compositional tuning ─────────────────
+   The three sanctioned placements don't share one layout,
+   so each gets its own contained size/position rather than
+   the same oversized corner-bleed everywhere. Ambient
+   texture, never competing with the content layer above it. */
+
+/* Portfolio: smaller, fully contained emblem instead of a
+   large shape bleeding past the section edge. */
+.portfolio-slider-section {
+  --wm-width: 60%;
+  --wm-height: 80%;
+  --wm-translate-x: -10%;
+  --wm-translate-y: 15%;
+}
+
+/* How It Works: same contained treatment, tuned slightly
+   smaller since the card grid runs closer to the edge. */
+.how-section {
+  --wm-width: 50%;
+  --wm-height: 65%;
+  --wm-translate-x: -8%;
+  --wm-translate-y: 12%;
+}
+
+/* Contact: the form card sits on the visual left in this
+   RTL two-column layout, so the watermark is moved to the
+   opposite (right) corner — clear of the form entirely —
+   and pulled further down/out so it only ever touches the
+   section's own background, never the info column content. */
+.contact-dark-section::before {
+  left: auto !important;
+  right: 0 !important;
+  background-position: right bottom !important;
+  width: 55% !important;
+  height: 70% !important;
+  transform: translate(12%, 20%) !important;
+}
+
+/* ── Keep section content above watermark ──────────── */
 .portfolio-slider-inner,
-.pricing-section > .container,
-.blog-dark-section > .container,
-.supervisors-section > .container,
-.demo-section > .container,
-.as-section > .container,
-.about-section > .container,
+.how-section > .container,
 .contact-dark-section > .container {
   position: relative;
   z-index: 2;
@@ -1030,14 +1116,34 @@ body {
 [data-theme="dark"] .portfolio-slider-section,
 [data-theme="dark"] .pricing-section,
 [data-theme="dark"] .blog-dark-section,
-[data-theme="dark"] .supervisors-section {
+[data-theme="dark"] .supervisors-section,
+[data-theme="dark"] .how-section {
   background-color: var(--bg) !important;
 }
 
 /* Hide light-section watermark in dark theme */
 [data-theme="dark"] .portfolio-slider-section::before,
-[data-theme="dark"] .pricing-section::before,
-[data-theme="dark"] .blog-dark-section::before,
-[data-theme="dark"] .supervisors-section::before {
+[data-theme="dark"] .how-section::before {
   display: none !important;
+}
+
+/* ===================================================
+   REDUCED MOTION
+   No @media (prefers-reduced-motion) handling existed anywhere in the
+   codebase before this rule — every animation and transition (hero's
+   floating frame, card hover-lifts, button shine-sweeps, loading
+   spinners, scroll-behavior:smooth) ran unconditionally regardless of
+   the visitor's OS-level motion preference. This is the standard,
+   single-rule sitewide pattern: collapse all animation/transition
+   durations to near-zero and disable smooth scrolling, rather than
+   hunting down and conditionally disabling each animation individually
+   across every component.
+   =================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

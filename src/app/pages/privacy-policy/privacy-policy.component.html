@@ -1,15 +1,15 @@
 <app-navbar></app-navbar>
 
-<div class="policy-page" dir="rtl">
+<div class="policy-page">
 
   <!-- Page Hero -->
   <div class="policy-hero">
     <div class="container mx-auto px-5">
-      <h1 class="policy-title">سياسة الخصوصية</h1>
+      <h1 class="policy-title">{{ 'privacyPolicy.title' | transloco }}</h1>
       <nav class="policy-breadcrumb">
-        <a routerLink="/">الرئيسية</a>
+        <a [routerLink]="['/', languageService.activeLanguage().code]">{{ 'navbar.home' | transloco }}</a>
         <span>/</span>
-        <span>سياسة الخصوصية</span>
+        <span>{{ 'privacyPolicy.title' | transloco }}</span>
       </nav>
     </div>
   </div>
@@ -18,172 +18,172 @@
   <div class="container mx-auto px-5 py-14 lg:py-20">
     <div class="policy-card">
 
-      <p class="policy-update-date">تاريخ آخر تحديث: 12 أبريل 2026</p>
+      <p class="policy-update-date">{{ 'privacyPolicy.updateDate' | transloco }}</p>
 
       <section class="policy-section">
-        <h2>المقدمة</h2>
-        <p>تحرص {{ siteName() }} على حماية خصوصية مستخدمي منصاتها وتطبيقاتها، والتي تشمل الأنظمة والمواقع الإلكترونية والتطبيقات وجميع القنوات والخدمات والمنتجات التابعة لها.</p>
-        <p>وتلتزم {{ siteName() }} بجمع ومعالجة البيانات الشخصية وفقًا لأحكام نظام حماية البيانات الشخصية السعودي، ولوائحه التنفيذية الصادرة عن الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا)، وبما يتوافق مع أفضل الممارسات المحلية والدولية في مجال حماية الخصوصية.</p>
-        <p>تهدف هذه السياسة إلى توضيح كيفية جمع ومعالجة البيانات الشخصية، وبيان الأغراض المشروعة من تلك المعالجة، وحقوق أصحاب البيانات ووسائل ممارستها، بالإضافة إلى الإجراءات الأمنية والتنظيمية التي تعتمدها {{ siteName() }} لحماية البيانات من أي وصول أو استخدام أو إفشاء غير مصرح به.</p>
+        <h2>{{ 'privacyPolicy.intro.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.intro.p1' | transloco: { siteName: siteName() } }}</p>
+        <p>{{ 'privacyPolicy.intro.p2' | transloco: { siteName: siteName() } }}</p>
+        <p>{{ 'privacyPolicy.intro.p3' | transloco: { siteName: siteName() } }}</p>
       </section>
 
       <section class="policy-section">
-        <h2>نطاق تطبيق السياسة</h2>
-        <p>تسري هذه السياسة على جميع البيانات الشخصية التي تقوم {{ siteName() }} بجمعها أو معالجتها من مستخدمي منصاتها وتطبيقاتها، سواء كانوا أشخاصًا طبيعيين أو اعتباريين، داخل المملكة العربية السعودية أو خارجها، وذلك عبر أي من الوسائل أو القنوات التالية:</p>
+        <h2>{{ 'privacyPolicy.scope.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.scope.p1' | transloco: { siteName: siteName() } }}</p>
         <ul>
-          <li>المواقع الإلكترونية الرسمية للمنصة.</li>
-          <li>تطبيقات المنصة للهواتف الذكية.</li>
-          <li>المتاجر الإلكترونية التابعة للمنصة.</li>
-          <li>أنظمة المنصة الإلكترونية.</li>
-          <li>قنوات التواصل الرسمية، بما في ذلك على سبيل المثال لا الحصر رسائل الواتس آب، والرسائل النصية.</li>
-          <li>أي وسيلة أو منصة أخرى تعتمدها {{ siteName() }} مستقبلًا لتقديم خدماتها أو منتجاتها.</li>
+          <li>{{ 'privacyPolicy.scope.item1' | transloco }}</li>
+          <li>{{ 'privacyPolicy.scope.item2' | transloco }}</li>
+          <li>{{ 'privacyPolicy.scope.item3' | transloco }}</li>
+          <li>{{ 'privacyPolicy.scope.item4' | transloco }}</li>
+          <li>{{ 'privacyPolicy.scope.item5' | transloco }}</li>
+          <li>{{ 'privacyPolicy.scope.item6' | transloco: { siteName: siteName() } }}</li>
         </ul>
       </section>
 
       <section class="policy-section">
-        <h2>التعريفات</h2>
-        <p>لغايات هذه السياسة، يكون للمصطلحات والعبارات الواردة أدناه المعاني المحددة أمام كل منها:</p>
+        <h2>{{ 'privacyPolicy.definitions.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.definitions.p1' | transloco }}</p>
         <ul>
-          <li><strong>البيانات الشخصية:</strong> أي معلومات تتعلق بشخص طبيعي أو اعتباري يمكن من خلالها تحديد هويته أو التعرف عليه، بما في ذلك على سبيل المثال الاسم، رقم الهوية، رقم السجل التجاري، رقم الجوال، البريد الإلكتروني، أو أي بيانات أخرى يمكن استخدامها لتحديد الشخص أو الجهة المعنية.</li>
-          <li><strong>المعالجة:</strong> أي عملية تجرى على البيانات الشخصية، سواء كانت تلقائية أو يدوية، وتشمل على سبيل المثال لا الحصر الجمع، التسجيل، التنظيم، التخزين، الاستخدام، الإفصاح، التعديل، الإرسال، التذكير، النقل، أو الإتلاف.</li>
-          <li><strong>المتحكم بالبيانات:</strong> {{ siteName() }}، بصفتها الجهة التي تحدد أغراض ووسائل معالجة البيانات الشخصية وتتحمل مسؤوليتها القانونية تجاه تلك البيانات.</li>
-          <li><strong>صاحب البيانات:</strong> الشخص الطبيعي أو الاعتباري الذي تتعلق به البيانات الشخصية التي تقوم {{ siteName() }} بمعالجتها.</li>
-          <li><strong>البيانات الحساسة:</strong> هي البيانات الشخصية التي يترتب على كشفها أو معالجتها أو تداولها مخاطر عالية على صاحب البيانات، وتشمل على سبيل المثال البيانات المالية، والبيانات الحيوية أو البيومترية، ووسائل التحقق من الهوية.</li>
+          <li><strong>{{ 'privacyPolicy.definitions.term1' | transloco }}</strong> {{ 'privacyPolicy.definitions.def1' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.definitions.term2' | transloco }}</strong> {{ 'privacyPolicy.definitions.def2' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.definitions.term3' | transloco }}</strong> {{ 'privacyPolicy.definitions.def3' | transloco: { siteName: siteName() } }}</li>
+          <li><strong>{{ 'privacyPolicy.definitions.term4' | transloco }}</strong> {{ 'privacyPolicy.definitions.def4' | transloco: { siteName: siteName() } }}</li>
+          <li><strong>{{ 'privacyPolicy.definitions.term5' | transloco }}</strong> {{ 'privacyPolicy.definitions.def5' | transloco }}</li>
         </ul>
       </section>
 
       <section class="policy-section">
-        <h2>الغرض والمسوغات النظامية من جمع البيانات الشخصية</h2>
-        <p>تقوم {{ siteName() }} بجمع ومعالجة البيانات الشخصية للمستخدمين عند استخدام المنصات أو التطبيقات، وذلك لتحقيق الأغراض التالية:</p>
+        <h2>{{ 'privacyPolicy.purpose.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.purpose.p1' | transloco: { siteName: siteName() } }}</p>
 
         <div class="policy-purpose-grid">
           <div class="purpose-card">
-            <h3>تقديم الخدمات والمنتجات</h3>
-            <p>تستخدم البيانات لتفعيل الحسابات، وتنفيذ عمليات التسجيل والدفع، وتمكين المستخدم من إدارة وتنظيم المناسبات والفعاليات والحصول على المنتجات والخدمات.</p>
+            <h3>{{ 'privacyPolicy.purpose.card1Title' | transloco }}</h3>
+            <p>{{ 'privacyPolicy.purpose.card1Body' | transloco }}</p>
           </div>
           <div class="purpose-card">
-            <h3>تحسين تجربة المستخدم</h3>
-            <p>تستخدم البيانات لتحليل الأداء والاستخدام بهدف تحسين الخدمات والمنتجات المقدمة وتطوير الخصائص الجديدة وضمان استقرار وأمان المنصات أو التطبيقات.</p>
+            <h3>{{ 'privacyPolicy.purpose.card2Title' | transloco }}</h3>
+            <p>{{ 'privacyPolicy.purpose.card2Body' | transloco }}</p>
           </div>
           <div class="purpose-card">
-            <h3>التواصل والدعم الفني</h3>
-            <p>تستخدم بيانات الاتصال للتواصل مع المستخدمين بشأن طلباتهم أو استفساراتهم أو لتقديم المساعدة الفنية والتقنية لهم.</p>
+            <h3>{{ 'privacyPolicy.purpose.card3Title' | transloco }}</h3>
+            <p>{{ 'privacyPolicy.purpose.card3Body' | transloco }}</p>
           </div>
           <div class="purpose-card">
-            <h3>إرسال الإشعارات والتحديثات</h3>
-            <p>ترسل {{ siteName() }} إشعارات أو تنبيهات للمستخدمين تتعلق باستخدام الخدمات أو المنتجات أو تحديثات الشروط أو السياسات ذات الصلة.</p>
+            <h3>{{ 'privacyPolicy.purpose.card4Title' | transloco }}</h3>
+            <p>{{ 'privacyPolicy.purpose.card4Body' | transloco: { siteName: siteName() } }}</p>
           </div>
           <div class="purpose-card">
-            <h3>الامتثال للأنظمة والتعليمات</h3>
-            <p>قد تتم معالجة البيانات للوفاء بالمتطلبات النظامية أو لتلبية أي التزامات قانونية أو تنظيمية صادرة من الجهات المختصة في المملكة العربية السعودية.</p>
+            <h3>{{ 'privacyPolicy.purpose.card5Title' | transloco }}</h3>
+            <p>{{ 'privacyPolicy.purpose.card5Body' | transloco }}</p>
           </div>
           <div class="purpose-card">
-            <h3>الحماية وضمان سلامة الخدمة</h3>
-            <p>تستخدم البيانات للمحافظة على أمان المنصات أو التطبيقات وحماية الحسابات من الاستخدام غير المشروع أو الدخول غير المصرح به.</p>
+            <h3>{{ 'privacyPolicy.purpose.card6Title' | transloco }}</h3>
+            <p>{{ 'privacyPolicy.purpose.card6Body' | transloco }}</p>
           </div>
         </div>
       </section>
 
       <section class="policy-section">
-        <h2>أنواع البيانات الشخصية التي تجمعها {{ siteName() }}</h2>
+        <h2>{{ 'privacyPolicy.dataTypes.title' | transloco: { siteName: siteName() } }}</h2>
         <ul>
-          <li><strong>البيانات الشخصية ووسائل الاتصال:</strong> تشمل الاسم الكامل، رقم الجوال، عنوان البريد الإلكتروني، وغيرها من بيانات الاتصال.</li>
-          <li><strong>بيانات المناسبات والفعاليات:</strong> تشمل تفاصيل المناسبات أو الفعاليات، وأسماء المدعوين ووسائل التواصل معهم، وردود الحضور، والملاحظات، وتاريخ ووقت ومواقع المناسبات والفعاليات.</li>
-          <li><strong>البيانات التقنية وبيانات الاستخدام:</strong> تشمل عنوان IP، نوع الجهاز، رقم الجهاز وموصفاته، نظام التشغيل، وبيانات الدخول إلى المنصات والتطبيقات وسجلات النشاط.</li>
-          <li><strong>بيانات الدفع والمعاملات:</strong> تشمل رقم العملية، مبلغ الدفع وتاريخه، بيانات مزود الخدمة المالية وقنوات الدفع، مع التأكيد على أن الشركة لا تحتفظ أو تخزن معلومات البطاقات البنكية أو الائتمانية.</li>
-          <li><strong>بيانات التواصل والدعم الفني:</strong> تشمل الرسائل والمحادثات وطلبات الدعم والمرفقات النصية أو الصوتية والمقاطع المرئية المقدمة من المستخدم.</li>
-          <li><strong>بيانات الأطراف الثالثة المقدمة من المستخدم:</strong> في حال قام المستخدم بإدخال بيانات تخص أطرافًا أخرى، فإن معالجة هذه البيانات تتم بناء على موافقة وطلب المستخدم، ويكون المستخدم مسؤولًا عن الحصول على موافقة تلك الأطراف قبل تزويد {{ siteName() }} ببياناتهم.</li>
+          <li><strong>{{ 'privacyPolicy.dataTypes.term1' | transloco }}</strong> {{ 'privacyPolicy.dataTypes.def1' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.dataTypes.term2' | transloco }}</strong> {{ 'privacyPolicy.dataTypes.def2' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.dataTypes.term3' | transloco }}</strong> {{ 'privacyPolicy.dataTypes.def3' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.dataTypes.term4' | transloco }}</strong> {{ 'privacyPolicy.dataTypes.def4' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.dataTypes.term5' | transloco }}</strong> {{ 'privacyPolicy.dataTypes.def5' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.dataTypes.term6' | transloco }}</strong> {{ 'privacyPolicy.dataTypes.def6' | transloco: { siteName: siteName() } }}</li>
         </ul>
       </section>
 
       <section class="policy-section">
-        <h2>مشاركة البيانات مع أطراف خارجية</h2>
-        <p>تلتزم {{ siteName() }} بالحفاظ على سرية البيانات الشخصية، ولا تشاركها مع أي طرف خارجي إلا في الحالات المحددة أدناه:</p>
+        <h2>{{ 'privacyPolicy.sharing.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.sharing.p1' | transloco: { siteName: siteName() } }}</p>
         <ul>
-          <li><strong>مزودو الخدمات المعتمدون:</strong> تتم مشاركة بعض البيانات مع مزودي خدمات معتمدين لتسهيل تقديم بعض الخدمات أو المنتجات، وذلك بموجب اتفاقيات تضمن الالتزام بالسرية وحماية البيانات.</li>
-          <li><strong>الجهات الرسمية المختصة:</strong> تتم مشاركة البيانات عند وجود التزام قانوني أو طلب رسمي صادر عن جهة حكومية أو قضائية مختصة.</li>
-          <li><strong>القاعات والفنادق والمشغلون:</strong> تتم مشاركة بعض البيانات المرتبطة بترتيب الفعاليات والمناسبات مع الجهات المعنية بالقدر اللازم لتقديم الخدمات المطلوبة.</li>
+          <li><strong>{{ 'privacyPolicy.sharing.term1' | transloco }}</strong> {{ 'privacyPolicy.sharing.def1' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.sharing.term2' | transloco }}</strong> {{ 'privacyPolicy.sharing.def2' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.sharing.term3' | transloco }}</strong> {{ 'privacyPolicy.sharing.def3' | transloco }}</li>
         </ul>
       </section>
 
       <section class="policy-section">
-        <h2>حماية البيانات الشخصية</h2>
-        <p>تلتزم {{ siteName() }} بحماية البيانات الشخصية وفق أحكام نظام حماية البيانات الشخصية السعودي ولائحته التنفيذية، من خلال اتخاذ التدابير اللازمة لضمان:</p>
+        <h2>{{ 'privacyPolicy.protection.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.protection.p1' | transloco: { siteName: siteName() } }}</p>
         <ul>
-          <li>سرية البيانات الشخصية وحمايتها من أي وصول أو استخدام أو إفشاء غير مصرح به.</li>
-          <li>سلامة البيانات الشخصية ومنع تعديلها بشكل غير قانوني.</li>
-          <li>تقييد الوصول إلى البيانات الشخصية بحيث يكون مقتصرًا على الموظفين والجهات المخولة ضمن نطاق الحاجة والمسؤولية المقررة.</li>
-          <li>استخدام البيانات الشخصية بما يتوافق مع الغرض المصرح به وضمان حقوق الأفراد والجهات وفق السياسة المعتمدة والنظام المعمول به في المملكة العربية السعودية.</li>
+          <li>{{ 'privacyPolicy.protection.item1' | transloco }}</li>
+          <li>{{ 'privacyPolicy.protection.item2' | transloco }}</li>
+          <li>{{ 'privacyPolicy.protection.item3' | transloco }}</li>
+          <li>{{ 'privacyPolicy.protection.item4' | transloco }}</li>
         </ul>
       </section>
 
       <section class="policy-section">
-        <h2>حقوق أصحاب البيانات</h2>
-        <p>تضمن {{ siteName() }} لصاحب البيانات ممارسة الحقوق القانونية المنصوص عليها في نظام حماية البيانات الشخصية السعودي، وتشمل ما يلي:</p>
+        <h2>{{ 'privacyPolicy.rights.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.rights.p1' | transloco: { siteName: siteName() } }}</p>
         <div class="rights-grid">
           <div class="right-item">
-            <span class="right-icon">👁</span>
+            <span class="right-icon">{{ 'privacyPolicy.rights.right1Icon' | transloco }}</span>
             <div>
-              <strong>الاطلاع</strong>
-              <p>معرفة البيانات الشخصية التي تجمعها المنصة وفئاتها والأغراض المرتبطة بمعالجتها.</p>
+              <strong>{{ 'privacyPolicy.rights.right1Title' | transloco }}</strong>
+              <p>{{ 'privacyPolicy.rights.right1Body' | transloco }}</p>
             </div>
           </div>
           <div class="right-item">
-            <span class="right-icon">✏️</span>
+            <span class="right-icon">{{ 'privacyPolicy.rights.right2Icon' | transloco }}</span>
             <div>
-              <strong>التصحيح</strong>
-              <p>طلب تعديل أو تصحيح أي بيانات شخصية غير دقيقة أو غير مكتملة.</p>
+              <strong>{{ 'privacyPolicy.rights.right2Title' | transloco }}</strong>
+              <p>{{ 'privacyPolicy.rights.right2Body' | transloco }}</p>
             </div>
           </div>
           <div class="right-item">
-            <span class="right-icon">🗑</span>
+            <span class="right-icon">{{ 'privacyPolicy.rights.right3Icon' | transloco }}</span>
             <div>
-              <strong>الحذف</strong>
-              <p>طلب إزالة أو إتلاف بياناته الشخصية عند انقضاء الغرض من جمعها.</p>
+              <strong>{{ 'privacyPolicy.rights.right3Title' | transloco }}</strong>
+              <p>{{ 'privacyPolicy.rights.right3Body' | transloco }}</p>
             </div>
           </div>
           <div class="right-item">
-            <span class="right-icon">↩️</span>
+            <span class="right-icon">{{ 'privacyPolicy.rights.right4Icon' | transloco }}</span>
             <div>
-              <strong>سحب الموافقة</strong>
-              <p>سحب أي موافقة سبق تقديمها لمعالجة البيانات الشخصية.</p>
+              <strong>{{ 'privacyPolicy.rights.right4Title' | transloco }}</strong>
+              <p>{{ 'privacyPolicy.rights.right4Body' | transloco }}</p>
             </div>
           </div>
           <div class="right-item">
-            <span class="right-icon">🚫</span>
+            <span class="right-icon">{{ 'privacyPolicy.rights.right5Icon' | transloco }}</span>
             <div>
-              <strong>تقييد أو الاعتراض على المعالجة</strong>
-              <p>الاعتراض على معالجة البيانات الشخصية أو تقييدها عند توفر مبرر نظامي.</p>
+              <strong>{{ 'privacyPolicy.rights.right5Title' | transloco }}</strong>
+              <p>{{ 'privacyPolicy.rights.right5Body' | transloco }}</p>
             </div>
           </div>
           <div class="right-item">
-            <span class="right-icon">📦</span>
+            <span class="right-icon">{{ 'privacyPolicy.rights.right6Icon' | transloco }}</span>
             <div>
-              <strong>نقل البيانات الشخصية</strong>
-              <p>طلب الحصول على نسخة من البيانات الشخصية بصيغة قابلة للقراءة.</p>
+              <strong>{{ 'privacyPolicy.rights.right6Title' | transloco }}</strong>
+              <p>{{ 'privacyPolicy.rights.right6Body' | transloco }}</p>
             </div>
           </div>
         </div>
       </section>
 
       <section class="policy-section">
-        <h2>مدة الاحتفاظ بالبيانات</h2>
-        <p>تحتفظ {{ siteName() }} بالبيانات الشخصية لتحقيق الأغراض التي جمعت من أجلها، أو وفقاً لما تقتضيه الأنظمة واللوائح ذات الصلة. ويستمر الاحتفاظ بالبيانات طالما كانت مطلوبة لتنفيذ الالتزامات القانونية أو النظامية، أو لحماية الحقوق والمطالبات المتعلقة بالمنصة أو الأطراف المعنية. ويجوز للمستخدم طلب حذف بياناته الشخصية، ويتم تنفيذ الطلب وفق الإجراءات المعتمدة وبما لا يتعارض مع أي التزامات قانونية قائمة.</p>
+        <h2>{{ 'privacyPolicy.retention.title' | transloco }}</h2>
+        <p>{{ 'privacyPolicy.retention.p1' | transloco: { siteName: siteName() } }}</p>
       </section>
 
       <section class="policy-section">
-        <h2>الأحكام العامة</h2>
+        <h2>{{ 'privacyPolicy.general.title' | transloco }}</h2>
         <div class="general-item">
-          <h3>الموافقة على السياسة</h3>
-          <p>باستخدامك لمنصة {{ siteName() }}، فإنك توافق صراحة على سياسة الخصوصية هذه، بما في ذلك أي تعديلات لاحقة تجرى عليها. في حال عدم موافقتك على أي من بنود هذه السياسة، يجب عليك التوقف عن استخدام المنصة فوراً.</p>
+          <h3>{{ 'privacyPolicy.general.item1Title' | transloco }}</h3>
+          <p>{{ 'privacyPolicy.general.item1Body' | transloco: { siteName: siteName() } }}</p>
         </div>
         <div class="general-item">
-          <h3>التعديلات على السياسة</h3>
-          <p>تحتفظ {{ siteName() }} بحق تعديل سياسة الخصوصية بما يتوافق مع القوانين والأنظمة المعمول بها في المملكة العربية السعودية. ويعد استمرار استخدامك للمنصة بعد الإعلان عن أي تعديلات قبولًا صريحًا منك بتلك التغييرات.</p>
+          <h3>{{ 'privacyPolicy.general.item2Title' | transloco }}</h3>
+          <p>{{ 'privacyPolicy.general.item2Body' | transloco: { siteName: siteName() } }}</p>
         </div>
         <div class="general-item">
-          <h3>الاختصاص القضائي</h3>
-          <p>تخضع هذه السياسة وأي نزاعات تنشأ عن استخدامها أو تفسيرها لقوانين وأنظمة المملكة العربية السعودية، ويكون الاختصاص القضائي للمحاكم المختصة في المملكة العربية السعودية.</p>
+          <h3>{{ 'privacyPolicy.general.item3Title' | transloco }}</h3>
+          <p>{{ 'privacyPolicy.general.item3Body' | transloco }}</p>
         </div>
       </section>
 

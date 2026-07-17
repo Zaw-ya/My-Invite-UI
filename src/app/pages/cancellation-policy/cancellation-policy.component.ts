@@ -1,25 +1,27 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslocoModule } from '@jsverse/transloco';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 import { SeoService } from '../../services/seo.service';
+import { LanguageService } from '../../i18n/language.service';
 
 @Component({
   selector: 'app-cancellation-policy',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent],
+  imports: [RouterModule, NavbarComponent, FooterComponent, TranslocoModule],
   templateUrl: './cancellation-policy.component.html',
   styleUrl: './cancellation-policy.component.css'
 })
 export class CancellationPolicyComponent implements OnInit {
   private seoService = inject(SeoService);
+  readonly languageService = inject(LanguageService);
 
   ngOnInit() {
-    this.seoService.updateSeo({
-      title: 'سياسة الإلغاء | Special Cards | مؤسسة بطاقتي الخاصة',
-      description: 'تعرف على سياسة الإلغاء واسترداد الأموال الخاصة بخدمات Special Cards مؤسسة بطاقتي الخاصة.',
-      canonical: 'https://www.specialcards.net/cancellation-policy',
+    this.seoService.setPage({
+      titleKey: 'seo.cancellationPolicy.title',
+      descriptionKey: 'seo.cancellationPolicy.description',
+      path: '/cancellation-policy',
       ogType: 'website',
     });
   }

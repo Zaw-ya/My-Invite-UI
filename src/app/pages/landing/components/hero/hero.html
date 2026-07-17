@@ -5,41 +5,26 @@
 
 
 
-    <!-- Logo -->
-    <!-- <div class="hero-logo-area">
-      <img src="/assets/images/NavFootdark.png" alt="Logo" class="h-16 md:h-20 w-auto object-contain">
-      <div class="hero-logo-text">
-        <span class="hero-logo-name">{{ brandParts().p1 }}<br>{{ brandParts().p2 }}</span>
-        <span class="hero-logo-tld">.نت</span>
-      </div>
-    </div> -->
     <!-- Top tagline -->
     <div class="hero-tagline">
       <img src="/assets/images/logos-08.png" alt="Logo" class="h-16 md:h-20 w-auto object-contain hero-tagline-logo">
-      <h1>مؤسسة بطاقتي الخاصة</h1>
+      <h1>{{ 'hero.brandName' | transloco }}</h1>
     </div>
-    <p class="hero-about-label">من نحن</p>
+    <p class="hero-about-label">{{ 'hero.aboutLabel' | transloco }}</p>
 
     <!-- Main heading -->
     <h1 class="hero-heading font-display">
-      كروت دعوة رقمية تناسب كل مناسباتك
+      {{ 'hero.heading' | transloco }}
     </h1>
 
     <!-- Body text -->
     <div class="hero-body-text">
-      <p>
-        تدرك تماماً أن الفرق بين المناسبة العادية و<strong>الحدث الاستثنائي</strong> يكمن في أول انطباع.
-        في مؤسسة بطاقتي الخاصة، نحن لا نقوم بعمل وإرسال مجرد دعوات إلكترونية، بل <strong>نصيغ لك وجاهة تليق بمقامك.</strong>
-      </p>
-      <p>
-        لأجل ذلك، نضع بين يديك مكتبة حصرية ومتجددة من <strong>التصاميم المميزة والفريدة،</strong>
-        لنضمن لك دوماً خيارات <strong>تسبق التوقعات وتلائم تطلعاتك.</strong> نحن لا نكتفي بالجمال،
-        بل نبتكر لك انطباعاً أولياً يحبس الأنفاس، ويمنح مدعويك شعوراً <strong>بالفخامة
-        والاحترافية؛</strong> لنكون <strong>شريكك الأول</strong> في صياغة وجاهة مناسبتك سواء كانت:
-      </p>
+      <p [innerHTML]="'hero.bodyParagraph1' | transloco"></p>
+      <p [innerHTML]="'hero.bodyParagraph2' | transloco"></p>
     </div>
 
-    <!-- Event type tags (clickable, RTL) -->
+    <!-- Event type tags (clickable, RTL — dynamic event-type names remain Arabic, per confirmed decision) -->
+    <p class="hero-tags-hint">{{ 'hero.tagsHint' | transloco }}</p>
     <div class="hero-tags" dir="rtl">
       @for (tag of tags(); track tag.label) {
         <button
@@ -60,11 +45,10 @@
       alt=""
       class="hero-brand-emblem"
     >
-    <!-- Geo frames always visible -->
+    <!-- Single geo frame — echoes the active carousel card's rotation as a
+         depth cue. Frames 2-4 were removed: see hero.css for the reasoning
+         (one focal point per view, not several competing ambient shapes). -->
     <div class="geo-rect geo-rect-1"></div>
-    <div class="geo-rect geo-rect-2"></div>
-    <div class="geo-rect geo-rect-3"></div>
-    <div class="geo-rect geo-rect-4"></div>
 
     <!-- 1. Priority: Active tag image -->
     @if (activeTag()) {
@@ -72,6 +56,7 @@
         <div class="hero-carousel-card active">
           <img [src]="activeTag()!.imageUrl" [alt]="activeTag()!.label">
           <div class="card-glow"></div>
+          <div class="card-shine"></div>
         </div>
       </div>
     }
@@ -82,6 +67,7 @@
           <div class="hero-carousel-card" [class.active]="idx === currentCardIndex()">
             <img [src]="card.imageUrl" [alt]="card.title">
             <div class="card-glow"></div>
+            <div class="card-shine"></div>
           </div>
         }
       </div>

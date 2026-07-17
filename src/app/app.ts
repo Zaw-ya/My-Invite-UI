@@ -1,6 +1,5 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SeoService } from './services/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,6 @@ import { SeoService } from './services/seo.service';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('My-Invite-UI');
-  private seoService = inject(SeoService);
-
-  ngOnInit() {
-    // Initialize automatic SEO updates on every route change
-    this.seoService.init();
-  }
 }

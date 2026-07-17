@@ -2,12 +2,12 @@
   <div class="container mx-auto px-5">
 
     <!-- Header row -->
-    <div class="flex flex-col items-start gap-4 mb-14 text-right" dir="rtl">
-      <h2 class="blog-heading font-display">المدونة <span style="color: var(--gold);">والنصائح</span></h2>
+    <div class="flex flex-col items-start gap-4 mb-14 text-start">
+      <h2 class="blog-heading font-display" [innerHTML]="'blog.title' | transloco"></h2>
       <div class="gold-divider" style="width: 48px;"></div>
       <button class="flex items-center gap-2 font-black group" style="color: var(--gold);" (click)="navigateToBlog()">
-        <lucide-icon name="arrow-left" class="w-5 h-5 transition-transform group-hover:-translate-x-1"></lucide-icon>
-        عرض جميع المقالات
+        <lucide-icon [name]="readMoreIcon()" class="w-5 h-5 transition-transform group-hover:-translate-x-1"></lucide-icon>
+        {{ 'blog.viewAll' | transloco }}
       </button>
     </div>
 
@@ -22,18 +22,18 @@
                  class="blog-img group-hover:scale-105 transition-transform duration-700">
             <div class="blog-img-gradient"></div>
 
-            <!-- Category badge -->
-            <div class="blog-cat-badge">{{ post.category }}</div>
+            <!-- Category badge (backend content) -->
+            <div class="blog-cat-badge" dir="rtl">{{ post.category || ('blogPostDetail.defaultCategory' | transloco) }}</div>
           </div>
 
           <!-- Content -->
-           <div class="blog-content space-y-3 text-right">
+           <div class="blog-content space-y-3 text-start">
              <p class="text-sm font-bold" style="color: var(--gold);">{{ post.date | date:'yyyy/MM/dd' }}</p>
-             <h4 class="blog-title group-hover:text-gold transition-colors">{{ post.title }}</h4>
-             <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt">{{ post.excerpt }}</p>
+             <h4 class="blog-title group-hover:text-gold transition-colors" dir="rtl">{{ post.title }}</h4>
+             <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt" dir="rtl">{{ post.excerpt }}</p>
              <span class="blog-read-more">
-               اقرأ المزيد
-               <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+               {{ 'blog.readMore' | transloco }}
+               <lucide-icon [name]="readMoreIcon()" class="w-4 h-4"></lucide-icon>
              </span>
            </div>
         </article>

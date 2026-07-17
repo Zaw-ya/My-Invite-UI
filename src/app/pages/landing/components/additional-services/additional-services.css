@@ -1,30 +1,29 @@
-/* ===== SECTION ===== */
+/* ===== SECTION =====
+   Vertical rhythm comes from the shared .section-py utility (applied in
+   the template) instead of a bespoke padding value here, so this section
+   follows the same 96px/64px/48px spacing scale as How It Works, Contact,
+   and Supervisors rather than its own off-scale 72px/80px. */
 .as-section {
   background-color: var(--bg-dark-hero);
-  padding: 72px 0 80px;
 }
 
 /* ===== HEADER ===== */
 .as-header {
-  text-align: right;
+  text-align: start;
   margin-bottom: 48px;
 }
 
-.as-badge {
-  display: inline-block;
-  padding: 5px 16px;
-  border: 1.5px solid rgba(255,255,255,0.15);
-  border-radius: 50px;
-  font-size: 12px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.05);
-  margin-bottom: 12px;
-}
-
 .as-title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 900;
+  /* Weight and scale ceiling aligned to the shared .section-title
+     convention used by every other section (How It Works, Supervisors,
+     Contact, Blog) — this was previously 900/2.8rem, the only section
+     heading on the site at that weight. Color stays hardcoded white
+     rather than var(--text): this is a permanently-dark-ground section
+     (var(--bg-dark-hero)), same reasoning already established for Hero
+     and the Supervisors dark panels — var(--text) would render as dark
+     navy-on-navy in light theme. */
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
   color: #FFFFFF;
   line-height: 1.2;
   margin: 0 0 12px;
@@ -54,7 +53,7 @@
 .as-card {
   position: relative;
   border: 1.5px solid rgba(255,255,255,0.1);
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   padding: 24px 22px;
   background: rgba(255,255,255,0.04);
   display: flex;
@@ -66,7 +65,7 @@
 .as-card:hover {
   border-color: var(--gold);
   background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 15px var(--shadow-gold);
+  box-shadow: var(--shadow-card-hover-dark);
   transform: translateY(-5px);
 }
 
@@ -121,7 +120,10 @@
 
 .as-card-cta:hover {
   border-color: var(--gold-light);
-  box-shadow: 0 15px 35px var(--shadow-gold);
+  /* Reuses the existing showcase-card hover shadow step instead of a
+     bespoke one-off recipe (was 0 15px 35px, matching neither
+     --shadow-card-hover-lg nor -xl). */
+  box-shadow: var(--shadow-card-hover-lg);
   transform: translateY(-5px);
 }
 
@@ -143,6 +145,16 @@
   background: #15243C;
   transform: translateX(-4px);
 }
+.as-cta-btn:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 2px;
+}
+/* transform doesn't have a logical-property equivalent — the nudge should
+   move in the reading direction (matching the arrow glyph in the
+   translated label), so it's flipped explicitly for LTR. */
+:host-context([dir="ltr"]) .as-cta-btn:hover {
+  transform: translateX(4px);
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
@@ -150,13 +162,11 @@
 }
 
 @media (max-width: 640px) {
-  .as-section { 
-    padding: 60px 0; 
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  /* .as-section's own padding/min-height override removed — .section-py's
+     mobile breakpoint (48px padding, same min-height:100vh centering
+     behavior) now applies directly, matching How It Works/Contact/
+     Supervisors instead of a bespoke 60px value that only partially
+     duplicated it. */
   .as-grid { grid-template-columns: 1fr; gap: 12px; }
   .as-title { font-size: 1.6rem; }
   .as-header { margin-bottom: 32px; }

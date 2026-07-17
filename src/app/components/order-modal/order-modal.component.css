@@ -4,6 +4,7 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -104,8 +105,7 @@
   font-family: inherit;
   outline: none;
   transition: border-color 0.2s;
-  text-align: right;
-  direction: rtl;
+  text-align: start;
   box-sizing: border-box;
 }
 .om-input:focus { border-color: var(--gold, #C9A84C); }
@@ -123,7 +123,6 @@
   background: var(--bg-surface, #f7f7f7);
   overflow: visible;
   transition: border-color 0.2s;
-  direction: rtl;
 }
 .om-phone:focus-within { border-color: var(--gold, #C9A84C); }
 
@@ -134,7 +133,7 @@
   padding: 0 10px;
   height: 46px;
   border: none;
-  border-left: 1.5px solid var(--border, #e5e5e5);
+  border-inline-end: 1.5px solid var(--border, #e5e5e5);
   background: transparent;
   cursor: pointer;
   flex-shrink: 0;
@@ -165,8 +164,7 @@
 .om-dropdown {
   position: absolute;
   top: calc(100% + 6px);
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   background: var(--bg-card, #fff);
   border: 1.5px solid var(--border, #e5e5e5);
   border-radius: 14px;
@@ -187,8 +185,7 @@
   font-size: 13px;
   outline: none;
   font-family: inherit;
-  text-align: right;
-  direction: rtl;
+  text-align: start;
   box-sizing: border-box;
 }
 .om-search:focus { border-color: var(--gold, #C9A84C); }
@@ -214,7 +211,7 @@
 .om-country-opt:hover, .om-country-opt.selected { background: var(--gold-pale, #fdf8ec); }
 
 .om-flag-sm { width: 22px; height: 15px; object-fit: cover; border-radius: 2px; flex-shrink: 0; }
-.om-country-name { flex: 1; font-size: 13px; color: var(--text, #111); text-align: right; direction: rtl; }
+.om-country-name { flex: 1; font-size: 13px; color: var(--text, #111); text-align: start; }
 .om-country-dial { font-size: 12px; font-weight: 700; color: var(--text-muted, #aaa); }
 .om-no-result { padding: 16px; text-align: center; font-size: 13px; color: var(--text-muted, #aaa); }
 
@@ -262,7 +259,6 @@
   border: 1.5px solid rgba(34, 197, 94, 0.35);
   color: #16a34a;
   margin-bottom: 16px;
-  direction: rtl;
 }
 
 .om-btn-close-success {
@@ -292,12 +288,11 @@
   color: #ef4444;
   font-size: 14px;
   font-weight: 600;
-  direction: rtl;
 }
 
 /* ===== RTL send icon flip ===== */
 [dir="rtl"] lucide-icon[name="send"] { transform: scaleX(-1); }
 
 @media (max-width: 480px) {
-  .om-header, .om-body { padding-left: 18px; padding-right: 18px; }
+  .om-header, .om-body { padding-inline: 18px; }
 }

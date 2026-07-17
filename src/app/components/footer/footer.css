@@ -2,7 +2,7 @@
   font-weight: 900;
   font-size: 15px;
   color: var(--footer-head);
-  font-family: '29LTBukra', 'Cairo', sans-serif;
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
 }
 
 .footer-link {

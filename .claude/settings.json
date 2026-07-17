@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"Stop-Process -Id 16536 -Force\")",
+      "Bash(nohup npx ng serve --port 4200)",
+      "Bash(echo \"started $!\")"
+    ]
+  }
+}

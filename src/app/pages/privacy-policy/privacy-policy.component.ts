@@ -1,29 +1,32 @@
 import { Component, inject, computed, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 import { ContentService } from '../../services/content.service';
 import { SeoService } from '../../services/seo.service';
+import { LanguageService } from '../../i18n/language.service';
 
 @Component({
   selector: 'app-privacy-policy',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent],
+  imports: [RouterModule, NavbarComponent, FooterComponent, TranslocoModule],
   templateUrl: './privacy-policy.component.html',
   styleUrl: './privacy-policy.component.css'
 })
 export class PrivacyPolicyComponent implements OnInit {
   private contentService = inject(ContentService);
   private seoService = inject(SeoService);
+  private transloco = inject(TranslocoService);
+  readonly languageService = inject(LanguageService);
 
-  siteName = computed(() => this.contentService.siteSettings()['site-name'] || 'الشركة');
+  siteName = computed(() => this.contentService.siteSettings()['site-name'] || this.transloco.translate('common.defaultCompanyName'));
 
   ngOnInit() {
-    this.seoService.updateSeo({
-      title: 'سياسة الخصوصية | Special Cards | مؤسسة بطاقتي الخاصة',
-      description: 'تعرف على سياسة الخصوصية الخاصة بموقع Special Cards مؤسسة بطاقتي الخاصة وكيف نحمي بياناتك الشخصية.',
-      canonical: 'https://www.specialcards.net/privacy-policy',
+    this.seoService.setPage({
+      titleKey: 'seo.privacyPolicy.title',
+      descriptionKey: 'seo.privacyPolicy.description',
+      path: '/privacy-policy',
       ogType: 'website',
     });
   }

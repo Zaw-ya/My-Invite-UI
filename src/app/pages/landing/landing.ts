@@ -1,5 +1,4 @@
 import { Component, inject, computed, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { ContentService } from '../../services/content.service';
 import { DesignOrderService } from '../../services/design-order.service';
@@ -9,6 +8,7 @@ import { FooterComponent } from '../../components/footer/footer';
 
 // Sub-components
 import { HeroComponent } from './components/hero/hero';
+import { HowItWorksComponent } from './components/how-it-works/how-it-works';
 import { DemoFormComponent } from './components/demo-form/demo-form';
 import { PricingComponent } from './components/pricing/pricing';
 import { PortfolioSliderComponent } from './components/portfolio-slider/portfolio-slider';
@@ -22,11 +22,11 @@ import { OrderModalComponent } from '../../components/order-modal/order-modal.co
   selector: 'app-landing',
   standalone: true,
   imports: [
-    CommonModule,
     ScrollRevealDirective,
     NavbarComponent,
     FooterComponent,
     HeroComponent,
+    HowItWorksComponent,
     DemoFormComponent,
     PricingComponent,
     PortfolioSliderComponent,
@@ -53,15 +53,17 @@ export class LandingPageComponent implements OnInit {
   supervisors = this.contentService.supervisors;
   eventTypes = this.contentService.eventTypes;
   blogPosts = this.contentService.blogPosts;
-  testimonials = this.contentService.testimonials;
 
-  categories = computed(() => ['كل التصميمات', ...this.eventTypes().map(et => et.name)]);
+  // Backend-provided category names only — the "All" filter option is
+  // UI-owned and handled inside PortfolioSliderComponent via a stable
+  // `null` sentinel, not mixed into this list as a synthetic string.
+  categories = computed(() => this.eventTypes().map(et => et.name));
 
   ngOnInit() {
-    this.seoService.updateSeo({
-      title: 'Special Cards | مؤسسة بطاقتي الخاصة | كروت دعوة رقمية للأيام الخاصة',
-      description: 'كروت دعوة رقمية فاخرة لجميع مناسباتك - حفلات زواج، تخرج، أعياد ميلاد، ومناسبات خاصة. صمّم دعوتك الرقمية الآن مع Special Cards مؤسسة بطاقتي الخاصة.',
-      canonical: 'https://www.specialcards.net/',
+    this.seoService.setPage({
+      titleKey: 'seo.home.title',
+      descriptionKey: 'seo.home.description',
+      path: '',
       keywords: 'كروت دعوة رقمية, دعوات زواج, دعوات تخرج, بطاقات دعوة, مناسبات خاصة, Special Cards, مؤسسة بطاقتي الخاصة',
       ogType: 'website',
       jsonLd: {

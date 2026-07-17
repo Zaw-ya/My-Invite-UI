@@ -1,13 +1,16 @@
-import { Injectable, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { Injectable, inject, PLATFORM_ID, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { TranslocoService } from '@jsverse/transloco';
+import { combineLatest, filter, map, switchMap } from 'rxjs';
+import { LanguageService } from '../i18n/language.service';
 
 export interface SeoConfig {
   title?: string;
   description?: string;
-  canonical?: string;
+  /** Path relative to the locale prefix, e.g. '/designs' or '' for home. Locale is prepended automatically. */
+  path?: string;
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
@@ -17,53 +20,24 @@ export interface SeoConfig {
   jsonLd?: object;
 }
 
+export interface PageSeoConfig {
+  titleKey: string;
+  descriptionKey: string;
+  /**
+   * Path relative to the locale prefix, e.g. '/designs' or '' for home.
+   * Omit entirely for pages that shouldn't declare a canonical at all
+   * (e.g. a 404 page — there's no real content to point a canonical at).
+   */
+  path?: string;
+  noIndex?: boolean;
+  keywords?: string;
+  jsonLd?: object;
+  ogType?: string;
+  ogImage?: string;
+}
+
 const SITE_URL = 'https://www.specialcards.net';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/images/tab.png`;
-
-const PAGE_SEO: Record<string, SeoConfig> = {
-  '/': {
-    title: 'Special Cards | مؤسسة بطاقتي الخاصة | كروت دعوة رقمية للأيام الخاصة',
-    description: 'كروت دعوة رقمية فاخرة لجميع مناسباتك - حفلات زواج، تخرج، أعياد ميلاد، ومناسبات خاصة. صمّم دعوتك الرقمية الآن مع Special Cards مؤسسة بطاقتي الخاصة.',
-    canonical: `${SITE_URL}/`,
-    ogType: 'website',
-    keywords: 'كروت دعوة رقمية, دعوات زواج, دعوات تخرج, بطاقات دعوة, مناسبات خاصة, Special Cards, مؤسسة بطاقتي الخاصة',
-  },
-  '/designs': {
-    title: 'تصاميم الدعوات | Special Cards | مؤسسة بطاقتي الخاصة',
-    description: 'اكتشف مجموعتنا الواسعة من تصاميم كروت الدعوة الرقمية الفاخرة لحفلات الزواج، التخرج، وكل المناسبات الخاصة من Special Cards.',
-    canonical: `${SITE_URL}/designs`,
-    ogType: 'website',
-    keywords: 'تصاميم دعوات, كروت زواج, كروت تخرج, تصميم دعوة رقمية, Special Cards, مؤسسة بطاقتي الخاصة',
-  },
-  '/blog': {
-    title: 'المدونة | Special Cards | مؤسسة بطاقتي الخاصة - نصائح وأفكار للمناسبات',
-    description: 'اقرأ أحدث المقالات والنصائح حول تنظيم المناسبات وتصميم الدعوات الرقمية من خبراء Special Cards مؤسسة بطاقتي الخاصة.',
-    canonical: `${SITE_URL}/blog`,
-    ogType: 'website',
-    keywords: 'مدونة مناسبات, نصائح تنظيم حفلات, أفكار دعوات, Special Cards, مؤسسة بطاقتي الخاصة',
-  },
-  '/privacy-policy': {
-    title: 'سياسة الخصوصية | Special Cards | مؤسسة بطاقتي الخاصة',
-    description: 'تعرف على سياسة الخصوصية الخاصة بموقع Special Cards مؤسسة بطاقتي الخاصة وكيف نحمي بياناتك الشخصية.',
-    canonical: `${SITE_URL}/privacy-policy`,
-    ogType: 'website',
-    noIndex: false,
-  },
-  '/terms': {
-    title: 'الشروط والأحكام | Special Cards | مؤسسة بطاقتي الخاصة',
-    description: 'اقرأ شروط الاستخدام والأحكام الخاصة بخدمات موقع Special Cards مؤسسة بطاقتي الخاصة.',
-    canonical: `${SITE_URL}/terms`,
-    ogType: 'website',
-    noIndex: false,
-  },
-  '/cancellation-policy': {
-    title: 'سياسة الإلغاء | Special Cards | مؤسسة بطاقتي الخاصة',
-    description: 'تعرف على سياسة الإلغاء واسترداد الأموال الخاصة بخدمات Special Cards مؤسسة بطاقتي الخاصة.',
-    canonical: `${SITE_URL}/cancellation-policy`,
-    ogType: 'website',
-    noIndex: false,
-  },
-};
 
 @Injectable({
   providedIn: 'root'
@@ -71,28 +45,74 @@ const PAGE_SEO: Record<string, SeoConfig> = {
 export class SeoService {
   private meta = inject(Meta);
   private title = inject(Title);
-  private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
+  private languageService = inject(LanguageService);
+  private transloco = inject(TranslocoService);
 
-  /**
-   * Initialize automatic SEO updates on route changes.
-   * Call this once in AppComponent.
-   */
-  init() {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        const path = event.urlAfterRedirects?.split('?')[0]?.split('#')[0] || '/';
-        const config = PAGE_SEO[path];
-        if (config) {
-          this.updateSeo(config);
-        }
+  private pageConfig = signal<PageSeoConfig | null>(null);
+
+  constructor() {
+    // Both observables must be created here, during construction, while an
+    // injection context is still active — `toObservable()` calls `inject()`
+    // internally, so creating it lazily inside the switchMap callback below
+    // (which runs outside any injection context) throws NG0203 on every
+    // navigation after the first and silently kills the whole subscription.
+    const pageConfig$ = toObservable(this.pageConfig);
+    const activeLanguage$ = toObservable(this.languageService.activeLanguage);
+
+    // Re-applies whenever the page config, the active language, OR the
+    // translation file's load state changes. `selectTranslate` (unlike the
+    // synchronous `translate()`) correctly waits for the language file to
+    // finish loading before emitting — using `translate()` directly here
+    // would return the raw key as a fallback on the first render, since the
+    // HTTP fetch for the translation JSON hasn't resolved yet at that point.
+    pageConfig$
+      .pipe(
+        filter((cfg): cfg is PageSeoConfig => cfg !== null),
+        switchMap((cfg) =>
+          combineLatest([
+            this.transloco.selectTranslate(cfg.titleKey),
+            this.transloco.selectTranslate(cfg.descriptionKey),
+            activeLanguage$,
+          ]).pipe(map(([title, description, lang]) => ({ cfg, title, description, lang: lang.code })))
+        )
+      )
+      .subscribe(({ cfg, title, description, lang }) => {
+        this.applySeo({
+          title,
+          description,
+          path: cfg.path,
+          noIndex: cfg.noIndex,
+          keywords: cfg.keywords,
+          jsonLd: cfg.jsonLd,
+          ogType: cfg.ogType,
+          ogImage: cfg.ogImage,
+        }, lang);
       });
   }
 
-  /** Apply full SEO config — call from any component for custom overrides */
+  /**
+   * Call once per static page component (typically in ngOnInit) with
+   * translation keys rather than resolved strings — title/description stay
+   * correct across language switches without the component needing to know
+   * anything about Transloco or re-invoke this on its own.
+   */
+  setPage(config: PageSeoConfig) {
+    this.pageConfig.set(config);
+  }
+
+  /**
+   * Direct SEO update for pages whose title/description are already-resolved
+   * strings rather than translation keys — e.g. a blog post detail page,
+   * where the content is backend-provided and not itself translated.
+   * `path` (if given) is still locale-prefixed automatically.
+   */
   updateSeo(config: SeoConfig) {
+    this.applySeo(config, this.languageService.activeLanguage().code);
+  }
+
+  private applySeo(config: SeoConfig, lang: string) {
     const siteTitle = config.title || 'Special Cards | مؤسسة بطاقتي الخاصة';
     const description = config.description || 'كروت دعوة رقمية فاخرة لجميع مناسباتك';
     const ogTitle = config.ogTitle || config.title || 'Special Cards | مؤسسة بطاقتي الخاصة';
@@ -125,14 +145,16 @@ export class SeoService {
     this.meta.updateTag({ property: 'twitter:description', content: ogDescription });
     this.meta.updateTag({ property: 'twitter:image', content: ogImage });
 
-    // Canonical & og:url — MUST be set per page
-    if (config.canonical) {
-      this.setCanonical(config.canonical);
-      this.meta.updateTag({ property: 'og:url', content: config.canonical });
-      this.meta.updateTag({ property: 'twitter:url', content: config.canonical });
+    // Canonical & og:url — locale-prefixed automatically from `path`
+    if (config.path !== undefined) {
+      const canonical = `${SITE_URL}/${lang}${config.path}`;
+      this.setCanonical(canonical);
+      this.meta.updateTag({ property: 'og:url', content: canonical });
+      this.meta.updateTag({ property: 'twitter:url', content: canonical });
     }
 
-    // JSON-LD structured data
+    // JSON-LD structured data (kept out of the reduced SEO scope —
+    // content stays as provided, not itself translated)
     if (config.jsonLd) {
       this.injectJsonLd(config.jsonLd);
     }
@@ -162,7 +184,7 @@ export class SeoService {
     this.document.head.appendChild(script);
   }
 
-  /** Update SEO for a blog post detail page */
+  /** Update SEO for a blog post detail page — title/content are backend-provided, not translated */
   updateBlogPostSeo(post: {
     title: string;
     metaTitle?: string;
@@ -175,14 +197,13 @@ export class SeoService {
     category?: string;
   }) {
     const slug = post.slug || post.id || '';
-    const canonical = `${SITE_URL}/blog/${slug}`;
     const metaTitle = post.metaTitle || post.title;
     const metaDesc = post.metaDescription || post.title;
 
     this.updateSeo({
       title: `${metaTitle} | Special Cards | مؤسسة بطاقتي الخاصة`,
       description: metaDesc,
-      canonical,
+      path: `/blog/${slug}`,
       ogTitle: metaTitle,
       ogDescription: metaDesc,
       ogImage: post.imageUrl || DEFAULT_OG_IMAGE,
@@ -212,7 +233,7 @@ export class SeoService {
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': canonical
+        '@id': `${SITE_URL}/${this.languageService.activeLanguage().code}/blog/${slug}`
       }
     };
 

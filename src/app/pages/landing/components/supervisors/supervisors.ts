@@ -1,40 +1,29 @@
-import { Component, signal, inject, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, computed } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
   selector: 'app-supervisors',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule, TranslocoModule],
   templateUrl: './supervisors.html',
   styleUrl: './supervisors.css'
 })
 export class SupervisorsComponent {
   private contentService = inject(ContentService);
-  
+  private transloco = inject(TranslocoService);
+
   supervisors = this.contentService.supervisors;
-  activeTab = signal<'pricing' | 'supervisors'>('pricing');
-  selectedPlan = signal<number | null>(null);
 
-  pricingRows = [
-    { price: '785',   label: 'عدد', count: '1 مشرف',    suffix: 'بوابة', note: 'للمناسبات من 50 إلى 100 مدعو' },
-    { price: '1,550', label: 'عدد', count: '2 مشرفَين', suffix: 'بوابة', note: 'للمناسبات أكثر من 100 إلى 300 مدعو' },
-    { price: '2,250', label: 'عدد', count: '3 مشرفين',  suffix: 'بوابة', note: 'للمناسبات أكثر من 300 إلى 500 مدعو' },
-  ];
-
-  supervisorFeatures = [
-    { text: 'مشرفين أو مشرفات', bold: 'بزي موحد' },
-    { text: 'طاولة', bold: 'تنظيم دخول.' },
-    { text: 'مسح', bold: 'أكواد الدخول.' },
-    { text: 'التواجد لمدة', bold: '5 ساعات', after: '.' },
-  ];
-
-  // Map API cities to display groups
+  // Map API cities to display groups. The loading-time placeholder below
+  // mimics backend country/city data shape-for-shape, so it deliberately
+  // stays Arabic like the real data would — only the "coming soon" filler
+  // text for a country with no cities yet is frontend-owned UI copy.
   dynamicCities = computed(() => {
     const countries = this.contentService.countries();
     const allCities = this.contentService.cities();
-    
+
     if (countries.length === 0) {
       return [
         { country: 'السعودية', cities: 'الرياض - مكة - المدينة - جدة - القصيم - الدمام - الخبر - الظهران - الأحساء - حائل.' },
@@ -50,7 +39,7 @@ export class SupervisorsComponent {
         .filter(c => c.countryId === country.id)
         .map(c => c.name)
         .join(' - ');
-      return { country: country.name, cities: countryCities || 'قريباً' };
+      return { country: country.name, cities: countryCities || this.transloco.translate('common.comingSoon') };
     });
   });
 

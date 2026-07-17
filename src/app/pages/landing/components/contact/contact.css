@@ -101,7 +101,7 @@
 }
 
 .contact-dark-section .country-trigger {
-  border-right-color: var(--border) !important;
+  border-inline-end-color: var(--border) !important;
 }
 
 .contact-dark-section .country-code {
@@ -154,7 +154,6 @@
   align-items: flex-start;
   gap: 16px;
   justify-content: flex-start;
-  direction: rtl;
 }
 
 .contact-icon-box {
@@ -180,9 +179,9 @@
 .contact-form-card {
   background: var(--bg-card);
   border: 1.5px solid var(--border);
-  border-radius: 24px;
+  border-radius: var(--radius-card-lg);
   padding: 40px;
-  box-shadow: 0 4px 24px var(--shadow);
+  box-shadow: var(--shadow-card-resting);
 }
 
 .contact-label {
@@ -203,7 +202,6 @@
   background: var(--bg-surface);
   overflow: visible;
   transition: border-color 0.2s ease;
-  direction: rtl; /* RTL for correct component placement */
 }
 .phone-field:focus-within {
   border-color: var(--gold);
@@ -218,7 +216,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  border-left: 1.5px solid var(--border);
+  border-inline-end: 1.5px solid var(--border);
   flex-shrink: 0;
   color: var(--text);
 }
@@ -264,8 +262,7 @@
 .country-dropdown {
   position: absolute;
   top: calc(100% + 6px);
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   background: var(--bg-card);
   border: 1.5px solid var(--border);
   border-radius: 14px;
@@ -289,8 +286,7 @@
   font-size: 13px;
   outline: none;
   font-family: inherit;
-  text-align: right;
-  direction: rtl;
+  text-align: start;
 }
 .country-search:focus {
   border-color: var(--gold);
@@ -335,8 +331,7 @@
   flex: 1;
   font-size: 13px;
   color: var(--text);
-  text-align: right;
-  direction: rtl;
+  text-align: start;
 }
 
 .country-dial {
@@ -392,7 +387,6 @@
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 16px;
-  direction: rtl;
 }
 
 .contact-error {
@@ -407,7 +401,6 @@
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 16px;
-  direction: rtl;
 }
 
 .contact-spinner {
@@ -434,8 +427,7 @@ button[disabled] { opacity: 0.7; cursor: not-allowed; }
   }
 
   .contact-dark-section .container {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-inline: 16px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -443,7 +435,7 @@ button[disabled] { opacity: 0.7; cursor: not-allowed; }
 
   .contact-form-card {
     padding: 20px 16px;
-    border-radius: 18px;
+    border-radius: var(--radius-card);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;

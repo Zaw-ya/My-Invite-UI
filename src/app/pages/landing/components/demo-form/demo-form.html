@@ -1,4 +1,4 @@
-<section id="demo" class="demo-section" dir="rtl">
+<section id="demo" class="demo-section">
 
   <!-- Geometric corner frames -->
   <div class="demo-geo demo-geo-br" aria-hidden="true">
@@ -11,53 +11,51 @@
     <!-- ===== SECTION HEADING ===== -->
     <div class="demo-heading-wrap">
       <lucide-icon name="sparkles" class="demo-heading-icon"></lucide-icon>
-      <h2 class="demo-heading font-display">جرب خدمتنا الآن مجاناً</h2>
+      <h2 class="demo-heading font-display">{{ 'demoForm.heading' | transloco }}</h2>
       <lucide-icon name="sparkles" class="demo-heading-icon"></lucide-icon>
     </div>
 
     <!-- ===== TWO-COLUMN CARD ===== -->
     <div class="demo-card">
 
-      <!-- RIGHT: Info Text Panel (dark) -->
-      <div class="demo-text-panel text-right">
-        <h3 class="demo-text-title">
-          لا تنتظر لتسمع عنا،<br>كن أنت صاحب التجربة الأولى.
-        </h3>
+      <!-- Info Text Panel (dark) -->
+      <div class="demo-text-panel text-start">
+        <h3 class="demo-text-title" [innerHTML]="'demoForm.infoTitle' | transloco"></h3>
         <p class="demo-text-body">
-          نعلم أنك لا تبحث عن مجرد طريقة ترسل بها دعواتك، بل تبحث عن الوجاهة التي تليق بك وبمناسبتك وتفردك، نحن هنا لننهي حيرتك بين القوالب المكررة والخيارات العادية، لنمنحك نظاماً ذكياً يصيغ لك هيبة الحضور ويضمن لضيوفك تجربة بصرية استثنائية من اللحظة الأولى.
+          {{ 'demoForm.infoBody' | transloco }}
         </p>
         <p class="demo-text-cta">
           <lucide-icon name="sparkles" class="demo-cta-icon"></lucide-icon>
-          والآن تستطيع تجربة كل هذا قبل أخذ أي قرار!
+          {{ 'demoForm.infoCta' | transloco }}
         </p>
       </div>
 
-      <!-- LEFT: Form Panel (white/light) -->
-      <div class="demo-form-panel text-right">
+      <!-- Form Panel (white/light) -->
+      <div class="demo-form-panel text-start">
 
         <!-- ===== STEP 1: Name + WhatsApp ===== -->
         @if (step() === 'form') {
           <form class="space-y-5" (ngSubmit)="sendOtp()">
 
             <div>
-              <label class="demo-label">الاسم</label>
+              <label class="demo-label">{{ 'demoForm.nameLabel' | transloco }}</label>
               <input
                 type="text"
                 [(ngModel)]="name"
                 name="name"
                 class="demo-input"
-                placeholder="محمد أحمد"
+                [placeholder]="'demoForm.namePlaceholder' | transloco"
                 required
               >
             </div>
 
             <div style="position:relative;">
-              <label class="demo-label">رقم الواتساب</label>
+              <label class="demo-label">{{ 'demoForm.phoneLabel' | transloco }}</label>
               <div class="demo-phone-row">
                 <!-- Country selector -->
                 <button type="button" class="demo-country-btn" (click)="showCountryDropdown = !showCountryDropdown">
-                  <span>{{ selectedCountry.flag }}</span>
-                  <span class="demo-dial-code" dir="ltr">+{{ selectedCountry.dialCode }}</span>
+                  <img [src]="selectedCountry().flagUrl" [alt]="selectedCountry().displayName" class="demo-flag">
+                  <span class="demo-dial-code" dir="ltr">+{{ selectedCountry().dialCode }}</span>
                   <lucide-icon name="chevron-down" class="demo-chevron"></lucide-icon>
                 </button>
                 <input
@@ -65,21 +63,21 @@
                   [(ngModel)]="phoneLocal"
                   name="phoneLocal"
                   class="demo-input"
-                  placeholder="5xxxxxxxx"
+                  [placeholder]="'demoForm.phonePlaceholder' | transloco"
                   dir="ltr"
                   style="flex:1; min-width:0;"
                   required
                 >
               </div>
-              <small class="demo-note">أدخل الرقم بدون رمز الدولة ودون +</small>
+              <small class="demo-note">{{ 'demoForm.phoneHint' | transloco }}</small>
 
               <!-- Dropdown -->
               @if (showCountryDropdown) {
-                <div class="demo-country-dropdown" dir="rtl">
-                  @for (c of countries; track c.code) {
-                    <button type="button" class="demo-country-option" [class.selected]="c.code === selectedCountry.code" (click)="selectCountry(c)">
-                      <span>{{ c.flag }}</span>
-                      <span class="demo-country-name">{{ c.name }}</span>
+                <div class="demo-country-dropdown">
+                  @for (c of countries(); track c.isoCode) {
+                    <button type="button" class="demo-country-option" [class.selected]="c.isoCode === selectedCountry().isoCode" (click)="selectCountry(c)">
+                      <img [src]="c.flagUrl" [alt]="c.displayName" class="demo-flag">
+                      <span class="demo-country-name">{{ c.displayName }}</span>
                       <span class="demo-dial-code" dir="ltr">+{{ c.dialCode }}</span>
                     </button>
                   }
@@ -88,11 +86,11 @@
             </div>
 
             @if (selectedCardId) {
-              <p class="demo-note" style="color:#666;">
-                ✓ تم اختيار تصميم — سيُرسل إليك على الواتساب
+              <p class="demo-note">
+                {{ 'demoForm.cardSelectedNote' | transloco }}
               </p>
             } @else {
-              <p class="demo-note">* يمكنك اختيار تصميم كارت معين من القسم السابق</p>
+              <p class="demo-note">{{ 'demoForm.cardNotSelectedNote' | transloco }}</p>
             }
 
             @if (errorMsg()) {
@@ -101,9 +99,9 @@
 
             <button type="submit" class="demo-submit-btn" [disabled]="loading()">
               @if (loading()) {
-                <span class="demo-spinner"></span> جارٍ الإرسال...
+                <span class="demo-spinner"></span> {{ 'demoForm.submitBtnLoading' | transloco }}
               } @else {
-                إرسال رمز التحقق
+                {{ 'demoForm.submitBtn' | transloco }}
               }
             </button>
 
@@ -116,13 +114,13 @@
             <div class="demo-otp-header">
               <lucide-icon name="message-circle" class="demo-otp-icon"></lucide-icon>
               <div>
-                <p class="demo-otp-title">تم إرسال رمز التحقق</p>
-                <p class="demo-otp-sub">تفقد واتساب على الرقم: <strong dir="ltr">+{{ whatsAppNumber }}</strong></p>
+                <p class="demo-otp-title">{{ 'demoForm.otpSentTitle' | transloco }}</p>
+                <p class="demo-otp-sub">{{ 'demoForm.otpSentSub' | transloco }} <strong dir="ltr">+{{ whatsAppNumber }}</strong></p>
               </div>
             </div>
 
             <div>
-              <label class="demo-label">رمز التحقق</label>
+              <label class="demo-label">{{ 'demoForm.otpLabel' | transloco }}</label>
               <input
                 type="text"
                 [(ngModel)]="otp"
@@ -140,14 +138,14 @@
 
             <button class="demo-submit-btn" (click)="verifyOtp()" [disabled]="loading()">
               @if (loading()) {
-                <span class="demo-spinner"></span> جارٍ التحقق...
+                <span class="demo-spinner"></span> {{ 'demoForm.otpConfirmBtnLoading' | transloco }}
               } @else {
-                تأكيد ومشاهدة الكارت
+                {{ 'demoForm.otpConfirmBtn' | transloco }}
               }
             </button>
 
             <button class="demo-resend-btn" (click)="resend()" [disabled]="loading()">
-              تغيير الرقم أو إعادة الإرسال
+              {{ 'demoForm.resendBtn' | transloco }}
             </button>
           </div>
         }
@@ -156,13 +154,16 @@
         @if (step() === 'success') {
           <div class="demo-success">
             <div class="demo-success-icon">
-              <lucide-icon name="check-circle" style="width:48px;height:48px;color:#22c55e;"></lucide-icon>
+              <lucide-icon name="check" class="w-8 h-8"></lucide-icon>
             </div>
-            <h4 class="demo-success-title">تم بنجاح! 🎉</h4>
+            <h4 class="demo-success-title">{{ 'demoForm.successTitle' | transloco }}</h4>
             <p class="demo-success-body">
-              تم إرسال كارت الدعوة التجريبي على واتسابك.<br>
-              تفقد رسائلك الآن وشاهد التجربة بنفسك!
+              {{ 'demoForm.successBody' | transloco }}
             </p>
+            <a href="#packages" class="demo-success-cta" (click)="scrollService.scrollTo($event, 'packages')">
+              {{ 'demoForm.successCta' | transloco }}
+              <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+            </a>
           </div>
         }
 

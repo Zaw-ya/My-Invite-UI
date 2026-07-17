@@ -1,11 +1,11 @@
-<section id="additional-services" class="as-section" dir="rtl">
+<section id="additional-services" class="as-section section-py">
   <div class="container mx-auto px-5">
 
     <!-- Header -->
     <div class="as-header">
-      <h2 class="as-title font-display">ما الذي <span>يميّزنا؟</span></h2>
+      <h2 class="as-title font-display" [innerHTML]="'additionalServices.title' | transloco"></h2>
       <br />
-      <p class="as-subtitle">نقدم أكثر من مجرد دعوة — نصنع تجربة متكاملة لكل مناسبة</p>
+      <p class="as-subtitle">{{ 'additionalServices.subtitle' | transloco }}</p>
     </div>
 
     <!-- Services Grid -->
@@ -14,8 +14,8 @@
       <div class="as-card">
         <div class="as-num">01</div>
         <div class="as-card-body-wrap">
-          <h4 class="as-card-title">توصيل فوري عبر واتساب</h4>
-          <p class="as-card-text">نرسل دعوتك مباشرةً إلى ضيوفك عبر واتساب بنقرة واحدة — سريع، موثوق، وبلا تأخير.</p>
+          <h4 class="as-card-title">{{ 'additionalServices.card1Title' | transloco }}</h4>
+          <p class="as-card-text">{{ 'additionalServices.card1Text' | transloco }}</p>
         </div>
         <lucide-icon name="smartphone" class="as-icon"></lucide-icon>
       </div>
@@ -23,8 +23,8 @@
       <div class="as-card">
         <div class="as-num">02</div>
         <div class="as-card-body-wrap">
-          <h4 class="as-card-title">تصاميم حصرية لا تتكرر</h4>
-          <p class="as-card-text">مكتبة تصاميم متجددة باستمرار، صُممت بأعلى معايير الجماليات لتعكس وجاهة مناسبتك.</p>
+          <h4 class="as-card-title">{{ 'additionalServices.card2Title' | transloco }}</h4>
+          <p class="as-card-text">{{ 'additionalServices.card2Text' | transloco }}</p>
         </div>
         <lucide-icon name="palette" class="as-icon"></lucide-icon>
       </div>
@@ -32,8 +32,8 @@
       <div class="as-card">
         <div class="as-num">03</div>
         <div class="as-card-body-wrap">
-          <h4 class="as-card-title">إدارة قائمة المدعوين</h4>
-          <p class="as-card-text">تتبّع الردود وأدِر قائمة ضيوفك من لوحة تحكم واحدة بسهولة تامة.</p>
+          <h4 class="as-card-title">{{ 'additionalServices.card3Title' | transloco }}</h4>
+          <p class="as-card-text">{{ 'additionalServices.card3Text' | transloco }}</p>
         </div>
         <lucide-icon name="users" class="as-icon"></lucide-icon>
       </div>
@@ -41,8 +41,8 @@
       <div class="as-card">
         <div class="as-num">04</div>
         <div class="as-card-body-wrap">
-          <h4 class="as-card-title">دعم المناسبات الرسمية</h4>
-          <p class="as-card-text">دعوات بمواصفات رسمية للحكومات والشركات الكبرى بأعلى مستوى من الاحترافية.</p>
+          <h4 class="as-card-title">{{ 'additionalServices.card4Title' | transloco }}</h4>
+          <p class="as-card-text">{{ 'additionalServices.card4Text' | transloco }}</p>
         </div>
         <lucide-icon name="landmark" class="as-icon"></lucide-icon>
       </div>
@@ -50,17 +50,17 @@
       <div class="as-card">
         <div class="as-num">05</div>
         <div class="as-card-body-wrap">
-          <h4 class="as-card-title">تخصيص كامل للتصميم</h4>
-          <p class="as-card-text">أضف اسمك وتفاصيل مناسبتك وصورك — دعوة مصممة خصيصاً لك من الصفر.</p>
+          <h4 class="as-card-title">{{ 'additionalServices.card5Title' | transloco }}</h4>
+          <p class="as-card-text">{{ 'additionalServices.card5Text' | transloco }}</p>
         </div>
         <lucide-icon name="eye" class="as-icon"></lucide-icon>
       </div>
 
       <div class="as-card as-card-cta">
         <div class="as-num" style="color:rgba(0,0,0,0.2);">06</div>
-        <h4 class="as-card-title">هل تحتاج خدمة خاصة؟</h4>
-        <p class="as-card-text">تواصل معنا مباشرة وسنصمم لك حلاً يناسب احتياجاتك تماماً.</p>
-        <a href="#contact" class="as-cta-btn" (click)="smoothNav($event)">تواصل معنا ←</a>
+        <h4 class="as-card-title">{{ 'additionalServices.ctaCardTitle' | transloco }}</h4>
+        <p class="as-card-text">{{ 'additionalServices.ctaCardText' | transloco }}</p>
+        <a href="#contact" class="as-cta-btn" (click)="scrollService.scrollTo($event, 'contact')">{{ 'additionalServices.ctaCardLink' | transloco }}</a>
       </div>
 
     </div>

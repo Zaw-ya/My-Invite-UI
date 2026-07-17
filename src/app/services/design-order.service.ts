@@ -29,13 +29,4 @@ export class DesignOrderService {
     this._prefillMessage.set('');
     document.body.style.overflow = '';
   }
-
-  // kept for contact section pre-fill (direct link)
-  setPrefillMessage(message: string) {
-    this._prefillMessage.set(message);
-  }
-
-  clearPrefill() {
-    this._prefillMessage.set('');
-  }
 }

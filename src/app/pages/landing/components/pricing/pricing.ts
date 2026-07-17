@@ -1,7 +1,9 @@
 import { Component, signal, computed, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslocoModule } from '@jsverse/transloco';
 import { ContentService } from '../../../../services/content.service';
+import { ScrollService } from '../../../../services/scroll.service';
 
 interface PricingTier {
   count: number;
@@ -14,22 +16,22 @@ interface PlanData {
   tiers: PricingTier[];
   features: string[];
   compensatoryPercent: number;
-  ctaLabel: string;
+  ctaLabelKey: string;
   ctaClass: string;
   contactThreshold: number;
-  contactLabel: string;
 }
 
 @Component({
   selector: 'app-pricing',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, TranslocoModule],
   templateUrl: './pricing.html',
   styleUrl: './pricing.css'
 })
 export class PricingComponent {
   private contentService = inject(ContentService);
-  
+  readonly scrollService = inject(ScrollService);
+
   activeTab = signal<string>('');
 
   plans = computed<PlanData[]>(() => {
@@ -40,10 +42,13 @@ export class PricingComponent {
       tiers: p.tiers || [],
       features: p.features,
       compensatoryPercent: p.compensationPercentage || 0,
-      ctaLabel: p.name.includes('الأعمال') ? 'تواصل معنا' : 'حقل التطبيق',
+      // Branches on the backend's own package-name contract value (Arabic,
+      // per confirmed decision) — not a translated display string, so this
+      // stays stable across languages. The CTA wording itself is now a
+      // translation key rather than a hardcoded Arabic literal.
+      ctaLabelKey: p.name.includes('الأعمال') ? 'pricing.ctaContactUs' : 'pricing.ctaOrderNow',
       ctaClass: p.name.includes('الأعمال') ? 'bg-[#9a6f09] hover:bg-[#7a5807] text-white' : 'bg-[#B8860B] hover:bg-[#9a6f09] text-white',
       contactThreshold: (p.tiers && p.tiers.length > 0) ? p.tiers[p.tiers.length - 1].count : 400,
-      contactLabel: `للمناسبات أكثر من ${p.tiers?.[p.tiers.length-1]?.count || 400} مدعو`
     }));
   });
 
@@ -72,8 +77,8 @@ export class PricingComponent {
     const tab = this.activeTab();
     return p.find(plan => plan.id === tab) ?? p[0] ?? {
       id: '', label: '', tiers: [], features: [],
-      compensatoryPercent: 0, ctaLabel: '', ctaClass: '',
-      contactThreshold: 0, contactLabel: ''
+      compensatoryPercent: 0, ctaLabelKey: '', ctaClass: '',
+      contactThreshold: 0
     };
   });
 

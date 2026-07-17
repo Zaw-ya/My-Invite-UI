@@ -228,16 +228,20 @@ export class ContentService {
           return {
             id: item.id.toString(),
             title: item.title || '',
-            category: item.category || 'نصائح',
+            // No hardcoded UI-language fallback here — category/author are
+            // raw backend values (empty string if absent); the display
+            // layer supplies a translated default so it stays reactive to
+            // the active language instead of being baked in at fetch time.
+            category: item.category || '',
             date: new Date(item.createdAt || item.createdDate || Date.now()).toISOString().split('T')[0],
             excerpt: excerpt ? excerpt + '…' : '',
             imageUrl: this.resolveUrl(item.imageUrl),
-            readTime: `${readMinutes} دقائق`,
+            readMinutes,
             slug: item.slug || item.id.toString(),
             metaTitle: item.metaTitle || item.title || '',
             metaDescription: item.metaDescription || '',
             altText: item.altText || item.title || '',
-            author: item.author || 'فريق مؤسسة بطاقتي الخاصة',
+            author: item.author || '',
             tags: item.tags || '',
             content: rawContent
           };

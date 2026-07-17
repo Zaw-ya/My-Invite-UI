@@ -1,0 +1,27 @@
+<section class="section-py how-section">
+  <div class="container mx-auto px-5">
+
+    <!-- Header -->
+    <div class="text-center mb-14 space-y-3">
+      <span class="badge-pill">✦ {{ 'howItWorks.kicker' | transloco }}</span>
+      <h2 class="section-title" [innerHTML]="'howItWorks.title' | transloco"></h2>
+      <div class="gold-divider mx-auto" style="width: 56px;"></div>
+      <p class="section-sub">{{ 'howItWorks.subtitle' | transloco }}</p>
+    </div>
+
+    <!-- Steps -->
+    <div class="how-grid">
+      @for (step of steps; track step.titleKey; let i = $index) {
+        <div class="how-card">
+          <div class="how-num">{{ i + 1 < 10 ? '0' + (i + 1) : (i + 1) }}</div>
+          <div class="how-icon-badge">
+            <lucide-icon [name]="step.icon" class="w-5 h-5"></lucide-icon>
+          </div>
+          <h3 class="how-card-title">{{ step.titleKey | transloco }}</h3>
+          <p class="how-card-text">{{ step.bodyKey | transloco }}</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

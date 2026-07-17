@@ -2,17 +2,18 @@
   <div class="container mx-auto px-5">
 
     <!-- Top Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 pb-8 lg:pb-12 border-b text-right"
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 pb-8 lg:pb-12 border-b text-start"
       style="border-color: rgba(255,255,255,0.07);">
 
       <!-- Brand -->
-      <div class="space-y-5" dir="rtl">
+      <div class="space-y-5">
         <div class="flex items-center gap-3">
           <img src="/assets/images/navfoot.png" alt="Logo" class="h-32 md:h-40 w-auto object-contain">
 
         </div>
         <p class="text-sm leading-relaxed" style="color: var(--footer-text);">
-          مؤسسة بطاقتي الخاصة لحلول دعوات رقمية متكاملة ومبتكرة لجميع مناسباتك في المملكة العربية السعودية والخليج.
+          {{ 'footer.brandBlurb' | transloco }}
+        </p>
         <div class="flex gap-2">
           @if (settings()['instagram-url']) {
           <a [href]="settings()['instagram-url']" target="_blank" class="footer-social">
@@ -29,30 +30,29 @@
 
       <!-- Quick Links -->
       <div>
-        <h4 class="footer-heading mb-3 lg:mb-5">روابط سريعة</h4>
+        <h4 class="footer-heading mb-3 lg:mb-5">{{ 'footer.quickLinksTitle' | transloco }}</h4>
         <ul class="space-y-3 text-sm">
-          <li><a href="#" class="footer-link">الرئيسية</a></li>
-          <li><a href="#designs" class="footer-link">التصاميم</a></li>
-          <li><a href="#packages" class="footer-link">الباقات</a></li>
-          <li><a href="#testimonials" class="footer-link">آراء العملاء</a></li>
-          <li><a href="#blog" class="footer-link">المدونة</a></li>
+          <li><a href="#" class="footer-link">{{ 'footer.home' | transloco }}</a></li>
+          <li><a href="#designs" class="footer-link">{{ 'footer.designs' | transloco }}</a></li>
+          <li><a href="#packages" class="footer-link">{{ 'footer.packages' | transloco }}</a></li>
+          <li><a href="#how-it-works" class="footer-link">{{ 'footer.howItWorks' | transloco }}</a></li>
+          <li><a href="#blog" class="footer-link">{{ 'footer.blog' | transloco }}</a></li>
         </ul>
       </div>
 
       <!-- Support -->
       <div>
-        <h4 class="footer-heading mb-3 lg:mb-5">الدعم</h4>
+        <h4 class="footer-heading mb-3 lg:mb-5">{{ 'footer.supportTitle' | transloco }}</h4>
         <ul class="space-y-3 text-sm">
-          <li><a routerLink="/privacy-policy" class="footer-link">سياسة الخصوصية</a></li>
-          <li><a routerLink="/terms" class="footer-link">الشروط والأحكام</a></li>
-          <li><a routerLink="/cancellation-policy" class="footer-link">سياسة الحجز والإلغاء</a></li>
-          <li><a href="#" class="footer-link">الأسئلة الشائعة</a></li>
+          <li><a [routerLink]="['/', activeLanguage().code, 'privacy-policy']" class="footer-link">{{ 'footer.privacyPolicy' | transloco }}</a></li>
+          <li><a [routerLink]="['/', activeLanguage().code, 'terms']" class="footer-link">{{ 'footer.terms' | transloco }}</a></li>
+          <li><a [routerLink]="['/', activeLanguage().code, 'cancellation-policy']" class="footer-link">{{ 'footer.cancellationPolicy' | transloco }}</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
-      <div dir="rtl">
-        <h4 class="footer-heading mb-3 lg:mb-5">تواصل معنا</h4>
+      <div>
+        <h4 class="footer-heading mb-3 lg:mb-5">{{ 'footer.contact' | transloco }}</h4>
         <div class="space-y-4 text-sm">
           <div class="flex items-start gap-3" *ngIf="settings()['address']">
             <lucide-icon name="map-pin" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--gold);"></lucide-icon>
@@ -73,8 +73,7 @@
 
     <!-- Bottom Bar -->
     <div class="pt-6 lg:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-5">
-      <p class="text-xs" style="color: rgba(255,255,255,0.25);">© 2026 {{ settings()['site-name'] }}. جميع الحقوق
-        محفوظة.</p>
+      <p class="text-xs" style="color: rgba(255,255,255,0.25);">{{ 'footer.copyright' | transloco: { siteName: settings()['site-name'] } }}</p>
 
       <!-- Payment Methods -->
       <div class="flex flex-wrap items-center justify-center gap-3">
@@ -96,19 +95,19 @@
 
   </div>
 
-  <!-- Floating: Back to Top (right side, same size as WhatsApp) -->
+  <!-- Floating: Back to Top (start side, same size as WhatsApp) -->
   <button (click)="scrollToTop()"
-    class="fixed bottom-5 right-5 rounded-full flex items-center justify-center shadow-lg transition-all hover:-translate-y-1 z-40"
+    class="fixed bottom-5 start-5 rounded-full flex items-center justify-center shadow-lg transition-all hover:-translate-y-1 z-40"
     style="background-color: var(--gold); color: #fff; box-shadow: 0 4px 16px var(--shadow-gold); width: 52px; height: 52px;"
-    title="العودة للأعلى">
+    [title]="'footer.backToTopTooltip' | transloco">
     <lucide-icon name="chevron-up" class="w-6 h-6"></lucide-icon>
   </button>
 
-  <!-- Floating: WhatsApp (left side) -->
+  <!-- Floating: WhatsApp (end side) -->
   <a *ngIf="settings()['whatsapp-number']" [href]="'https://wa.me/' + settings()['whatsapp-number']" target="_blank"
     rel="noopener noreferrer"
-    class="fixed bottom-5 left-5 rounded-full flex items-center justify-center shadow-xl hover:-translate-y-1 transition-all z-40"
-    style="background-color: #25D366; width: 52px; height: 52px;" title="واتساب">
+    class="fixed bottom-5 end-5 rounded-full flex items-center justify-center shadow-xl hover:-translate-y-1 transition-all z-40"
+    style="background-color: #25D366; width: 52px; height: 52px;" [title]="'footer.whatsappTooltip' | transloco">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-white">
       <path
         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />

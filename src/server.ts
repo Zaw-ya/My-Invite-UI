@@ -36,6 +36,25 @@ app.use(
 );
 
 /**
+ * Requests for a path that looks like a static file (has a file extension
+ * in its last segment, e.g. `/env.js`, `/favicon.ico`) but wasn't served by
+ * `express.static` above means that file doesn't exist. These must never
+ * reach Angular's router: the locale-prefix redirect logic in app.routes.ts
+ * treats any unmatched path as a candidate page and re-attempts the redirect
+ * whenever the result still doesn't match a real route, which for a
+ * permanently-missing static asset never terminates. A plain 404 here is
+ * the correct, standard behavior for a missing static file regardless.
+ */
+app.use((req, res, next) => {
+  const lastSegment = req.path.split('/').pop() ?? '';
+  if (lastSegment.includes('.')) {
+    res.status(404).end();
+    return;
+  }
+  next();
+});
+
+/**
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {

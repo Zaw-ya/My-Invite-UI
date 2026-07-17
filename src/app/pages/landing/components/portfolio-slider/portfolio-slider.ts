@@ -1,22 +1,34 @@
 import { Component, input, ElementRef, ViewChild, AfterViewInit, HostListener, signal, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslocoModule } from '@jsverse/transloco';
 import { InvitationCard } from '../../../../models/content.interface';
 import { DesignOrderService } from '../../../../services/design-order.service';
+import { LanguageService } from '../../../../i18n/language.service';
+
+type GenderFilter = 'all' | 'male' | 'female';
+
+const GENDER_FILTER_OPTIONS: { id: GenderFilter; labelKey: string }[] = [
+  { id: 'all', labelKey: 'portfolioSlider.genderFilterAll' },
+  { id: 'male', labelKey: 'portfolioSlider.genderFilterMale' },
+  { id: 'female', labelKey: 'portfolioSlider.genderFilterFemale' },
+];
 
 @Component({
   selector: 'app-portfolio-slider',
   standalone: true,
-  imports: [CommonModule, RouterModule, LucideAngularModule],
+  imports: [RouterModule, LucideAngularModule, TranslocoModule],
   templateUrl: './portfolio-slider.html',
   styleUrl: './portfolio-slider.css'
 })
 export class PortfolioSliderComponent implements AfterViewInit {
   private designOrderService = inject(DesignOrderService);
+  readonly languageService = inject(LanguageService);
 
+  // Backend-provided category names (dynamic, stays exactly as received —
+  // no synthetic "All" sentinel mixed in; that's UI-owned, see activeCategory.
   invitations = input<InvitationCard[]>([]);
-  categories = input<string[]>(['كل التصميمات']);
+  categories = input<string[]>([]);
   @ViewChild('sliderContainer') container!: ElementRef<HTMLDivElement>;
 
   cardWidth = signal(300);
@@ -25,26 +37,32 @@ export class PortfolioSliderComponent implements AfterViewInit {
 
   previewCard = signal<InvitationCard | null>(null);
 
-  activeCategory = signal('كل التصميمات');
-  activeGender = signal('كل التصميمات');
-  genderOptions = ['كل التصميمات', 'تصميمات ذكورية', 'تصميمات أنثوية'];
+  // `null` = "All categories" — a stable sentinel, not a localized string,
+  // so switching languages never affects the active filter's identity.
+  activeCategory = signal<string | null>(null);
+  activeGender = signal<GenderFilter>('all');
+  genderOptions = GENDER_FILTER_OPTIONS;
+
+  prevIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'chevron-right' : 'chevron-left');
+  nextIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'chevron-left' : 'chevron-right');
+  viewAllIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'arrow-left' : 'arrow-right');
 
   filteredInvitations = computed(() => {
     let items = this.invitations();
     const cat = this.activeCategory();
     const gender = this.activeGender();
 
-    if (cat && cat !== 'كل التصميمات') {
+    if (cat !== null) {
       const searchCat = cat.trim();
-      items = items.filter(i => 
+      items = items.filter(i =>
         (i.category && i.category.trim() === searchCat) ||
         (i.allCategories && i.allCategories.some(c => c.trim() === searchCat))
       );
     }
 
-    if (gender === 'تصميمات ذكورية') {
+    if (gender === 'male') {
       items = items.filter(i => i.gender === 'ذكوري');
-    } else if (gender === 'تصميمات أنثوية') {
+    } else if (gender === 'female') {
       items = items.filter(i => i.gender === 'أنثوي');
     }
 
@@ -62,11 +80,11 @@ export class PortfolioSliderComponent implements AfterViewInit {
     return items;
   });
 
-  setCategory(cat: string) {
+  setCategory(cat: string | null) {
     this.activeCategory.set(cat);
   }
 
-  setGender(gender: string) {
+  setGender(gender: GenderFilter) {
     this.activeGender.set(gender);
   }
 

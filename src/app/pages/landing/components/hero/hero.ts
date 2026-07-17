@@ -1,6 +1,6 @@
 import { Component, signal, inject, computed, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslocoModule } from '@jsverse/transloco';
 import { ContentService } from '../../../../services/content.service';
 
 interface EventTag {
@@ -11,7 +11,7 @@ interface EventTag {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule, TranslocoModule],
   templateUrl: './hero.html',
   styleUrl: './hero.css'
 })
@@ -41,15 +41,6 @@ export class HeroComponent implements OnInit, OnDestroy {
       }
     }, 5000);
   }
-
-  brandParts = computed(() => {
-    const name = this.settings()['site-name'] || 'My Invite';
-    const words = name.split(' ');
-    if (words.length === 1) return { p1: words[0], p2: '' };
-    const p1 = words.slice(0, Math.ceil(words.length / 2)).join(' ');
-    const p2 = words.slice(Math.ceil(words.length / 2)).join(' ');
-    return { p1, p2 };
-  });
 
   tags = computed<EventTag[]>(() => {
     return this.eventTypes().map(et => ({

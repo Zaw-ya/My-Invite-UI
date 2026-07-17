@@ -1,17 +1,15 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslocoModule } from '@jsverse/transloco';
+import { ScrollService } from '../../../../services/scroll.service';
 
 @Component({
   selector: 'app-additional-services',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule, TranslocoModule],
   templateUrl: './additional-services.html',
   styleUrl: './additional-services.css'
 })
 export class AdditionalServicesComponent {
-  smoothNav(e: Event) {
-    e.preventDefault();
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  readonly scrollService = inject(ScrollService);
 }

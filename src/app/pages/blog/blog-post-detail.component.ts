@@ -1,16 +1,18 @@
 import { Component, inject, signal, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslocoService, TranslocoModule } from '@jsverse/transloco';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
 import { ContentService } from '../../services/content.service';
 import { SeoService } from '../../services/seo.service';
+import { LanguageService } from '../../i18n/language.service';
 
 @Component({
   selector: 'app-blog-post-detail',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, NavbarComponent, FooterComponent],
+  imports: [LucideAngularModule, NavbarComponent, FooterComponent, TranslocoModule, RouterLink],
   templateUrl: './blog-post-detail.component.html',
   styleUrl: './blog-post-detail.component.css'
 })
@@ -20,6 +22,8 @@ export class BlogPostDetailComponent implements OnInit {
   private contentService = inject(ContentService);
   private seoService = inject(SeoService);
   private platformId = inject(PLATFORM_ID);
+  private transloco = inject(TranslocoService);
+  readonly languageService = inject(LanguageService);
 
   postId = signal<string>('');
   currentPost = signal<any>(null);
@@ -46,17 +50,21 @@ export class BlogPostDetailComponent implements OnInit {
           const rawContent = data.content || '';
           const wordCount = rawContent.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
           const readMinutes = Math.max(1, Math.ceil(wordCount / 200));
+          const dateLocale = this.languageService.activeLanguage().code === 'ar' ? 'ar-SA' : 'en-US';
 
           const formatted = {
             id: data.id?.toString() || '',
             title: data.title || '',
-            category: data.category || 'نصائح',
-            date: new Date(data.createdAt || data.createdDate || Date.now()).toLocaleDateString('ar-SA'),
-            readTime: `${readMinutes} دقائق`,
+            // No hardcoded UI-language fallback — raw backend value (empty
+            // string if absent); the template supplies a translated
+            // default so it stays reactive to the active language.
+            category: data.category || '',
+            date: new Date(data.createdAt || data.createdDate || Date.now()).toLocaleDateString(dateLocale),
+            readMinutes,
             imageUrl: data.imageUrl || '',
             altText: data.altText || data.title || '',
             content: rawContent,
-            author: data.author || 'فريق مؤسسة بطاقتي الخاصة',
+            author: data.author || '',
             slug: data.slug || data.id?.toString() || '',
             metaTitle: data.metaTitle || data.title || '',
             metaDescription: data.metaDescription || '',
@@ -84,8 +92,8 @@ export class BlogPostDetailComponent implements OnInit {
         console.error('Error fetching blog post:', err);
         this.loading.set(false);
         this.currentPost.set({
-          title: 'خطأ في التحميل',
-          content: '<p>عذراً، تعذر تحميل المقال من الخادم.</p>'
+          title: this.transloco.translate('blogPostDetail.loadingErrorTitle'),
+          content: `<p>${this.transloco.translate('blogPostDetail.loadingErrorBody')}</p>`
         });
       }
     });
@@ -93,10 +101,10 @@ export class BlogPostDetailComponent implements OnInit {
 
   getPost() {
     return this.currentPost() || {
-      title: 'جاري التحميل...',
+      title: this.transloco.translate('blogPostDetail.loadingPlaceholderTitle'),
       category: '',
       date: '',
-      readTime: '',
+      readMinutes: 0,
       imageUrl: '',
       altText: '',
       content: '',
@@ -122,16 +130,18 @@ export class BlogPostDetailComponent implements OnInit {
 
   navigateToPost(post: any) {
     const segment = post.slug || post.id;
-    this.router.navigate(['/blog', segment]);
+    this.router.navigate(['/', this.languageService.activeLanguage().code, 'blog', segment]);
   }
 
   shareWhatsApp() {
     const post = this.getPost();
-    if (!post.title || post.title === 'جاري التحميل...') return;
-    const text = `اقرأ: ${post.title} - ${window.location.origin}/blog/${this.postId()}`;
-    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    if (!post.title || this.loading()) return;
+    // Use the actual current URL (already locale-prefixed, e.g. /en/blog/123)
+    // rather than reconstructing one — matches shareTwitter/shareFacebook/copyLink.
+    const text = this.transloco.translate('blogPostDetail.shareTextTemplate', { title: post.title, url: window.location.href });
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
     if (isPlatformBrowser(this.platformId)) {
-      window.open(url, '_blank');
+      window.open(shareUrl, '_blank');
     }
   }
 

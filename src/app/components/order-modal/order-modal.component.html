@@ -1,11 +1,11 @@
 <div class="om-backdrop" (click)="close()">
-  <div class="om-box" (click)="$event.stopPropagation()" dir="rtl">
+  <div class="om-box" (click)="$event.stopPropagation()">
 
     <!-- Header -->
     <div class="om-header">
       <div>
-        <h3 class="om-title">اطلب هذا التصميم</h3>
-        <p class="om-sub">أرسل بياناتك وسنتواصل معك في أقرب وقت</p>
+        <h3 class="om-title">{{ 'orderModal.title' | transloco }}</h3>
+        <p class="om-sub">{{ 'orderModal.subtitle' | transloco }}</p>
       </div>
       <button class="om-close" type="button" (click)="close()">
         <lucide-icon name="x" class="w-5 h-5"></lucide-icon>
@@ -19,11 +19,11 @@
         <div class="om-success">
           <lucide-icon name="circle-check" class="w-7 h-7 flex-shrink-0"></lucide-icon>
           <div>
-            <p class="font-bold text-base">تم الإرسال بنجاح!</p>
-            <p class="text-sm mt-1 opacity-80">سنتواصل معك قريباً.</p>
+            <p class="font-bold text-base">{{ 'orderModal.successTitle' | transloco }}</p>
+            <p class="text-sm mt-1 opacity-80">{{ 'orderModal.successBody' | transloco }}</p>
           </div>
         </div>
-        <button class="om-btn-secondary mt-4" type="button" (click)="close()">إغلاق</button>
+        <button class="om-btn-secondary mt-4" type="button" (click)="close()">{{ 'orderModal.closeBtn' | transloco }}</button>
       } @else {
 
         @if (submitError()) {
@@ -37,48 +37,48 @@
 
           <!-- Name -->
           <div class="om-field">
-            <label class="om-label">الاسم الكامل</label>
-            <input type="text" class="om-input" placeholder="أدخل اسمك الكامل"
+            <label class="om-label">{{ 'orderModal.nameLabel' | transloco }}</label>
+            <input type="text" class="om-input" [placeholder]="'orderModal.namePlaceholder' | transloco"
                    [(ngModel)]="name" name="name" autocomplete="name">
           </div>
 
           <!-- Email -->
           <div class="om-field">
-            <label class="om-label">البريد الإلكتروني</label>
-            <input type="email" class="om-input" placeholder="example@email.com"
+            <label class="om-label">{{ 'orderModal.emailLabel' | transloco }}</label>
+            <input type="email" class="om-input" [placeholder]="'orderModal.emailPlaceholder' | transloco"
                    [(ngModel)]="email" name="email" autocomplete="email" dir="ltr">
           </div>
 
           <!-- Phone -->
           <div class="om-field">
-            <label class="om-label">رقم الجوال</label>
+            <label class="om-label">{{ 'orderModal.phoneLabel' | transloco }}</label>
             <div class="om-phone" #phoneRef (clickOutside)="dropdownOpen.set(false)">
 
               <button type="button" class="om-country-btn" (click)="$event.stopPropagation(); toggleDropdown()">
-                <img [src]="selectedCountry().flag" [alt]="selectedCountry().name" class="om-flag">
-                <span class="om-code" dir="ltr">+{{ selectedCountry().callingCode }}</span>
+                <img [src]="selectedCountry().flagUrl" [alt]="selectedCountry().displayName" class="om-flag">
+                <span class="om-code" dir="ltr">+{{ selectedCountry().dialCode }}</span>
                 <lucide-icon name="chevron-down" class="w-3.5 h-3.5 om-chevron" [class.rotated]="dropdownOpen()"></lucide-icon>
               </button>
 
-              <input type="tel" class="om-phone-input" placeholder="5xxxxxxxx" dir="ltr"
+              <input type="tel" class="om-phone-input" [placeholder]="'orderModal.phonePlaceholder' | transloco" dir="ltr"
                      [(ngModel)]="phone" name="phone" autocomplete="tel">
 
               @if (dropdownOpen()) {
                 <div class="om-dropdown" (click)="$event.stopPropagation()">
-                  <input type="text" class="om-search" placeholder="بحث عن دولة..."
+                  <input type="text" class="om-search" [placeholder]="'orderModal.countrySearchPlaceholder' | transloco"
                          [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
                          name="countrySearch">
                   <ul class="om-country-list">
-                    @for (c of filteredCountries(); track c.alpha2Code) {
+                    @for (c of filteredCountries(); track c.isoCode) {
                       <li class="om-country-opt" (click)="selectCountry(c)"
-                          [class.selected]="selectedCountry().alpha2Code === c.alpha2Code">
-                        <img [src]="c.flag" [alt]="c.name" class="om-flag-sm">
-                        <span class="om-country-name">{{ c.name }}</span>
-                        <span class="om-country-dial" dir="ltr">+{{ c.callingCode }}</span>
+                          [class.selected]="selectedCountry().isoCode === c.isoCode">
+                        <img [src]="c.flagUrl" [alt]="c.displayName" class="om-flag-sm">
+                        <span class="om-country-name">{{ c.displayName }}</span>
+                        <span class="om-country-dial" dir="ltr">+{{ c.dialCode }}</span>
                       </li>
                     }
                     @if (filteredCountries().length === 0) {
-                      <li class="om-no-result">لا توجد نتائج</li>
+                      <li class="om-no-result">{{ 'orderModal.noResults' | transloco }}</li>
                     }
                   </ul>
                 </div>
@@ -88,7 +88,7 @@
 
           <!-- Message -->
           <div class="om-field">
-            <label class="om-label">رسالتك</label>
+            <label class="om-label">{{ 'orderModal.messageLabel' | transloco }}</label>
             <textarea rows="3" class="om-input om-textarea"
                       [(ngModel)]="message" name="message"></textarea>
           </div>
@@ -97,10 +97,10 @@
           <button type="submit" class="om-submit" [disabled]="submitting()">
             @if (submitting()) {
               <span class="om-spinner"></span>
-              جاري الإرسال...
+              {{ 'orderModal.submitBtnLoading' | transloco }}
             } @else {
               <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
-              إرسال الطلب
+              {{ 'orderModal.submitBtn' | transloco }}
             }
           </button>
 

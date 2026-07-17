@@ -1,129 +1,47 @@
-<section class="section-py supervisors-section" style="background-color: var(--bg-secondary);" dir="rtl">
+<section class="section-py supervisors-section" style="background-color: var(--bg-secondary);">
   <div class="container mx-auto px-5 max-w-5xl">
 
     <!-- Header -->
     <div class="text-center mb-10 space-y-3">
-      <h2 class="section-title">مشرفين <span>مؤسسة بطاقتي الخاصة</span></h2>
+      <h2 class="section-title" [innerHTML]="'supervisors.heading' | transloco"></h2>
       <div class="gold-divider mx-auto" style="width:48px;"></div>
     </div>
 
-    <!-- Tab Toggle — top for better UX -->
-    <div class="flex justify-center mb-10">
-      <div class="pricing-tabs">
-        <button
-          (click)="activeTab.set('pricing')"
-          class="pricing-tab"
-          [class.active]="activeTab() === 'pricing'"
-        >قائمة الأسعار</button>
-        <button
-          (click)="activeTab.set('supervisors')"
-          class="pricing-tab"
-          [class.active]="activeTab() === 'supervisors'"
-        >مشرفين البوابة</button>
-      </div>
+    <!-- Supervisor / staff photos. Real, dynamic Packages pricing already
+         lives in <app-pricing> at #packages — this component previously
+         also rendered a second, static, hardcoded pricing table as its
+         default tab (ahead of its own namesake staff content), which
+         duplicated that section. Removed; this component now shows only
+         what it's named for. -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
+      @for (s of supervisors(); track s.id) {
+        <div class="sup-card">
+          <div class="sup-card-img-fill">
+            <img [src]="s.imageUrl" [alt]="s.name" (error)="showInitial($event)">
+          </div>
+          <div class="sup-card-body">
+            <h3 class="font-black text-lg" style="color: var(--text);">{{ s.name }}</h3>
+            <p class="text-sm font-bold" style="color: var(--gold);">{{ s.role }}</p>
+          </div>
+        </div>
+      }
     </div>
 
-    <!-- ===== PRICING TAB ===== -->
-    @if (activeTab() === 'pricing') {
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-
-        <!-- Pricing Table -->
-        <div class="sup-table">
-          <div class="sup-table-header">الأسعار</div>
-
-          @for (row of pricingRows; track row.price; let i = $index) {
-            <div
-              class="sup-row"
-              [class.selected]="selectedPlan() === i"
-              (click)="selectedPlan.set(i)"
-            >
-              <!-- Radio button (left) -->
-              <!-- <div class="sup-radio-col">
-                <div class="sup-radio" [class.checked]="selectedPlan() === i">
-                  @if (selectedPlan() === i) {
-                    <div class="sup-radio-dot"></div>
-                  }
-                </div>
-              </div> -->
-
-              <!-- Description (center) -->
-              <div class="sup-desc">
-                {{ row.label }} <strong>{{ row.count }}</strong> {{ row.suffix }}<br>
-                <span class="sup-note">({{ row.note }})</span>
-              </div>
-
-              <!-- Price (right) -->
-              <div class="sup-price">{{ row.price }} <span>ريال</span></div>
-            </div>
+    <!-- Cities (black) -->
+    <div class="cities-box text-start mb-10">
+      <p class="font-black mb-3 cities-title">{{ 'supervisors.citiesTitle' | transloco }}</p>
+      <p class="text-sm mb-3 cities-sub" [innerHTML]="'supervisors.citiesSubtitle' | transloco"></p>
+      <div class="grid sm:grid-cols-1 gap-x-8 gap-y-2">
+        <div class="space-y-1">
+          <!-- Backend-provided country/city names stay exactly as received. -->
+          @for (c of dynamicCities(); track c.country) {
+            <p class="text-sm cities-text" dir="rtl">
+              <span class="cities-highlight">{{ c.country }}:</span> {{ c.cities }}
+            </p>
           }
-
-          <!-- Contact row -->
-          <div class="sup-row sup-row-contact">
-            <div class="sup-radio-col"></div>
-            <div class="sup-desc" style="color: var(--gold); font-weight: 700;">للمناسبات أكثر من 500 مدعو</div>
-            <div class="sup-price-contact">
-              <a href="#contact" style="color: var(--gold);">تواصل معنا</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Features Table -->
-        <div class="sup-table">
-          <div class="sup-table-header">عمل المشرفين</div>
-          <div class="px-6 py-5 space-y-5">
-            @for (f of supervisorFeatures; track f.bold) {
-              <div class="sup-feature">
-                <div class="sup-check">
-                  <lucide-icon name="check" class="w-3.5 h-3.5 text-white"></lucide-icon>
-                </div>
-                <span style="color: var(--text-secondary);">
-                  {{ f.text }}
-                  <strong style="color: var(--gold);">{{ f.bold }}</strong>
-                  {{ f.after }}
-                </span>
-              </div>
-            }
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Cities (black) -->
-      <div class="cities-box text-right mb-10">
-        <p class="font-black mb-3 cities-title">المـدن المتاحة:</p>
-        <p class="text-sm mb-3 cities-sub">
-          خدمة <span class="cities-highlight">مشرفين البوابة</span> متوفرة في المدن التالية:
-        </p>
-        <div class="grid sm:grid-cols-1 gap-x-8 gap-y-2">
-          <div class="space-y-1">
-            @for (c of dynamicCities(); track c.country) {
-              <p class="text-sm cities-text">
-                <span class="cities-highlight">{{ c.country }}:</span> {{ c.cities }}
-              </p>
-            }
-          </div>
         </div>
       </div>
-
-    }
-
-    <!-- ===== SUPERVISORS TAB (photos only) ===== -->
-    @if (activeTab() === 'supervisors') {
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
-        @for (s of supervisors(); track s.id) {
-          <div class="sup-card">
-            <div class="sup-card-img-fill">
-              <img [src]="s.imageUrl" [alt]="s.name" (error)="showInitial($event)">
-            </div>
-            <div class="sup-card-body">
-              <h3 class="font-black text-lg" style="color: var(--text);">{{ s.name }}</h3>
-              <p class="text-sm font-bold" style="color: var(--gold);">{{ s.role }}</p>
-            </div>
-          </div>
-        }
-      </div>
-    }
+    </div>
 
 
   </div>

@@ -1,6 +1,4 @@
 import { Component, signal, computed, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { FooterComponent } from '../../components/footer/footer';
@@ -13,7 +11,7 @@ import { InvitationCard } from '../../models/content.interface';
 @Component({
   selector: 'app-designs-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, LucideAngularModule, NavbarComponent, FooterComponent, OrderModalComponent],
+  imports: [LucideAngularModule, NavbarComponent, FooterComponent, OrderModalComponent],
   templateUrl: './designs-page.component.html',
   styleUrl: './designs-page.component.css'
 })
@@ -61,10 +59,10 @@ export class DesignsPageComponent implements OnInit {
   isLoading = computed(() => this.invitations().length === 0);
 
   ngOnInit() {
-    this.seoService.updateSeo({
-      title: 'تصاميم الدعوات الرقمية | Special Cards | مؤسسة بطاقتي الخاصة',
-      description: 'اكتشف مجموعتنا الواسعة من تصاميم كروت الدعوة الرقمية الفاخرة لحفلات الزواج، التخرج، وكل المناسبات الخاصة من Special Cards.',
-      canonical: 'https://www.specialcards.net/designs',
+    this.seoService.setPage({
+      titleKey: 'seo.designs.title',
+      descriptionKey: 'seo.designs.description',
+      path: '/designs',
       keywords: 'تصاميم دعوات رقمية, كروت زواج, كروت تخرج, تصميم دعوة, بطاقات دعوة فاخرة, Special Cards, مؤسسة بطاقتي الخاصة',
       ogType: 'website',
       jsonLd: {

@@ -16,7 +16,7 @@
 }
 .demo-geo-br {
   bottom: -20px;
-  left: -30px;
+  inset-inline-start: -30px;
 }
 .demo-geo-inner-1 {
   width: 140px;
@@ -26,8 +26,7 @@
   transform: rotate(20deg);
   position: absolute;
   bottom: 30px;
-  left: 20px;
-  animation: floatF2 9s ease-in-out infinite;
+  inset-inline-start: 20px;
 }
 .demo-geo-inner-2 {
   width: 90px;
@@ -37,9 +36,16 @@
   transform: rotate(-10deg);
   position: absolute;
   bottom: 80px;
-  left: 100px;
-  animation: floatF3 11s ease-in-out infinite;
+  inset-inline-start: 100px;
 }
+/* Both frames previously referenced animation: floatF2/floatF3 — names
+   that were never defined in this file or globally (Angular's view
+   encapsulation scopes @keyframes per-component, and no local
+   definition existed), so the animation property was already a
+   complete no-op before this pass. Removed rather than given new
+   keyframes: these are pure ambient decoration, and the section already
+   reads calmly static without them — adding motion here would be a new
+   flourish, not a fix. */
 
 /* ===== SECTION HEADING ===== */
 .demo-heading-wrap {
@@ -69,15 +75,15 @@
 /* ===== TWO-COLUMN CARD ===== */
 .demo-card {
   display: grid;
-  /* RTL: form panel on left (second column), text panel on right (first column) */
+  /* No explicit direction — inherits document dir, mirroring the two
+     panels automatically the same way Hero's grid does. */
   grid-template-columns: 380px 1fr;
-  direction: rtl;
   border: 1.5px solid var(--border);
-  border-radius: 24px;
+  border-radius: var(--radius-card-lg);
   overflow: hidden;
   max-width: 1000px;
   margin: 0 auto;
-  box-shadow: 0 15px 35px var(--shadow);
+  box-shadow: var(--shadow-card-resting);
   background: var(--bg-card);
 }
 @media (max-width: 768px) {
@@ -94,7 +100,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  border-right: 1.5px solid var(--border);
+  border-inline-end: 1.5px solid var(--border);
 }
 
 .demo-text-title {
@@ -102,7 +108,7 @@
   font-weight: 900;
   color: #FFFFFF;
   line-height: 1.5;
-  font-family: '29LTBukra', 'Cairo', sans-serif;
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
   margin: 0;
 }
 
@@ -122,7 +128,7 @@
   font-weight: 900;
   color: #FFFFFF;
   margin: 0;
-  font-family: '29LTBukra', 'Cairo', sans-serif;
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
 }
 
 .demo-cta-icon {
@@ -134,15 +140,11 @@
 
 /* ===== FORM PANEL (white/light left side) ===== */
 .demo-form-panel {
-  background: #FFFFFF;
+  background: var(--bg-card);
   padding: 36px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-[data-theme="dark"] .demo-form-panel {
-  background: #1A1A1A;
 }
 
 /* ===== FORM ELEMENTS ===== */
@@ -151,35 +153,30 @@
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #1A1A1A;
-  text-align: right;
+  color: var(--text);
+  text-align: start;
 }
-[data-theme="dark"] .demo-label { color: #F0F0F0; }
 
 .demo-input {
   width: 100%;
   padding: 12px 14px;
-  background: #F5F5F5;
-  border: 1.5px solid #E0E0E0;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
   border-radius: 8px;
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-body, 'Cairo', sans-serif);
   font-size: 14px;
-  color: #1A1A1A;
+  color: var(--text);
   outline: none;
-  text-align: right;
+  text-align: start;
   box-sizing: border-box;
   transition: border-color 0.2s ease;
 }
+/* Focus now uses var(--gold) in both themes — previously light mode
+   darkened the border with no gold at all while dark mode used gold,
+   meaning the same input gave a different signal depending on theme. */
 .demo-input:focus {
-  border-color: #1A1A1A;
-  background: #FAFAFA;
+  border-color: var(--gold);
 }
-[data-theme="dark"] .demo-input {
-  background: #111;
-  border-color: #333;
-  color: #F0F0F0;
-}
-[data-theme="dark"] .demo-input:focus { border-color: var(--gold); }
 
 .demo-phone-row {
   display: flex;
@@ -195,50 +192,49 @@
   gap: 6px;
   padding: 0 12px;
   height: 46px;
-  background: #F5F5F5;
-  border: 1.5px solid #E0E0E0;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
   border-radius: 8px;
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-body, 'Cairo', sans-serif);
   font-size: 13px;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
   transition: border-color 0.2s;
 }
-.demo-country-btn:hover { border-color: #1A1A1A; }
-[data-theme="dark"] .demo-country-btn {
-  background: #111;
-  border-color: #333;
-  color: #F0F0F0;
+/* Was border-color:#1A1A1A on hover in every theme — no gold at all,
+   diverging from the "gold signals interactive" convention every other
+   hoverable control on the site follows (nav-btn, cards, tabs). */
+.demo-country-btn:hover, .demo-country-btn:focus-visible { border-color: var(--gold); }
+.demo-flag {
+  width: 22px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 .demo-dial-code {
   font-size: 12px;
-  color: #555;
+  color: var(--text-muted);
   font-family: monospace;
 }
-[data-theme="dark"] .demo-dial-code { color: #aaa; }
 .demo-chevron {
   width: 14px;
   height: 14px;
-  color: #888;
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 .demo-country-dropdown {
   position: absolute;
   top: calc(100% + 4px);
-  right: 0;
-  left: 0;
-  background: #fff;
-  border: 1.5px solid #E0E0E0;
+  inset-inline: 0;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
   border-radius: 10px;
   max-height: 220px;
   overflow-y: auto;
   z-index: 200;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-[data-theme="dark"] .demo-country-dropdown {
-  background: #1a1a1a;
-  border-color: #333;
+  box-shadow: 0 8px 24px var(--shadow);
 }
 .demo-country-option {
   display: flex;
@@ -248,28 +244,28 @@
   padding: 9px 12px;
   background: none;
   border: none;
-  text-align: right;
-  font-family: 'Cairo', sans-serif;
+  text-align: start;
+  font-family: var(--font-body, 'Cairo', sans-serif);
   font-size: 13px;
   cursor: pointer;
   transition: background 0.15s;
-  color: #1A1A1A;
+  color: var(--text);
 }
-.demo-country-option:hover { background: #f5f5f5; }
-.demo-country-option.selected { background: #f0f0f0; font-weight: 700; }
-[data-theme="dark"] .demo-country-option { color: #F0F0F0; }
-[data-theme="dark"] .demo-country-option:hover { background: #2a2a2a; }
-[data-theme="dark"] .demo-country-option.selected { background: #222; }
+/* Hover/selected reuse the same subtle gold-tint idiom already
+   established for list rows elsewhere (Supervisors' .sup-row). Also
+   adds :focus-visible, which this dropdown had none of — a real
+   keyboard-navigation gap, not a style-only omission. */
+.demo-country-option:hover, .demo-country-option:focus-visible { background: var(--gold-pale); }
+.demo-country-option.selected { background: rgba(197, 168, 128, 0.08); font-weight: 700; }
 .demo-country-name { flex: 1; }
 
 .demo-note {
   font-size: 11px;
-  color: #888;
-  text-align: right;
+  color: var(--text-muted);
+  text-align: start;
   margin: 0;
   line-height: 1.6;
 }
-[data-theme="dark"] .demo-note { color: #555; }
 
 /* ===== SUBMIT BUTTON ===== */
 .demo-submit-btn {
@@ -279,7 +275,7 @@
   color: #0B1320;
   border: none;
   border-radius: 12px;
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-body, 'Cairo', sans-serif);
   font-size: 15px;
   font-weight: 900;
   cursor: pointer;
@@ -292,7 +288,7 @@
   content: '';
   position: absolute;
   top: 0;
-  right: -100%;
+  inset-inline-end: -100%;
   width: 100%;
   height: 100%;
   background: linear-gradient(
@@ -304,48 +300,48 @@
   transition: all 0.75s ease;
 }
 .demo-submit-btn:hover::before {
-  right: 100%;
+  inset-inline-end: 100%;
 }
-.demo-submit-btn:hover {
+.demo-submit-btn:hover, .demo-submit-btn:focus-visible {
   background: var(--gold-light);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px var(--shadow-gold);
 }
-[data-theme="dark"] .demo-submit-btn {
-  background: var(--gold);
-  color: #0B1320;
-}
-[data-theme="dark"] .demo-submit-btn:hover {
-  background: var(--gold-light);
-}
 
-/* ===== ERROR MESSAGE ===== */
+/* ===== ERROR MESSAGE =====
+   Aligned to the same rgba(239,68,68,...) red already used by the Order
+   Modal's .om-error — the two components previously used two different,
+   unrelated reds (#e53e3e here, #ef4444 there) for the identical semantic
+   purpose. Neither is an actual locked design-system token (no --error/
+   --danger token exists), so this reuses an existing pattern already
+   live elsewhere rather than inventing a new one. Order Modal's version
+   doesn't vary by theme (the rgba alpha already reads fine on both
+   grounds), so the separate dark-mode override here is dropped too. */
 .demo-error {
   font-size: 13px;
-  color: #e53e3e;
-  text-align: right;
+  color: #ef4444;
+  text-align: start;
   margin: 0;
   padding: 8px 12px;
-  background: #fff5f5;
+  background: rgba(239, 68, 68, 0.1);
   border-radius: 6px;
-  border-right: 3px solid #e53e3e;
-}
-[data-theme="dark"] .demo-error {
-  background: #2d1515;
-  color: #fc8181;
+  border-inline-start: 3px solid #ef4444;
 }
 
-/* ===== LOADING SPINNER ===== */
+/* ===== LOADING SPINNER =====
+   Was a white spinner on the gold submit button, while the button's own
+   text sits in #0B1320 — the sitewide text-on-gold convention. White-on-
+   gold is also lower contrast than navy-on-gold. */
 .demo-spinner {
   display: inline-block;
   width: 14px;
   height: 14px;
-  border: 2px solid rgba(255,255,255,0.4);
-  border-top-color: #fff;
+  border: 2px solid rgba(11, 19, 32, 0.3);
+  border-top-color: #0B1320;
   border-radius: 50%;
   animation: demo-spin 0.7s linear infinite;
   vertical-align: middle;
-  margin-left: 6px;
+  margin-inline-end: 6px;
 }
 @keyframes demo-spin { to { transform: rotate(360deg); } }
 
@@ -361,34 +357,29 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: #f0fdf4;
+  background: var(--gold-pale);
   border-radius: 10px;
   padding: 14px 16px;
-  border: 1px solid #bbf7d0;
-}
-[data-theme="dark"] .demo-otp-header {
-  background: #0f2a1a;
-  border-color: #166534;
+  border: 1px solid var(--border);
 }
 .demo-otp-icon {
   width: 28px;
   height: 28px;
-  color: #16a34a;
+  color: var(--gold);
   flex-shrink: 0;
   margin-top: 2px;
 }
 .demo-otp-title {
   font-size: 14px;
   font-weight: 700;
-  color: #15803d;
+  color: var(--gold);
   margin: 0 0 4px;
 }
 .demo-otp-sub {
   font-size: 12px;
-  color: #555;
+  color: var(--text-muted);
   margin: 0;
 }
-[data-theme="dark"] .demo-otp-sub { color: #aaa; }
 .demo-otp-input {
   text-align: center;
   letter-spacing: 6px;
@@ -401,18 +392,17 @@
   width: 100%;
   padding: 10px;
   background: transparent;
-  color: #888;
-  border: 1.5px solid #ddd;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
   border-radius: 8px;
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-body, 'Cairo', sans-serif);
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
 }
-.demo-resend-btn:hover { border-color: #999; color: #444; }
+.demo-resend-btn:hover, .demo-resend-btn:focus-visible { border-color: var(--gold); color: var(--gold); }
 .demo-resend-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-[data-theme="dark"] .demo-resend-btn { border-color: #333; color: #666; }
 
 /* ===== SUCCESS STATE ===== */
 .demo-success {
@@ -428,7 +418,9 @@
 .demo-success-icon {
   width: 80px;
   height: 80px;
-  background: #f0fdf4;
+  background: var(--gold-pale);
+  border: 1px solid var(--border);
+  color: var(--gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -437,24 +429,42 @@
 .demo-success-title {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #1A1A1A;
+  color: var(--text);
   margin: 0;
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
 }
-[data-theme="dark"] .demo-success-title { color: #F0F0F0; }
 .demo-success-body {
   font-size: 14px;
-  color: #666;
+  color: var(--text-secondary);
   line-height: 1.8;
   margin: 0;
 }
-[data-theme="dark"] .demo-success-body { color: #999; }
+.demo-success-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 11px 26px;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  border-radius: 100px;
+  font-family: var(--font-body, 'Cairo', sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.demo-success-cta:hover, .demo-success-cta:focus-visible {
+  background: var(--gold);
+  color: #0B1320;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .demo-section { padding: 60px 0 80px; }
   .demo-text-panel {
     padding: 32px 24px;
-    border-right: none;
+    border-inline-end: none;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     order: 2;
   }
@@ -467,7 +477,7 @@
   .demo-card {
     width: 100%;
     margin: 0 auto;
-    border-radius: 16px;
+    border-radius: var(--radius-card);
   }
   .demo-form-panel {
     padding: 24px 16px;

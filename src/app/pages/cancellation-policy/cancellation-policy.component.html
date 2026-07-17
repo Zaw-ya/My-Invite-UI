@@ -1,15 +1,15 @@
 <app-navbar></app-navbar>
 
-<div class="policy-page" dir="rtl">
+<div class="policy-page">
 
   <!-- Hero -->
   <div class="policy-hero">
     <div class="container mx-auto px-5">
-      <h1 class="policy-title">سياسة الإلغاء والتأجيل</h1>
+      <h1 class="policy-title">{{ 'cancellationPolicy.title' | transloco }}</h1>
       <nav class="policy-breadcrumb">
-        <a routerLink="/">الرئيسية</a>
+        <a [routerLink]="['/', languageService.activeLanguage().code]">{{ 'navbar.home' | transloco }}</a>
         <span>/</span>
-        <span>سياسة الإلغاء والتأجيل</span>
+        <span>{{ 'cancellationPolicy.title' | transloco }}</span>
       </nav>
     </div>
   </div>
@@ -24,35 +24,35 @@
         <!-- Cancellation Column -->
         <div class="policy-column">
           <div class="column-header cancellation-header">
-            <h2>سياسة الإلغاء</h2>
+            <h2>{{ 'cancellationPolicy.cancellation.title' | transloco }}</h2>
           </div>
-          <p class="column-intro">في حال رغبة العميل بإلغاء المناسبة أو الخدمة فإن استرداد المبالغ يعتمد على الحالات التالية:</p>
+          <p class="column-intro">{{ 'cancellationPolicy.cancellation.intro' | transloco }}</p>
 
           <div class="policy-timeline">
 
             <div class="timeline-item">
-              <div class="timeline-badge">قبل البدء</div>
-              <h3>قبل البدء في إرسال الدعوات أو قبل البدء في استخدام الخدمة</h3>
+              <div class="timeline-badge">{{ 'cancellationPolicy.cancellation.beforeBadge' | transloco }}</div>
+              <h3>{{ 'cancellationPolicy.cancellation.beforeHeading' | transloco }}</h3>
               <ul>
-                <li>يحق للشركة خصم <strong>10%</strong> من إجمالي قيمة الفاتورة، بالإضافة إلى خصم جميع الخدمات التي لم تُقدَّم للعميل.</li>
-                <li>يُعاد المبلغ المستحق - بعد الخصومات - خلال مدة أقصاها <strong>7 أيام</strong>.</li>
+                <li [innerHTML]="'cancellationPolicy.cancellation.beforeItem1' | transloco"></li>
+                <li [innerHTML]="'cancellationPolicy.cancellation.beforeItem2' | transloco"></li>
               </ul>
             </div>
 
             <div class="timeline-item">
-              <div class="timeline-badge">بعد البدء</div>
-              <h3>بعد البدء في إرسال الدعوات أو بعد البدء في استخدام الخدمة</h3>
+              <div class="timeline-badge">{{ 'cancellationPolicy.cancellation.afterBadge' | transloco }}</div>
+              <h3>{{ 'cancellationPolicy.cancellation.afterHeading' | transloco }}</h3>
               <ul>
-                <li>يحق للشركة خصم <strong>50%</strong> من إجمالي قيمة الفاتورة.</li>
-                <li>يُعاد المبلغ المستحق - بعد الخصومات - خلال مدة أقصاها <strong>7 أيام</strong>.</li>
+                <li [innerHTML]="'cancellationPolicy.cancellation.afterItem1' | transloco"></li>
+                <li [innerHTML]="'cancellationPolicy.cancellation.afterItem2' | transloco"></li>
               </ul>
             </div>
 
             <div class="timeline-item timeline-item--warning">
-              <div class="timeline-badge timeline-badge--warning">قبل أسبوع من الموعد</div>
-              <h3>قبل أسبوع من موعد المناسبة أو بعد استخدام الخدمة</h3>
+              <div class="timeline-badge timeline-badge--warning">{{ 'cancellationPolicy.cancellation.weekBadge' | transloco }}</div>
+              <h3>{{ 'cancellationPolicy.cancellation.weekHeading' | transloco }}</h3>
               <ul>
-                <li>لا يحق للعميل استرداد أي مبالغ مدفوعة، وتعتبر جميع الالتزامات قائمة.</li>
+                <li>{{ 'cancellationPolicy.cancellation.weekItem1' | transloco }}</li>
               </ul>
             </div>
 
@@ -62,33 +62,33 @@
         <!-- Rescheduling Column -->
         <div class="policy-column">
           <div class="column-header rescheduling-header">
-            <h2>سياسة التأجيل</h2>
+            <h2>{{ 'cancellationPolicy.rescheduling.title' | transloco }}</h2>
           </div>
-          <p class="column-intro">في حال رغبة العميل بتأجيل المناسبة أو الخدمة فإن عملية التأجيل تخضع للحالات التالية:</p>
+          <p class="column-intro">{{ 'cancellationPolicy.rescheduling.intro' | transloco }}</p>
 
           <div class="policy-timeline">
 
             <div class="timeline-item">
-              <div class="timeline-badge">قبل البدء</div>
-              <h3>قبل البدء في إرسال الدعوات أو قبل البدء في استخدام الخدمة</h3>
+              <div class="timeline-badge">{{ 'cancellationPolicy.rescheduling.beforeBadge' | transloco }}</div>
+              <h3>{{ 'cancellationPolicy.rescheduling.beforeHeading' | transloco }}</h3>
               <ul>
-                <li>يُسمح للعميل بالتأجيل لمرة واحدة فقط دون أي رسوم إضافية.</li>
+                <li>{{ 'cancellationPolicy.rescheduling.beforeItem1' | transloco }}</li>
               </ul>
             </div>
 
             <div class="timeline-item">
-              <div class="timeline-badge">بعد البدء</div>
-              <h3>بعد البدء في إرسال الدعوات أو بعد البدء في استخدام الخدمة</h3>
+              <div class="timeline-badge">{{ 'cancellationPolicy.rescheduling.afterBadge' | transloco }}</div>
+              <h3>{{ 'cancellationPolicy.rescheduling.afterHeading' | transloco }}</h3>
               <ul>
-                <li>يُسمح للعميل بالتأجيل لمرة واحدة فقط مقابل رسوم إضافية قدرها <strong>30%</strong> من إجمالي قيمة الفاتورة.</li>
+                <li [innerHTML]="'cancellationPolicy.rescheduling.afterItem1' | transloco"></li>
               </ul>
             </div>
 
             <div class="timeline-item">
-              <div class="timeline-badge">قبل أسبوع من الموعد</div>
-              <h3>قبل أسبوع من موعد المناسبة أو بعد استخدام الخدمة</h3>
+              <div class="timeline-badge">{{ 'cancellationPolicy.rescheduling.weekBadge' | transloco }}</div>
+              <h3>{{ 'cancellationPolicy.rescheduling.weekHeading' | transloco }}</h3>
               <ul>
-                <li>يُسمح للعميل بالتأجيل لمرة واحدة فقط مقابل رسوم إضافية قدرها <strong>50%</strong> من إجمالي قيمة الفاتورة.</li>
+                <li [innerHTML]="'cancellationPolicy.rescheduling.weekItem1' | transloco"></li>
               </ul>
             </div>
 
@@ -99,8 +99,8 @@
 
       <!-- Note -->
       <div class="policy-note">
-        <span class="note-label">ملاحظة</span>
-        <p>- تنطبق هذه السياسة على جميع باقات خدمة إدارة الدعوات والخدمات الإلكترونية والخدمات الإضافية بجميع أنواعها.</p>
+        <span class="note-label">{{ 'cancellationPolicy.note.label' | transloco }}</span>
+        <p>- {{ 'cancellationPolicy.note.body' | transloco }}</p>
       </div>
 
     </div>

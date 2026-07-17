@@ -1,0 +1,525 @@
+{
+  "common": {
+    "comingSoon": "Coming Soon",
+    "defaultCompanyName": "the Company"
+  },
+  "navbar": {
+    "home": "Home",
+    "designs": "Designs",
+    "additionalServices": "Our Features",
+    "howItWorks": "How It Works",
+    "demo": "Try It Free",
+    "packages": "Packages",
+    "contact": "Contact Us",
+    "blog": "Blog",
+    "menuTooltip": "Menu",
+    "email": "Email",
+    "cta": "Order Now"
+  },
+  "footer": {
+    "quickLinksTitle": "Quick Links",
+    "home": "Home",
+    "designs": "Designs",
+    "packages": "Packages",
+    "howItWorks": "How It Works",
+    "blog": "Blog",
+    "supportTitle": "Support",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "cancellationPolicy": "Cancellation & Booking Policy",
+    "contact": "Contact Us",
+    "brandBlurb": "Special Cards for integrated, innovative digital invitation solutions for all your occasions across Saudi Arabia and the Gulf.",
+    "copyright": "© 2026 {{siteName}}. All rights reserved.",
+    "backToTopTooltip": "Back to top",
+    "whatsappTooltip": "WhatsApp"
+  },
+  "hero": {
+    "brandName": "Special Cards",
+    "aboutLabel": "About Us",
+    "heading": "Digital invitation cards for every occasion",
+    "bodyParagraph1": "We understand that the difference between an ordinary occasion and <strong>an extraordinary event</strong> lies in the first impression. At Special Cards, we don't just create and send electronic invitations — <strong>we craft a presence worthy of your standing.</strong>",
+    "bodyParagraph2": "That's why we put an exclusive, ever-refreshed library of <strong>distinctive, one-of-a-kind designs</strong> in your hands, so your options always <strong>exceed expectations and match your vision.</strong> We don't settle for beautiful — we create a breathtaking first impression that gives your guests a sense of <strong>luxury and professionalism</strong>, so we can be <strong>your first partner</strong> in shaping your occasion's presence, whether it's:",
+    "tagsHint": "Choose your occasion type and see a design made for it"
+  },
+  "portfolioSlider": {
+    "title": "Special Cards Designs",
+    "subtitle": "An exclusive, ever-refreshed library to suit all your occasions",
+    "newBadge": "New",
+    "quickPreview": "Quick Preview",
+    "emptyState": "No designs match your selected filters.",
+    "viewAll": "Browse All Designs",
+    "code": "Code",
+    "orderThisDesign": "Order This Design",
+    "prevAria": "Previous",
+    "nextAria": "Next",
+    "genderFilterAll": "All Designs",
+    "genderFilterMale": "Men's Designs",
+    "genderFilterFemale": "Women's Designs",
+    "categoryAll": "All Designs"
+  },
+  "additionalServices": {
+    "title": "What Makes Us <span>Different?</span>",
+    "subtitle": "We offer more than an invitation — we create a complete experience for every occasion",
+    "card1Title": "Instant Delivery via WhatsApp",
+    "card1Text": "We send your invitation straight to your guests on WhatsApp with one click — fast, reliable, and with no delay.",
+    "card2Title": "Exclusive Designs You Won't Find Elsewhere",
+    "card2Text": "A design library that's constantly refreshed, crafted to the highest aesthetic standards to reflect your occasion's presence.",
+    "card3Title": "Guest List Management",
+    "card3Text": "Track RSVPs and manage your guest list from a single dashboard with complete ease.",
+    "card4Title": "Support for Official Occasions",
+    "card4Text": "Invitations to official specifications for government bodies and major corporations, with the highest level of professionalism.",
+    "card5Title": "Fully Customized Design",
+    "card5Text": "Add your name, your occasion's details, and your photos — an invitation designed just for you, from scratch.",
+    "ctaCardTitle": "Need something special?",
+    "ctaCardText": "Get in touch directly and we'll design a solution that fits your needs exactly.",
+    "ctaCardLink": "Contact Us →"
+  },
+  "howItWorks": {
+    "kicker": "Your Journey With Us",
+    "title": "How <span>Your Invitation Begins</span>",
+    "subtitle": "From the first conversation to the final moment of your occasion — a clear journey, no surprises",
+    "step1Title": "Tell Us About Your Occasion",
+    "step1Body": "Share your occasion's details and guest count, and choose the package closest to your vision — whether through a free trial or by reaching out to us directly.",
+    "step2Title": "We Prepare Every Detail with Care",
+    "step2Body": "We design your digital invitation and prepare your guest list, setting up everything your occasion needs — RSVP confirmation, a unique entry code for every guest, and a dedicated occasion page.",
+    "step3Title": "Review Until You're Fully Satisfied",
+    "step3Body": "You review your invitation and request any changes you need — nothing goes live until you give your full approval.",
+    "step4Title": "Launch and Delivery",
+    "step4Body": "Once you approve, we launch your invitation and deliver it to your guests through the right channels, tracking every invitation's status and RSVPs as they come in.",
+    "step5Title": "With You Until the Last Moment",
+    "step5Body": "Before and during your occasion, follow your guests' attendance and your invitation's results moment by moment through your own dashboard, with our team on hand to support you with any update you need for your occasion to go smoothly."
+  },
+  "demoForm": {
+    "heading": "Try Our Service Free Now",
+    "infoTitle": "Don't wait to hear about us,<br>be the first to experience it.",
+    "infoBody": "We know you're not just looking for a way to send your invitations — you're looking for a presence worthy of you and your occasion. We're here to end your indecision between repetitive templates and ordinary options, giving you a smart system that crafts an impressive presence and gives your guests an exceptional visual experience from the very first moment.",
+    "infoCta": "And now you can try all of this before making any decision!",
+    "nameLabel": "Name",
+    "namePlaceholder": "John Smith",
+    "phoneLabel": "WhatsApp Number",
+    "phonePlaceholder": "5xxxxxxxx",
+    "phoneHint": "Enter the number without the country code and without +",
+    "cardSelectedNote": "✓ Design selected — it will be sent to you on WhatsApp",
+    "cardNotSelectedNote": "* You can choose a specific card design from the section above",
+    "submitBtn": "Send Verification Code",
+    "submitBtnLoading": "Sending...",
+    "otpSentTitle": "Verification Code Sent",
+    "otpSentSub": "Check WhatsApp at:",
+    "otpLabel": "Verification Code",
+    "otpConfirmBtn": "Confirm and View the Card",
+    "otpConfirmBtnLoading": "Verifying...",
+    "resendBtn": "Change Number or Resend",
+    "successTitle": "Your Trial Invitation Is On Its Way",
+    "successBody": "Open WhatsApp now to see your invitation with the same design and quality your guests will see.",
+    "successCta": "Choose Your Package Now",
+    "errors": {
+      "nameAndPhoneRequired": "Name and WhatsApp number are required",
+      "genericError": "An error occurred, please try again",
+      "otpRequired": "Enter the verification code",
+      "otpInvalid": "Incorrect verification code"
+    }
+  },
+  "pricing": {
+    "heading": "<span>Special Cards</span> Packages",
+    "subtitle": "Choose the package that fits your needs",
+    "guestsUnit": "invitations",
+    "chooseCountLabel": "Choose invitation count",
+    "contactLinkText": "Contact Us →",
+    "compensatoryTitle": "Compensatory Invitation Credit",
+    "compensatoryOfTotal": "% of total invitations",
+    "compensatoryExtra": "extra invitations",
+    "featuresIncludedTitle": "Included Features",
+    "ctaOrderNow": "Order Now",
+    "ctaContactUs": "Contact Us",
+    "contactHintTemplate": "For occasions with more than {{count}} guests",
+    "currency": "SAR"
+  },
+  "supervisors": {
+    "heading": "<span>Special Cards</span> Gate Supervisors",
+    "citiesTitle": "Available Cities:",
+    "citiesSubtitle": "<span class=\"cities-highlight\">Gate supervisor</span> service is available in the following cities:"
+  },
+  "contact": {
+    "heading": "We're <span>Here to Help</span>",
+    "intro": "Have a question? Our team is ready to help you design the perfect invitation for your occasion.",
+    "locationLabel": "Location",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "formTitle": "Send a Message",
+    "form": {
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Enter your email",
+      "phoneLabel": "Mobile Number",
+      "phonePlaceholder": "5xxxxxxxx",
+      "countrySearchPlaceholder": "Search for a country...",
+      "noResults": "No results found",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "How can we help you?",
+      "submit": "Send Message",
+      "submitLoading": "Sending...",
+      "errors": {
+        "allFieldsRequired": "Please fill in all required fields.",
+        "genericError": "An error occurred while sending, please try again."
+      },
+      "successMessage": "Your message has been sent successfully, we'll be in touch soon!"
+    },
+    "paymentMethodsTitle": "Available Payment Methods"
+  },
+  "blog": {
+    "title": "Blog <span style=\"color: var(--gold);\">&amp; Tips</span>",
+    "viewAll": "View All Articles",
+    "readMore": "Read More"
+  },
+  "orderModal": {
+    "title": "Order This Design",
+    "subtitle": "Send your details and we'll be in touch as soon as possible",
+    "successTitle": "Sent Successfully!",
+    "successBody": "We'll be in touch soon.",
+    "closeBtn": "Close",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "example@email.com",
+    "phoneLabel": "Mobile Number",
+    "phonePlaceholder": "5xxxxxxxx",
+    "countrySearchPlaceholder": "Search for a country...",
+    "noResults": "No results found",
+    "messageLabel": "Your Message",
+    "submitBtn": "Send Order",
+    "submitBtnLoading": "Sending...",
+    "errors": {
+      "allFieldsRequired": "Please fill in all required fields.",
+      "genericError": "An error occurred while sending, please try again."
+    }
+  },
+  "designsPage": {
+    "heading": "",
+    "subtitle": "",
+    "genderFilterAll": "",
+    "genderFilterMale": "",
+    "genderFilterFemale": "",
+    "newBadge": "",
+    "quickPreview": "",
+    "details": "",
+    "emptyTitle": "",
+    "emptySubtitle": "",
+    "lightboxCode": "",
+    "lightboxOrder": ""
+  },
+  "blogPage": {
+    "label": "Blog",
+    "heading": "Ideas <span>For Your Occasion</span>",
+    "subtitle": "Tips, designs, and ideas from the My Invite team to organize your occasion in style",
+    "categoryAll": "All",
+    "readArticle": "Read Article",
+    "readMore": "Read More",
+    "emptyState": "No articles in this category"
+  },
+  "blogPostDetail": {
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blog",
+    "shareTitle": "Share This Article",
+    "shareCopyLink": "Copy Link",
+    "relatedTitle": "Related Articles",
+    "loadingErrorTitle": "Failed to Load",
+    "loadingErrorBody": "Sorry, the article could not be loaded from the server.",
+    "loadingPlaceholderTitle": "Loading...",
+    "defaultCategory": "Tips",
+    "defaultAuthor": "The Special Cards Team",
+    "shareTextTemplate": "Read: {{title}} - {{url}}",
+    "readTimeTemplate": "{{count}} minutes"
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "updateDate": "Last updated: April 12, 2026",
+    "intro": {
+      "title": "Introduction",
+      "p1": "{{siteName}} is committed to protecting the privacy of the users of its platforms and applications, which include the systems, websites, applications, and all channels, services, and products affiliated with it.",
+      "p2": "{{siteName}} is committed to collecting and processing personal data in accordance with the provisions of the Saudi Personal Data Protection Law and its implementing regulations issued by the Saudi Data and Artificial Intelligence Authority (SDAIA), and in a manner consistent with best local and international practices in the field of privacy protection.",
+      "p3": "This policy aims to clarify how personal data is collected and processed, state the legitimate purposes of that processing, and set out data subjects' rights and the means of exercising them, in addition to the security and organizational measures adopted by {{siteName}} to protect data from any unauthorized access, use, or disclosure."
+    },
+    "scope": {
+      "title": "Scope of Application",
+      "p1": "This policy applies to all personal data that {{siteName}} collects or processes from the users of its platforms and applications, whether they are natural or legal persons, inside or outside the Kingdom of Saudi Arabia, through any of the following means or channels:",
+      "item1": "The platform's official websites.",
+      "item2": "The platform's smartphone applications.",
+      "item3": "The platform's affiliated online stores.",
+      "item4": "The platform's electronic systems.",
+      "item5": "Official communication channels, including, without limitation, WhatsApp messages and text messages.",
+      "item6": "Any other means or platform that {{siteName}} may adopt in the future to provide its services or products."
+    },
+    "definitions": {
+      "title": "Definitions",
+      "p1": "For the purposes of this policy, the terms and phrases below shall have the meanings specified opposite each of them:",
+      "term1": "Personal Data:",
+      "def1": "Any information relating to a natural or legal person that identifies or could identify them, including, for example, name, ID number, commercial registration number, mobile number, email address, or any other data that can be used to identify the person or entity concerned.",
+      "term2": "Processing:",
+      "def2": "Any operation performed on personal data, whether automated or manual, including, without limitation, collection, recording, organization, storage, use, disclosure, modification, transmission, retrieval, transfer, or destruction.",
+      "term3": "Data Controller:",
+      "def3": "{{siteName}}, as the entity that determines the purposes and means of processing personal data and bears legal responsibility for that data.",
+      "term4": "Data Subject:",
+      "def4": "The natural or legal person to whom the personal data processed by {{siteName}} relates.",
+      "term5": "Sensitive Data:",
+      "def5": "Personal data whose disclosure, processing, or circulation entails high risk to the data subject, including, for example, financial data, biometric data, and identity-verification means."
+    },
+    "purpose": {
+      "title": "Purpose and Legal Grounds for Collecting Personal Data",
+      "p1": "{{siteName}} collects and processes users' personal data when using the platforms or applications in order to achieve the following purposes:",
+      "card1Title": "Providing Services and Products",
+      "card1Body": "Data is used to activate accounts, carry out registration and payment processes, and enable users to manage and organize occasions and events and obtain products and services.",
+      "card2Title": "Improving the User Experience",
+      "card2Body": "Data is used to analyze performance and usage in order to improve the services and products provided, develop new features, and ensure the stability and security of the platforms or applications.",
+      "card3Title": "Communication and Technical Support",
+      "card3Body": "Contact data is used to communicate with users regarding their requests or inquiries, or to provide them with technical and technological assistance.",
+      "card4Title": "Sending Notifications and Updates",
+      "card4Body": "{{siteName}} sends notifications or alerts to users related to the use of services or products, or updates to the relevant terms or policies.",
+      "card5Title": "Compliance with Laws and Instructions",
+      "card5Body": "Data may be processed to fulfill regulatory requirements or to meet any legal or organizational obligations issued by the competent authorities in the Kingdom of Saudi Arabia.",
+      "card6Title": "Protection and Ensuring Service Safety",
+      "card6Body": "Data is used to maintain the security of the platforms or applications and to protect accounts from unlawful use or unauthorized access."
+    },
+    "dataTypes": {
+      "title": "Types of Personal Data Collected by {{siteName}}",
+      "term1": "Personal Data and Contact Details:",
+      "def1": "Includes full name, mobile number, email address, and other contact details.",
+      "term2": "Occasion and Event Data:",
+      "def2": "Includes details of occasions or events, the names of invitees and their contact details, RSVP responses, notes, and the date, time, and locations of occasions and events.",
+      "term3": "Technical Data and Usage Data:",
+      "def3": "Includes IP address, device type, device number and specifications, operating system, and login data for the platforms and applications and activity logs.",
+      "term4": "Payment and Transaction Data:",
+      "def4": "Includes transaction number, payment amount and date, financial service provider and payment channel data, with confirmation that the Company does not retain or store bank or credit card information.",
+      "term5": "Communication and Technical Support Data:",
+      "def5": "Includes messages, conversations, support requests, and text, audio, or video attachments submitted by the user.",
+      "term6": "Third-Party Data Provided by the User:",
+      "def6": "If the user enters data relating to other parties, the processing of this data is carried out based on the user's consent and request, and the user is responsible for obtaining the consent of those parties before providing {{siteName}} with their data."
+    },
+    "sharing": {
+      "title": "Sharing Data with External Parties",
+      "p1": "{{siteName}} is committed to maintaining the confidentiality of personal data and does not share it with any external party except in the cases specified below:",
+      "term1": "Approved Service Providers:",
+      "def1": "Some data is shared with approved service providers to facilitate the provision of certain services or products, under agreements that ensure compliance with confidentiality and data protection.",
+      "term2": "Competent Official Authorities:",
+      "def2": "Data is shared when there is a legal obligation or an official request issued by a competent governmental or judicial authority.",
+      "term3": "Venues, Hotels, and Operators:",
+      "def3": "Some data related to arranging events and occasions is shared with the relevant parties to the extent necessary to provide the requested services."
+    },
+    "protection": {
+      "title": "Protection of Personal Data",
+      "p1": "{{siteName}} is committed to protecting personal data in accordance with the provisions of the Saudi Personal Data Protection Law and its implementing regulation, by taking the necessary measures to ensure:",
+      "item1": "The confidentiality of personal data and its protection from any unauthorized access, use, or disclosure.",
+      "item2": "The integrity of personal data and prevention of its unlawful modification.",
+      "item3": "Restricting access to personal data so that it is limited to employees and authorized parties within the scope of the need and responsibility established.",
+      "item4": "Using personal data in a manner consistent with the authorized purpose and safeguarding the rights of individuals and entities in accordance with the adopted policy and the law in force in the Kingdom of Saudi Arabia."
+    },
+    "rights": {
+      "title": "Data Subject Rights",
+      "p1": "{{siteName}} guarantees the data subject the exercise of the legal rights set out in the Saudi Personal Data Protection Law, including the following:",
+      "right1Icon": "👁",
+      "right1Title": "Access",
+      "right1Body": "Knowing the personal data collected by the platform, its categories, and the purposes associated with its processing.",
+      "right2Icon": "✏️",
+      "right2Title": "Correction",
+      "right2Body": "Requesting the modification or correction of any inaccurate or incomplete personal data.",
+      "right3Icon": "🗑",
+      "right3Title": "Deletion",
+      "right3Body": "Requesting the removal or destruction of their personal data once the purpose of its collection has expired.",
+      "right4Icon": "↩️",
+      "right4Title": "Withdrawal of Consent",
+      "right4Body": "Withdrawing any previously given consent to the processing of personal data.",
+      "right5Icon": "🚫",
+      "right5Title": "Restriction of or Objection to Processing",
+      "right5Body": "Objecting to or restricting the processing of personal data where a legal justification is available.",
+      "right6Icon": "📦",
+      "right6Title": "Personal Data Portability",
+      "right6Body": "Requesting a copy of personal data in a readable format."
+    },
+    "retention": {
+      "title": "Data Retention Period",
+      "p1": "{{siteName}} retains personal data to achieve the purposes for which it was collected, or as required by the relevant laws and regulations. Data retention continues for as long as it is required to fulfill legal or regulatory obligations, or to protect rights and claims related to the platform or the parties concerned. Users may request the deletion of their personal data, and the request will be carried out in accordance with the adopted procedures and in a manner that does not conflict with any existing legal obligations."
+    },
+    "general": {
+      "title": "General Provisions",
+      "item1Title": "Agreement to the Policy",
+      "item1Body": "By using the {{siteName}} platform, you expressly agree to this privacy policy, including any subsequent amendments made to it. If you do not agree to any of the provisions of this policy, you must stop using the platform immediately.",
+      "item2Title": "Amendments to the Policy",
+      "item2Body": "{{siteName}} reserves the right to amend the privacy policy in a manner consistent with the laws and regulations in force in the Kingdom of Saudi Arabia. Your continued use of the platform after any amendments are announced constitutes your explicit acceptance of those changes.",
+      "item3Title": "Jurisdiction",
+      "item3Body": "This policy and any disputes arising from its use or interpretation are subject to the laws and regulations of the Kingdom of Saudi Arabia, and jurisdiction shall lie exclusively with the competent courts of the Kingdom of Saudi Arabia."
+    }
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "updateDate": "Last modified: April 12, 2026",
+    "intro": {
+      "title": "Introduction",
+      "p1": "These Terms and Conditions constitute the legal framework governing the use of the platforms, applications, systems, services, and products belonging to {{siteName}}.",
+      "p2": "These Terms aim to establish the general provisions and regulatory controls governing dealings with any of our platforms, applications, systems, services, and products. Use of any of these platforms constitutes the user's explicit acceptance to abide by what is stated in these Terms and Conditions.",
+      "p3": "{{siteName}} also reserves the right to amend these Terms and Conditions whenever it deems appropriate, or in accordance with its business requirements or its legal and regulatory obligations."
+    },
+    "scope": {
+      "title": "Scope of Application",
+      "p1": "These Terms and Conditions apply to all users, in any capacity whatsoever, and to all services and products provided by {{siteName}} through the current platforms, applications, or systems, or any other channel it may adopt in the future. These Terms apply inside and outside the Kingdom of Saudi Arabia, unless otherwise stated."
+    },
+    "definitions": {
+      "title": "Definitions",
+      "term1": "Company / Platform:",
+      "def1": "{{siteName}}, as the owner and operator of the platforms, applications, systems, services, and products affiliated with it.",
+      "term2": "User:",
+      "def2": "Every natural or legal person who accesses the platforms, applications, or systems in any capacity whatsoever.",
+      "term3": "Client:",
+      "def3": "Every natural or legal person who purchases one of the packages, services, or products provided by {{siteName}}.",
+      "term4": "Primary Host:",
+      "def4": "The natural or legal person who pays the financial consideration, creates the event or occasion, manages the full range of event services, and sends the digital invitations.",
+      "term5": "Additional Host:",
+      "def5": "The person authorized by the Primary Host to manage a specific number of invitations, without the right to view the data of the Primary Host or other Additional Hosts.",
+      "term6": "Invitee:",
+      "def6": "The person who receives the digital invitation through our platforms, applications, or systems.",
+      "term7": "Operator / Service Provider:",
+      "def7": "Any natural or legal person authorized by {{siteName}} to provide operational or organizational services related to events and occasions.",
+      "term8": "Services:",
+      "def8": "All operational, organizational, or technical services provided by {{siteName}} or that it authorizes other parties to carry out.",
+      "term9": "Products:",
+      "def9": "All products provided by {{siteName}} through its platforms, applications, or systems.",
+      "term10": "Personal Data:",
+      "def10": "Any data or information relating to an identified person, or a person who can be identified, directly or indirectly."
+    },
+    "eligibility": {
+      "title": "Legal Capacity and Represented Liability",
+      "p1": "Whether the user opens the account for themselves or on behalf of a natural or legal person, they acknowledge that they have the legal and regulatory capacity necessary to carry out a legal transaction and to use or purchase the services or products provided by {{siteName}}, and that they are legally authorized to act on their own behalf or on behalf of whoever they represent.",
+      "p2": "In the event that incorrect data is entered, the user, or their guardian or legal representative, bears full legal responsibility, and {{siteName}} disclaims responsibility for any improper use or incorrect data submitted."
+    },
+    "userObligations": {
+      "title": "User Obligations and Responsibilities",
+      "sub1Title": "1. Scope of Use",
+      "sub1Body": "The user undertakes to use the platforms, applications, and systems affiliated with {{siteName}} for the purpose of managing and organizing events and occasions and making use of the supporting operational services, in a manner consistent with the laws and regulations in force in the Kingdom of Saudi Arabia.",
+      "sub2Title": "2. Prohibited Use",
+      "sub2Intro": "Users are prohibited from engaging in any of the following acts or behaviors:",
+      "prohibited1": "Entering, publishing, or sending any content that involves a violation of applicable laws or an infringement of the rights of others.",
+      "prohibited2": "Sending marketing messages, invitations, or unsolicited advertisements.",
+      "prohibited3": "Using or deploying automated software (bots) or any automation tools aimed at manipulating the platforms.",
+      "prohibited4": "Conducting any financial or commercial transaction outside the platforms' official mechanisms.",
+      "prohibited5": "Entering or publishing any malicious software or carrying out cyberattacks.",
+      "prohibited6": "Any attempt to breach the platforms or systems or to bypass access controls.",
+      "prohibited7": "Reselling, transferring, or leasing the products or services without prior explicit permission.",
+      "prohibited8": "Exploiting the platforms for fraudulent purposes, money laundering, or financing prohibited activities.",
+      "prohibited9": "Impersonating any person or entity, or attempting to access others' accounts.",
+      "prohibited10": "Any activity that disrupts the services or harms the reputation of {{siteName}}.",
+      "sub3Title": "3. Responsibility, Account, and Security",
+      "sub3Body": "The user undertakes to keep their account login details confidential and not to share them with any third party. The user undertakes to notify {{siteName}} immediately upon discovering any breach or unauthorized use of the account. The user bears full responsibility for all activities carried out through their account."
+    },
+    "billing": {
+      "title": "Sales, Payment, and Billing",
+      "item1Title": "Price Changes",
+      "item1Body": "{{siteName}} reserves the right to modify or update the prices of services or products at any time without prior notice. The prices in effect at the time of order confirmation are the ones adopted and binding on both parties.",
+      "item2Title": "Approved Payment Methods",
+      "item2Body": "{{siteName}} makes available its approved payment methods for completing financial transactions, including, without limitation, credit cards, mada cards, and bank transfer.",
+      "item3Title": "Finality of Payments",
+      "item3Body": "All amounts paid after order confirmation are final and non-refundable, except in the cases provided for in the Cancellation and Rescheduling Policy.",
+      "item4Title": "Prevention of Fraud and Financial Manipulation",
+      "item4Body": "The user is prohibited from engaging in any practices involving fraud or financial manipulation of any kind, including carrying out unauthorized chargeback operations.",
+      "item5Title": "Delay or Non-Payment",
+      "item5Body": "If the user delays payment of any amounts due, {{siteName}} reserves the right to suspend or restrict the user's account, and to delete or disable any data or services associated with it.",
+      "item6Title": "Termination of Service",
+      "item6Body": "The service is automatically terminated as soon as it is carried out or upon exhaustion of the full services or receipt of the purchased products. The user acknowledges that their use of the services is limited to what has been purchased only."
+    },
+    "ip": {
+      "title": "Intellectual Property and Innovation Protection",
+      "p1": "All rights related to the platforms, applications, systems, services, and products affiliated with {{siteName}}, including software, source code, databases, designs, logos, texts, images, digital content, and algorithms, are exclusively owned by {{siteName}} and protected under the intellectual property laws in force in the Kingdom of Saudi Arabia.",
+      "p2": "The user is prohibited, without limitation, from:",
+      "item1": "Reselling or sub-licensing the platforms or applications, or any part thereof.",
+      "item2": "Modifying or creating derivative works from the platforms or any technical or software content affiliated with them.",
+      "item3": "Attempting unauthorized access to the source code or algorithms.",
+      "item4": "Using the trademarks or logos in a manner that suggests the existence of an actual relationship with {{siteName}}.",
+      "item5": "Engaging in any acts that constitute unlawful competition or the illegal exploitation of {{siteName}}'s technologies."
+    },
+    "liability": {
+      "title": "Limitation of Liability",
+      "companyTitle": "{{siteName}}'s Liability",
+      "companyBody": "{{siteName}}'s liability is limited to providing and making available the platforms, applications, systems, services, and products according to the available technical capabilities. If a gross error is proven to have directly caused actual damage, liability is limited to compensation for direct damage only, and shall not exceed the value of the service or product in question.",
+      "exemptTitle": "Exemptions from Liability",
+      "exemptBody": "{{siteName}} bears no liability for damages resulting from: causes beyond its control, any content created by users, software errors or cyberattacks, any unlawful use, or damages resulting from force majeure.",
+      "userTitle": "User's Liability",
+      "userBody": "The user is solely and fully responsible for the accuracy, correctness, and legality of any content they enter, and for their full compliance with all laws and instructions in force in the Kingdom of Saudi Arabia."
+    },
+    "general": {
+      "title": "General Provisions",
+      "item1": "{{siteName}} reserves the right to amend or update these Terms and Conditions at any time, and the user's continued use after any amendment constitutes explicit acceptance of the amended Terms.",
+      "item2": "All policies specific to the platforms, including the Privacy Policy and the Cancellation and Rescheduling Policy, are considered an integral part of these Terms and Conditions.",
+      "item3": "The Arabic version of these Terms and Conditions is the official and legally authoritative version. This English translation is provided for informational purposes only, as a convenience to non-Arabic-speaking users; in the event of any conflict, discrepancy, or difference in interpretation between the two versions, the Arabic version shall prevail and govern.",
+      "item4": "These Terms and Conditions shall be interpreted and applied in accordance with the laws and regulations in force in the Kingdom of Saudi Arabia, and jurisdiction over any dispute shall lie exclusively with the competent courts of the Kingdom of Saudi Arabia.",
+      "item5": "{{siteName}} shall not be liable for any breach or delay in the performance of any of its obligations resulting from force majeure or any emergency circumstances beyond its control."
+    }
+  },
+  "cancellationPolicy": {
+    "title": "Cancellation & Rescheduling Policy",
+    "cancellation": {
+      "title": "Cancellation Policy",
+      "intro": "If the client wishes to cancel the occasion or service, the refund of amounts depends on the following cases:",
+      "beforeBadge": "Before Starting",
+      "beforeHeading": "Before invitations begin being sent, or before the service begins being used",
+      "beforeItem1": "The Company is entitled to deduct <strong>10%</strong> of the total invoice value, in addition to deducting all services that were not provided to the client.",
+      "beforeItem2": "The amount due — after deductions — will be refunded within a maximum period of <strong>7 days</strong>.",
+      "afterBadge": "After Starting",
+      "afterHeading": "After invitations begin being sent, or after the service begins being used",
+      "afterItem1": "The Company is entitled to deduct <strong>50%</strong> of the total invoice value.",
+      "afterItem2": "The amount due — after deductions — will be refunded within a maximum period of <strong>7 days</strong>.",
+      "weekBadge": "One Week Before the Date",
+      "weekHeading": "One week before the occasion's date, or after the service has been used",
+      "weekItem1": "The client is not entitled to a refund of any amounts paid, and all obligations are considered to remain in effect."
+    },
+    "rescheduling": {
+      "title": "Rescheduling Policy",
+      "intro": "If the client wishes to reschedule the occasion or service, the rescheduling process is subject to the following cases:",
+      "beforeBadge": "Before Starting",
+      "beforeHeading": "Before invitations begin being sent, or before the service begins being used",
+      "beforeItem1": "The client is allowed to reschedule once only, with no additional fees.",
+      "afterBadge": "After Starting",
+      "afterHeading": "After invitations begin being sent, or after the service begins being used",
+      "afterItem1": "The client is allowed to reschedule once only, for an additional fee of <strong>30%</strong> of the total invoice value.",
+      "weekBadge": "One Week Before the Date",
+      "weekHeading": "One week before the occasion's date, or after the service has been used",
+      "weekItem1": "The client is allowed to reschedule once only, for an additional fee of <strong>50%</strong> of the total invoice value."
+    },
+    "note": {
+      "label": "Note",
+      "body": "This policy applies to all packages of the invitation management service, electronic services, and additional services of all kinds."
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Special Cards | Luxury Digital Invitation Cards for Every Occasion",
+      "description": "Luxury digital invitation cards for all your occasions — weddings, graduations, birthdays, and special events. Design your digital invitation now with Special Cards."
+    },
+    "designs": {
+      "title": "Digital Invitation Designs | Special Cards",
+      "description": "Discover our wide collection of luxury digital invitation card designs for weddings, graduations, and every special occasion from Special Cards."
+    },
+    "blog": {
+      "title": "Special Cards Blog | Tips and Ideas for Your Occasions",
+      "description": "Read the latest articles and tips on organizing occasions and designing digital invitations from the Special Cards experts."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy | Special Cards",
+      "description": "Learn about the Special Cards privacy policy and how we protect your personal data."
+    },
+    "terms": {
+      "title": "Terms & Conditions | Special Cards",
+      "description": "Read the terms of use and conditions for the Special Cards website's services."
+    },
+    "cancellationPolicy": {
+      "title": "Cancellation Policy | Special Cards",
+      "description": "Learn about the cancellation and refund policy for Special Cards services."
+    },
+    "notFound": {
+      "title": "Page Not Found | Special Cards",
+      "description": "The page you are trying to reach does not exist."
+    }
+  },
+  "notFoundPage": {
+    "title": "Page Not Found",
+    "message": "The link you're trying to reach is invalid or the page has been moved.",
+    "linkText": "Return to the Home Page"
+  }
+}

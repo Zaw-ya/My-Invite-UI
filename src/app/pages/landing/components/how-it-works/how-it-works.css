@@ -1,0 +1,86 @@
+/* ===== SECTION =====
+   Background + watermark are owned by the shared rule in styles.css
+   (.how-section is one of the three sanctioned watermark placements). */
+.how-section {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ===== GRID ===== */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 24px;
+}
+
+/* ===== CARD ===== */
+.how-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: start;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.how-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.how-num {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 18px;
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.18;
+  line-height: 1;
+}
+
+.how-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--gold-pale);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+}
+
+.how-card-title {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin: 0;
+  /* Routed through the font registry (not hardcoded) so English correctly
+     picks up ThmanyahSerifDisplay instead of silently falling through
+     ManchetteFine, which has zero Latin glyph coverage. */
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
+}
+
+.how-card-text {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

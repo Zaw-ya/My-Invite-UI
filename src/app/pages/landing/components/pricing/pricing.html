@@ -1,13 +1,13 @@
-<section id="packages" class="pricing-section" dir="rtl">
+<section id="packages" class="pricing-section">
   <div class="container mx-auto px-5">
 
     <!-- Header -->
     <div class="text-center mb-12 space-y-3">
-      <h2 class="pricing-heading mt-4">باقات <span>مؤسسة بطاقتي الخاصة</span></h2>
-      <p class="pricing-sub">اختر الباقة المناسبة لاحتياجاتك</p>
+      <h2 class="pricing-heading mt-4" [innerHTML]="'pricing.heading' | transloco"></h2>
+      <p class="pricing-sub">{{ 'pricing.subtitle' | transloco }}</p>
     </div>
 
-    <!-- Tab Switcher -->
+    <!-- Tab Switcher (plan.label is backend-provided package data, unchanged) -->
     <div class="flex justify-center mb-10">
       <div class="pricing-tabs">
         @for (plan of plans(); track plan.id) {
@@ -23,7 +23,7 @@
     <!-- Pricing Card (two-column like demo form) -->
     <div class="pricing-card">
 
-      <!-- RIGHT PANEL: Price + Count Selector -->
+      <!-- START PANEL: Price + Count Selector -->
       <div class="pricing-left-panel">
 
         <!-- Price Display -->
@@ -33,16 +33,16 @@
           </div>
           <div class="pricing-amount-row">
             <span class="pricing-amount">{{ selectedTier().price | number:'1.2-2' }}</span>
-            <span class="pricing-currency">ريال</span>
+            <span class="pricing-currency">{{ 'pricing.currency' | transloco }}</span>
           </div>
-          <div class="pricing-count-label">{{ selectedTier().count }} دعوة</div>
+          <div class="pricing-count-label">{{ selectedTier().count }} {{ 'pricing.guestsUnit' | transloco }}</div>
         </div>
 
         <div class="pricing-divider"></div>
 
         <!-- Count Selector -->
         <div class="pricing-count-section">
-          <p class="pricing-section-label">اختر عدد الدعوات</p>
+          <p class="pricing-section-label">{{ 'pricing.chooseCountLabel' | transloco }}</p>
           <div class="count-grid">
             @for (tier of activePlan().tiers; track tier.count) {
               <button
@@ -53,8 +53,8 @@
             }
           </div>
           <p class="pricing-contact-hint">
-            {{ activePlan().contactLabel }}
-            <a href="#contact" class="pricing-contact-link">تواصل معنا ←</a>
+            {{ 'pricing.contactHintTemplate' | transloco: { count: activePlan().contactThreshold } }}
+            <a href="#contact" class="pricing-contact-link">{{ 'pricing.contactLinkText' | transloco }}</a>
           </p>
         </div>
 
@@ -65,11 +65,11 @@
           <div class="comp-check">
             <lucide-icon name="check" class="w-3.5 h-3.5"></lucide-icon>
           </div>
-          <div class="text-right">
-            <p class="comp-title">رصيد دعوات تعويضية</p>
+          <div class="text-start">
+            <p class="comp-title">{{ 'pricing.compensatoryTitle' | transloco }}</p>
             <p class="comp-sub">
-              {{ activePlan().compensatoryPercent }}% من إجمالي الدعوات
-              &nbsp;·&nbsp; {{ compensatoryCount() }} دعوة إضافية
+              {{ activePlan().compensatoryPercent }}{{ 'pricing.compensatoryOfTotal' | transloco }}
+              &nbsp;·&nbsp; {{ compensatoryCount() }} {{ 'pricing.compensatoryExtra' | transloco }}
             </p>
           </div>
         </div>
@@ -77,15 +77,15 @@
         <div class="pricing-divider"></div>
 
         <!-- CTA -->
-        <a href="#additional-services" class="pricing-cta">
-          {{ activePlan().ctaLabel }}
+        <a href="#contact" class="pricing-cta" (click)="scrollService.scrollTo($event, 'contact')">
+          {{ activePlan().ctaLabelKey | transloco }}
         </a>
 
       </div>
 
-      <!-- LEFT PANEL: Features -->
+      <!-- END PANEL: Features (backend-provided list, unchanged) -->
       <div class="pricing-right-panel">
-        <p class="pricing-features-title">المميزات المشمولة</p>
+        <p class="pricing-features-title">{{ 'pricing.featuresIncludedTitle' | transloco }}</p>
         <ul class="pricing-features-list">
           @for (feature of activePlan().features; track feature) {
             <li class="pricing-feature-item">
