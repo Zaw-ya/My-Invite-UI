@@ -7,97 +7,70 @@
       <p class="pricing-sub">{{ 'pricing.subtitle' | transloco }}</p>
     </div>
 
-    <!-- Tab Switcher (plan.label is backend-provided package data, unchanged) -->
-    <div class="flex justify-center mb-10">
-      <div class="pricing-tabs">
-        @for (plan of plans(); track plan.id) {
-          <button
-            (click)="setTab(plan.id)"
-            class="pricing-tab"
-            [class.active]="activeTab() === plan.id"
-          >{{ plan.label }}</button>
-        }
-      </div>
-    </div>
+    <!-- Card grid — one card per package, sized by content (auto-fit) so
+         it works whether the backend has 2, 3, or more active packages,
+         instead of a fixed-column layout assuming exactly 3. The
+         backend-flagged "isPopular" package gets the elevated dark
+         treatment + badge, matching the client reference's middle card. -->
+    <div class="pricing-grid">
+      @for (plan of plans(); track plan.id) {
+        <div class="price-card" [class.price-card-popular]="plan.isPopular">
 
-    <!-- Pricing Card (two-column like demo form) -->
-    <div class="pricing-card">
-
-      <!-- START PANEL: Price + Count Selector -->
-      <div class="pricing-left-panel">
-
-        <!-- Price Display -->
-        <div class="pricing-price-block">
-          <div class="pricing-label-row">
-            <span class="pricing-plan-name">{{ activePlan().label }}</span>
-          </div>
-          <div class="pricing-amount-row">
-            <span class="pricing-amount">{{ selectedTier().price | number:'1.2-2' }}</span>
-            <span class="pricing-currency">{{ 'pricing.currency' | transloco }}</span>
-          </div>
-          <div class="pricing-count-label">{{ selectedTier().count }} {{ 'pricing.guestsUnit' | transloco }}</div>
-        </div>
-
-        <div class="pricing-divider"></div>
-
-        <!-- Count Selector -->
-        <div class="pricing-count-section">
-          <p class="pricing-section-label">{{ 'pricing.chooseCountLabel' | transloco }}</p>
-          <div class="count-grid">
-            @for (tier of activePlan().tiers; track tier.count) {
-              <button
-                (click)="selectCount(tier.count)"
-                class="count-btn"
-                [class.active]="isSelected(tier.count)"
-              >{{ tier.count }}</button>
-            }
-          </div>
-          <p class="pricing-contact-hint">
-            {{ 'pricing.contactHintTemplate' | transloco: { count: activePlan().contactThreshold } }}
-            <a href="#contact" class="pricing-contact-link">{{ 'pricing.contactLinkText' | transloco }}</a>
-          </p>
-        </div>
-
-        <div class="pricing-divider"></div>
-
-        <!-- Compensatory Box -->
-        <div class="compensatory-row">
-          <div class="comp-check">
-            <lucide-icon name="check" class="w-3.5 h-3.5"></lucide-icon>
-          </div>
-          <div class="text-start">
-            <p class="comp-title">{{ 'pricing.compensatoryTitle' | transloco }}</p>
-            <p class="comp-sub">
-              {{ activePlan().compensatoryPercent }}{{ 'pricing.compensatoryOfTotal' | transloco }}
-              &nbsp;·&nbsp; {{ compensatoryCount() }} {{ 'pricing.compensatoryExtra' | transloco }}
-            </p>
-          </div>
-        </div>
-
-        <div class="pricing-divider"></div>
-
-        <!-- CTA -->
-        <a href="#contact" class="pricing-cta" (click)="scrollService.scrollTo($event, 'contact')">
-          {{ activePlan().ctaLabelKey | transloco }}
-        </a>
-
-      </div>
-
-      <!-- END PANEL: Features (backend-provided list, unchanged) -->
-      <div class="pricing-right-panel">
-        <p class="pricing-features-title">{{ 'pricing.featuresIncludedTitle' | transloco }}</p>
-        <ul class="pricing-features-list">
-          @for (feature of activePlan().features; track feature) {
-            <li class="pricing-feature-item">
-              <div class="feature-check">
-                <lucide-icon name="check" class="w-3 h-3"></lucide-icon>
-              </div>
-              <span>{{ feature }}</span>
-            </li>
+          @if (plan.isPopular) {
+            <span class="price-badge">{{ 'pricing.popularBadge' | transloco }}</span>
           }
-        </ul>
-      </div>
 
+          <span class="price-plan-name">{{ plan.label }}</span>
+
+          <div class="price-amount-row">
+            <span class="price-amount">{{ selectedTierFor(plan).price | number:'1.0-0' }}</span>
+            <span class="price-currency">{{ 'pricing.currency' | transloco }}</span>
+          </div>
+          <p class="price-count-label">{{ selectedTierFor(plan).count }} {{ 'pricing.guestsUnit' | transloco }}</p>
+
+          @if (plan.tiers.length > 1) {
+            <div class="price-tier-pills" [attr.aria-label]="'pricing.chooseCountLabel' | transloco">
+              @for (tier of plan.tiers; track tier.count) {
+                <button
+                  type="button"
+                  class="tier-pill"
+                  [class.active]="isSelected(plan.id, tier.count)"
+                  (click)="selectCount(plan.id, tier.count)"
+                >{{ tier.count }}</button>
+              }
+            </div>
+          }
+
+          <div class="price-divider"></div>
+
+          @if (plan.compensatoryPercent > 0) {
+            <p class="price-bonus">
+              {{ 'pricing.compensatoryTitle' | transloco }}
+              — {{ plan.compensatoryPercent }}{{ 'pricing.compensatoryOfTotal' | transloco }}
+              ({{ compensatoryCountFor(plan) }} {{ 'pricing.compensatoryExtra' | transloco }})
+            </p>
+            <div class="price-divider"></div>
+          }
+
+          <ul class="price-features">
+            @for (feature of plan.features; track feature) {
+              <li>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M5 12l4 4 10-10"></path>
+                </svg>
+                <span>{{ feature }}</span>
+              </li>
+            }
+          </ul>
+
+          <a
+            href="#contact"
+            class="price-cta"
+            (click)="scrollService.scrollTo($event, 'contact')"
+          >{{ plan.ctaLabelKey | transloco }}</a>
+
+        </div>
+      }
     </div>
 
   </div>

@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+<section id="supervisors-page" class="supervisors-page-section">
+  <div class="container mx-auto px-5 py-16">
+
+    <!-- Page Header — same kicker/heading/subtitle content as the
+         landing section's intro, promoted to an <h1> here since this
+         is its own page. -->
+    <div class="sup-page-intro">
+      <span class="sup-kicker">{{ 'supervisors.kicker' | transloco }}</span>
+      <h1 class="section-title" [innerHTML]="'supervisors.heading' | transloco"></h1>
+      <div class="gold-divider mx-auto" style="width:48px;"></div>
+      <p class="sup-subtitle">{{ 'supervisors.subtitle' | transloco }}</p>
+    </div>
+
+    <!-- Loading -->
+    @if (loading()) {
+      <div class="sup-grid">
+        @for (i of [1,2,3,4,5,6]; track i) {
+          <div class="sup-skeleton-card" aria-hidden="true"></div>
+        }
+      </div>
+    }
+
+    <!-- Error -->
+    @else if (error()) {
+      <div class="sup-status">
+        <lucide-icon name="circle-x" class="sup-status-icon"></lucide-icon>
+        <p>{{ 'supervisors.errorMessage' | transloco }}</p>
+        <button type="button" class="sup-retry-btn" (click)="retry()">
+          {{ 'supervisors.retryLabel' | transloco }}
+        </button>
+      </div>
+    }
+
+    <!-- Empty -->
+    @else if (supervisors().length === 0) {
+      <div class="sup-status">
+        <lucide-icon name="users" class="sup-status-icon"></lucide-icon>
+        <p>{{ 'supervisors.emptyMessage' | transloco }}</p>
+      </div>
+    }
+
+    <!-- Supervisors grid -->
+    @else {
+      <div class="sup-grid">
+        @for (s of supervisors(); track s.id) {
+          <app-supervisor-card [supervisor]="s"></app-supervisor-card>
+        }
+      </div>
+    }
+
+  </div>
+</section>
+
+<app-footer></app-footer>

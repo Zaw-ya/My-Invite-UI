@@ -30,9 +30,15 @@ export interface InvitationCard {
 export interface Supervisor {
   id: string;
   name: string;
+  /** Backend field is "nickname" — kept as `role` for template continuity. */
   role: string;
   imageUrl: string;
-  cost: string;
+  rating: number;
+  /** Not currently returned by the API — optional so the card can render
+      gracefully today and pick these up automatically if the backend
+      adds them later, without another round of template changes. */
+  reviewsCount?: number;
+  city?: string;
 }
 
 export interface Testimonial {

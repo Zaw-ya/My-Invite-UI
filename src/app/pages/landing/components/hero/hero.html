@@ -1,77 +1,139 @@
 <section class="hero-section">
 
+  <!-- Lighting layer — sits at the section level (not nested inside
+       either column) so the glow bleeds across both columns instead of
+       stopping at the visual column's edge. This is what makes the two
+       halves read as one lit scene instead of "image left, text right." -->
+  <div class="hero-ambient-glow" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
+
   <!-- ===== RIGHT: Text Content ===== -->
   <div class="hero-content-side">
 
+    <!-- Main heading — the one dominant element in the section. One
+         short phrase carries the gold accent (via the translation's own
+         inline span) instead of the whole line, so gold reads as a
+         deliberate editorial touch rather than decoration. -->
+    <h1 class="hero-heading font-display" [innerHTML]="'hero.heading' | transloco"></h1>
 
+    <!-- Single supporting sentence, not a pitch essay -->
+    <p class="hero-subtitle">{{ 'hero.subtitle' | transloco }}</p>
 
-    <!-- Top tagline -->
-    <div class="hero-tagline">
-      <img src="/assets/images/logos-08.png" alt="Logo" class="h-16 md:h-20 w-auto object-contain hero-tagline-logo">
-      <h1>{{ 'hero.brandName' | transloco }}</h1>
-    </div>
-    <p class="hero-about-label">{{ 'hero.aboutLabel' | transloco }}</p>
-
-    <!-- Main heading -->
-    <h1 class="hero-heading font-display">
-      {{ 'hero.heading' | transloco }}
-    </h1>
-
-    <!-- Body text -->
-    <div class="hero-body-text">
-      <p [innerHTML]="'hero.bodyParagraph1' | transloco"></p>
-      <p [innerHTML]="'hero.bodyParagraph2' | transloco"></p>
+    <!-- Primary + secondary actions -->
+    <div class="hero-cta-row">
+      <a href="#demo" class="btn-gold hero-btn-primary" (click)="scrollService.scrollTo($event, 'demo')">{{ 'hero.cta1' | transloco }}</a>
+      <a href="#designs" class="hero-btn-outline" (click)="scrollService.scrollTo($event, 'designs')">{{ 'hero.cta2' | transloco }}</a>
     </div>
 
-    <!-- Event type tags (clickable, RTL — dynamic event-type names remain Arabic, per confirmed decision) -->
-    <p class="hero-tags-hint">{{ 'hero.tagsHint' | transloco }}</p>
-    <div class="hero-tags" dir="rtl">
-      @for (tag of tags(); track tag.label) {
-        <button
-          class="hero-tag"
-          [class.active]="activeTag()?.label === tag.label"
-          (click)="selectTag(tag)"
-          type="button"
-        >{{ tag.label }}</button>
-      }
+    <!-- Trust indicators — a quiet stats line (icon + value + label, no
+         boxes, no descriptions), the register luxury brands use for this
+         kind of quiet-confidence detail rather than a feature grid. -->
+    <div class="hero-trust-row">
+      <div class="hero-trust-stat">
+        <div class="hero-trust-icon-wrap">
+          <lucide-icon name="sparkles" class="hero-trust-icon"></lucide-icon>
+        </div>
+        <div class="hero-trust-text">
+          <span class="stat-value">{{ 'hero.trust.events.value' | transloco }}</span>
+          <span class="stat-label">{{ 'hero.trust.events.label' | transloco }}</span>
+        </div>
+      </div>
+      <span class="hero-trust-divider" aria-hidden="true"></span>
+      <div class="hero-trust-stat">
+        <div class="hero-trust-icon-wrap">
+          <lucide-icon name="map-pin" class="hero-trust-icon"></lucide-icon>
+        </div>
+        <div class="hero-trust-text">
+          <span class="stat-value">{{ 'hero.trust.countries.value' | transloco }}</span>
+          <span class="stat-label">{{ 'hero.trust.countries.label' | transloco }}</span>
+        </div>
+      </div>
+      <span class="hero-trust-divider" aria-hidden="true"></span>
+      <div class="hero-trust-stat">
+        <div class="hero-trust-icon-wrap">
+          <lucide-icon name="heart-handshake" class="hero-trust-icon"></lucide-icon>
+        </div>
+        <div class="hero-trust-text">
+          <span class="stat-value">{{ 'hero.trust.support.value' | transloco }}</span>
+          <span class="stat-label">{{ 'hero.trust.support.label' | transloco }}</span>
+        </div>
+      </div>
     </div>
 
   </div>
 
-  <!-- ===== LEFT: Brand Logo Full Height ===== -->
-  <div class="hero-geo-side" aria-hidden="true">
-    <img
-      src="/assets/images/PNGs/logos-07.png"
-      alt=""
-      class="hero-brand-emblem"
-    >
-    <!-- Single geo frame — echoes the active carousel card's rotation as a
-         depth cue. Frames 2-4 were removed: see hero.css for the reasoning
-         (one focal point per view, not several competing ambient shapes). -->
-    <div class="geo-rect geo-rect-1"></div>
+  <!-- ===== LEFT: Invitation Card Showcase =====
+       .hero-showcase-area is LAYOUT ONLY — it's the Hero grid's second
+       column and the positioned containing block for the showcase.
+       It owns no decorative styling, no shadows, no z-index, no
+       transforms; see hero.css.
 
-    <!-- 1. Priority: Active tag image -->
-    @if (activeTag()) {
-      <div class="hero-cards-wrapper">
-        <div class="hero-carousel-card active">
-          <img [src]="activeTag()!.imageUrl" [alt]="activeTag()!.label">
-          <div class="card-glow"></div>
-          <div class="card-shine"></div>
-        </div>
+       .hero-showcase is the single composition root: every visual layer
+       (shadow, frame, corner brackets, background/flanking cards, the
+       active card, its reflection, and any future decorative layer —
+       glow, particles, etc.) is a child of THIS element and positioned
+       with small local offsets relative to it. Nothing outside this
+       element needs to know how the showcase is built, and moving,
+       scaling, or animating the whole thing later means touching only
+       this one element. -->
+  <div class="hero-showcase-area" aria-hidden="true">
+    <div class="hero-showcase">
+
+      <!-- Soft blurred ellipse grounding the card to a surface, the way a
+           studio product shot casts a contact shadow beneath the object
+           instead of floating with no relationship to anything below it. -->
+      <div class="hero-card-ground-shadow"></div>
+
+      <!-- Single geo frame — currently unused (hidden sitewide, see
+           hero.css). Left in place per instruction rather than deleted;
+           relocated here so it lives with the rest of the composition
+           instead of being scattered at a different DOM level. -->
+      <div class="geo-rect geo-rect-1"></div>
+
+      <!-- Thin corner brackets — a quiet gallery/display-case framing
+           device for the whole stack, not filler. .hero-frame no longer
+           calculates its own position: it's a plain inset margin of
+           .hero-showcase's own box, so it can never drift from the card
+           again regardless of breakpoint. -->
+      <div class="hero-frame">
+        <span class="hero-frame-corner hero-frame-corner-tl"></span>
+        <span class="hero-frame-corner hero-frame-corner-br"></span>
       </div>
-    }
-    <!-- 2. Fallback: Carousel Cards -->
-    @else if (carouselCards().length > 0) {
-      <div class="hero-cards-wrapper">
-        @for (card of carouselCards(); track card.id; let idx = $index) {
-          <div class="hero-carousel-card" [class.active]="idx === currentCardIndex()">
-            <img [src]="card.imageUrl" [alt]="card.title">
-            <div class="card-glow"></div>
-            <div class="card-shine"></div>
+
+      @if (carouselCards().length > 0) {
+        <!-- Flanking designs from the real library, fanned behind the
+             active card — a styled deck instead of one flat image, using
+             assets already on hand rather than new artwork. -->
+        @if (prevCard(); as pc) {
+          <div class="hero-flank-card hero-flank-card-a">
+            <img [src]="pc.imageUrl" alt="">
           </div>
         }
-      </div>
-    }  </div>
+        @if (nextCard(); as nc) {
+          <div class="hero-flank-card hero-flank-card-b">
+            <img [src]="nc.imageUrl" alt="">
+          </div>
+        }
+
+        @for (card of carouselCards(); track card.id; let idx = $index) {
+          <div class="hero-carousel-card" [class.active]="idx === currentCardIndex()">
+            <div class="hero-card-face">
+              <img [src]="card.imageUrl" [alt]="card.title">
+              <div class="card-glow"></div>
+              <div class="card-shine"></div>
+            </div>
+            <!-- Mirrored reflection, only for the active card — the
+                 detail that grounds it as a physical object rather than
+                 a cutout pasted on the background. -->
+            @if (idx === currentCardIndex()) {
+              <div class="hero-card-reflection">
+                <img [src]="card.imageUrl" alt="">
+              </div>
+            }
+          </div>
+        }
+      }
+    </div>
+  </div>
 
 </section>
-

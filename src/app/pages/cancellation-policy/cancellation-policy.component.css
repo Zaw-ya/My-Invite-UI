@@ -4,15 +4,15 @@
 }
 
 .policy-hero {
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,215,0,0.04) 100%);
-  border-bottom: 1px solid rgba(255,215,0,0.12);
-  padding: 100px 0 48px;
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(184,135,59,0.04) 100%);
+  border-bottom: 1px solid rgba(184,135,59,0.12);
+  padding: 128px 0 56px;
   text-align: start;
 }
 .policy-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 900;
-  color: var(--heading);
+  color: var(--text);
   line-height: 1.2;
 }
 .policy-breadcrumb {
@@ -33,9 +33,9 @@
 .policy-card {
   max-width: 1100px;
   margin: 0 auto;
-  background: var(--card-bg);
-  border: 1px solid rgba(255,215,0,0.1);
-  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid rgba(184,135,59,0.1);
+  border-radius: var(--radius-card-lg);
   padding: 48px 56px;
 }
 
@@ -48,8 +48,8 @@
 }
 
 .policy-column {
-  border: 1px solid rgba(255,215,0,0.1);
-  border-radius: 16px;
+  border: 1px solid rgba(184,135,59,0.1);
+  border-radius: var(--radius-card);
   overflow: hidden;
 }
 
@@ -67,16 +67,23 @@
   background: linear-gradient(135deg, rgba(220, 80, 80, 0.85), rgba(180, 40, 40, 0.9));
 }
 .rescheduling-header {
-  background: linear-gradient(135deg, rgba(255,215,0,0.85), rgba(200,160,0,0.9));
+  /* Was a raw yellow gradient (255,215,0 / 200,160,0), unrelated to the
+     brand gold — now uses the same signature gradient as every primary
+     CTA sitewide. */
+  background: var(--gold-gradient);
 }
-.rescheduling-header h2 { color: #1a1200; }
+.rescheduling-header h2 {
+  /* Matches the sitewide text-on-gold convention (#0B1320), was a
+     one-off near-black (#1a1200). */
+  color: #0B1320;
+}
 
 .column-intro {
   font-size: 13px;
   color: var(--text, rgba(255,255,255,0.7));
   line-height: 1.8;
   padding: 16px 20px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid var(--border-subtle);
   margin: 0;
 }
 
@@ -89,9 +96,9 @@
 }
 
 .timeline-item {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,215,0,0.08);
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid rgba(184,135,59,0.08);
+  border-radius: var(--radius-card);
   padding: 16px;
 }
 .timeline-item--warning {
@@ -105,7 +112,7 @@
   font-weight: 700;
   padding: 3px 12px;
   border-radius: 50px;
-  background: rgba(255,215,0,0.12);
+  background: rgba(184,135,59,0.12);
   color: var(--gold);
   margin-bottom: 10px;
 }
@@ -117,7 +124,7 @@
 .timeline-item h3 {
   font-size: 13px;
   font-weight: 700;
-  color: var(--heading);
+  color: var(--text);
   line-height: 1.6;
   margin-bottom: 10px;
 }
@@ -154,7 +161,7 @@
 
 /* Note */
 .policy-note {
-  border-top: 1px solid rgba(255,215,0,0.1);
+  border-top: 1px solid rgba(184,135,59,0.1);
   padding-top: 24px;
   display: flex;
   align-items: flex-start;
@@ -166,9 +173,9 @@
   font-weight: 700;
   padding: 3px 14px;
   border-radius: 50px;
-  background: rgba(255,215,0,0.1);
+  background: rgba(184,135,59,0.1);
   color: var(--gold);
-  border: 1px solid rgba(255,215,0,0.25);
+  border: 1px solid rgba(184,135,59,0.25);
 }
 .policy-note p {
   font-size: 13px;

@@ -5,29 +5,66 @@
    RTL: text on RIGHT (first), geo shapes on LEFT (second)
    =================================================== */
 
-/* ---------- SECTION BASE ---------- */
+/* ---------- SECTION BASE ----------
+   padding-top: var(--navbar-height) plus a fixed breathing-room amount
+   is declared HERE, once, on the grid container — not on
+   .hero-content-side alone. Both grid cells (.hero-content-side and
+   .hero-showcase-area) share this exact reduced content box, so both
+   columns are composed relative to the same visible area below the
+   fixed navbar instead of the text privately compensating while the
+   showcase ignores it entirely (which is what made the showcase read
+   as sitting underneath the navbar overlay). Desktop-only: at the
+   ≤1024px breakpoint the columns stack instead of sitting side by
+   side, so there's no shared-frame concern there and this is reset to
+   zero (see RESPONSIVE). */
 .hero-section {
   position: relative;
   min-height: 700px;
+  box-sizing: border-box;
+  padding: 140px 0 60px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Mild bias only (was 1.08/0.92) — the lighting layer below now does
+     most of the work of visually connecting the two halves, so the grid
+     itself doesn't need to do it through geometry alone. */
+  grid-template-columns: 1.05fr 0.95fr;
   overflow: hidden;
   /* No explicit direction here — inherits the document's dir (set by
      LanguageService), so the grid's column order mirrors automatically:
      text-content stays first in the reading direction, geo-side second. */
 
-  /* Routed through the same dark-ground token every other dark section
-     (cities-box, sup-table-header) already uses, so the hero darkens
-     correctly in dark mode instead of staying pinned to the light-mode
-     value. height is intentionally NOT forced to 100vh — the section's
-     own generous content padding (see .hero-content-side) already gives
-     it a tall, unhurried feel without hard-clipping content on short
-     viewports; min-height keeps a floor for very short screens only. */
-  background-color: var(--bg-dark-hero);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--bg-dark-hero) 80%, white 20%) 0%,
+    var(--bg-dark-hero) 100%
+  );
 }
 
+/* ---------- LIGHTING LAYER ----------
+   Section-level (not nested in either column), so the glow bleeds
+   across the column boundary instead of stopping at it — this is the
+   piece that makes the two halves read as one lit scene rather than
+   "image left, text right." One dominant, tighter key light plus a
+   much quieter ambient fill — deliberately not two competing glows —
+   reads as controlled studio lighting rather than a diffuse wash. */
+.hero-ambient-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 60% at 38% 48%, rgba(217, 182, 121, 0.26) 0%, rgba(217, 182, 121, 0.09) 35%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 62% 15%, rgba(217, 182, 121, 0.05) 0%, transparent 55%);
+}
 
-
+/* Tighter vignette — darkens the far corners a bit more decisively so
+   the eye has less choice but to settle on the card. */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 88% 88% at 50% 45%, transparent 50%, rgba(0, 0, 0, 0.32) 100%);
+}
 
 /* ===================================================
    RIGHT: Text Content (first in DOM → right in RTL)
@@ -36,211 +73,319 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* padding-top increased to 140px to account for fixed navbar (~80-100px) */
-  padding-block: 140px 60px;
-  padding-inline: 32px 56px;
+  /* Vertical clearance (navbar + breathing room) now lives once on
+     .hero-section, shared with .hero-showcase-area — this only keeps
+     its own horizontal breathing room. */
+  padding-inline: 32px 20px;
   text-align: start;
   gap: 22px;
   position: relative;
   z-index: 2;
 }
 
-/* ---------- TOP TAGLINE ---------- */
-.hero-tagline {
+/* ---------- MAIN HEADING ----------
+   Editorial scale/rhythm: wider ceiling (was 2.75rem), tighter
+   line-height and a touch of negative tracking — reads as set type,
+   not a plain paragraph-sized line placed on the page. */
+.hero-heading {
+  font-size: clamp(1.6rem, 4.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+
+  /* dark */
+  color: #FFFFFF;
+}
+
+/* ---------- SUBTITLE ----------
+   One supporting sentence, not a pitch essay — the fuller value-prop
+   copy already has a home in the About section further down the page. */
+.hero-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 440px;
+  margin: 0;
+
+  /* dark */
+  color: rgba(255,255,255,0.72);
+}
+
+/* ---------- CTAs ----------
+   Primary carries real visual weight (larger, deeper gold-shadow bloom
+   on hover) — the pairing itself makes it the obvious next stop after
+   reading the headline. Secondary stays a light glass-outline pill at
+   the same height, never competing. */
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-top: 6px;
+}
+
+.hero-cta-row .hero-btn-primary {
+  padding: 18px 40px;
+  font-size: 16px;
+  box-shadow: 0 14px 34px -10px var(--shadow-gold);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+.hero-cta-row .hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 44px -10px var(--shadow-gold);
+}
+
+.hero-btn-outline {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  /* Fluid scale, matching the clamp() pattern already used by
-     .hero-about-label/.hero-heading below, instead of a fixed size
-     overridden per-breakpoint. */
-  font-size: clamp(1.375rem, 4vw, 2.4375rem);
+  justify-content: center;
+  padding: 18px 36px;
+  border-radius: 100px;
   font-weight: 600;
-  letter-spacing: 0.03em;
-  justify-content: flex-start;
-  margin-bottom: 0;
-
-  /* dark */
-  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  /* A faint glass tint at rest (was fully transparent) so it reads as
+     a considered surface, not an empty outline waiting for a hover. */
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255,255,255,0.24);
+  color: rgba(255, 255, 255, 0.85);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
-
-/* "من نحن" subtitle below the brand name */
-.hero-about-label {
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 700;
-  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
-  color: var(--gold);
-  margin: 12px 0 0 0; /* Add positive space below brand name */
-  letter-spacing: 0.04em;
-  position: relative;
-}
-
-.hero-tagline-logo {
-  animation: spinSlow 20s linear infinite;
-  filter: drop-shadow(0 2px 8px rgba(197, 168, 128, 0.25));
-  transition: transform 0.3s ease;
-}
-.hero-tagline-logo:hover {
-  transform: scale(1.1);
-  animation-play-state: paused;
-}
-
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* ---------- MAIN HEADING ---------- */
-.hero-heading {
-  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
-  font-weight: 700;
-  line-height: 1.4;
-  margin: 0;
-
-  /* dark */
+.hero-btn-outline:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.45);
   color: #FFFFFF;
 }
 
-/* ---------- BODY TEXT ---------- */
-.hero-body-text {
+/* ---------- TRUST ROW ----------
+   A quiet stats line — small icon + value + label, no bordered cards —
+   the register a luxury brand uses for this kind of detail. Thin
+   vertical dividers do the separating instead of boxes. */
+.hero-trust-row {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-top: 10px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-trust-stat {
+  display: flex;
+  align-items: center;
+  /* More room between the icon and its text (was 10px) — the two read
+     as one cramped unit at that distance instead of an icon paired
+     with its own label. */
+  gap: 15px;
+}
+
+/* Icon sits in its own soft circular badge instead of floating bare
+   next to the text — a small considered detail that reads as more
+   deliberate/consistent than an icon glyph placed directly inline. */
+.hero-trust-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(217, 182, 121, 0.08);
+  border: 1px solid rgba(217, 182, 121, 0.22);
+  flex-shrink: 0;
+}
+
+.hero-trust-icon {
+  /* lucide-icon's host element defaults to inline display, which can
+     sit slightly off the flex-centered midpoint of its wrapper circle
+     depending on line-height/baseline — forcing it into a centered
+     flex box of its own removes that ambiguity entirely. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--gold-light);
+  flex-shrink: 0;
+}
+
+/* Vertically centered against the icon badge (.hero-trust-stat's own
+   align-items:center already does this) rather than pinned to its top. */
+.hero-trust-text {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-.hero-body-text p {
-  font-size: 13.5px;
-  line-height: 1.95;
-  margin: 0;
-
-  /* dark */
-  color: rgba(255,255,255,0.6);
+  gap: 2px;
 }
 
-.hero-body-text strong {
-  font-weight: 700;
+.stat-value {
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
+  font-size: 19px;
+  font-weight: 800;
   color: #FFFFFF;
+  line-height: 1;
 }
 
-/* ---------- EVENT TAGS ---------- */
-.hero-tags-hint {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--gold);
-  margin: 0;
+.stat-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.48);
   letter-spacing: 0.02em;
 }
 
-.hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-start;
-  direction: rtl;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size: 12px;
-  font-weight: 600;
-  font-family: var(--font-body, 'Cairo', sans-serif);
-  transition: all 0.25s ease;
-  cursor: pointer;
-  white-space: nowrap;
-
-  /* dark default */
-  border: 1.5px solid rgba(255,255,255,0.22);
-  color: rgba(255,255,255,0.7);
-  background: transparent;
-}
-.hero-tag:hover {
-  border-color: var(--gold);
-  color: #FFFFFF;
-  background: rgba(197, 168, 128, 0.08);
-}
-.hero-tag.active {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #0B1320;
-  box-shadow: 0 4px 15px var(--shadow-gold);
+.hero-trust-divider {
+  width: 1px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.14);
+  flex-shrink: 0;
 }
 
 /* ===================================================
-   LEFT: Brand Logo Full Height
+   LEFT: Product Visual
    =================================================== */
-.hero-geo-side {
+
+/* ---------- LAYOUT LAYER ----------
+   .hero-showcase-area's only job is being the Hero grid's second column
+   and the positioned containing block .hero-showcase anchors to. It
+   owns no decorative styling, no shadows, no z-index stacking, no
+   positioning transforms — every one of those used to be duplicated
+   across this element's children (the ground shadow, the frame, and
+   the card wrapper each independently declared their own
+   top:50%/left:38%/translate(-50%,-50%)), which is exactly how the
+   frame and the card drifted apart twice. Now there is exactly one
+   positioned element below this line: .hero-showcase. */
+.hero-showcase-area {
   position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 
-/* The brand emblem — unified bottom-left watermark positioning.
-   Uses the SAME coordinates as the global --wm-* system in styles.css
-   to guarantee pixel-perfect consistency across all sections. */
-.hero-brand-emblem {
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  top: auto !important;
-  right: auto !important;
-  width: var(--wm-width, 120%) !important;
-  height: var(--wm-height, 160%) !important;
-  object-fit: contain !important;
-  object-position: left bottom !important;
-  transform: translate(var(--wm-translate-x, -25%), var(--wm-translate-y, 30%)) !important;
-  opacity: 0.22 !important;
-  filter: brightness(0) invert(1) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-}
+/* ---------- COMPOSITION ROOT ----------
+   .hero-showcase is the single positioning context for the entire
+   invitation showcase — shadow, frame, corner brackets, background
+   cards, the active card stack, its reflection, and any future
+   decorative layer (glow, particles, etc.) all live inside it and
+   position themselves with small LOCAL offsets relative to this box,
+   never against .hero-showcase-area or the page.
 
+   --showcase-width/--showcase-height are the single source of truth
+   for the showcase's size — redefined once per breakpoint below, and
+   consumed both by this element's own width/height and by the
+   calc()-based centering formula, so nothing else has to restate them.
 
-/* ---------- CAROUSEL ---------- */
-.hero-cards-wrapper {
+   The base position is expressed with calc()/left/top rather than
+   transform: translate(-50%,-50%) on purpose: it keeps this element's
+   `transform` property completely free for the float animation today,
+   and for future mouse-parallax/tilt/hover-scale effects later —
+   positioning and animation no longer share one CSS property, so
+   adding those effects later never requires touching layout math. */
+.hero-showcase {
+  --showcase-width: 350px;
+  --showcase-height: 467px;
+
   position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* The one deliberate off-center anchor for the whole composition —
+     stated once, here, instead of duplicated across four elements. */
+  left: calc(38% - (var(--showcase-width) / 2));
+  top: calc(50% - (var(--showcase-height) / 2));
+  width: var(--showcase-width);
+  height: var(--showcase-height);
   z-index: 10;
+  animation: heroCardFloat 8s ease-in-out infinite;
+}
+
+@keyframes heroCardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Contact shadow — a two-layer grounding shadow: a wide, very soft
+   spread (the light bouncing/falling off around the object) plus a
+   tighter, darker near-shadow directly under it (the actual contact
+   point). One element, two stacked radial-gradients, rather than a
+   single narrow blob — that combination is what reads as "resting on a
+   lit surface" instead of "a blurred smudge under an image." Local to
+   .hero-showcase: always horizontally centered on the showcase's own
+   center regardless of breakpoint (verified against the pre-refactor
+   geometry — the shadow was already concentric with the card at every
+   size), so only its vertical offset/size needs to vary. */
+.hero-card-ground-shadow {
+  position: absolute;
+  left: 50%;
+  top: 410px;
+  width: 460px;
+  height: 120px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 40% 55% at center, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 80%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.14) 45%, transparent 75%);
+  filter: blur(9px);
+  pointer-events: none;
+  z-index: 4;
 }
 
 .hero-carousel-card {
   position: absolute;
-  width: 340px;
-  height: 450px;
-  border-radius: 14px;
-  overflow: hidden;
+  /* Fills the now precisely-sized/positioned wrapper exactly — was its
+     own separately-declared 350x467 box relying on the wrapper's flex
+     alignment to land in the right place; inset:0 removes that extra
+     layer of indirection entirely. */
+  inset: 0;
   opacity: 0;
-  visibility: hidden;
-  transform: scale(0.9) translateY(30px) rotate(-5deg);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+  /* Sequenced, not simultaneous: the outgoing card's opacity transition
+     runs first (0.45s), and the incoming card's is delayed until that
+     finishes — so the two never visibly overlap mid-crossfade. A tiny
+     scale-only settle (no vertical drift) replaces the old
+     scale+translateY combination, which read as a "jump" rather than a
+     fade. */
+  transform: scale(0.985);
+  transition: opacity 0.45s ease, transform 0.45s ease;
   pointer-events: none;
-  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .hero-carousel-card.active {
   opacity: 1;
-  visibility: visible;
-  transform: scale(1) translateY(0) rotate(-18deg); /* Matches geo-rect-1 angle */
+  transform: scale(1);
+  transition-delay: 0.45s;
   z-index: 15;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 45px var(--shadow-gold);
 }
 
-.hero-carousel-card img {
+/* The card's visible face — image, key-light and shine sweep clipped to
+   the rounded rect. Two-layer shadow (soft wide spread + tighter near
+   shadow) plus a faint inner rim-light on the border is what reads as
+   "floating, lit from above" rather than a flat cutout. */
+.hero-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow:
+    0 60px 100px -24px rgba(0, 0, 0, 0.7),
+    0 16px 34px -12px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.hero-carousel-card.active .hero-card-face {
+  box-shadow:
+    0 60px 100px -24px rgba(0, 0, 0, 0.7),
+    0 16px 34px -12px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 70px -8px var(--shadow-gold);
+}
+
+.hero-card-face img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
+/* Static directional light across the card face — brighter upper-start
+   corner fading out, like a single soft studio key light, instead of a
+   flat uniform image. Slightly stronger than before so the card itself
+   visibly carries the same key light the ambient glow behind it implies
+   — one consistent light source, not just ambient wash. */
 .card-glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.05) 32%, rgba(255,255,255,0) 55%);
   pointer-events: none;
 }
 
@@ -261,7 +406,7 @@
   left: -60%;
   width: 40%;
   height: 140%;
-  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.35), transparent);
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.22), transparent);
   transform: translateX(-100%) rotate(8deg);
   opacity: 0;
 }
@@ -274,37 +419,137 @@
   100% { transform: translateX(320%) rotate(8deg); opacity: 0; }
 }
 
+/* ---------- REFLECTION ----------
+   A mirrored, fading echo of the active card sitting just beneath it —
+   the detail that reads as "a physical object resting on a lit
+   surface" rather than an image cutout. Sized in relative terms (40%
+   of the card's own height, inner image at 250% of that = 100% of the
+   card's height) so it scales correctly at every breakpoint without
+   separate pixel math per card size. */
+.hero-card-reflection {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+  margin-top: 3px;
+  pointer-events: none;
+}
+.hero-card-reflection img {
+  display: block;
+  width: 100%;
+  height: 250%;
+  object-fit: cover;
+  transform: scaleY(-1);
+  opacity: 0.45;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 88%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 88%);
+}
+
+/* ---------- FLANKING DECK ----------
+   Two real designs from the library, fanned behind the active card —
+   meant to register as "there's a collection back there" only AFTER
+   the eye has settled on the active card, never at the same time.
+   Pushed much further back than before: heavier desaturation/darkening
+   plus a slight blur (a shallow depth-of-field cue, like a lens
+   focused on the foreground object) and lower opacity, so they recede
+   instead of reading as two more cards competing for attention. inset:0
+   fills the wrapper exactly (same box the main card fills), so the fan
+   offset below starts from the identical center point instead of a
+   separately-declared size that could drift out of sync. */
+.hero-flank-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 70px -20px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  filter: saturate(0.25) brightness(0.48) blur(1.5px);
+}
+.hero-flank-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-flank-card-a {
+  z-index: 8;
+  opacity: 0.4;
+  transform: translateX(-34px) translateY(10px) rotate(-6deg) scale(0.8);
+}
+.hero-flank-card-b {
+  z-index: 9;
+  opacity: 0.45;
+  transform: translateX(32px) translateY(14px) rotate(5deg) scale(0.82);
+}
+
+/* ---------- CORNER FRAME ----------
+   Two thin gold brackets framing the whole stack, like a display-case
+   or gallery-placard detail — quiet geometry with a purpose (framing
+   the composition), not decoration filling empty space.
+
+   .hero-frame no longer has (or needs) its own width/height/anchor at
+   all: `inset: -24px` derives its entire box directly from
+   .hero-showcase's own size, plus a flat margin. It is structurally
+   impossible for this to drift from the card now — there's no second
+   set of numbers to keep in sync, the frame's box *is* the showcase's
+   box, expanded by one value. */
+.hero-frame {
+  position: absolute;
+  inset: -24px;
+  pointer-events: none;
+  z-index: 2;
+}
+/* Bracket size/weight/opacity bumped up from the original (44px/1.5px/
+   0.38) — the brief was "architectural exhibition frame," not
+   wallpaper. Long enough arms and enough contrast to register as a
+   deliberate framing device on first glance, still just a thin line
+   (not a filled box) so it never competes with the card itself. */
+.hero-frame-corner {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+}
+.hero-frame-corner-tl {
+  top: -16px;
+  left: -16px;
+  border-top: 2px solid rgba(217, 182, 121, 0.55);
+  border-left: 2px solid rgba(217, 182, 121, 0.55);
+}
+.hero-frame-corner-br {
+  bottom: -16px;
+  right: -16px;
+  border-bottom: 2px solid rgba(217, 182, 121, 0.55);
+  border-right: 2px solid rgba(217, 182, 121, 0.55);
+}
+
 .geo-rect {
   position: absolute;
   background: transparent;
   border-radius: 8px;
-  border: 2px solid rgba(197, 168, 128, 0.35);
+  border: 2px solid rgba(197, 168, 128, 0.3);
   box-shadow: 0 0 20px rgba(197, 168, 128, 0.05);
   pointer-events: none;
 }
 
-/* Frame 1 — the sole remaining geo frame. Kept because its rotation
-   (-18deg) deliberately echoes the active carousel card's own rotation,
-   so it reads as a depth/frame echo behind the one real focal point
-   rather than a second competing shape. Frames 2-4 were pure ambient
-   decoration with no content relationship and were removed: four
-   independently-animated empty frames plus the carousel plus the brand
-   watermark meant up to six simultaneously-moving elements competing
-   for attention in one view, which is what the hero's single-focal-point
-   composition rule argues against. */
+/* Frame 1 — currently unused (hidden sitewide by the global
+   `.geo-rect { display: none !important }` branding rule in
+   styles.css). Left in place per instruction rather than deleted or
+   rewired to the new local-offset system: it's relocated into
+   .hero-showcase for architectural consistency (everything belongs to
+   one composition, per the brief) but its own position rule is
+   deliberately untouched, so these numbers are now stale relative to
+   its new, much smaller parent. Harmless since it never renders —
+   flagged here for whoever revisits it once the redesign is validated. */
 .geo-rect-1 {
-  width: 300px;
-  height: 390px;
-  top: 15%;
-  inset-inline-end: 8%;
-  transform: rotate(-18deg);
-  opacity: 0.95;
-  animation: floatF1 8s ease-in-out infinite;
-}
-
-@keyframes floatF1 {
-  0%, 100% { transform: rotate(-18deg) translateY(0); }
-  50% { transform: rotate(-17deg) translateY(-10px) translateX(-5px); }
+  width: 398px;
+  height: 515px;
+  top: 50%;
+  left: 38%;
+  transform: translate(-50%, -50%);
+  opacity: 0.85;
 }
 
 /* ===================================================
@@ -312,8 +557,12 @@
    =================================================== */
 @media (max-width: 1024px) {
   .hero-section {
+    /* Columns stack instead of sitting side by side below this
+       breakpoint, so there's no shared-reference-frame concern between
+       them anymore — each manages its own spacing again. */
+    padding: 0;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 360px;
+    grid-template-rows: auto 400px;
     min-height: 100vh;
     width: 100%;
   }
@@ -324,23 +573,41 @@
     box-sizing: border-box;
     gap: 16px;
   }
-  .hero-geo-side {
-    height: 360px;
+  .hero-showcase-area {
+    height: 400px;
     order: 2;
     width: 100%;
     overflow: hidden;
   }
-  .geo-rect-1 { width: 180px; height: 230px; top: 10%; inset-inline-end: 10%; }
-
-  .hero-carousel-card {
-    width: 180px;
-    height: 240px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  .hero-showcase {
+    --showcase-width: 200px;
+    --showcase-height: 267px;
+    /* The anchor ratio itself changes at this breakpoint (38% → 50%,
+       matching the column becoming full-width) — still stated exactly
+       once, here, not re-declared per child. */
+    left: calc(50% - (var(--showcase-width) / 2));
+  }
+  .hero-card-ground-shadow {
+    top: 234px;
+    width: 260px;
+    height: 70px;
+  }
+  .geo-rect-1 {
+    left: 50%;
+    width: 234px;
+    height: 301px;
+  }
+  .hero-frame {
+    inset: -17px;
   }
 
-  .hero-about-label {
-    font-size: 1.4rem;
-    margin: 10px 0 0 0;
+  .hero-flank-card-a { transform: translateX(-32px) translateY(8px) rotate(-7deg) scale(0.86); }
+  .hero-flank-card-b { transform: translateX(30px) translateY(12px) rotate(6deg) scale(0.88); }
+
+  .hero-frame-corner { width: 40px; height: 40px; }
+
+  .hero-trust-row {
+    gap: 20px;
   }
 }
 
@@ -348,7 +615,7 @@
   .hero-section {
     grid-template-rows: auto auto;
   }
-  .hero-geo-side {
+  .hero-showcase-area {
     height: 260px;
     display: flex; /* Show small preview instead of hiding completely */
     justify-content: center;
@@ -359,25 +626,44 @@
     justify-content: center;
     gap: 14px;
   }
-  .hero-heading { font-size: 1.25rem; line-height: 1.3; }
-  .hero-tags { justify-content: center; gap: 6px; }
-  .hero-tag { padding: 4px 12px; font-size: 11px; }
-  .hero-body-text p { font-size: 12px; line-height: 1.7; }
+  .hero-heading { font-size: 1.3rem; line-height: 1.3; }
+  .hero-subtitle { font-size: 13px; line-height: 1.7; }
+  .hero-cta-row { justify-content: center; gap: 12px; }
+  .hero-cta-row .hero-btn-primary,
+  .hero-btn-outline { padding: 13px 26px; font-size: 13px; }
 
-  .geo-rect-1 { width: 120px; height: 160px; top: 10%; inset-inline-end: 25%; }
+  .hero-trust-row {
+    justify-content: center;
+    gap: 16px;
+    padding-top: 18px;
+  }
+  .hero-trust-stat { gap: 11px; }
+  .stat-value { font-size: 16px; }
+  .stat-label { font-size: 10px; }
+  .hero-trust-divider { height: 24px; }
+  .hero-trust-icon-wrap { width: 32px; height: 32px; }
+  .hero-trust-icon { width: 14px; height: 14px; }
 
-  .hero-carousel-card {
-    width: 130px;
-    height: 170px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  .hero-card-ground-shadow {
+    top: 152px;
+    width: 170px;
+    height: 45px;
+  }
+  .geo-rect-1 { width: 150px; height: 194px; }
+
+  .hero-showcase {
+    --showcase-width: 130px;
+    --showcase-height: 173px;
+  }
+  .hero-card-face {
+    border-radius: 12px;
   }
 
-  .hero-tagline {
-    gap: 8px;
-  }
-
-  .hero-about-label {
-    font-size: 1.15rem;
-    margin: 8px 0 0 0;
+  /* Simplified, minimal composition at this size — the fanned deck and
+     corner brackets read as clutter on a small screen rather than a
+     considered detail; the reflection + main card stay. */
+  .hero-flank-card,
+  .hero-frame-corner {
+    display: none;
   }
 }

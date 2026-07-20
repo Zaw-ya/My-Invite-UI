@@ -1,5 +1,5 @@
 import { Injectable, signal, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Service, Package, InvitationCard, Supervisor, Testimonial, BlogPost, EventType, SiteSettings } from '../models/content.interface';
@@ -26,6 +26,8 @@ export class ContentService {
 
   // Arabic Supervisors
   supervisors = signal<Supervisor[]>([]);
+  supervisorsLoading = signal<boolean>(true);
+  supervisorsError = signal<string | null>(null);
 
   // Arabic Blog Posts
   blogPosts = signal<BlogPost[]>([]);
@@ -196,21 +198,56 @@ export class ContentService {
     });
   }
 
+  retryFetchSupervisors() {
+    this.fetchSupervisors();
+  }
+
   private fetchSupervisors() {
-    this.http.get<any>(`${this.apiUrl}/Supervisors/visible`).subscribe({
+    this.supervisorsLoading.set(true);
+    this.supervisorsError.set(null);
+
+    // The endpoint's declared response content-type is
+    // application/octet-stream (it still serves JSON) — set explicitly
+    // rather than relying on the default Accept header.
+    const headers = new HttpHeaders({ accept: 'application/octet-stream' });
+
+    this.http.get<any>(`${this.apiUrl}/Supervisors/visible`, { headers }).subscribe({
       next: (res) => {
         const data = this.extractData(res);
-        if (!Array.isArray(data)) return;
-        const formatted = data.map(item => ({
-          id: (item.id || item.Id || '').toString(),
-          name: item.name || item.Name || '',
-          role: item.nickname || item.Nickname || item.role || item.Role || 'مشرف',
-          imageUrl: this.resolveUrl(item.imageUrl || item.ImageUrl || ''),
-          cost: '100'
-        }));
+        if (!Array.isArray(data)) {
+          this.supervisors.set([]);
+          this.supervisorsLoading.set(false);
+          return;
+        }
+        const formatted: Supervisor[] = data.map(item => {
+          const supervisor: Supervisor = {
+            id: (item.id || item.Id || '').toString(),
+            name: item.name || item.Name || '',
+            role: item.nickname || item.Nickname || item.role || item.Role || '',
+            imageUrl: this.resolveUrl(item.imageUrl || item.ImageUrl || ''),
+            rating: Number(item.rating ?? item.Rating ?? 0),
+          };
+          // Optional fields the API doesn't return today — only attached
+          // if actually present, so the card can omit them cleanly
+          // instead of rendering "undefined".
+          const reviewsCount = item.reviewsCount ?? item.ReviewsCount;
+          if (reviewsCount !== undefined && reviewsCount !== null) {
+            supervisor.reviewsCount = Number(reviewsCount);
+          }
+          const city = item.city || item.City;
+          if (city) {
+            supervisor.city = city;
+          }
+          return supervisor;
+        });
         this.supervisors.set(formatted);
+        this.supervisorsLoading.set(false);
       },
-      error: (err) => console.error('Error fetching supervisors:', err)
+      error: (err) => {
+        console.error('Error fetching supervisors:', err);
+        this.supervisorsError.set('load-failed');
+        this.supervisorsLoading.set(false);
+      }
     });
   }
 

@@ -110,35 +110,49 @@
    =================================================== */
 :root {
   --navbar-height: 96px;
-  --bg: #FFFFFF;
-  --bg-secondary: #edeae4;
-  /* Brand signature Cream/Off-white */
-  --bg-surface: #f3f0ea;
-  --bg-card: #FFFFFF;
-  --bg-dark-hero: #262938;
-  /* Brand signature Dark Slate Navy */
+  /* ===================================================
+     PALETTE — converged onto the client reference
+     (ClientLanding/cleaned.html) as the visual source of truth, per
+     explicit direction: visual fidelity to the reference now takes
+     priority over preserving the previous palette. Every value below
+     is lifted directly from the reference rather than approximated.
+     =================================================== */
+  --bg: #F3EEE5;
+  /* Reference: parchment page ground */
+  --bg-secondary: #FBF8F1;
+  --bg-surface: #FBF8F1;
+  --bg-card: #FBF8F1;
+  --bg-dark-hero: #14172A;
+  /* Reference: hero / trust-section navy */
 
-  --text: #262938;
-  /* Slate Navy instead of slate slate */
-  --text-secondary: rgba(38, 41, 56, 0.8);
-  --text-muted: rgba(38, 41, 56, 0.6);
-  --text-inverse: #FFFFFF;
+  --text: #201F2E;
+  /* Reference: ink */
+  --text-secondary: rgba(32, 31, 46, 0.8);
+  --text-muted: rgba(32, 31, 46, 0.6);
+  --text-inverse: #F3EEE5;
 
-  --border: rgba(38, 41, 56, 0.15);
-  --border-subtle: rgba(38, 41, 56, 0.08);
+  --border: rgba(32, 31, 46, 0.15);
+  --border-subtle: rgba(32, 31, 46, 0.08);
 
-  --gold: #C5A880;
-  /* Secondary gold accent */
-  --gold-light: #D9C3A5;
-  --gold-pale: #FAF6EE;
+  --gold: #B8873B;
+  /* Reference: default solid gold accent */
+  --gold-light: #D9B679;
+  /* Reference: brighter gold, hover / on-dark-ground use */
+  --gold-pale: #F6E4B8;
+  /* Reference: palest gold gradient stop */
+  --gold-gradient: linear-gradient(120deg, #F6E4B8 0%, #D8AE5E 30%, #8A6526 65%, #E3C07E 100%);
+  /* Reference's signature CTA foil gradient — reserved for primary,
+     high-emphasis buttons only (matching the reference's own usage),
+     never for body text/icons/decoration, which stay flat var(--gold). */
 
-  --shadow: rgba(38, 41, 56, 0.06);
-  --shadow-gold: rgba(197, 168, 128, 0.15);
+  --shadow: rgba(20, 23, 42, 0.12);
+  --shadow-gold: rgba(184, 135, 59, 0.35);
 
-  /* ── CARD RADIUS SCALE — the only two radii any card/panel should use ── */
-  --radius-card: 16px;
+  /* ── CARD RADIUS SCALE — matched to the reference's tailored corners
+     (6-10px), replacing the previous 16/20px "soft card" scale. ── */
+  --radius-card: 8px;
   /* standard content card: feature/step cards, image wrappers, panels */
-  --radius-card-lg: 20px;
+  --radius-card-lg: 10px;
   /* showcase card: portfolio, pricing, form panels — the page's "biggest" cards */
 
   /* ── CARD SHADOW SCALE — cards are flat/bordered at rest, shadow is earned on hover only ── */
@@ -153,14 +167,15 @@
   --shadow-card-hover-dark: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 15px var(--shadow-gold);
   /* card sitting directly on a dark section background */
 
-  --navbar-bg: rgba(255, 255, 255, 0.85);
-  --navbar-border: rgba(38, 41, 56, 0.08);
-  --ticker-bg: #262938;
-  --ticker-text: #edeae4;
+  --navbar-bg: rgba(20, 23, 42, 0.92);
+  --navbar-border: rgba(199, 154, 69, 0.28);
+  --ticker-bg: #14172A;
+  --ticker-text: #F3EEE5;
 
-  --footer-bg: #1E202C;
-  --footer-text: rgba(237, 234, 228, 0.6);
-  --footer-head: #edeae4;
+  --footer-bg: #0F1120;
+  /* Reference: darkest ground on the page */
+  --footer-text: rgba(243, 238, 229, 0.5);
+  --footer-head: #D9B679;
 
   /* ── GLOBAL WATERMARK — single source of truth ─── */
   --wm-width: 120%;
@@ -187,36 +202,38 @@
 }
 
 [data-theme="dark"] {
-  --bg: #262938;
-  /* Primary Brand Slate Navy */
-  --bg-secondary: #1e202c;
-  --bg-surface: #2c2f3f;
-  --bg-card: #1e202c;
-  --bg-dark-hero: #1A1C27;
+  /* Same reference convergence as :root, deepened for a full-dark mode
+     (this theme has no UI toggle wired to it currently, but kept
+     consistent with the new direction rather than left stale). */
+  --bg: #14172A;
+  --bg-secondary: #0F1120;
+  --bg-surface: #181C33;
+  --bg-card: #181C33;
+  --bg-dark-hero: #0F1120;
 
-  --text: #edeae4;
-  /* Primary Brand Cream/Off-white */
-  --text-secondary: rgba(237, 234, 228, 0.8);
-  --text-muted: rgba(237, 234, 228, 0.6);
-  --text-inverse: #262938;
+  --text: #F3EEE5;
+  --text-secondary: rgba(243, 238, 229, 0.8);
+  --text-muted: rgba(243, 238, 229, 0.6);
+  --text-inverse: #14172A;
 
-  --border: rgba(237, 234, 228, 0.15);
-  --border-subtle: rgba(237, 234, 228, 0.08);
+  --border: rgba(217, 182, 121, 0.2);
+  --border-subtle: rgba(217, 182, 121, 0.1);
 
-  --gold: #C5A880;
-  --gold-light: #D9C3A5;
+  --gold: #D9B679;
+  --gold-light: #E3C07E;
   --gold-pale: #1C160E;
+  --gold-gradient: linear-gradient(120deg, #F6E4B8 0%, #D8AE5E 30%, #8A6526 65%, #E3C07E 100%);
 
   --shadow: rgba(0, 0, 0, 0.5);
-  --shadow-gold: rgba(197, 168, 128, 0.15);
+  --shadow-gold: rgba(217, 182, 121, 0.25);
 
-  --navbar-bg: rgba(38, 41, 56, 0.85);
-  --navbar-border: rgba(237, 234, 228, 0.1);
-  --ticker-bg: #edeae4;
-  --ticker-text: #262938;
+  --navbar-bg: rgba(15, 17, 32, 0.92);
+  --navbar-border: rgba(217, 182, 121, 0.2);
+  --ticker-bg: #F3EEE5;
+  --ticker-text: #14172A;
 
-  --footer-bg: #1e202c;
-  --footer-text: rgba(237, 234, 228, 0.5);
+  --footer-bg: #0B0D1A;
+  --footer-text: rgba(243, 238, 229, 0.5);
   --footer-head: #edeae4;
 }
 
@@ -266,6 +283,15 @@ body {
   font-family: var(--font-display, 'ManchetteFine', 'Thmanyah Serif Display', '29LTBukra', 'Cairo', sans-serif);
 }
 
+/* Hero heading's gold accent word/phrase is injected via [innerHTML]
+   (the transloco translation string carries its own <span>), so it
+   never receives Angular's per-component _ngcontent attribute — a
+   component-scoped rule for it would silently never match. Global
+   scope is the correct fix, not ::ng-deep. */
+.hero-heading span {
+  color: var(--gold-light);
+}
+
 /* ===================================================
    COLOR HELPERS
    =================================================== */
@@ -305,7 +331,10 @@ body {
    BUTTONS
    =================================================== */
 .btn-gold {
-  background-color: var(--gold);
+  /* Reference's signature CTA foil gradient — this is the site's
+     primary, highest-emphasis action, matching how the reference
+     reserves the gradient for exactly this weight of button. */
+  background: var(--gold-gradient);
   /* #0B1320 matches the text-on-gold convention already used
      independently 14+ times elsewhere (hero tags, pricing tab, feature
      checks, demo/pricing CTAs) — this was the one outlier at white. */
@@ -323,12 +352,12 @@ body {
   font-size: 15px;
   letter-spacing: 0.01em;
   white-space: nowrap;
+  box-shadow: 0 8px 20px -6px var(--shadow-gold);
 }
 
 .btn-gold:hover {
-  background-color: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--shadow-gold);
+  box-shadow: 0 12px 28px -6px var(--shadow-gold);
 }
 
 .btn-outline-gold {
@@ -632,45 +661,32 @@ body {
 
 /* ===================================================
    NAV LINK
+   The navbar is now a permanently-dark ground (matching the reference's
+   fixed navy header, var(--navbar-bg)), the same category as Hero/
+   Footer/Additional Services — so nav-link/lang-btn/icon-btn use
+   literal cream/gold values rather than var(--text)/var(--border),
+   which are page-background-reactive and would render near-invisible
+   dark-on-dark here. Confirmed these classes are navbar-exclusive.
    =================================================== */
 .nav-link {
   font-family: 'Cairo', sans-serif;
-  font-weight: 600;
-  color: var(--text);
-  transition: color 0.2s ease !important;
-  position: relative;
-  padding-bottom: 4px;
+  font-weight: 500;
+  color: rgba(243, 238, 229, 0.9);
+  /* Reference's nav hover is a plain opacity/color fade, no underline
+     sweep — matched here for the same quieter, less decorated feel. */
+  transition: color 0.2s ease, opacity 0.2s ease !important;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   white-space: nowrap;
 }
 
 .nav-link:hover {
-  color: var(--gold);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 999px;
-  transition: width 0.25s ease !important;
-}
-
-.nav-link:hover::after {
-  width: 100%;
+  color: var(--gold-light);
+  opacity: 1;
 }
 
 .nav-link.active {
-  color: var(--gold);
-}
-
-.nav-link.active::after {
-  width: 100%;
+  color: var(--gold-light);
 }
 
 /* ===================================================
@@ -889,24 +905,26 @@ body {
    SECTION SPACING
    =================================================== */
 .section-py {
-  padding-top: 96px;
-  padding-bottom: 96px;
+  /* Was 96px — the reference runs its section rhythm at 100-130px;
+     112px sits centrally in that range. */
+  padding-top: 112px;
+  padding-bottom: 112px;
 }
 
 .section-py-sm {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 72px;
+  padding-bottom: 72px;
 }
 
 @media (max-width: 1024px) {
   .section-py {
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 72px;
+    padding-bottom: 72px;
   }
 
   .section-py-sm {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 52px;
+    padding-bottom: 52px;
   }
 }
 

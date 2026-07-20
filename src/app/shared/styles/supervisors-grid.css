@@ -1,0 +1,64 @@
+/* Shared between the landing page's Supervisors section and the
+   standalone /supervisors page via @import — Angular scopes component
+   styles per-component, so this can't live in one component's .css and
+   be reused by the other; importing keeps it a single source of truth
+   instead of two hand-maintained copies. */
+
+.sup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 1023px) and (min-width: 641px) {
+  .sup-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+@media (max-width: 640px) {
+  .sup-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* Skeleton has its own shell styling (not `.sup-card`, which lives in
+   the component-scoped <app-supervisor-card>) so the placeholder still
+   matches the real card's proportions during the initial fetch. */
+.sup-skeleton-card {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-card-lg);
+  background: linear-gradient(100deg, var(--bg-card) 30%, var(--border-subtle) 50%, var(--bg-card) 70%);
+  background-size: 200% 100%;
+  animation: supSkeletonShimmer 1.4s ease-in-out infinite;
+}
+@keyframes supSkeletonShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.sup-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+.sup-status-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--text-muted);
+}
+.sup-retry-btn {
+  margin-top: 4px;
+  padding: 9px 24px;
+  border-radius: 100px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-body, 'Cairo', sans-serif);
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.sup-retry-btn:hover {
+  background: var(--gold-pale);
+}

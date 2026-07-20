@@ -1,0 +1,42 @@
+<div class="sup-card">
+  <div class="sup-card-img-fill" [attr.data-initial]="supervisor().name.charAt(0)">
+    <img [src]="supervisor().imageUrl" [alt]="supervisor().name" (error)="showInitial($event)">
+
+    <!-- Rating: a compact floating badge (star + rating, plus a review
+         count only when the API actually provides one — never a
+         fabricated number), physically apart from the name below so it
+         stays a quiet accent. -->
+    @if (supervisor().rating > 0) {
+      <div class="sup-rating-badge">
+        <div class="rating-badge-top">
+          <img src="/star.png" alt="" class="sup-rating-icon">
+          <span>{{ supervisor().rating }}</span>
+        </div>
+        @if (supervisor().reviewsCount) {
+          <span class="rating-badge-reviews">
+            {{ supervisor().reviewsCount }} {{ 'supervisors.reviewsLabel' | transloco }}
+          </span>
+        }
+      </div>
+    }
+
+    <!-- Soft bottom gradient, not a bordered plate — contrast comes from
+         the gradient being fully opaque at the very bottom (where the
+         text sits) and fading out toward the top, so it reads as part
+         of the photo rather than a box placed on top of it. -->
+    <div class="sup-card-gradient"></div>
+
+    <div class="sup-card-caption">
+      <h3 class="sup-card-name">{{ supervisor().name }}</h3>
+      @if (supervisor().role) {
+        <p class="sup-card-role">{{ supervisor().role }}</p>
+      }
+      @if (supervisor().city) {
+        <p class="sup-card-location">
+          <lucide-icon name="map-pin" class="location-icon"></lucide-icon>
+          {{ supervisor().city }}
+        </p>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+/* ===== SUPERVISOR CARD =====
+   Name/role/rating sit directly on the photo behind a bottom gradient
+   scrim rather than a separate white caption panel — one clean
+   portrait card instead of an image-plus-caption pair. Shared by the
+   landing page's Supervisors section and the standalone /supervisors
+   page, so this styling lives in exactly one place. */
+.sup-card {
+  border-radius: var(--radius-card-lg);
+  overflow: hidden;
+  border: 1px solid rgba(184, 135, 59, 0.32);
+  box-shadow: 0 10px 24px -12px var(--shadow);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+/* Deliberately subtle — premium hover is a nudge, not a jump: a small
+   lift, a slightly deeper shadow, nothing exaggerated. */
+.sup-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 16px 30px -14px var(--shadow-gold);
+  transform: translateY(-4px);
+}
+
+.sup-card-img-fill {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--bg-dark-hero);
+}
+/* Direct-child combinator — the rating badge below also nests an <img>
+   (the /star.png icon) inside .sup-card-img-fill, which this would
+   otherwise blow up to fill the whole card too. */
+.sup-card-img-fill > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sup-card:hover .sup-card-img-fill > img {
+  transform: scale(1.02);
+}
+
+/* Broken-photo fallback: hide the failed <img> and show the
+   supervisor's first initial over the card's own dark background
+   instead of leaving an empty gap. */
+.sup-card-img-fill.img-fallback > img { display: none; }
+.sup-card-img-fill.img-fallback::before {
+  content: attr(data-initial);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--gold-light);
+  font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
+  background: radial-gradient(circle at 50% 35%, rgba(217,182,121,0.18), transparent 70%);
+}
+
+/* ===== RATING BADGE =====
+   A single floating badge (star + rating, review count only when the
+   API actually returns one) instead of five repeated star icons — sat
+   in the start corner, physically apart from the name below, so it
+   reads as a quiet accent rather than competing with the supervisor's
+   name for the first look. */
+.sup-rating-badge {
+  position: absolute;
+  top: 12px;
+  inset-inline-start: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  background: rgba(11, 19, 32, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(217, 182, 121, 0.35);
+  border-radius: 10px;
+  padding: 6px 11px;
+  z-index: 2;
+}
+.rating-badge-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+.sup-rating-icon {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.rating-badge-reviews {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ===== BOTTOM GRADIENT + CAPTION =====
+   A soft gradient that's fully opaque at the card's bottom edge (where
+   the text actually sits) and fades to nothing by the photo's midpoint,
+   instead of a bordered plate — contrast comes from the gradient being
+   genuinely dark right where it needs to be, not from a separate box.
+   Name is the caption's one large element (first thing read, white);
+   nickname is the deliberately-secondary gold accent below it. */
+.sup-card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 19, 32, 0.95) 0%,
+    rgba(11, 19, 32, 0.82) 18%,
+    rgba(11, 19, 32, 0.38) 42%,
+    rgba(11, 19, 32, 0) 65%
+  );
+  pointer-events: none;
+  transition: background 0.35s ease;
+}
+.sup-card:hover .sup-card-gradient {
+  background: linear-gradient(
+    to top,
+    rgba(11, 19, 32, 0.98) 0%,
+    rgba(11, 19, 32, 0.88) 20%,
+    rgba(11, 19, 32, 0.46) 45%,
+    rgba(11, 19, 32, 0) 68%
+  );
+}
+
+.sup-card-caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 16px 16px 17px;
+  text-align: start;
+}
+
+.sup-card-name {
+  font-size: 17px;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.3;
+  transition: transform 0.3s ease;
+}
+.sup-card:hover .sup-card-name {
+  transform: translateY(-3px);
+}
+
+.sup-card-role {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin: 3px 0 0;
+}
+
+.sup-card-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: rgba(243, 238, 229, 0.55);
+  margin: 6px 0 0;
+}
+.location-icon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .sup-card-caption { padding: 12px 12px 13px; }
+  .sup-card-name { font-size: 14.5px; }
+  .sup-card-role { font-size: 11.5px; }
+  .sup-card-location { font-size: 10.5px; }
+  .sup-rating-badge { padding: 5px 9px; top: 10px; inset-inline-start: 10px; }
+  .rating-badge-top { font-size: 11.5px; }
+  .rating-badge-reviews { font-size: 9px; }
+}

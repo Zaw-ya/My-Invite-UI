@@ -5,15 +5,15 @@
 
 /* Hero */
 .policy-hero {
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,215,0,0.04) 100%);
-  border-bottom: 1px solid rgba(255,215,0,0.12);
-  padding: 100px 0 48px;
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(184,135,59,0.04) 100%);
+  border-bottom: 1px solid rgba(184,135,59,0.12);
+  padding: 128px 0 56px;
   text-align: start;
 }
 .policy-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 900;
-  color: var(--heading);
+  color: var(--text);
   line-height: 1.2;
 }
 .policy-breadcrumb {
@@ -35,9 +35,9 @@
 .policy-card {
   max-width: 900px;
   margin: 0 auto;
-  background: var(--card-bg);
-  border: 1px solid rgba(255,215,0,0.1);
-  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid rgba(184,135,59,0.1);
+  border-radius: var(--radius-card-lg);
   padding: 48px 56px;
 }
 
@@ -46,7 +46,7 @@
   color: var(--gold);
   margin-bottom: 40px;
   padding-bottom: 24px;
-  border-bottom: 1px solid rgba(255,215,0,0.12);
+  border-bottom: 1px solid rgba(184,135,59,0.12);
   font-weight: 600;
 }
 
@@ -54,7 +54,7 @@
 .policy-section {
   margin-bottom: 44px;
   padding-bottom: 44px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid var(--border-subtle);
 }
 .policy-section:last-child {
   margin-bottom: 0;
@@ -64,7 +64,7 @@
 .policy-section h2 {
   font-size: 1.35rem;
   font-weight: 800;
-  color: var(--heading);
+  color: var(--text);
   margin-bottom: 18px;
   padding-inline-start: 14px;
   border-inline-start: 3px solid var(--gold);
@@ -101,7 +101,7 @@
   background: var(--gold);
 }
 .policy-section ul li strong {
-  color: var(--heading);
+  color: var(--text);
 }
 
 /* Purpose Grid */
@@ -112,9 +112,9 @@
   margin-top: 20px;
 }
 .purpose-card {
-  background: rgba(255,215,0,0.04);
-  border: 1px solid rgba(255,215,0,0.12);
-  border-radius: 12px;
+  background: rgba(184,135,59,0.04);
+  border: 1px solid rgba(184,135,59,0.12);
+  border-radius: var(--radius-card);
   padding: 20px;
 }
 .purpose-card h3 {
@@ -141,9 +141,9 @@
   display: flex;
   gap: 14px;
   align-items: flex-start;
-  background: rgba(255,215,0,0.04);
-  border: 1px solid rgba(255,215,0,0.1);
-  border-radius: 12px;
+  background: rgba(184,135,59,0.04);
+  border: 1px solid rgba(184,135,59,0.1);
+  border-radius: var(--radius-card);
   padding: 18px;
 }
 .right-icon {
@@ -155,7 +155,7 @@
   display: block;
   font-size: 14px;
   font-weight: 700;
-  color: var(--heading);
+  color: var(--text);
   margin-bottom: 6px;
 }
 .right-item p {

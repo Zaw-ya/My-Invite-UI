@@ -1,4 +1,4 @@
-import { Component, Input, signal, inject } from '@angular/core';
+import { Component, Input, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 import { TranslocoService, TranslocoModule } from '@jsverse/transloco';
@@ -28,7 +28,19 @@ export class DemoFormComponent {
   errorMsg = signal('');
 
   countries = this.countriesService.countries;
-  selectedCountry = signal<DisplayCountry>(this.countriesService.defaultCountry());
+
+  // Holds only the ISO code, not the country object: DisplayCountry's
+  // displayName is locale-baked, so caching the object itself froze the
+  // selected country's name in whatever language was active when it was
+  // picked (or on load, for the default) — it never updated when the
+  // user switched language afterward. Re-deriving it here from the
+  // reactive countries() list keeps it in sync.
+  private selectedIso = signal<string | null>(null);
+  selectedCountry = computed<DisplayCountry>(() => {
+    const iso = this.selectedIso();
+    const match = iso ? this.countries().find(c => c.isoCode === iso) : undefined;
+    return match ?? this.countriesService.defaultCountry();
+  });
   showCountryDropdown = false;
 
   name = '';
@@ -40,7 +52,7 @@ export class DemoFormComponent {
   }
 
   selectCountry(c: DisplayCountry) {
-    this.selectedCountry.set(c);
+    this.selectedIso.set(c.isoCode);
     this.showCountryDropdown = false;
   }
 

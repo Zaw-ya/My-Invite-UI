@@ -1,48 +1,94 @@
 <section class="section-py supervisors-section" style="background-color: var(--bg-secondary);">
   <div class="container mx-auto px-5 max-w-5xl">
 
-    <!-- Header -->
-    <div class="text-center mb-10 space-y-3">
+    <!-- Intro: kicker → heading → one-sentence subtitle, the same rhythm
+         as the Hero — states who supervisors are and why they matter
+         before showing anything, instead of jumping straight into a
+         photo grid with no context. -->
+    <div class="sup-intro">
+      <span class="sup-kicker">{{ 'supervisors.kicker' | transloco }}</span>
       <h2 class="section-title" [innerHTML]="'supervisors.heading' | transloco"></h2>
       <div class="gold-divider mx-auto" style="width:48px;"></div>
+      <p class="sup-subtitle">{{ 'supervisors.subtitle' | transloco }}</p>
     </div>
 
-    <!-- Supervisor / staff photos. Real, dynamic Packages pricing already
-         lives in <app-pricing> at #packages — this component previously
-         also rendered a second, static, hardcoded pricing table as its
-         default tab (ahead of its own namesake staff content), which
-         duplicated that section. Removed; this component now shows only
-         what it's named for. -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
-      @for (s of supervisors(); track s.id) {
-        <div class="sup-card">
-          <div class="sup-card-img-fill">
-            <img [src]="s.imageUrl" [alt]="s.name" (error)="showInitial($event)">
-          </div>
-          <div class="sup-card-body">
-            <h3 class="font-black text-lg" style="color: var(--text);">{{ s.name }}</h3>
-            <p class="text-sm font-bold" style="color: var(--gold);">{{ s.role }}</p>
-          </div>
-        </div>
-      }
-    </div>
+    <!-- Loading: skeleton cards matching the real card's proportions,
+         instead of a blank gap or a generic spinner. -->
+    @if (loading()) {
+      <div class="sup-grid">
+        @for (i of [1,2,3]; track i) {
+          <div class="sup-skeleton-card" aria-hidden="true"></div>
+        }
+      </div>
+    }
 
-    <!-- Cities (black) -->
-    <div class="cities-box text-start mb-10">
-      <p class="font-black mb-3 cities-title">{{ 'supervisors.citiesTitle' | transloco }}</p>
-      <p class="text-sm mb-3 cities-sub" [innerHTML]="'supervisors.citiesSubtitle' | transloco"></p>
-      <div class="grid sm:grid-cols-1 gap-x-8 gap-y-2">
-        <div class="space-y-1">
-          <!-- Backend-provided country/city names stay exactly as received. -->
-          @for (c of dynamicCities(); track c.country) {
-            <p class="text-sm cities-text" dir="rtl">
-              <span class="cities-highlight">{{ c.country }}:</span> {{ c.cities }}
-            </p>
-          }
+    <!-- Error: the fetch genuinely failed — say so and offer a retry,
+         instead of silently rendering an empty grid. -->
+    @else if (error()) {
+      <div class="sup-status">
+        <lucide-icon name="circle-x" class="sup-status-icon"></lucide-icon>
+        <p>{{ 'supervisors.errorMessage' | transloco }}</p>
+        <button type="button" class="sup-retry-btn" (click)="retry()">
+          {{ 'supervisors.retryLabel' | transloco }}
+        </button>
+      </div>
+    }
+
+    <!-- Empty: request succeeded, backend just has nothing to show. -->
+    @else if (supervisors().length === 0) {
+      <div class="sup-status">
+        <lucide-icon name="users" class="sup-status-icon"></lucide-icon>
+        <p>{{ 'supervisors.emptyMessage' | transloco }}</p>
+      </div>
+    }
+
+    <!-- Supervisors: the section's one primary visual focus. Real,
+         dynamic Packages pricing already lives in <app-pricing> at
+         #packages — this component previously also rendered a second,
+         static, hardcoded pricing table as its default tab (ahead of
+         its own namesake staff content), which duplicated that section.
+         Removed; this component now shows only what it's named for. -->
+    @else {
+      <div class="sup-grid">
+        @for (s of supervisors(); track s.id) {
+          <app-supervisor-card [supervisor]="s"></app-supervisor-card>
+        }
+      </div>
+
+      <div class="sup-view-all">
+        <a [routerLink]="['/', languageService.activeLanguage().code, 'supervisors']" class="btn-outline-gold sup-view-all-btn">
+          {{ 'supervisors.viewAll' | transloco }}
+          <lucide-icon [name]="viewAllIcon()" class="w-4 h-4"></lucide-icon>
+        </a>
+      </div>
+    }
+
+    <!-- Coverage: a small trust-signal mini-section (heading + supporting
+         sentence, like a miniature version of the intro above) followed
+         by one availability card per country — flag, country name
+         (primary), city (secondary), stacked rather than run together on
+         one line. Replaces the earlier flat filter-chip-style row. -->
+    <div class="sup-coverage">
+      <div class="coverage-heading-wrap">
+        <div class="coverage-heading">
+          <lucide-icon name="map-pin" class="coverage-icon"></lucide-icon>
+          <span>{{ 'supervisors.coverageHeading' | transloco }}</span>
         </div>
+        <p class="coverage-subtitle">{{ 'supervisors.coverageSubtitle' | transloco }}</p>
+      </div>
+      <div class="coverage-grid">
+        <!-- Backend-provided country/city names stay exactly as received. -->
+        @for (c of dynamicCities(); track c.country) {
+          <div class="coverage-card">
+            @if (c.flagUrl) {
+              <img [src]="c.flagUrl" alt="" class="coverage-flag">
+            }
+            <span class="coverage-country">{{ c.country }}</span>
+            <span class="coverage-city">{{ c.cities }}</span>
+          </div>
+        }
       </div>
     </div>
-
 
   </div>
 </section>

@@ -20,17 +20,17 @@
   </a> -->
 
   <!-- ===== MAIN NAVBAR ===== -->
-  <nav class="py-3">
-    <div class="container mx-auto px-5 flex items-center justify-between gap-4">
+  <nav class="py-4">
+    <div class="container mx-auto px-8 flex items-center justify-between gap-4">
 
       <!-- RIGHT: Logo (brand = مؤسسة بطاقتي الخاصة) -->
       <a [routerLink]="['/', activeLanguage().code]" class="flex items-center gap-2 flex-shrink-0">
-        <img src="/assets/images/NavFootdark.png" alt="Logo" class="logo-dark h-10 md:h-12 w-auto object-contain">
+        <img src="/assets/images/navfoot.png" alt="Logo" class="logo-dark h-10 md:h-12 w-auto object-contain">
         <img src="/assets/images/navfoot.png" alt="Logo" class="logo-light h-10 md:h-12 w-auto object-contain">
       </a>
 
       <!-- CENTER: Nav Links (desktop always visible) -->
-      <div class="hidden md:flex items-center gap-5 flex-1 justify-center">
+      <div class="hidden md:flex items-center gap-7 flex-1 justify-center">
         <a href="#" class="nav-link" (click)="smoothScroll($event, '#')">{{ 'navbar.home' | transloco }}</a>
         <a href="#designs" class="nav-link" (click)="smoothScroll($event, '#designs')">{{ 'navbar.designs' | transloco }}</a>
         <a href="#additional-services" class="nav-link" (click)="smoothScroll($event, '#additional-services')">{{ 'navbar.additionalServices' | transloco }}</a>

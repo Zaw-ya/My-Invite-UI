@@ -5,7 +5,7 @@
 .demo-section {
   position: relative;
   background-color: var(--bg-dark-hero);
-  padding: 80px 0 100px;
+  padding: 112px 0;
   overflow: hidden;
 }
 
@@ -271,10 +271,11 @@
 .demo-submit-btn {
   width: 100%;
   padding: 14px;
-  background: var(--gold);
+  background: var(--gold-gradient);
   color: #0B1320;
   border: none;
-  border-radius: 12px;
+  /* Full pill, matching every other primary CTA sitewide (was 12px). */
+  border-radius: 100px;
   font-family: var(--font-body, 'Cairo', sans-serif);
   font-size: 15px;
   font-weight: 900;
@@ -303,9 +304,10 @@
   inset-inline-end: 100%;
 }
 .demo-submit-btn:hover, .demo-submit-btn:focus-visible {
-  background: var(--gold-light);
+  /* Gradient stays constant on hover (matching the reference's own CTA
+     hover, which only lifts + deepens shadow, never swaps the fill) */
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--shadow-gold);
+  box-shadow: 0 10px 26px -4px var(--shadow-gold);
 }
 
 /* ===== ERROR MESSAGE =====
@@ -394,7 +396,7 @@
   background: transparent;
   color: var(--text-muted);
   border: 1.5px solid var(--border);
-  border-radius: 8px;
+  border-radius: 100px;
   font-family: var(--font-body, 'Cairo', sans-serif);
   font-size: 13px;
   cursor: pointer;

@@ -34,12 +34,15 @@
     "whatsappTooltip": "WhatsApp"
   },
   "hero": {
-    "brandName": "Special Cards",
-    "aboutLabel": "About Us",
-    "heading": "Digital invitation cards for every occasion",
-    "bodyParagraph1": "We understand that the difference between an ordinary occasion and <strong>an extraordinary event</strong> lies in the first impression. At Special Cards, we don't just create and send electronic invitations — <strong>we craft a presence worthy of your standing.</strong>",
-    "bodyParagraph2": "That's why we put an exclusive, ever-refreshed library of <strong>distinctive, one-of-a-kind designs</strong> in your hands, so your options always <strong>exceed expectations and match your vision.</strong> We don't settle for beautiful — we create a breathtaking first impression that gives your guests a sense of <strong>luxury and professionalism</strong>, so we can be <strong>your first partner</strong> in shaping your occasion's presence, whether it's:",
-    "tagsHint": "Choose your occasion type and see a design made for it"
+    "heading": "<span>Digital invitation</span> cards for every occasion",
+    "subtitle": "A luxury digital invitation that tells your guests: tonight is unlike any other.",
+    "cta1": "Order Your Invitation",
+    "cta2": "View Designs",
+    "trust": {
+      "events": { "value": "500+", "label": "Successful Events" },
+      "countries": { "value": "3", "label": "Countries" },
+      "support": { "value": "24/7", "label": "Full Support" }
+    }
   },
   "portfolioSlider": {
     "title": "Special Cards Designs",
@@ -52,9 +55,6 @@
     "orderThisDesign": "Order This Design",
     "prevAria": "Previous",
     "nextAria": "Next",
-    "genderFilterAll": "All Designs",
-    "genderFilterMale": "Men's Designs",
-    "genderFilterFemale": "Women's Designs",
     "categoryAll": "All Designs"
   },
   "additionalServices": {
@@ -115,6 +115,7 @@
     "errors": {
       "nameAndPhoneRequired": "Name and WhatsApp number are required",
       "genericError": "An error occurred, please try again",
+      "allFieldsRequired": "Please fill in all required fields.",
       "otpRequired": "Enter the verification code",
       "otpInvalid": "Incorrect verification code"
     }
@@ -124,20 +125,25 @@
     "subtitle": "Choose the package that fits your needs",
     "guestsUnit": "invitations",
     "chooseCountLabel": "Choose invitation count",
-    "contactLinkText": "Contact Us →",
     "compensatoryTitle": "Compensatory Invitation Credit",
     "compensatoryOfTotal": "% of total invitations",
     "compensatoryExtra": "extra invitations",
-    "featuresIncludedTitle": "Included Features",
     "ctaOrderNow": "Order Now",
     "ctaContactUs": "Contact Us",
-    "contactHintTemplate": "For occasions with more than {{count}} guests",
-    "currency": "SAR"
+    "currency": "SAR",
+    "popularBadge": "Most Popular"
   },
   "supervisors": {
+    "kicker": "_ Gate Supervisors _",
     "heading": "<span>Special Cards</span> Gate Supervisors",
-    "citiesTitle": "Available Cities:",
-    "citiesSubtitle": "<span class=\"cities-highlight\">Gate supervisor</span> service is available in the following cities:"
+    "subtitle": "A professional on-site team that manages entry and guest flow, giving your event a smooth start and a polished first impression.",
+    "coverageHeading": "Available Across",
+    "coverageSubtitle": "We're always expanding to get closer to you and deliver the best experience.",
+    "reviewsLabel": "Reviews",
+    "viewAll": "View All Supervisors",
+    "errorMessage": "We couldn't load the supervisors. Please try again.",
+    "retryLabel": "Retry",
+    "emptyMessage": "No supervisors are available right now."
   },
   "contact": {
     "heading": "We're <span>Here to Help</span>",
@@ -495,6 +501,10 @@
     "designs": {
       "title": "Digital Invitation Designs | Special Cards",
       "description": "Discover our wide collection of luxury digital invitation card designs for weddings, graduations, and every special occasion from Special Cards."
+    },
+    "supervisors": {
+      "title": "Gate Supervisors | Special Cards",
+      "description": "Meet Special Cards' on-site gate supervisor team, who manage entry and guest flow at your event."
     },
     "blog": {
       "title": "Special Cards Blog | Tips and Ideas for Your Occasions",

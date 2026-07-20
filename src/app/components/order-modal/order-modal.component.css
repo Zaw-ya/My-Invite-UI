@@ -21,12 +21,12 @@
 /* ===== BOX ===== */
 .om-box {
   background: var(--bg-card, #fff);
-  border-radius: 24px;
+  border-radius: var(--radius-card-lg);
   width: 100%;
   max-width: 520px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 80px var(--shadow);
   animation: omSlideUp 0.25s ease;
   scrollbar-width: thin;
   scrollbar-color: var(--border, #e5e5e5) transparent;
@@ -73,9 +73,9 @@
   transition: background 0.2s, border-color 0.2s;
 }
 .om-close:hover {
-  background: var(--gold, #C9A84C);
-  border-color: var(--gold, #C9A84C);
-  color: #fff;
+  background: var(--gold, #B8873B);
+  border-color: var(--gold, #B8873B);
+  color: #0B1320;
 }
 
 /* ===== BODY ===== */
@@ -108,7 +108,7 @@
   text-align: start;
   box-sizing: border-box;
 }
-.om-input:focus { border-color: var(--gold, #C9A84C); }
+.om-input:focus { border-color: var(--gold, #B8873B); }
 .om-input::placeholder { color: var(--text-muted, #aaa); }
 
 .om-textarea { resize: none; }
@@ -124,7 +124,7 @@
   overflow: visible;
   transition: border-color 0.2s;
 }
-.om-phone:focus-within { border-color: var(--gold, #C9A84C); }
+.om-phone:focus-within { border-color: var(--gold, #B8873B); }
 
 .om-country-btn {
   display: flex;
@@ -168,7 +168,7 @@
   background: var(--bg-card, #fff);
   border: 1.5px solid var(--border, #e5e5e5);
   border-radius: 14px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 32px var(--shadow);
   z-index: 200;
   overflow: hidden;
 }
@@ -188,7 +188,7 @@
   text-align: start;
   box-sizing: border-box;
 }
-.om-search:focus { border-color: var(--gold, #C9A84C); }
+.om-search:focus { border-color: var(--gold, #B8873B); }
 
 .om-country-list {
   max-height: 200px;
@@ -217,6 +217,8 @@
 
 /* ===== SUBMIT ===== */
 .om-submit {
+  /* Converged onto the sitewide gradient-pill CTA treatment (was flat
+     gold, white text, 14px radius — a one-off predating this pass). */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,24 +226,28 @@
   width: 100%;
   padding: 14px;
   border: none;
-  border-radius: 14px;
-  background: var(--gold, #C9A84C);
-  color: #fff;
+  border-radius: 100px;
+  background: var(--gold-gradient);
+  color: #0B1320;
   font-size: 15px;
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s;
+  transition: box-shadow 0.2s, transform 0.15s;
   margin-top: 4px;
+  box-shadow: 0 8px 20px -6px var(--shadow-gold);
 }
-.om-submit:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.om-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 28px -6px var(--shadow-gold); }
 .om-submit:disabled { opacity: 0.65; cursor: not-allowed; }
 
 .om-spinner {
+  /* Matches the button's own #0B1320 text color, not white (which was
+     both lower-contrast and inconsistent with the demo-form spinner
+     fix applied earlier). */
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255,255,255,0.4);
-  border-top-color: #fff;
+  border: 2px solid rgba(11, 19, 32, 0.3);
+  border-top-color: #0B1320;
   border-radius: 50%;
   animation: omSpin 0.7s linear infinite;
   flex-shrink: 0;
@@ -266,7 +272,7 @@
   width: 100%;
   padding: 12px;
   border: 1.5px solid var(--border, #e5e5e5);
-  border-radius: 12px;
+  border-radius: 100px;
   background: var(--bg-surface, #f7f7f7);
   color: var(--text, #111);
   font-size: 14px;

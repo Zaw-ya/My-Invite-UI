@@ -7,26 +7,18 @@
       <div class="gold-divider" style="width: 60px;"></div>
     </div>
 
-    <!-- Filters -->
+    <!-- Filters — a single row of backend-provided categories, no
+         separate static gender filter (that list was hardcoded, not
+         API-driven, so it's been removed). -->
     <div class="filters-container">
-      <div class="filter-group categories-filter">
-        <button class="filter-pill" [class.active-gold]="activeCategory() === null" (click)="setCategory(null)">
-          {{ 'portfolioSlider.categoryAll' | transloco }}
-        </button>
-        @for (cat of categories(); track cat) {
-        <button class="filter-pill" [class.active-gold]="activeCategory() === cat" (click)="setCategory(cat)">
-          {{ cat }}
-        </button>
-        }
-      </div>
-
-      <div class="filter-group gender-filter">
-        @for (gender of genderOptions; track gender.id) {
-        <button class="filter-pill" [class.active-dark]="activeGender() === gender.id" (click)="setGender(gender.id)">
-          {{ gender.labelKey | transloco }}
-        </button>
-        }
-      </div>
+      <button class="filter-pill" [class.active-gold]="activeCategory() === null" (click)="setCategory(null)">
+        {{ 'portfolioSlider.categoryAll' | transloco }}
+      </button>
+      @for (cat of categories(); track cat) {
+      <button class="filter-pill" [class.active-gold]="activeCategory() === cat" (click)="setCategory(cat)">
+        {{ cat }}
+      </button>
+      }
     </div>
   </div>
 

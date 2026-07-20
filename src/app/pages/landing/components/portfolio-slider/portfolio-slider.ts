@@ -6,14 +6,6 @@ import { InvitationCard } from '../../../../models/content.interface';
 import { DesignOrderService } from '../../../../services/design-order.service';
 import { LanguageService } from '../../../../i18n/language.service';
 
-type GenderFilter = 'all' | 'male' | 'female';
-
-const GENDER_FILTER_OPTIONS: { id: GenderFilter; labelKey: string }[] = [
-  { id: 'all', labelKey: 'portfolioSlider.genderFilterAll' },
-  { id: 'male', labelKey: 'portfolioSlider.genderFilterMale' },
-  { id: 'female', labelKey: 'portfolioSlider.genderFilterFemale' },
-];
-
 @Component({
   selector: 'app-portfolio-slider',
   standalone: true,
@@ -40,8 +32,6 @@ export class PortfolioSliderComponent implements AfterViewInit {
   // `null` = "All categories" — a stable sentinel, not a localized string,
   // so switching languages never affects the active filter's identity.
   activeCategory = signal<string | null>(null);
-  activeGender = signal<GenderFilter>('all');
-  genderOptions = GENDER_FILTER_OPTIONS;
 
   prevIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'chevron-right' : 'chevron-left');
   nextIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'chevron-left' : 'chevron-right');
@@ -50,7 +40,6 @@ export class PortfolioSliderComponent implements AfterViewInit {
   filteredInvitations = computed(() => {
     let items = this.invitations();
     const cat = this.activeCategory();
-    const gender = this.activeGender();
 
     if (cat !== null) {
       const searchCat = cat.trim();
@@ -58,12 +47,6 @@ export class PortfolioSliderComponent implements AfterViewInit {
         (i.category && i.category.trim() === searchCat) ||
         (i.allCategories && i.allCategories.some(c => c.trim() === searchCat))
       );
-    }
-
-    if (gender === 'male') {
-      items = items.filter(i => i.gender === 'ذكوري');
-    } else if (gender === 'female') {
-      items = items.filter(i => i.gender === 'أنثوي');
     }
 
     // Reset scroll when filters change
@@ -82,10 +65,6 @@ export class PortfolioSliderComponent implements AfterViewInit {
 
   setCategory(cat: string | null) {
     this.activeCategory.set(cat);
-  }
-
-  setGender(gender: GenderFilter) {
-    this.activeGender.set(gender);
   }
 
   openPreview(card: InvitationCard) {

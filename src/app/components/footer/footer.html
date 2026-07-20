@@ -32,11 +32,11 @@
       <div>
         <h4 class="footer-heading mb-3 lg:mb-5">{{ 'footer.quickLinksTitle' | transloco }}</h4>
         <ul class="space-y-3 text-sm">
-          <li><a href="#" class="footer-link">{{ 'footer.home' | transloco }}</a></li>
-          <li><a href="#designs" class="footer-link">{{ 'footer.designs' | transloco }}</a></li>
-          <li><a href="#packages" class="footer-link">{{ 'footer.packages' | transloco }}</a></li>
-          <li><a href="#how-it-works" class="footer-link">{{ 'footer.howItWorks' | transloco }}</a></li>
-          <li><a href="#blog" class="footer-link">{{ 'footer.blog' | transloco }}</a></li>
+          <li><a href="#" class="footer-link" (click)="scrollService.goHome($event)">{{ 'footer.home' | transloco }}</a></li>
+          <li><a href="#designs" class="footer-link" (click)="scrollService.scrollTo($event, 'designs')">{{ 'footer.designs' | transloco }}</a></li>
+          <li><a href="#packages" class="footer-link" (click)="scrollService.scrollTo($event, 'packages')">{{ 'footer.packages' | transloco }}</a></li>
+          <li><a href="#how-it-works" class="footer-link" (click)="scrollService.scrollTo($event, 'how-it-works')">{{ 'footer.howItWorks' | transloco }}</a></li>
+          <li><a href="#blog" class="footer-link" (click)="scrollService.scrollTo($event, 'blog')">{{ 'footer.blog' | transloco }}</a></li>
         </ul>
       </div>
 
@@ -98,7 +98,7 @@
   <!-- Floating: Back to Top (start side, same size as WhatsApp) -->
   <button (click)="scrollToTop()"
     class="fixed bottom-5 start-5 rounded-full flex items-center justify-center shadow-lg transition-all hover:-translate-y-1 z-40"
-    style="background-color: var(--gold); color: #fff; box-shadow: 0 4px 16px var(--shadow-gold); width: 52px; height: 52px;"
+    style="background-color: var(--gold); color: #0B1320; box-shadow: 0 4px 16px var(--shadow-gold); width: 52px; height: 52px;"
     [title]="'footer.backToTopTooltip' | transloco">
     <lucide-icon name="chevron-up" class="w-6 h-6"></lucide-icon>
   </button>

@@ -45,8 +45,7 @@ export class NavbarComponent {
     this.isMenuOpen = false;
     const id = href.replace('#', '');
     if (!id) {
-      event.preventDefault();
-      document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.scrollService.goHome(event);
       return;
     }
     this.scrollService.scrollTo(event, id);

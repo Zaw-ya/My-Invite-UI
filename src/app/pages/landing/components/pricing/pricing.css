@@ -1,11 +1,15 @@
 /* ===================================================
-   PRICING SECTION — sharp black & white premium style
-   Inspired by demo-form layout
+   PRICING SECTION
+   3-card grid (light / dark+popular / light), matching the client
+   reference's package presentation — replaces the previous
+   tab-switcher + two-panel layout, which showed one plan at a time
+   behind a click instead of letting visitors compare all of them
+   at a glance.
    =================================================== */
 
 .pricing-section {
   background: var(--bg);
-  padding: 80px 0 100px;
+  padding: 112px 0;
   position: relative;
   overflow: hidden;
 }
@@ -33,23 +37,10 @@
 }
 
 /* ===== HEADER ===== */
-.pricing-badge {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--text);
-  border: 1.5px solid var(--text);
-  padding: 4px 16px;
-  border-radius: 50px;
-}
-
 .pricing-heading {
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 900;
   color: var(--text);
-  /* Routed through the font registry so English picks up
-     ThmanyahSerifDisplay instead of falling straight through. */
   font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
   margin: 0;
 }
@@ -61,325 +52,234 @@
   margin: 0;
 }
 
-/* ===== TAB SWITCHER =====
-   Active-state treatment (gold fill) is now identical in light and dark
-   mode — previously light mode filled the active tab with a dark/black
-   pill while only dark mode used the gold fill, so the same control
-   looked and behaved differently depending on theme. */
-.pricing-tabs {
-  display: inline-flex;
-  border: 2px solid var(--border);
-  border-radius: 0;
-  overflow: hidden;
-  background: var(--bg-card);
-}
-
-.pricing-tab {
-  padding: 10px 32px;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: var(--font-body, 'Cairo', sans-serif);
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  transition: all 0.2s ease;
-  border-radius: 0;
-}
-
-.pricing-tab.active {
-  background: var(--gold);
-  color: #0B1320;
-}
-
-.pricing-tab:not(.active):hover { color: var(--gold); }
-
-/* ===== MAIN CARD (two-column, like demo form) ===== */
-.pricing-card {
+/* ===== GRID =====
+   Sized by content (auto-fit) rather than a fixed 3-column layout, so
+   it holds up whether the backend has 2 active packages (today) or
+   more later — the reference's fixed 3-card assumption doesn't hold
+   once package count is backend-driven instead of hardcoded. */
+.pricing-grid {
   display: grid;
-  grid-template-columns: 1fr 380px;
-  /* No explicit direction — inherits document dir, mirroring the two
-     panels automatically the same way Hero's grid does. */
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-card-lg);
-  overflow: hidden;
-  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  align-items: start;
+  max-width: 1100px;
   margin: 0 auto;
+}
+
+/* ===== CARD (light, default) ===== */
+.price-card {
+  position: relative;
   background: var(--bg-card);
-  /* Flat at rest, shadow earned only on :hover — was permanent, the same
-     inconsistency fixed in the portfolio slider's .slider-card. */
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-}
-.pricing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover-xl);
-  border-color: var(--gold);
-}
-
-@media (max-width: 768px) {
-  .pricing-card { grid-template-columns: 1fr; }
-}
-
-/* ===== LEFT PANEL (price + selector + cta) ===== */
-.pricing-left-panel {
-  /* Permanently-dark ground, same category as Hero/Additional Services/
-     cities-box — its white/rgba(255,255,255,...) text below is the
-     established, correct convention for that category (var(--text)
-     would render dark-on-dark in light theme), not a token bypass. */
-  background: var(--bg-dark-hero);
-  padding: 40px 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card-lg);
+  padding: 36px 30px;
   display: flex;
   flex-direction: column;
-  gap: 0;
-}
-
-/* Price block */
-.pricing-price-block {
+  gap: 4px;
   text-align: start;
-  padding-bottom: 28px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.price-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-card-hover);
 }
 
-.pricing-label-row { margin-bottom: 8px; }
-
-.pricing-plan-name {
-  font-size: 13px;
+.price-plan-name {
+  font-size: 13.5px;
   font-weight: 700;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  margin-bottom: 18px;
 }
 
-.pricing-amount-row {
+.price-amount-row {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  justify-content: flex-start;
 }
-
-.pricing-amount {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  font-weight: 900;
-  color: #fff;
+.price-amount {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 700;
   font-family: var(--font-heading, '29LTBukra', 'Cairo', sans-serif);
+  color: var(--text);
   line-height: 1;
 }
-
-.pricing-currency {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--gold);
+.price-currency {
+  font-size: 15px;
+  color: var(--text-muted);
 }
-
-.pricing-count-label {
+.price-count-label {
   font-size: 13px;
-  color: rgba(255,255,255,0.4);
-  text-align: start;
-  margin-top: 6px;
+  color: var(--text-muted);
+  margin: 4px 0 0;
 }
 
-/* Divider */
-.pricing-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.1);
-  margin: 24px 0;
-}
-
-/* Count selector */
-.pricing-count-section { padding-bottom: 4px; }
-
-.pricing-section-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.45);
-  text-align: start;
-  margin-bottom: 12px;
-  letter-spacing: 0.06em;
-}
-
-.count-grid {
+/* Compact per-card tier selector — the backend models each package as
+   several guest-count/price pairs, which the reference's plain single-
+   number card has no equivalent for. Kept as small inline pills rather
+   than dropped, so switching tiers doesn't cost the real pricing
+   granularity the old count-grid gave. */
+.price-tier-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-start;
+  gap: 6px;
+  margin-top: 14px;
 }
-
-.count-btn {
-  padding: 8px 18px;
-  border: 1.5px solid rgba(255,255,255,0.25);
+.tier-pill {
+  padding: 5px 14px;
+  border: 1px solid var(--border);
   border-radius: 50px;
   background: transparent;
-  color: rgba(255,255,255,0.7);
+  color: var(--text-secondary);
   font-family: var(--font-body, 'Cairo', sans-serif);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
-}
-.count-btn:hover:not(.active) {
-  border-color: var(--gold);
-  color: #fff;
-}
-.count-btn.active {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #0B1320;
-}
-
-.pricing-contact-hint {
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
-  text-align: start;
-  margin-top: 12px;
-}
-
-.pricing-contact-link {
-  color: var(--gold);
-  font-weight: 700;
-  text-decoration: none;
-  margin-inline-start: 6px;
-}
-.pricing-contact-link:hover { text-decoration: underline; }
-
-/* Compensatory row */
-.compensatory-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-}
-
-.comp-check {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--gold);
-  /* Matches the sitewide text-on-gold convention (#0B1320) used by
-     .feature-check, .pricing-tab.active, hero tags, etc. — was #000,
-     a one-off that didn't match that established value. */
-  color: #0B1320;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.comp-title {
-  font-size: 13px;
-  font-weight: 900;
-  color: #fff;
-  margin: 0;
-  text-align: start;
-}
-
-.comp-sub {
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  margin: 3px 0 0;
-  text-align: start;
-}
-
-/* CTA Button */
-.pricing-cta {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  background: var(--gold);
-  color: #0B1320;
-  border: 2px solid var(--gold);
-  border-radius: 0;
-  font-family: var(--font-body, 'Cairo', sans-serif);
-  font-size: 15px;
-  font-weight: 900;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
   transition: all 0.2s ease;
 }
-.pricing-cta:hover {
-  background: transparent;
+.tier-pill:hover:not(.active) {
+  border-color: var(--gold);
   color: var(--gold);
 }
-
-/* ===== RIGHT PANEL (features) ===== */
-.pricing-right-panel {
-  background: var(--bg-card);
-  padding: 40px 36px;
-  border-inline-start: 1.5px solid var(--border);
-  overflow-y: auto;
-  max-height: 600px;
+.tier-pill.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0B1320;
 }
 
-.pricing-features-title {
-  font-size: 13px;
-  font-weight: 900;
-  color: var(--text);
-  letter-spacing: 0.08em;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1.5px solid var(--border);
-  text-align: start;
+.price-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 18px 0;
 }
 
-.pricing-features-list {
-  list-style: none;
-  padding: 0;
+.price-bonus {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gold);
   margin: 0;
+  line-height: 1.6;
+}
+
+.price-features {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 13px;
 }
-
-.pricing-feature-item {
+.price-features li {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
   gap: 10px;
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text-secondary);
-  text-align: start;
   line-height: 1.55;
 }
-
-.feature-check {
-  width: 20px;
-  height: 20px;
-  border: 1.5px solid var(--gold);
-  border-radius: 50%;
-  background: var(--gold);
-  color: #0B1320;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.price-features svg {
   flex-shrink: 0;
   margin-top: 2px;
+  stroke: var(--gold);
 }
 
-@media (max-width: 768px) {
-  .pricing-left-panel { padding: 24px 20px; }
-  .pricing-right-panel {
-    padding: 24px 20px;
-    border-inline-start: none;
-    border-bottom: 1.5px solid var(--border);
-    max-height: none;
-    order: -1;
-  }
-  .pricing-card {
-    margin: 0 auto;
-    width: 100%;
-    grid-template-columns: 1fr;
-  }
+.price-cta {
+  margin-top: auto;
+  display: block;
+  text-align: center;
+  padding: 13px;
+  border-radius: 100px;
+  font-family: var(--font-body, 'Cairo', sans-serif);
+  font-weight: 700;
+  font-size: 14.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
 
-  .pricing-amount { font-size: 2.2rem; }
-  .count-btn { padding: 5px 12px; font-size: 12px; }
-  .pricing-features-list { gap: 10px; }
-  .pricing-feature-item { font-size: 12.5px; }
+  /* Light card default: outlined, not filled — the popular card below
+     is the one that earns the solid gold-gradient treatment. */
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.price-cta:hover {
+  background: var(--gold-pale);
+}
+
+/* ===== POPULAR CARD (dark, elevated) =====
+   Backend-flagged (isPopular), not position-based — whichever package
+   the backend marks gets this treatment regardless of where it lands
+   in the grid. */
+.price-card-popular {
+  background: var(--bg-dark-hero);
+  border: 1px solid var(--gold);
+  transform: translateY(-10px);
+  box-shadow: 0 24px 50px -20px var(--shadow);
+}
+.price-card-popular:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 28px 56px -18px var(--shadow);
+}
+
+.price-badge {
+  position: absolute;
+  top: -13px;
+  inset-inline-start: 28px;
+  background: var(--gold-gradient);
+  color: #0B1320;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 16px;
+  border-radius: 100px;
+}
+
+.price-card-popular .price-plan-name { color: var(--gold-light); }
+.price-card-popular .price-amount { color: #FFFFFF; }
+.price-card-popular .price-currency,
+.price-card-popular .price-count-label { color: rgba(255,255,255,0.55); }
+.price-card-popular .price-divider { background: rgba(217,182,121,0.25); }
+.price-card-popular .price-bonus { color: var(--gold-light); }
+.price-card-popular .price-features li { color: #F3EEE5; }
+.price-card-popular .price-features svg { stroke: var(--gold-light); }
+
+.price-card-popular .tier-pill {
+  border-color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.7);
+}
+.price-card-popular .tier-pill:hover:not(.active) {
+  border-color: var(--gold-light);
+  color: #FFFFFF;
+}
+.price-card-popular .tier-pill.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0B1320;
+}
+
+.price-card-popular .price-cta {
+  background: var(--gold-gradient);
+  border: none;
+  color: #0B1320;
+  box-shadow: 0 8px 20px -6px var(--shadow-gold);
+}
+.price-card-popular .price-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -6px var(--shadow-gold);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .price-card-popular {
+    transform: none;
+  }
+  .price-card-popular:hover {
+    transform: translateY(-4px);
+  }
+  .price-card { padding: 28px 22px; }
 }
 
 @media (max-width: 480px) {
-  .pricing-left-panel { padding: 24px 16px; }
-  .pricing-right-panel { padding: 24px 16px; }
   .pricing-heading { font-size: 1.75rem; }
   .pricing-sub { font-size: 13px; }
-  .pricing-tabs { width: 100%; display: flex; }
-  .pricing-tab { flex: 1; padding: 8px 12px; font-size: 12px; }
+  .price-card { padding: 24px 18px; }
 }

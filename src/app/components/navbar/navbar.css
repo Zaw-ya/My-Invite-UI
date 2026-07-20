@@ -1,25 +1,31 @@
-/* Language switcher */
+/* Language switcher — permanently-dark navbar ground, same reasoning
+   as .nav-link above: literal cream/gold values, not page-reactive
+   tokens (var(--bg-surface)/var(--text-secondary) assume a light page
+   background and would be nearly invisible on the dark navy header). */
 .lang-btn {
   min-width: 32px;
   height: 32px;
   padding: 0 8px;
   border-radius: 8px;
-  border: 1.5px solid var(--border);
-  background: var(--bg-surface);
-  color: var(--text-secondary);
+  border: 1.5px solid rgba(217, 182, 121, 0.35);
+  background: transparent;
+  color: rgba(243, 238, 229, 0.75);
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .lang-btn:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
 }
 .lang-btn.active {
   background: var(--gold);
   border-color: var(--gold);
-  color: var(--text-inverse);
+  /* Matches the sitewide text-on-gold convention (#0B1320), not
+     var(--text-inverse) — which is page-background-reactive and would
+     resolve to cream here, giving cream text on a gold chip. */
+  color: #0B1320;
 }
 
 /* Icon button */
@@ -27,9 +33,9 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  border: 1.5px solid var(--border);
-  background: var(--bg-surface);
-  color: var(--text-secondary);
+  border: 1.5px solid rgba(217, 182, 121, 0.35);
+  background: transparent;
+  color: rgba(243, 238, 229, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,9 +44,9 @@
   flex-shrink: 0;
 }
 .icon-btn:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: var(--gold-pale);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  background: rgba(217, 182, 121, 0.1);
 }
 
 /* Mobile menu */
@@ -55,7 +61,7 @@
 .mobile-menu.open {
   max-height: 450px;
   border-top: 1px solid var(--border);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 20px -3px var(--shadow);
 }
 
 /* Hamburger: desktop always hidden, mobile always visible */

@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { Params, Router, Routes, UrlTree } from '@angular/router';
 import { LandingPageComponent } from './pages/landing/landing';
 import { DesignsPageComponent } from './pages/designs/designs-page.component';
+import { SupervisorsPageComponent } from './pages/supervisors/supervisors-page.component';
 import { BlogPageComponent } from './pages/blog/blog-page.component';
 import { BlogPostDetailComponent } from './pages/blog/blog-post-detail.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
@@ -42,6 +43,7 @@ function buildLocaleRedirect(
 const localizedChildRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'designs', component: DesignsPageComponent },
+  { path: 'supervisors', component: SupervisorsPageComponent },
   { path: 'blog', component: BlogPageComponent },
   { path: 'blog/:id', component: BlogPostDetailComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
