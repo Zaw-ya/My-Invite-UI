@@ -27,9 +27,12 @@ const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365; // 1 year
  *   2. Cookie (readable both client-side and server-side via the request's
  *      Cookie header, which is exactly why it exists alongside
  *      localStorage rather than replacing it)
- *   3. Browser language (navigator.language client-side, Accept-Language
- *      header server-side)
- *   4. The registry's default language
+ *   3. The registry's default language (Arabic) — deliberately NOT the
+ *      visitor's browser/OS language. Most browsers report "en" regardless
+ *      of the visitor's actual market, which was sending first-time
+ *      visitors to the English site instead of the brand's primary
+ *      language. Once a visitor picks a language (via the toggle), that
+ *      choice is persisted (step 1/2) and always wins on return visits.
  */
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
@@ -99,11 +102,6 @@ export class LanguageService {
       return fromCookie;
     }
 
-    const fromBrowser = this.readFromBrowserLanguage();
-    if (isSupportedLanguageCode(fromBrowser)) {
-      return fromBrowser;
-    }
-
     return DEFAULT_LANGUAGE.code;
   }
 
@@ -125,19 +123,6 @@ export class LanguageService {
 
     const match = cookieHeader.match(new RegExp(`(?:^|;\\s*)${COOKIE_KEY}=([^;]+)`));
     return match ? decodeURIComponent(match[1]) : null;
-  }
-
-  private readFromBrowserLanguage(): string | null {
-    if (isPlatformBrowser(this.platformId)) {
-      const lang = typeof navigator !== 'undefined' ? navigator.language : null;
-      return lang ? lang.slice(0, 2).toLowerCase() : null;
-    }
-
-    const header = this.request?.headers.get('accept-language');
-    if (!header) return null;
-    // "en-US,en;q=0.9,ar;q=0.8" -> "en"
-    const first = header.split(',')[0]?.trim().split('-')[0]?.split(';')[0];
-    return first ? first.toLowerCase() : null;
   }
 
   /** Exposed for anything that needs the static list without importing the registry directly. */
