@@ -1,0 +1,65 @@
+.smart-section {
+  padding: 110px 32px;
+}
+
+.smart-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.smart-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.smart-kicker {
+  letter-spacing: 4px;
+  font-size: 20px;
+  color: #8A6526;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.smart-title {
+  font-weight: 700;
+  font-size: 38px;
+  color: #201F2E;
+  margin: 10px 0 0;
+}
+
+.smart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.smart-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  background: #FBF8F1;
+  border: 1px solid rgba(27, 31, 51, 0.08);
+  border-radius: 6px;
+  padding: 28px;
+}
+
+.smart-card-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.smart-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #201F2E;
+  font-family: 'Thmanyah Serif', serif;
+}
+
+.smart-card-body {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: #6B6858;
+  margin: 0;
+  font-weight: 300;
+}

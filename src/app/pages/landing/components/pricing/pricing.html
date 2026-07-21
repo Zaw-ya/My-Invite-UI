@@ -1,10 +1,9 @@
-<section id="packages" class="pricing-section">
-  <div class="container mx-auto px-5">
+<section id="packages" class="packages-section">
+  <div class="packages-inner">
 
     <!-- Header -->
-    <div class="text-center mb-12 space-y-3">
-      <h2 class="pricing-heading mt-4" [innerHTML]="'pricing.heading' | transloco"></h2>
-      <p class="pricing-sub">{{ 'pricing.subtitle' | transloco }}</p>
+    <div class="packages-header">
+      <h2 class="packages-title font-display">{{ 'pricing.titlePlain' | transloco }}</h2>
     </div>
 
     <!-- Card grid — one card per package, sized by content (auto-fit) so
@@ -71,6 +70,21 @@
 
         </div>
       }
+    </div>
+
+    <div class="addons-grid">
+      <div class="addon-box">
+        <h4 class="addon-title">{{ 'addons.item0.title' | transloco }}</h4>
+        <p class="addon-body">{{ 'addons.item0.body' | transloco }}</p>
+      </div>
+      <div class="addon-box">
+        <h4 class="addon-title">{{ 'addons.item1.title' | transloco }}</h4>
+        <p class="addon-body">{{ 'addons.item1.body' | transloco }}</p>
+      </div>
+      <div class="addon-box">
+        <h4 class="addon-title">{{ 'addons.item2.title' | transloco }}</h4>
+        <p class="addon-body">{{ 'addons.item2.body' | transloco }}</p>
+      </div>
     </div>
 
   </div>

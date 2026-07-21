@@ -6,20 +6,36 @@
 <main class="landing-main" style="overflow-x: hidden;">
   <app-hero></app-hero>
 
-  <div id="designs" appScrollReveal revealDirection="right">
-    <app-portfolio-slider [invitations]="invitations()" [categories]="categories()"></app-portfolio-slider>
+  <div appScrollReveal revealDirection="right">
+    <app-about></app-about>
   </div>
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
-    <app-additional-services></app-additional-services>
+    <app-platform-modules></app-platform-modules>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-why-choose-us></app-why-choose-us>
   </div>
 
   <div id="how-it-works" appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-how-it-works></app-how-it-works>
   </div>
 
+  <div id="gallery" appScrollReveal revealDirection="right">
+    <app-portfolio-slider [invitations]="invitations()" [categories]="categories()"></app-portfolio-slider>
+  </div>
+
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
-    <app-demo-form></app-demo-form>
+    <app-smart-system></app-smart-system>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-reception-management></app-reception-management>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-app-showcase></app-app-showcase>
   </div>
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
@@ -27,11 +43,39 @@
   </div>
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
-    <app-supervisors></app-supervisors>
+    <app-why-riyadh></app-why-riyadh>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-tech-platform></app-tech-platform>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-privacy-section></app-privacy-section>
   </div>
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-contact></app-contact>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-final-cta></app-final-cta>
+  </div>
+
+  <!-- ============================================================
+       Angular-only features with no reference counterpart (Phase 3,
+       per project instructions: reference controls the base landing;
+       these are appended after it rather than interleaved). -->
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-additional-services></app-additional-services>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-demo-form></app-demo-form>
+  </div>
+
+  <div appScrollReveal revealDirection="right" [revealDelay]="50">
+    <app-supervisors></app-supervisors>
   </div>
 
   <div appScrollReveal revealDirection="right" [revealDelay]="50">

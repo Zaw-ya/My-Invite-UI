@@ -1,211 +1,136 @@
-.portfolio-slider-section {
-  position: relative;
-  overflow: hidden;
+.gallery-section {
+  background: #FBF8F1;
+  padding: 110px 0;
+  border-top: 1px solid rgba(27, 31, 51, 0.08);
+  border-bottom: 1px solid rgba(27, 31, 51, 0.08);
 }
 
-.portfolio-slider-inner {
-  padding: 4rem 1rem;
-  max-width: 1400px;
+.gallery-inner {
+  max-width: 1200px;
   margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 0 32px;
 }
 
-@media (min-width: 768px) {
-  .portfolio-slider-inner {
-    /* Was 5rem (80px) — brought in line with the rest of the page's
-       112px section rhythm (matching the reference's 100-130px range). */
-    padding: 7rem 2rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .portfolio-slider-inner {
-    padding: 60px 1rem;
-    min-height: auto; /* Allow height to adjust to content */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
-.slider-top-section {
+.gallery-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 44px;
 }
 
-.slider-title-wrapper {
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.gallery-title {
+  font-weight: 700;
+  font-size: 38px;
+  color: #201F2E;
+  margin: 0;
 }
 
-/* .slider-title/.slider-subtitle/.title-divider removed — this section
-   sits on the normal theme-reactive page background (no dark-ground
-   override like Additional Services), so it had no reason to diverge
-   from the shared .section-title/.section-sub/.gold-divider pattern
-   already used by How It Works, Supervisors, Contact, and Blog. The
-   template now reuses those classes directly instead of hardcoding
-   #1a1a1a/#666, which silently broke in dark mode until the separate
-   [data-theme="dark"] overrides below (also removed) patched it back.
-   .section-title's own clamp() already handles the responsive scale
-   the old @media (min-width:768px) override used to provide manually. */
-
-/* Single centered row, matching the reference's plain category-pill
-   layout — was a two-row wrapper (categories + a static gender row);
-   with only one filter group left there's nothing left to stack. */
 .filters-container {
   display: flex;
-  flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .filter-pill {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  padding: 0.6rem 1.8rem;
-  border-radius: 30px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  background: #fff;
+  border: 1px solid rgba(27, 31, 51, 0.12);
+  color: #201F2E;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   font-family: inherit;
   outline: none;
 }
 
 .filter-pill:hover, .filter-pill:focus-visible {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: #B8873B;
+  color: #8A6526;
 }
 
 .filter-pill.active-gold {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--bg-card);
-  box-shadow: 0 4px 12px var(--shadow-gold);
+  background: var(--gold-gradient);
+  border-color: transparent;
+  color: #14172A;
+  box-shadow: 0 8px 20px -6px rgba(184, 135, 59, 0.5);
 }
 
-.slider-navigation {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.gallery-carousel-wrap {
   position: relative;
-  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
-
-.slider-footer {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-/* .view-all-btn removed — it was a from-scratch reimplementation of the
-   existing global .btn-outline-gold utility (transparent/var(--gold)
-   border+text, gold fill on hover), with its own off-brand gold hex
-   (#b68d40, not var(--gold)) and its own manual dark-mode handling.
-   The template now applies .btn-outline-gold directly. */
 
 .nav-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
   width: 44px;
   height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(27, 31, 51, 0.12);
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(20, 23, 42, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px var(--shadow);
-  color: var(--text);
-  outline: none;
-  flex-shrink: 0;
+  color: #201F2E;
+  transition: all 0.25s ease;
 }
-
-@media (min-width: 768px) {
-  .nav-btn {
-    width: 50px;
-    height: 50px;
-  }
-}
+.prev-btn { inset-inline-start: 36px; }
+.next-btn { inset-inline-end: 36px; }
 
 .nav-btn:hover, .nav-btn:focus-visible {
-  /* Was #d4af37 — an off-brand gold distinct from the locked var(--gold),
-     visibly different (more saturated/yellow) from every other gold
-     accent on the site. Text color matches the sitewide text-on-gold
-     convention (#0B1320) — was white, missed in the earlier pass. */
   background: var(--gold);
   border-color: var(--gold);
   color: #0B1320;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--shadow-gold);
-}
-
-.nav-btn:active {
-  transform: translateY(0);
+  box-shadow: 0 10px 24px -6px rgba(184, 135, 59, 0.5);
 }
 
 .slider-container {
-  flex: 1;
-  min-width: 0;
-  width: 100%;
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; 
+  scrollbar-width: none;
   -ms-overflow-style: none;
-  
-  /* Extra padding to prevent box-shadow clipping during hover states */
-  padding: 1rem 0 3rem 0;
-  margin: -1rem 0 -3rem 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+  padding: 4px 60px 12px;
 }
-
 .slider-container::-webkit-scrollbar {
   display: none;
 }
 
 .slider-track {
   display: flex;
-  gap: 24px;
+  gap: 22px;
   width: max-content;
-  padding-inline-end: 1rem;
 }
 
 .slider-card {
-  flex: 0 0 auto;
+  flex: none;
+  width: 260px;
   scroll-snap-align: start;
-  background: var(--bg-card);
-  border-radius: var(--radius-card-lg);
-  overflow: hidden;
-  /* Flat at rest, shadow earned only on :hover below — was a permanent
-     resting shadow, inconsistent with how every other interactive card
-     on the site (.how-card, .as-card, .sup-card) already behaves. */
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   cursor: pointer;
-  border: 1.5px solid var(--border);
-  position: relative;
-}
-
-.slider-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-card-hover-lg);
-  border-color: var(--gold);
 }
 
 .card-image-wrapper {
   position: relative;
-  width: 100%;
-  padding-top: 133%;
+  width: 260px;
+  height: 340px;
+  border-radius: 10px;
   overflow: hidden;
-  background: var(--bg-surface);
+  border: 1px solid rgba(27, 31, 51, 0.1);
+  box-shadow: 0 14px 30px -14px rgba(20, 23, 42, 0.25);
 }
 
 .card-image-wrapper img {
@@ -214,107 +139,96 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.5s ease;
 }
 
 .slider-card:hover .card-image-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
-.card-overlay {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 2;
-}
-
-.card-category {
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #fff;
-  padding: 0.4rem 1rem;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border: 1px solid rgba(255,255,255,0.15);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.card-badge {
-  position: absolute;
-  top: 1rem;
-  inset-inline-start: 1rem;
-  /* Was a bespoke gradient (#d4af37/#f3e5ab) — an off-brand gold not
-     matching var(--gold), and the locked system doesn't define a gold
-     gradient token (a deliberate Phase 11 decision, not an oversight).
-     Solid var(--gold) matches how gold is used everywhere else. */
-  background: var(--gold);
-  color: #0B1320;
-  padding: 0.4rem 1.2rem;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  z-index: 2;
-  box-shadow: 0 4px 15px var(--shadow-gold);
-}
-
-/* Hover overlay */
-.design-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
+.card-caption {
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 3;
+  justify-content: space-between;
+  gap: 8px;
 }
-.slider-card:hover .design-overlay { opacity: 1; }
 
-.design-overlay-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 22px;
-  background: #fff;
-  color: #1A1A1A;
-  border: none;
-  border-radius: 50px;
-  font-size: 13px;
+.card-title {
+  font-size: 14.5px;
   font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  transform: translateY(8px);
-  transition: transform 0.3s ease;
+  color: #201F2E;
+  font-family: 'Thmanyah Serif', serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.slider-card:hover .design-overlay-btn { transform: translateY(0); }
+
+.card-tag {
+  font-size: 11px;
+  color: #8A6526;
+  font-weight: 700;
+  flex-shrink: 0;
+}
 
 .empty-state {
   width: 100%;
   text-align: center;
   padding: 4rem 2rem;
-  color: var(--text-muted);
+  color: #6B6858;
   font-size: 1.1rem;
-  background: var(--bg-surface);
-  border-radius: var(--radius-card-lg);
-  border: 1px dashed var(--border);
 }
 
-/* The entire manual "Dark mode compatibility" override block that used to
-   sit here has been removed. It existed only because most of the rules
-   above hardcoded literal light-mode colors instead of using the tokens
-   that already flip correctly under [data-theme="dark"] — once those
-   rules were retinted to var(--bg-card)/var(--border)/var(--text)/
-   var(--gold), this entire parallel dark-mode stylesheet became dead
-   weight, and in two cases (.slider-card, .card-category) it was
-   actively wrong: it hardcoded #1e1e1e where var(--bg-card)'s real dark
-   value is #1e202c, and it dimmed .card-category to a barely-visible
-   translucent white chip over a photograph for no semantic reason (a
-   category label composited over an image should stay legible the same
-   way regardless of site theme, the same reasoning that keeps
-   .lightbox-backdrop's scrim theme-agnostic below). */
+/* ===== Drag scrubber ===== */
+.scrubber-track {
+  position: relative;
+  width: 100%;
+  max-width: 935px;
+  height: 24px;
+  margin: 16px auto 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  touch-action: none;
+}
+
+.scrubber-rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 99px;
+  background: rgba(27, 31, 51, 0.13);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+}
+
+.scrubber-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid rgba(27, 31, 51, 0.3);
+  box-shadow: 0 3px 8px -1px rgba(20, 23, 42, 0.25);
+  cursor: grab;
+}
+.scrubber-thumb:active {
+  cursor: grabbing;
+}
+
+.gallery-footer {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 560px) {
+  .nav-btn {
+    display: none;
+  }
+}
 
 /* ===== LIGHTBOX ===== */
 .lightbox-backdrop {
@@ -445,8 +359,6 @@
 .lb-price-value small { font-size: 13px; font-weight: 500; color: var(--text-muted); margin-inline-start: 4px; }
 
 .lb-cta {
-  /* Converged onto the same gradient-pill CTA treatment used sitewide
-     (was a flat-gold, white-text, 12px-radius one-off). */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -475,13 +387,3 @@
   .lb-title { font-size: 16px; }
   .lb-price-value { font-size: 20px; }
 }
-
-@media (max-width: 640px) {
-  .nav-btn {
-    display: none !important;
-  }
-  .slider-navigation {
-    gap: 0;
-  }
-}
-

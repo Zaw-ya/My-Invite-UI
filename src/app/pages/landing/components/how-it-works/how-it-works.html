@@ -1,27 +1,16 @@
-<section class="section-py how-section">
-  <div class="container mx-auto px-5">
+<section id="how-it-works" class="how-it-works-section">
+  <div class="how-header">
+    <h2 class="how-title font-display">{{ 'howItWorks.titlePlain' | transloco }}</h2>
+  </div>
 
-    <!-- Header -->
-    <div class="text-center mb-14 space-y-3">
-      <span class="badge-pill">✦ {{ 'howItWorks.kicker' | transloco }}</span>
-      <h2 class="section-title" [innerHTML]="'howItWorks.title' | transloco"></h2>
-      <div class="gold-divider mx-auto" style="width: 56px;"></div>
-      <p class="section-sub">{{ 'howItWorks.subtitle' | transloco }}</p>
-    </div>
-
-    <!-- Steps -->
-    <div class="how-grid">
-      @for (step of steps; track step.titleKey; let i = $index) {
-        <div class="how-card">
-          <div class="how-num">{{ i + 1 < 10 ? '0' + (i + 1) : (i + 1) }}</div>
-          <div class="how-icon-badge">
-            <lucide-icon [name]="step.icon" class="w-5 h-5"></lucide-icon>
-          </div>
-          <h3 class="how-card-title">{{ step.titleKey | transloco }}</h3>
-          <p class="how-card-text">{{ step.bodyKey | transloco }}</p>
-        </div>
-      }
-    </div>
-
+  <div class="how-grid">
+    <div class="how-connector" aria-hidden="true"></div>
+    @for (i of steps; track i) {
+      <div class="how-step">
+        <div class="how-badge font-display">{{ '0' + (i + 1) }}</div>
+        <h3 class="how-step-title">{{ 'howItWorks.step' + i + '.title' | transloco }}</h3>
+        <p class="how-step-body">{{ 'howItWorks.step' + i + '.body' | transloco }}</p>
+      </div>
+    }
   </div>
 </section>

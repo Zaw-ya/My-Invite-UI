@@ -1,10 +1,15 @@
-import { Component, input, ElementRef, ViewChild, AfterViewInit, HostListener, signal, computed, inject } from '@angular/core';
+import { Component, input, ElementRef, ViewChild, signal, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { TranslocoModule } from '@jsverse/transloco';
 import { InvitationCard } from '../../../../models/content.interface';
 import { DesignOrderService } from '../../../../services/design-order.service';
 import { LanguageService } from '../../../../i18n/language.service';
+
+// Reference's card is a fixed 260px + 22px gap, not a responsive
+// "N cards visible" width — matched here rather than kept dynamic.
+const CARD_WIDTH = 260;
+const CARD_GAP = 22;
 
 @Component({
   selector: 'app-portfolio-slider',
@@ -13,7 +18,7 @@ import { LanguageService } from '../../../../i18n/language.service';
   templateUrl: './portfolio-slider.html',
   styleUrl: './portfolio-slider.css'
 })
-export class PortfolioSliderComponent implements AfterViewInit {
+export class PortfolioSliderComponent {
   private designOrderService = inject(DesignOrderService);
   readonly languageService = inject(LanguageService);
 
@@ -22,10 +27,6 @@ export class PortfolioSliderComponent implements AfterViewInit {
   invitations = input<InvitationCard[]>([]);
   categories = input<string[]>([]);
   @ViewChild('sliderContainer') container!: ElementRef<HTMLDivElement>;
-
-  cardWidth = signal(300);
-  currentIndex = signal(0);
-  gap = 24; // 1.5rem (24px)
 
   previewCard = signal<InvitationCard | null>(null);
 
@@ -36,6 +37,11 @@ export class PortfolioSliderComponent implements AfterViewInit {
   prevIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'chevron-right' : 'chevron-left');
   nextIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'chevron-left' : 'chevron-right');
   viewAllIcon = computed(() => this.languageService.activeLanguage().direction === 'rtl' ? 'arrow-left' : 'arrow-right');
+
+  // Reference's drag-scrubber thumb position, 0-100, driven off the real
+  // scrollLeft/scrollWidth ratio — a continuous scrub, not a stepped one.
+  thumbPct = signal(0);
+  private dragging = false;
 
   filteredInvitations = computed(() => {
     let items = this.invitations();
@@ -49,14 +55,12 @@ export class PortfolioSliderComponent implements AfterViewInit {
       );
     }
 
-    // Reset scroll when filters change
     if (typeof window !== 'undefined') {
       setTimeout(() => {
-        this.currentIndex.set(0);
         if (this.container) {
           this.container.nativeElement.scrollLeft = 0;
         }
-        this.updateCardWidth();
+        this.thumbPct.set(0);
       }, 50);
     }
 
@@ -86,90 +90,78 @@ export class PortfolioSliderComponent implements AfterViewInit {
     this.designOrderService.openModal(card.id);
   }
 
-  ngAfterViewInit() {
-    this.updateCardWidth();
-    // Small delay to ensure exact container sizing after initial render
-    setTimeout(() => this.updateCardWidth(), 150);
-  }
-
-  @HostListener('window:resize')
-  onResize() {
-    this.updateCardWidth();
-  }
-
-  updateCardWidth() {
-    if (typeof window === 'undefined' || !this.container) return;
-    const containerWidth = this.container.nativeElement.clientWidth;
-    
-    if (window.innerWidth < 640) {
-      // Mobile: Cards take 100% of the container width
-      const width = containerWidth;
-      this.cardWidth.set(width);
-    } else {
-      const visibleCards = this.getVisibleCards(window.innerWidth);
-      const totalGapSpace = this.gap * (visibleCards - 1);
-      const width = (containerWidth - totalGapSpace) / visibleCards;
-      this.cardWidth.set(width);
-    }
-  }
-
-  getVisibleCards(windowWidth: number): number {
-    if (windowWidth >= 1280) return 4;
-    if (windowWidth >= 1024) return 3;
-    if (windowWidth >= 640) return 2;
-    return 1;
+  private get step(): number {
+    return CARD_WIDTH + CARD_GAP;
   }
 
   scrollNext() {
-    if (typeof window === 'undefined' || !this.container) return;
-    const visible = this.getVisibleCards(window.innerWidth);
-    const maxIndex = Math.max(0, this.invitations().length - visible);
-
-    let nextIndex = this.currentIndex() + 1;
-    if (nextIndex > maxIndex) {
-      nextIndex = 0; // Loop seamlessly to start
-    }
-    
-    this.scrollToIndex(nextIndex);
+    this.scrollBy(this.step);
   }
 
   scrollPrev() {
-    if (typeof window === 'undefined' || !this.container) return;
-    const visible = this.getVisibleCards(window.innerWidth);
-    const maxIndex = Math.max(0, this.invitations().length - visible);
-
-    let prevIndex = this.currentIndex() - 1;
-    if (prevIndex < 0) {
-      prevIndex = maxIndex; // Loop to end
-    }
-    
-    this.scrollToIndex(prevIndex);
+    this.scrollBy(-this.step);
   }
 
-  scrollToIndex(index: number) {
+  private scrollBy(delta: number): void {
     if (!this.container) return;
-    const container = this.container.nativeElement;
-    const cardPlusGap = this.cardWidth() + this.gap;
-    const targetScroll = index * cardPlusGap;
-
-    // Use container.scrollTo instead of scrollIntoView to prevent 
-    // the whole page/body from scrolling horizontally in RTL mode.
-    container.scrollTo({
-      left: -targetScroll,
-      behavior: 'smooth'
-    });
-    
-    this.currentIndex.set(index);
+    const el = this.container.nativeElement;
+    const isRtl = this.languageService.activeLanguage().direction === 'rtl';
+    el.scrollBy({ left: isRtl ? -delta : delta, behavior: 'smooth' });
   }
 
   onScroll() {
+    if (!this.container || this.dragging) return;
+    this.updateThumbFromScroll();
+  }
+
+  private updateThumbFromScroll(): void {
     if (!this.container) return;
-    const scrollPos = Math.abs(this.container.nativeElement.scrollLeft);
-    const cardPlusGap = this.cardWidth() + this.gap;
-    const index = Math.round(scrollPos / cardPlusGap);
-    
-    if (index !== this.currentIndex()) {
-      this.currentIndex.set(index);
+    const el = this.container.nativeElement;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll <= 0) {
+      this.thumbPct.set(0);
+      return;
     }
+    const pct = (Math.abs(el.scrollLeft) / maxScroll) * 100;
+    this.thumbPct.set(Math.min(100, Math.max(0, pct)));
+  }
+
+  private scrubberEl?: HTMLElement;
+
+  onTrackDown(event: PointerEvent, track: HTMLElement): void {
+    this.scrubberEl = track;
+    this.scrubToPointer(event);
+    this.startDrag();
+  }
+
+  onThumbDown(event: PointerEvent, track: HTMLElement): void {
+    event.stopPropagation();
+    this.scrubberEl = track;
+    this.startDrag();
+  }
+
+  private startDrag(): void {
+    this.dragging = true;
+    const move = (e: PointerEvent) => this.scrubToPointer(e);
+    const up = () => {
+      this.dragging = false;
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  }
+
+  private scrubToPointer(event: PointerEvent): void {
+    if (!this.scrubberEl || !this.container) return;
+    const rect = this.scrubberEl.getBoundingClientRect();
+    const ratio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+    const el = this.container.nativeElement;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const isRtl = this.languageService.activeLanguage().direction === 'rtl';
+    // In RTL, scrollLeft runs 0 → -maxScroll and the track still reads
+    // left-to-right visually, so the ratio maps directly either way.
+    el.scrollLeft = isRtl ? -(ratio * maxScroll) : ratio * maxScroll;
+    this.thumbPct.set(ratio * 100);
   }
 }

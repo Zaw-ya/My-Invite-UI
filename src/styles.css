@@ -690,6 +690,19 @@ body {
 }
 
 /* ===================================================
+   HOVER CARD
+   Shared lift+shadow treatment used across About, Platform Modules,
+   Why Choose Us, and other reference card grids.
+   =================================================== */
+.sc-hover-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.sc-hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -18px rgba(20, 23, 42, 0.25);
+}
+
+/* ===================================================
    SCROLLBAR
    =================================================== */
 ::-webkit-scrollbar {

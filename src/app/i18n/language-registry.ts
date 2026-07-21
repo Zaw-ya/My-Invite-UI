@@ -29,6 +29,10 @@ export interface LanguageConfig {
   /** Exactly one entry should be true. Arabic is the brand's primary language. */
   isDefault: boolean;
   fontRoles: FontRoles;
+  /** Reference header's language-toggle button always shows the *other*
+   * language's short label (e.g. the Arabic page shows "EN"; the English
+   * page shows "ع") rather than the current language's own code. */
+  toggleLabel: string;
 }
 
 // Arabic fonts are unchanged from the site's existing stack (styles.css).
@@ -42,6 +46,7 @@ export const LANGUAGE_REGISTRY: readonly LanguageConfig[] = [
     direction: 'rtl',
     label: 'العربية',
     isDefault: true,
+    toggleLabel: 'EN',
     fontRoles: {
       display: "'ManchetteFine', 'Thmanyah Serif Display', '29LTBukra', 'Cairo', sans-serif",
       heading: "'29LTBukra', 'Cairo', sans-serif",
@@ -54,9 +59,10 @@ export const LANGUAGE_REGISTRY: readonly LanguageConfig[] = [
     direction: 'ltr',
     label: 'English',
     isDefault: false,
+    toggleLabel: 'ع',
     fontRoles: {
-      display: "'ThmanyahSerifDisplay', 'Cairo', sans-serif",
-      heading: "'ThmanyahSerifDisplay', 'Cairo', sans-serif",
+      display: "'Thmanyah Serif Display', 'Cairo', sans-serif",
+      heading: "'Thmanyah Serif Display', 'Cairo', sans-serif",
       body: "'Cairo', sans-serif",
       kicker: "'Cormorant Garamond', serif",
     },

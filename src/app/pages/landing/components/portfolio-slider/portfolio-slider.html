@@ -1,70 +1,60 @@
-<section class="portfolio-slider-section">
-<div class="portfolio-slider-inner">
-  <div class="slider-top-section">
-    <div class="slider-title-wrapper">
-      <h2 class="section-title font-display">{{ 'portfolioSlider.title' | transloco }}</h2>
-      <p class="section-sub">{{ 'portfolioSlider.subtitle' | transloco }}</p>
-      <div class="gold-divider" style="width: 60px;"></div>
-    </div>
+<section class="gallery-section" id="gallery">
+<div class="gallery-inner">
+  <div class="gallery-header">
+    <h2 class="gallery-title font-display">{{ 'portfolioSlider.title' | transloco }}</h2>
+  </div>
 
-    <!-- Filters — a single row of backend-provided categories, no
-         separate static gender filter (that list was hardcoded, not
-         API-driven, so it's been removed). -->
-    <div class="filters-container">
-      <button class="filter-pill" [class.active-gold]="activeCategory() === null" (click)="setCategory(null)">
-        {{ 'portfolioSlider.categoryAll' | transloco }}
-      </button>
-      @for (cat of categories(); track cat) {
-      <button class="filter-pill" [class.active-gold]="activeCategory() === cat" (click)="setCategory(cat)">
-        {{ cat }}
-      </button>
+  <div class="filters-container">
+    <button class="filter-pill" [class.active-gold]="activeCategory() === null" (click)="setCategory(null)">
+      {{ 'portfolioSlider.categoryAll' | transloco }}
+    </button>
+    @for (cat of categories(); track cat) {
+    <button class="filter-pill" [class.active-gold]="activeCategory() === cat" (click)="setCategory(cat)">
+      {{ cat }}
+    </button>
+    }
+  </div>
+</div>
+
+<div class="gallery-carousel-wrap">
+  <button class="nav-btn prev-btn" (click)="scrollPrev()" [attr.aria-label]="'portfolioSlider.prevAria' | transloco">
+    <lucide-icon [name]="prevIcon()"></lucide-icon>
+  </button>
+
+  <div class="slider-container" #sliderContainer (scroll)="onScroll()">
+    <div class="slider-track">
+      @for (card of filteredInvitations(); track card.id) {
+      <div class="slider-card" (click)="openPreview(card)">
+        <div class="card-image-wrapper">
+          <img [src]="card.imageUrl" [alt]="card.title" loading="lazy">
+        </div>
+        <div class="card-caption">
+          <span class="card-title">{{ card.title }}</span>
+          <span class="card-tag">{{ card.category }}</span>
+        </div>
+      </div>
+      }
+
+      @if (filteredInvitations().length === 0) {
+      <div class="empty-state">
+        <p>{{ 'portfolioSlider.emptyState' | transloco }}</p>
+      </div>
       }
     </div>
   </div>
 
-  <div class="slider-navigation">
-    <button class="nav-btn prev-btn" (click)="scrollPrev()" [attr.aria-label]="'portfolioSlider.prevAria' | transloco">
-      <lucide-icon [name]="prevIcon()"></lucide-icon>
-    </button>
+  <button class="nav-btn next-btn" (click)="scrollNext()" [attr.aria-label]="'portfolioSlider.nextAria' | transloco">
+    <lucide-icon [name]="nextIcon()"></lucide-icon>
+  </button>
+</div>
 
-    <!-- Native scroll snapping container for flawless mobile swipe & dynamic layout -->
-    <div class="slider-container" #sliderContainer (scroll)="onScroll()">
-      <div class="slider-track" [style.--card-width.px]="cardWidth()">
-        @for (card of filteredInvitations(); track card.id) {
-        <div class="slider-card" [style.width.px]="cardWidth()" (click)="openPreview(card)">
-          <!-- Premium Card UI -->
-          <div class="card-image-wrapper">
-            <img [src]="card.imageUrl" [alt]="card.title" loading="lazy">
-            <!-- <div class="card-overlay">
-                <span class="card-category">{{ card.category }}</span>
-              </div> -->
-            @if (card.isNew) {
-            <div class="card-badge">{{ 'portfolioSlider.newBadge' | transloco }}</div>
-            }
-            <div class="design-overlay">
-              <button class="design-overlay-btn" (click)="$event.stopPropagation(); openPreview(card)">
-                <lucide-icon name="eye" class="w-4 h-4"></lucide-icon>
-                {{ 'portfolioSlider.quickPreview' | transloco }}
-              </button>
-            </div>
-          </div>
-        </div>
-        }
-
-        @if (filteredInvitations().length === 0) {
-        <div class="empty-state">
-          <p>{{ 'portfolioSlider.emptyState' | transloco }}</p>
-        </div>
-        }
-      </div>
-    </div>
-
-    <button class="nav-btn next-btn" (click)="scrollNext()" [attr.aria-label]="'portfolioSlider.nextAria' | transloco">
-      <lucide-icon [name]="nextIcon()"></lucide-icon>
-    </button>
+<div class="gallery-inner">
+  <div class="scrubber-track" #scrubberTrack (pointerdown)="onTrackDown($event, scrubberTrack)">
+    <div class="scrubber-rail"></div>
+    <div class="scrubber-thumb" [style.inset-inline-start.%]="thumbPct()" (pointerdown)="onThumbDown($event, scrubberTrack)"></div>
   </div>
 
-  <div class="slider-footer">
+  <div class="gallery-footer">
     <a [routerLink]="['/', languageService.activeLanguage().code, 'designs']" class="btn-outline-gold">
       {{ 'portfolioSlider.viewAll' | transloco }}
       <lucide-icon [name]="viewAllIcon()" class="w-4 h-4"></lucide-icon>

@@ -10,7 +10,9 @@
     "howItWorks": "How It Works",
     "demo": "Try It Free",
     "packages": "Packages",
-    "contact": "Contact Us",
+    "app": "App",
+    "why": "Why Us",
+    "contact": "Contact",
     "blog": "Blog",
     "menuTooltip": "Menu",
     "email": "Email",
@@ -31,21 +33,202 @@
     "brandBlurb": "Special Cards for integrated, innovative digital invitation solutions for all your occasions across Saudi Arabia and the Gulf.",
     "copyright": "© 2026 {{siteName}}. All rights reserved.",
     "backToTopTooltip": "Back to top",
-    "whatsappTooltip": "WhatsApp"
+    "whatsappTooltip": "WhatsApp",
+    "taglinePlain": "Your gateway to luxury Riyadh events",
+    "categoriesTitle": "Designs",
+    "contactTitlePlain": "Contact Us",
+    "paymentTitle": "Payment Methods",
+    "pay2": "In-App Payment",
+    "pay3": "Bank Transfer",
+    "rightsPlain": "© 2026 Special Cards — All rights reserved",
+    "sitePlain": "www.specialcards.net"
   },
   "hero": {
+    "kicker": "RIYADH • SAUDI ARABIA",
     "heading": "<span>Digital invitation</span> cards for every occasion",
-    "subtitle": "A luxury digital invitation that tells your guests: tonight is unlike any other.",
-    "cta1": "Order Your Invitation",
+    "title": "Let Special.. Speak For Your Occasion",
+    "subtitle": "An innovative invitation experience with Special Cards — a complete digital guest management system that blends technology with luxury.",
+    "cta1": "Order Your Invite",
     "cta2": "View Designs",
+    "mockPlaceholder": "Drop a card design shot here",
     "trust": {
       "events": { "value": "500+", "label": "Successful Events" },
       "countries": { "value": "3", "label": "Countries" },
       "support": { "value": "24/7", "label": "Full Support" }
     }
   },
+  "about": {
+    "kicker": "Who We Are",
+    "title": "A Saudi brand specialized in digital luxury",
+    "card0": {
+      "title": "A Specialized Saudi Brand",
+      "body": "Special Cards is a Saudi brand specialized in digital invitations and guest management, blending technology with luxury."
+    },
+    "card1": {
+      "title": "Our Goal",
+      "body": "We turn your invitation into a work of art that reaches your guests with full elegance and pride."
+    },
+    "card2": {
+      "title": "Our Focus",
+      "body": "Riyadh is our home ground — we know every hall and detail, guaranteeing professional on-site coverage."
+    }
+  },
+  "platform": {
+    "kicker": "Platform Structure",
+    "title": "Every detail of your event, in one place",
+    "item0": {
+      "title": "Home",
+      "body": "A professional interface reflecting brand luxury and showcasing key features and services."
+    },
+    "item1": {
+      "title": "Store",
+      "body": "A full showcase of all invitation designs (weddings, graduations, corporate) with easy ordering."
+    },
+    "item2": {
+      "title": "Pricing",
+      "body": "Clear packages split by guest count and the features each occasion needs."
+    },
+    "item3": {
+      "title": "App",
+      "body": "A platform for organizers to track attendance, scan barcodes, and issue live reports."
+    }
+  },
+  "why": {
+    "title": "Why Choose Special Cards?",
+    "item0": {
+      "title": "Visual Luxury",
+      "body": "4K quality designs turn your invitation into a distinctive art piece reflecting refined taste."
+    },
+    "item1": {
+      "title": "Guaranteed Delivery",
+      "body": "We use official, verified WhatsApp servers ensuring every guest receives their named message, unblocked."
+    },
+    "item2": {
+      "title": "Precision & Order",
+      "body": "A unique barcode per guest ends reception congestion, ensuring smooth, organized entry."
+    }
+  },
+  "smart": {
+    "kicker": "- Smart System -",
+    "title": "Smart Sending & RSVP System",
+    "item0": {
+      "title": "Personalized Messages",
+      "body": "Every guest receives their message by name, giving an impression of luxury and personal care."
+    },
+    "item1": {
+      "title": "Geo-Location Link",
+      "body": "A direct Google Maps link to the venue so guests never lose their way."
+    },
+    "item2": {
+      "title": "Automatic RSVP",
+      "body": "Guests confirm or decline in one tap, with results appearing instantly on your dashboard."
+    },
+    "item3": {
+      "title": "Live Tracking",
+      "body": "An integrated system that spares you manual follow-up and guarantees data accuracy."
+    }
+  },
+  "reception": {
+    "kicker": "SPECIAL CARDS / RECEPTION MANAGEMENT SYSTEM v1.0",
+    "title": "Professional Reception, Powered by Technology",
+    "item0": {
+      "title": "Barcode Scanning",
+      "body": "Verify guest identity in under 0.5 seconds. An encrypted system prevents duplicate entry or tampering."
+    },
+    "item1": {
+      "title": "On-Site Experience",
+      "body": "A host interface at the door — one scan reveals guest name and table number instantly."
+    },
+    "item2": {
+      "title": "100% Entry Accuracy",
+      "body": "A smooth flow ensures fast, uncrowded entry — an impression of luxury from the first moment."
+    }
+  },
+  "app": {
+    "kicker": "SPECIAL CARDS APP",
+    "title": "The Organizer App, In Your Hands",
+    "body": "A dedicated Android & iOS app that simplifies managing your event: issuing high-quality invitation cards, an encrypted entry barcode, and a direct link to the venue location.",
+    "mockPlaceholder": "Drop an app screenshot here",
+    "f0": "High quality 4K invitation card",
+    "f1": "Encrypted, secure entry barcode (QR)",
+    "f2": "Direct link to venue geo-location",
+    "appStore": "App Store",
+    "googlePlay": "Google Play"
+  },
+  "addons": {
+    "item0": {
+      "title": "Extra Guests",
+      "body": "Add extra guests to your chosen package at a fixed price per guest."
+    },
+    "item1": {
+      "title": "Reminder Service",
+      "body": "Reminder messages for confirmed guests 24 hours before the event."
+    },
+    "item2": {
+      "title": "Extra Hosts",
+      "body": "Request additional hosts (male/female) to boost entry management efficiency."
+    }
+  },
+  "riyadh": {
+    "kicker": "RIYADH FOCUS",
+    "title": "Why Riyadh, Specifically?",
+    "body": "We believe closeness to the client is the foundation of success, so we dedicated our team to the capital of luxury.",
+    "item0": {
+      "title": "Closest to Riyadh Venues",
+      "body": "Deep knowledge of Riyadh halls and details makes us the first choice for the capital's events."
+    },
+    "item1": {
+      "title": "Direct Field Support",
+      "body": "Our Riyadh team is ready on-site to ensure a professional reception process."
+    },
+    "item2": {
+      "title": "Fast Response",
+      "body": "Based in the heart of Riyadh, our service and communication are faster for any urgent changes."
+    },
+    "item3": {
+      "title": "Local Expertise",
+      "body": "We know Riyadh's hosting protocol and every venue in the region and its details."
+    }
+  },
+  "tech": {
+    "kicker": "SALLA PLATFORM INTEGRATION",
+    "title": "Setting Up The Salla Store",
+    "step0": {
+      "title": "Store Foundation",
+      "body": "Reserving the brand's domain and linking it to Salla, with core store settings configured."
+    },
+    "step1": {
+      "title": "Theme Customization",
+      "body": "Choosing a professional theme reflecting Special Cards' luxury identity."
+    },
+    "step2": {
+      "title": "Service Integration",
+      "body": "Enabling payment gateways and adding invitation packages as directly purchasable services."
+    },
+    "step3": {
+      "title": "Technical Operation",
+      "body": "Connecting the WhatsApp API and barcode system to automate sending and guest verification."
+    }
+  },
+  "privacy": {
+    "title": "Your Security & Privacy, Our Priority",
+    "body": "We understand our community's privacy and the sensitivity of guest numbers, so we built a system that gives you complete peace of mind.",
+    "item0": {
+      "title": "Data Encryption",
+      "body": "All lists and numbers are encrypted — no one can access them in any way. Your guests' data stays fully secure."
+    },
+    "item1": {
+      "title": "Automatic Deletion",
+      "body": "Guest data is automatically and permanently deleted from our servers after the event, guaranteeing 100% privacy."
+    }
+  },
+  "finalCta": {
+    "title": "Let Special.. Speak For Your Occasion",
+    "body": "Riyadh, Kingdom of Saudi Arabia",
+    "cta": "Contact Us Now"
+  },
   "portfolioSlider": {
-    "title": "Special Cards Designs",
+    "title": "Designs By Occasion",
     "subtitle": "An exclusive, ever-refreshed library to suit all your occasions",
     "newBadge": "New",
     "quickPreview": "Quick Preview",
@@ -77,7 +260,20 @@
   "howItWorks": {
     "kicker": "Your Journey With Us",
     "title": "How <span>Your Invitation Begins</span>",
+    "titlePlain": "How The System Works",
     "subtitle": "From the first conversation to the final moment of your occasion — a clear journey, no surprises",
+    "step0": {
+      "title": "Design Your Invite",
+      "body": "Choose from our luxury library or request a custom design matching your taste and event theme."
+    },
+    "step1": {
+      "title": "Upload The List",
+      "body": "Provide guest names or numbers, the system auto-issues a unique barcode for every guest."
+    },
+    "step2": {
+      "title": "Send & Track",
+      "body": "One tap sends invitations via WhatsApp — track confirmations live through the app."
+    },
     "step1Title": "Tell Us About Your Occasion",
     "step1Body": "Share your occasion's details and guest count, and choose the package closest to your vision — whether through a free trial or by reaching out to us directly.",
     "step2Title": "We Prepare Every Detail with Care",
@@ -123,6 +319,7 @@
   "pricing": {
     "heading": "<span>Special Cards</span> Packages",
     "subtitle": "Choose the package that fits your needs",
+    "titlePlain": "Our Riyadh Packages",
     "guestsUnit": "invitations",
     "chooseCountLabel": "Choose invitation count",
     "compensatoryTitle": "Compensatory Invitation Credit",
@@ -131,7 +328,7 @@
     "ctaOrderNow": "Order Now",
     "ctaContactUs": "Contact Us",
     "currency": "SAR",
-    "popularBadge": "Most Popular"
+    "popularBadge": "MOST POPULAR"
   },
   "supervisors": {
     "kicker": "_ Gate Supervisors _",
@@ -147,7 +344,9 @@
   },
   "contact": {
     "heading": "We're <span>Here to Help</span>",
-    "intro": "Have a question? Our team is ready to help you design the perfect invitation for your occasion.",
+    "kickerPlain": "Get In Touch",
+    "titlePlain": "Let's Plan Your Event",
+    "intro": "Fill in the form and our Riyadh team will reach out within hours to arrange every detail of your event.",
     "locationLabel": "Location",
     "phoneLabel": "Phone",
     "emailLabel": "Email",

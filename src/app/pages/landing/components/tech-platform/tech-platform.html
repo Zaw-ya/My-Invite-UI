@@ -1,0 +1,16 @@
+<section class="tech-section">
+  <div class="tech-header">
+    <span class="tech-kicker">{{ 'tech.kicker' | transloco }}</span>
+    <h2 class="tech-title font-display">{{ 'tech.title' | transloco }}</h2>
+  </div>
+
+  <div class="tech-grid">
+    @for (i of steps; track i) {
+      <div class="tech-step">
+        <span class="tech-step-number font-display">{{ '0' + (i + 1) }}</span>
+        <h4 class="tech-step-title">{{ 'tech.step' + i + '.title' | transloco }}</h4>
+        <p class="tech-step-body">{{ 'tech.step' + i + '.body' | transloco }}</p>
+      </div>
+    }
+  </div>
+</section>

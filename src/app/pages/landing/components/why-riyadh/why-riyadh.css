@@ -1,0 +1,91 @@
+.riyadh-section {
+  position: relative;
+  background: #14172A;
+  padding: 110px 32px;
+  overflow: hidden;
+}
+
+.riyadh-mandala {
+  position: absolute;
+  inset-inline-end: -240px;
+  top: -200px;
+  width: 560px;
+  height: 560px;
+  color: #D9B679;
+  opacity: 0.06;
+  transform: rotate(-15deg);
+}
+
+.riyadh-grid {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.riyadh-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.riyadh-kicker {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 3px;
+  font-size: 12px;
+  color: #D9B679;
+  text-transform: uppercase;
+}
+
+.riyadh-title {
+  font-weight: 700;
+  font-size: 36px;
+  color: #F3EEE5;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.riyadh-body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(243, 238, 229, 0.62);
+  margin: 0;
+  font-weight: 300;
+}
+
+.riyadh-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.riyadh-tile {
+  border: 1px solid rgba(217, 182, 121, 0.2);
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.riyadh-tile-title {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #F3EEE5;
+  margin: 0 0 8px;
+  font-family: 'Thmanyah Serif', serif;
+}
+
+.riyadh-tile-body {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: rgba(243, 238, 229, 0.55);
+  margin: 0;
+  font-weight: 300;
+}
+
+@media (max-width: 860px) {
+  .riyadh-grid {
+    grid-template-columns: 1fr;
+  }
+}

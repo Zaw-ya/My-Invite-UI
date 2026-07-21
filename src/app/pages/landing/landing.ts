@@ -8,6 +8,16 @@ import { FooterComponent } from '../../components/footer/footer';
 
 // Sub-components
 import { HeroComponent } from './components/hero/hero';
+import { AboutComponent } from './components/about/about';
+import { PlatformModulesComponent } from './components/platform-modules/platform-modules';
+import { WhyChooseUsComponent } from './components/why-choose-us/why-choose-us';
+import { SmartSystemComponent } from './components/smart-system/smart-system';
+import { ReceptionManagementComponent } from './components/reception-management/reception-management';
+import { AppShowcaseComponent } from './components/app-showcase/app-showcase';
+import { WhyRiyadhComponent } from './components/why-riyadh/why-riyadh';
+import { TechPlatformComponent } from './components/tech-platform/tech-platform';
+import { PrivacySectionComponent } from './components/privacy-section/privacy-section';
+import { FinalCtaComponent } from './components/final-cta/final-cta';
 import { HowItWorksComponent } from './components/how-it-works/how-it-works';
 import { DemoFormComponent } from './components/demo-form/demo-form';
 import { PricingComponent } from './components/pricing/pricing';
@@ -26,6 +36,16 @@ import { OrderModalComponent } from '../../components/order-modal/order-modal.co
     NavbarComponent,
     FooterComponent,
     HeroComponent,
+    AboutComponent,
+    PlatformModulesComponent,
+    WhyChooseUsComponent,
+    SmartSystemComponent,
+    ReceptionManagementComponent,
+    AppShowcaseComponent,
+    WhyRiyadhComponent,
+    TechPlatformComponent,
+    PrivacySectionComponent,
+    FinalCtaComponent,
     HowItWorksComponent,
     DemoFormComponent,
     PricingComponent,

@@ -1,0 +1,22 @@
+<section class="riyadh-section">
+  <svg class="riyadh-mandala" viewBox="0 0 1080 1080" aria-hidden="true">
+    <use href="/assets/images/svg/ornament-mandala.svg#scOrnamentMandala"></use>
+  </svg>
+
+  <div class="riyadh-grid">
+    <div class="riyadh-text">
+      <span class="riyadh-kicker">{{ 'riyadh.kicker' | transloco }}</span>
+      <h2 class="riyadh-title font-display">{{ 'riyadh.title' | transloco }}</h2>
+      <p class="riyadh-body">{{ 'riyadh.body' | transloco }}</p>
+    </div>
+
+    <div class="riyadh-tiles">
+      @for (i of items; track i) {
+        <div class="riyadh-tile">
+          <h3 class="riyadh-tile-title">{{ 'riyadh.item' + i + '.title' | transloco }}</h3>
+          <p class="riyadh-tile-body">{{ 'riyadh.item' + i + '.body' | transloco }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

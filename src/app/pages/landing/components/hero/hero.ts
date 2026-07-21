@@ -1,5 +1,4 @@
-import { Component, signal, computed, inject, OnInit, OnDestroy } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
+import { Component, computed, inject } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ContentService } from '../../../../services/content.service';
 import { ScrollService } from '../../../../services/scroll.service';
@@ -7,52 +6,30 @@ import { ScrollService } from '../../../../services/scroll.service';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [LucideAngularModule, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './hero.html',
   styleUrl: './hero.css'
 })
-export class HeroComponent implements OnInit, OnDestroy {
-  private contentService = inject(ContentService);
+export class HeroComponent {
+  private readonly contentService = inject(ContentService);
   readonly scrollService = inject(ScrollService);
-  settings = this.contentService.siteSettings;
-  carouselCards = this.contentService.carouselCards;
+  private readonly carouselCards = this.contentService.carouselCards;
 
-  currentCardIndex = signal(0);
-  private rotationTimer: any;
+  // Reference's phone mockup shows one static design shot — using the
+  // first real card from the library rather than a placeholder so the
+  // hero still reflects actual product imagery.
+  readonly mockCard = computed(() => this.carouselCards()[0] ?? null);
 
-  // The two designs flanking the active one in the carousel — rendered
-  // as smaller, dimmed cards fanned behind it (see hero.html/.css), so
-  // the visual reads as a styled deck from the real design library
-  // instead of one flat image. Real assets already on hand, no new
-  // artwork needed.
-  prevCard = computed(() => {
-    const cards = this.carouselCards();
-    if (cards.length < 2) return null;
-    const idx = (this.currentCardIndex() - 1 + cards.length) % cards.length;
-    return cards[idx];
-  });
+  // Reference tracks the cursor and re-centers the nebula glow under it
+  // via a CSS transform, recomputed on every mousemove.
+  glowTransform = 'translate(0px, 0px)';
 
-  nextCard = computed(() => {
-    const cards = this.carouselCards();
-    if (cards.length < 2) return null;
-    const idx = (this.currentCardIndex() + 1) % cards.length;
-    return cards[idx];
-  });
-
-  ngOnInit() {
-    this.startRotation();
-  }
-
-  ngOnDestroy() {
-    if (this.rotationTimer) clearInterval(this.rotationTimer);
-  }
-
-  private startRotation() {
-    this.rotationTimer = setInterval(() => {
-      const cards = this.carouselCards();
-      if (cards.length > 0) {
-        this.currentCardIndex.update(i => (i + 1) % cards.length);
-      }
-    }, 5000);
+  onHeroMouseMove(event: MouseEvent): void {
+    const target = event.currentTarget as HTMLElement;
+    const rect = target.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+    const damp = 0.15;
+    this.glowTransform = `translate(${x * damp}px, ${y * damp}px)`;
   }
 }

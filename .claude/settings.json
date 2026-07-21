@@ -3,7 +3,11 @@
     "allow": [
       "Bash(powershell -Command \"Stop-Process -Id 16536 -Force\")",
       "Bash(nohup npx ng serve --port 4200)",
-      "Bash(echo \"started $!\")"
+      "Bash(echo \"started $!\")",
+      "Bash(npx ng *)",
+      "Bash(curl -s http://localhost:4200/en -o /tmp/smart-check.html)",
+      "Bash(python -c ' *)",
+      "Bash(curl -s http://localhost:4200/en -o /tmp/reception-check.html)"
     ]
   }
 }

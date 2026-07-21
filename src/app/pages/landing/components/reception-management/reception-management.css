@@ -1,0 +1,79 @@
+.reception-section {
+  position: relative;
+  background: #14172A;
+  padding: 110px 32px;
+  overflow: hidden;
+}
+
+.reception-mandala {
+  position: absolute;
+  inset-inline-start: -200px;
+  bottom: -200px;
+  width: 520px;
+  height: 520px;
+  color: #B8873B;
+  opacity: 0.06;
+  transform: rotate(20deg);
+}
+
+.reception-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reception-header {
+  text-align: center;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.reception-kicker {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 3px;
+  font-size: 12px;
+  color: #D9B679;
+  text-transform: uppercase;
+}
+
+.reception-title {
+  font-weight: 700;
+  font-size: 38px;
+  color: #F3EEE5;
+  margin: 0;
+}
+
+.reception-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 28px;
+}
+
+.reception-item {
+  border-top: 2px solid;
+  border-image: linear-gradient(90deg, #F6E4B8, #8A6526) 1;
+  padding: 28px 4px 0;
+}
+
+.reception-icon {
+  margin-bottom: 16px;
+}
+
+.reception-item-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #F3EEE5;
+  margin: 0 0 10px;
+  font-family: 'Thmanyah Serif', serif;
+}
+
+.reception-item-body {
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: rgba(243, 238, 229, 0.6);
+  margin: 0;
+  font-weight: 300;
+}

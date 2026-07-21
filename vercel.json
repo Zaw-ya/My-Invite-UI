@@ -3,7 +3,7 @@
   "outputDirectory": "dist/My-Invite-UI/browser",
   "framework": null,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.csr.html" }
   ],
   "headers": [
     {

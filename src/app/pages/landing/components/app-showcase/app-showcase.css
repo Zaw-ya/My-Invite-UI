@@ -1,0 +1,151 @@
+.app-section {
+  background: #FBF8F1;
+  padding: 110px 32px;
+}
+
+.app-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.app-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  order: 1;
+}
+
+.app-phone-main {
+  position: relative;
+  width: 270px;
+  height: 552px;
+  border-radius: 42px;
+  background: #0D0F1C;
+  border: 9px solid #22263F;
+  box-shadow: 0 40px 80px -20px rgba(20, 23, 42, 0.3);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.app-phone-secondary {
+  position: absolute;
+  top: 60px;
+  inset-inline-end: -10px;
+  width: 220px;
+  height: 460px;
+  border-radius: 38px;
+  background: #0D0F1C;
+  border: 8px solid #22263F;
+  opacity: 0.5;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.app-phone-main img,
+.app-phone-secondary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-phone-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(243, 238, 229, 0.4);
+  font-size: 13px;
+  text-align: center;
+  padding: 16px;
+}
+
+.app-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  order: 2;
+  text-align: start;
+}
+
+.app-kicker {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 3px;
+  font-size: 12px;
+  color: #8A6526;
+  text-transform: uppercase;
+}
+
+.app-title {
+  font-weight: 700;
+  font-size: 36px;
+  color: #201F2E;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.app-body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #6B6858;
+  margin: 0;
+  font-weight: 300;
+}
+
+.app-features {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.app-features li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14.5px;
+  color: #3a3830;
+}
+
+.app-features svg {
+  flex-shrink: 0;
+}
+
+.app-store-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.app-store-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(27, 31, 51, 0.15);
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #201F2E;
+}
+
+@media (max-width: 860px) {
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+  .app-text {
+    order: 1;
+    text-align: center;
+    align-items: center;
+  }
+  .app-img {
+    order: 2;
+  }
+}
