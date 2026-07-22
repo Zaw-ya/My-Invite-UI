@@ -58,18 +58,27 @@
       <div class="footer-payment-col">
         <span class="footer-col-title">{{ 'footer.paymentTitle' | transloco }}</span>
         <div class="footer-payment-badges">
-          <div class="footer-payment-badge">
-            <span class="pay-text" style="color:#00A0E3;">mada</span>
+          <div class="footer-payment-badge footer-payment-badge-mada">
+            <img src="/assets/images/PNGs/payment-mada.png" alt="mada" class="pay-logo pay-logo-contain">
+          </div>
+          <div class="footer-payment-badge footer-payment-badge-tamara">
+            <img [src]="activeLanguage().code === 'ar' ? '/assets/images/PNGs/payment-tamara-ar.png' : '/assets/images/PNGs/payment-tamara-en.png'"
+              alt="tamara" class="pay-logo pay-logo-cover">
           </div>
           <div class="footer-payment-badge">
-            <span class="pay-text" style="color:#F6E7D8;">tamara</span>
-          </div>
-          <div class="footer-payment-badge">
-            <lucide-icon name="smartphone" class="w-4 h-4"></lucide-icon>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9B679" stroke-width="1.6">
+              <rect x="6" y="2" width="12" height="20" rx="2.5"></rect>
+              <path d="M9.5 18h5"></path>
+              <path d="M15 8.5a3 3 0 0 1 0 5"></path>
+            </svg>
             <span class="pay-label">{{ 'footer.pay2' | transloco }}</span>
           </div>
           <div class="footer-payment-badge">
-            <lucide-icon name="landmark" class="w-4 h-4"></lucide-icon>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9B679" stroke-width="1.6">
+              <path d="M3 10l9-6 9 6"></path>
+              <path d="M5 10v9M10 10v9M14 10v9M19 10v9"></path>
+              <path d="M3 19h18"></path>
+            </svg>
             <span class="pay-label">{{ 'footer.pay3' | transloco }}</span>
           </div>
         </div>

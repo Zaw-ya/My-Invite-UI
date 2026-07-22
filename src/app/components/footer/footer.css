@@ -128,6 +128,33 @@
   font-size: 16px;
 }
 
+/* mada: white-boxed logo image, gold border, logo inset with small padding. */
+.footer-payment-badge-mada {
+  background: #fff;
+  padding: 2px 6px;
+}
+
+.footer-payment-badge-mada .pay-logo-contain {
+  height: 81%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* tamara: full-bleed cover image, no border/padding — the image's own
+   rounded-rect artwork fills the chip edge to edge. */
+.footer-payment-badge-tamara {
+  border: none;
+  overflow: hidden;
+  padding: 0;
+}
+
+.footer-payment-badge-tamara .pay-logo-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .footer-payment-badge .pay-label {
   font-size: 11.5px;
   color: #F3EEE5;

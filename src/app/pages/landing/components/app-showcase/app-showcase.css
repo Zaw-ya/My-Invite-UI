@@ -134,6 +134,12 @@
   font-size: 13px;
   font-weight: 600;
   color: #201F2E;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.app-store-badge:hover {
+  border-color: #B8873B;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 860px) {
