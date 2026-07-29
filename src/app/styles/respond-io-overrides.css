@@ -1,0 +1,85 @@
+/**
+ * Respond.io Website Chat widget — visual overrides.
+ *
+ * SCOPE: every rule below is scoped to `iframe[title="Webchat Widget"]`,
+ * the stable `title` attribute Respond.io's widget.js sets on the single
+ * <iframe> it injects into <body>. That element lives outside Angular's
+ * component tree entirely (respond-io.service.ts appends it directly to
+ * document.body), so these rules live in a global stylesheet rather than a
+ * component stylesheet — Angular's per-component ViewEncapsulation would
+ * never reach this element anyway. Nothing here can match app content.
+ *
+ * WHAT THIS CAN AND CANNOT DO
+ * The widget's launcher, chat panel and welcome bubble are all painted
+ * *inside* that iframe's own (cross-origin, cdn.respond.io) document — CSS
+ * here has no access to that DOM, so it cannot restyle in-widget text,
+ * colors, spacing, fonts, or content. What a host page legitimately CAN do
+ * to a cross-origin iframe, and what these rules use:
+ *   - clip its rendered content with border-radius + overflow:hidden
+ *   - paint a shadow around its box
+ *   - transform (scale/translate) its box, incl. on :hover
+ *   - position/size the outer box itself
+ * All of that is real, standards-based CSS behavior — none of it reaches
+ * across the cross-origin boundary.
+ *
+ * FRAGILITY NOTE: `.bda45` (closed/launcher state) and `.c8d90` (open/panel
+ * state) below are Respond.io's own generated CSS-module class names,
+ * identified by inspecting the widget.js bundle actually served for this
+ * site's cId. They are not part of any public API and Respond.io could
+ * regenerate them on a future widget.js release. Every rule that depends on
+ * them is a *progressive enhancement* — if they ever stop matching, the
+ * base rules (radius, overflow, scale, position, transitions — everything
+ * keyed only on the stable `title` attribute) keep working untouched, and
+ * only the state-specific shadow/hover-lift silently stop applying.
+ *
+ * DASHBOARD-ONLY (cannot be done from Angular, listed here for reference):
+ *   - widget/greeting/popup message language & text, placeholder text
+ *   - in-panel typography, message bubble spacing, RTL text layout
+ *   - launcher icon artwork, in-widget theme color
+ *   - widget position (bottom-left vs bottom-right)
+ * These are all configured in the Respond.io dashboard under
+ * Settings > Channels > Website Chat > Customize.
+ */
+
+iframe[title='Webchat Widget'] {
+  border-radius: 18px;
+  overflow: hidden;
+  transform: scale(0.875) translateY(-6px);
+  transform-origin: bottom right;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+/* Open chat panel: soften and lift it off the page. */
+iframe[title='Webchat Widget'].c8d90 {
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Closed launcher button: subtle hover lift, same feel as the rest of the site's interactive elements. */
+iframe[title='Webchat Widget'].bda45 {
+  cursor: pointer;
+}
+
+iframe[title='Webchat Widget'].bda45:hover {
+  transform: scale(0.92) translateY(-6px);
+}
+
+/* Hand full control back to the widget's own built-in mobile full-screen
+   layout below this breakpoint — it already goes edge-to-edge there, and
+   our scale/translate would pull it away from the viewport edges it's
+   meant to fill, clipping it. */
+@media (max-width: 480px) {
+  iframe[title='Webchat Widget'] {
+    transform: none;
+  }
+
+  iframe[title='Webchat Widget'].bda45:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  iframe[title='Webchat Widget'] {
+    transition: none;
+  }
+}

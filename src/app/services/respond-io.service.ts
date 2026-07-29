@@ -2,12 +2,25 @@ import { Injectable, inject, PLATFORM_ID, DOCUMENT } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 /**
- * Respond.io Website Chat widget id — the `cId` query param on the widget
- * script. Swap this if the widget is ever re-issued from Respond.io.
+ * Respond.io Website Chat widget id(s), keyed by site language code — the
+ * `cId` query param on the widget script. Both languages point at the same
+ * channel today (there's only one Respond.io channel configured). If a
+ * dedicated Arabic-configured channel is created later in the Respond.io
+ * dashboard, drop its cId in under 'ar' and the correct widget will start
+ * loading automatically for Arabic visitors — no other code changes needed.
+ *
+ * Note this only picks the widget language once, at first page load: the
+ * Respond.io widget exposes no supported API to swap languages on an
+ * already-mounted widget (it's a cross-origin iframe with no such method),
+ * so a mid-session language toggle (SPA navigation, no reload) cannot
+ * retroactively change an already-loaded widget's language.
  */
-const RESPOND_IO_WIDGET_ID = '83617e5ee4c18e40dad32c5fc356307';
+const RESPOND_IO_WIDGET_IDS: Record<string, string> = {
+  ar: '83617e5ee4c18e40dad32c5fc356307',
+  en: '83617e5ee4c18e40dad32c5fc356307',
+};
+const RESPOND_IO_DEFAULT_WIDGET_ID = RESPOND_IO_WIDGET_IDS['en'];
 const RESPOND_IO_SCRIPT_ID = 'respondio__widget';
-const RESPOND_IO_SCRIPT_SRC = `https://cdn.respond.io/webchat/widget/widget.js?cId=${RESPOND_IO_WIDGET_ID}`;
 
 /**
  * Loads the Respond.io Website Chat widget script exactly once per
@@ -40,10 +53,22 @@ export class RespondIoService {
 
     const script = this.document.createElement('script');
     script.id = RESPOND_IO_SCRIPT_ID;
-    script.src = RESPOND_IO_SCRIPT_SRC;
+    script.src = `https://cdn.respond.io/webchat/widget/widget.js?cId=${this.resolveWidgetId()}`;
     script.async = true;
     this.document.body.appendChild(script);
 
     this.loaded = true;
+  }
+
+  /**
+   * Reads the language straight off the URL's locale prefix (routes are
+   * always `/:lang/...`) rather than injecting LanguageService: this runs
+   * from an APP_INITIALIZER, which fires before the locale route resolver
+   * has set LanguageService's signal, so that signal isn't trustworthy yet
+   * at this point.
+   */
+  private resolveWidgetId(): string {
+    const lang = this.document.location.pathname.split('/')[1];
+    return RESPOND_IO_WIDGET_IDS[lang] ?? RESPOND_IO_DEFAULT_WIDGET_ID;
   }
 }
