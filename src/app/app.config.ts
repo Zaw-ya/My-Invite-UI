@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGE_CODES } from './i18n/language-registry';
 import { LanguageService } from './i18n/language.service';
 import { FontService } from './i18n/font.service';
+import { RespondIoService } from './services/respond-io.service';
 import { acceptLanguageInterceptor } from './i18n/accept-language.interceptor';
 import {
   LucideAngularModule,
@@ -53,6 +54,9 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       inject(LanguageService);
       inject(FontService);
+      // No-ops on the server (RespondIoService guards on isPlatformBrowser);
+      // injects the chat widget script once, on first browser bootstrap.
+      inject(RespondIoService).loadWidget();
     }),
     importProvidersFrom(LucideAngularModule.pick({
       // existing
