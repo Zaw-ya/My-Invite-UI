@@ -220,8 +220,14 @@
   transform: translateY(-4px);
 }
 
+/* Both FABs are pinned to the physical left in every language (not
+   inset-inline-start/end, which would flip them to the right in RTL) —
+   the Respond.io chat widget's launcher always sits in the bottom-right
+   corner (that side is set in the Respond.io dashboard, not something this
+   app's CSS can read or move), so keeping our own buttons on the left
+   permanently keeps them clear of it in both Arabic and English. */
 .footer-fab-top {
-  inset-inline-start: 20px;
+  left: 20px;
   background: var(--gold);
   color: #0B1320;
   border: none;
@@ -230,7 +236,7 @@
 }
 
 .footer-fab-whatsapp {
-  inset-inline-end: 20px;
+  left: 84px;
   background: #25D366;
   box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
 }
