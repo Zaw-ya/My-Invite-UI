@@ -1,0 +1,56 @@
+/**
+ * Respond.io Website Chat widget — position only.
+ *
+ * The widget always renders in the bottom-RIGHT corner (that side is a
+ * Respond.io dashboard setting — not readable or changeable from CSS/JS).
+ * Requirement: in Arabic, the launcher/panel should sit bottom-LEFT
+ * instead; in English it stays exactly where Respond.io puts it.
+ *
+ * Scoped to `iframe[title="Webchat Widget"]`, the stable attribute
+ * Respond.io's widget.js sets on the single <iframe> it appends to
+ * <body> (identified by inspecting the actual widget.js served for this
+ * site's cId) — that element lives outside Angular's component tree, so
+ * this must be a global stylesheet; a component stylesheet's
+ * ViewEncapsulation would never reach it.
+ *
+ * HOW THE MIRROR WORKS (no guessing the widget's pixel offsets):
+ * The widget sets its own `right` inline with `!important` on every state
+ * change, so we can never unset/override that property directly — instead
+ * we leave it alone and reposition visually with `transform`, which the
+ * widget never touches. `translateX(-100vw + 40px)` moves the box's
+ * current *right* edge to sit 40px from the viewport's *left* edge, then
+ * `translateX(100%)` (percentages resolve against the element's own width)
+ * shifts it left by exactly its own width — landing its *left* edge at the
+ * target inset instead. Two chained translateX() calls compose, so this
+ * works for the launcher and the open panel alike despite their very
+ * different widths, and needs no knowledge of Respond.io's actual
+ * configured widget size or edge margin.
+ *
+ * Applies only under `html[dir="rtl"]`, which LanguageService
+ * (src/app/i18n/language.service.ts) keeps in sync with the active site
+ * language on every navigation — so this reacts immediately to the
+ * language switcher, not just first load.
+ *
+ * DASHBOARD-ONLY, cannot be done from Angular (unchanged from before):
+ * widget/greeting/popup text and language, placeholder text, in-panel
+ * typography/spacing/RTL text layout, launcher icon artwork, theme color.
+ */
+
+html[dir='rtl'] iframe[title='Webchat Widget'] {
+  transform: translateX(calc(-100vw + 40px)) translateX(100%);
+  transition: transform 250ms ease;
+}
+
+/* Below this width the widget switches to its own built-in full-screen
+   mobile layout — leave that untouched rather than fight it. */
+@media (max-width: 480px) {
+  html[dir='rtl'] iframe[title='Webchat Widget'] {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[dir='rtl'] iframe[title='Webchat Widget'] {
+    transition: none;
+  }
+}
