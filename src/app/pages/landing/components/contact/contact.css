@@ -30,11 +30,45 @@
   text-transform: uppercase;
 }
 
+.contact-demo-wrapper {
+  margin-top: -6px;
+  margin-bottom: -4px;
+}
+
+.contact-demo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #D9B679 0%, #B8873B 100%);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(184, 135, 59, 0.2);
+  width: fit-content;
+}
+
+.contact-demo-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 135, 59, 0.35);
+  opacity: 0.95;
+}
+
+.contact-demo-sparkle {
+  width: 15px;
+  height: 15px;
+  color: #fff;
+}
+
 .contact-title {
   font-weight: 700;
   font-size: 36px;
   color: #201F2E;
   margin: 0;
+  line-height: 1.25;
 }
 
 .contact-body {

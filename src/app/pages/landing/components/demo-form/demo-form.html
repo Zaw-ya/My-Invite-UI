@@ -1,18 +1,10 @@
 <section id="demo" class="demo-section">
 
-  <!-- Geometric corner frames -->
-  <div class="demo-geo demo-geo-br" aria-hidden="true">
-    <div class="demo-geo-inner-1"></div>
-    <div class="demo-geo-inner-2"></div>
-  </div>
-
   <div class="container mx-auto px-5 relative z-10">
 
     <!-- ===== SECTION HEADING ===== -->
     <div class="demo-heading-wrap">
-      <lucide-icon name="sparkles" class="demo-heading-icon"></lucide-icon>
       <h2 class="demo-heading font-display">{{ 'demoForm.heading' | transloco }}</h2>
-      <lucide-icon name="sparkles" class="demo-heading-icon"></lucide-icon>
     </div>
 
     <!-- ===== TWO-COLUMN CARD ===== -->
@@ -45,7 +37,6 @@
                 name="name"
                 class="demo-input"
                 [placeholder]="'demoForm.namePlaceholder' | transloco"
-                required
               >
             </div>
 
@@ -104,6 +95,10 @@
                 {{ 'demoForm.submitBtn' | transloco }}
               }
             </button>
+
+            <p class="demo-consent-note" style="margin-top: 12px; font-size: 11px; color: rgba(27, 31, 51, 0.5); text-align: center; line-height: 1.5;">
+              {{ 'demoForm.consentNote' | transloco }}
+            </p>
 
           </form>
         }

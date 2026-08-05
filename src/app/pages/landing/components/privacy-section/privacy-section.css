@@ -12,7 +12,8 @@
 }
 
 .privacy-badge-icon {
-  margin-bottom: 18px;
+  display: block;
+  margin: 0 auto 18px;
 }
 
 .privacy-title {

@@ -4,6 +4,15 @@
     <!-- Info column -->
     <div class="contact-info-col">
       <span class="contact-kicker">{{ 'contact.kickerPlain' | transloco }}</span>
+
+      <!-- Demo Request CTA -->
+      <div class="contact-demo-wrapper">
+        <a href="#demo" class="contact-demo-link" (click)="scrollService.scrollTo($event, 'demo')">
+          <lucide-icon name="sparkles" class="contact-demo-sparkle"></lucide-icon>
+          {{ 'contact.demoCta' | transloco }}
+        </a>
+      </div>
+
       <h2 class="contact-title font-display">{{ 'contact.titlePlain' | transloco }}</h2>
       <p class="contact-body">{{ 'contact.intro' | transloco }}</p>
 

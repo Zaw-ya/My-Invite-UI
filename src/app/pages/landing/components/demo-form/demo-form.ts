@@ -58,8 +58,8 @@ export class DemoFormComponent {
 
   sendOtp() {
     this.errorMsg.set('');
-    if (!this.name.trim() || !this.phoneLocal.trim()) {
-      this.errorMsg.set(this.transloco.translate('demoForm.errors.nameAndPhoneRequired'));
+    if (!this.phoneLocal.trim()) {
+      this.errorMsg.set(this.transloco.translate('demoForm.errors.phoneRequired'));
       return;
     }
 

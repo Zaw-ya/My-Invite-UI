@@ -47,7 +47,7 @@
     "kicker": "RIYADH • SAUDI ARABIA",
     "heading": "<span>Digital invitation</span> cards for every occasion",
     "title": "Let Special.. Speak For Your Occasion",
-    "subtitle": "An innovative invitation experience with Special Cards — a complete digital guest management system that blends technology with luxury.",
+    "subtitle": "Your invitation is a unique design, and your guests can follow easily — Special Cards brings technology and taste together in one place.",
     "cta1": "Order Your Invite",
     "cta2": "View Designs",
     "mockPlaceholder": "Drop a card design shot here",
@@ -61,36 +61,37 @@
     "kicker": "Who We Are",
     "title": "A Saudi brand specialized in digital luxury",
     "card0": {
-      "title": "A Specialized Saudi Brand",
-      "body": "Special Cards is a Saudi brand specialized in digital invitations and guest management, blending technology with luxury."
+      "title": "Our Vision",
+      "body": "To be the first choice in Saudi Arabia for anyone seeking a digital invitation worthy of their occasion and a hosting experience that guests remember."
     },
     "card1": {
-      "title": "Our Goal",
-      "body": "We turn your invitation into a work of art that reaches your guests with full elegance and pride."
+      "title": "Our Mission",
+      "body": "We offer a complete system from design to welcoming guests, combining technology and luxury, saving you the hassle of organizing."
     },
     "card2": {
-      "title": "Our Focus",
-      "body": "Riyadh is our home ground — we know every hall and detail, guaranteeing professional on-site coverage."
+      "title": "Our Goal",
+      "body": "We aim to turn your invitation into a work of art that reaches your guests with elegance, making you proud from the first moment."
     }
   },
   "platform": {
-    "kicker": "Platform Structure",
-    "title": "Every detail of your event, in one place",
+    "kicker": "We serve every occasion",
+    "title": "Whatever your occasion... it deserves an invitation worthy of it",
+    "description": "From wedding parties to corporate conferences, we design, send, and manage attendance with the same professionalism.",
     "item0": {
-      "title": "Home",
-      "body": "A professional interface reflecting brand luxury and showcasing key features and services."
+      "title": "Wedding Parties",
+      "body": "An invitation worthy of the night of a lifetime, with a design reflecting your taste and organization that gives you peace of mind."
     },
     "item1": {
-      "title": "Store",
-      "body": "A full showcase of all invitation designs (weddings, graduations, corporate) with easy ordering."
+      "title": "Banquet & Family Events",
+      "body": "No matter the guest count, the invitation reaches them organized and personalized by name."
     },
     "item2": {
-      "title": "Pricing",
-      "body": "Clear packages split by guest count and the features each occasion needs."
+      "title": "Companies & Organizations",
+      "body": "Official invitations matching your corporate identity, with precise attendance reports that simplify organization."
     },
     "item3": {
-      "title": "App",
-      "body": "A platform for organizers to track attendance, scan barcodes, and issue live reports."
+      "title": "Graduation & University Events",
+      "body": "A moment to celebrate, with organized entry via barcode no matter how large the crowd."
     }
   },
   "why": {
@@ -101,57 +102,70 @@
     },
     "item1": {
       "title": "Guaranteed Delivery",
-      "body": "We use official, verified WhatsApp servers ensuring every guest receives their named message, unblocked."
+      "body": "Official, verified WhatsApp servers ensure every guest receives their named message, unblocked."
     },
     "item2": {
       "title": "Precision & Order",
-      "body": "A unique barcode per guest ends reception congestion, ensuring smooth, organized entry."
+      "body": "A unique barcode per guest ensures smooth, fast entrance without crowding."
+    },
+    "item3": {
+      "title": "Early Reminder",
+      "body": "Automated reminders sent to guests 2 days before the event for final RSVP confirmation."
+    },
+    "item4": {
+      "title": "Speed & Response",
+      "body": "Because we value your choice, we provide what you aspire to with speed and flexibility."
+    },
+    "item5": {
+      "title": "Field Coverage",
+      "body": "Riyadh is our stage, and our hosts are with you at the hall to manage reception professionally."
     }
   },
   "smart": {
-    "kicker": "- Smart System -",
-    "title": "Smart Sending & RSVP System",
+    "kicker": "Guest Experience",
+    "title": "Your guests know everything... without you calling anyone",
     "item0": {
-      "title": "Personalized Messages",
-      "body": "Every guest receives their message by name, giving an impression of luxury and personal care."
+      "title": "Named Invitation",
+      "body": "Each guest receives the invite in their name, offering a sense of luxury and special care."
     },
     "item1": {
-      "title": "Geo-Location Link",
-      "body": "A direct Google Maps link to the venue so guests never lose their way."
+      "title": "Knows the Way",
+      "body": "A direct link to the venue map is sent to every guest so they never lose their way."
     },
     "item2": {
-      "title": "Automatic RSVP",
-      "body": "Guests confirm or decline in one tap, with results appearing instantly on your dashboard."
+      "title": "One-Tap RSVP",
+      "body": "Guests can confirm or decline in one click, and results are shown to you instantly."
     },
     "item3": {
-      "title": "Live Tracking",
-      "body": "An integrated system that spares you manual follow-up and guarantees data accuracy."
+      "title": "Easy Entrance",
+      "body": "A custom barcode is scanned at the gate, letting the guest and their companions in without delays."
     }
   },
   "reception": {
-    "kicker": "SPECIAL CARDS / RECEPTION MANAGEMENT SYSTEM v1.0",
-    "title": "Professional Reception, Powered by Technology",
+    "kicker": "SPECIAL CARDS / RECEPTION MANAGEMENT SYSTEM",
+    "title": "On Your Event Day... Reception is Under Control",
     "item0": {
       "title": "Barcode Scanning",
-      "body": "Verify guest identity in under 0.5 seconds. An encrypted system prevents duplicate entry or tampering."
+      "body": "Verify guest identity in under half a second with an encrypted system preventing duplication or tampering."
     },
     "item1": {
-      "title": "On-Site Experience",
-      "body": "A host interface at the door — one scan reveals guest name and table number instantly."
+      "title": "Our Hosts at the Gate",
+      "body": "A welcoming front at the gate — scanning immediately displays the guest's name and table number."
     },
     "item2": {
-      "title": "100% Entry Accuracy",
-      "body": "A smooth flow ensures fast, uncrowded entry — an impression of luxury from the first moment."
+      "title": "Instant Post-Event Report",
+      "body": "Know exactly who attended and who apologized, with names and contact numbers ready right after the event."
     }
   },
   "app": {
     "kicker": "SPECIAL CARDS APP",
-    "title": "The Organizer App, In Your Hands",
-    "body": "A dedicated Android & iOS app that simplifies managing your event: issuing high-quality invitation cards, an encrypted entry barcode, and a direct link to the venue location.",
+    "title": "We do the work... and you track from your mobile",
+    "body": "We don't ask you to design, upload, or adjust anything — we receive your event details and handle the rest, while the app gives you live tracking.",
     "mockPlaceholder": "Drop an app screenshot here",
-    "f0": "High quality 4K invitation card",
-    "f1": "Encrypted, secure entry barcode (QR)",
-    "f2": "Direct link to venue geo-location",
+    "f0": "See who confirmed and who declined moment by moment",
+    "f1": "All your event data is right in front of you anytime",
+    "f2": "Know who entered the hall the moment their barcode is scanned",
+    "f3": "A comprehensive final report after the event",
     "appStore": "App Store",
     "googlePlay": "Google Play"
   },
@@ -172,22 +186,18 @@
   "riyadh": {
     "kicker": "RIYADH FOCUS",
     "title": "Why Riyadh, Specifically?",
-    "body": "We believe closeness to the client is the foundation of success, so we dedicated our team to the capital of luxury.",
+    "body": "We chose to dedicate ourselves to a single city rather than spreading our efforts thin — so every event in Riyadh gets full focus.",
     "item0": {
-      "title": "Closest to Riyadh Venues",
-      "body": "Deep knowledge of Riyadh halls and details makes us the first choice for the capital's events."
+      "title": "Focus, Not Distraction",
+      "body": "We don't split our attention across cities, so every event gets our full time and follow-up."
     },
     "item1": {
-      "title": "Direct Field Support",
-      "body": "Our Riyadh team is ready on-site to ensure a professional reception process."
+      "title": "Faster Response",
+      "body": "Based in the heart of Riyadh, any modification or urgent request is handled immediately."
     },
     "item2": {
-      "title": "Fast Response",
-      "body": "Based in the heart of Riyadh, our service and communication are faster for any urgent changes."
-    },
-    "item3": {
-      "title": "Local Expertise",
-      "body": "We know Riyadh's hosting protocol and every venue in the region and its details."
+      "title": "We Know Its Venues",
+      "body": "Our knowledge of Riyadh halls and their details allows us to prepare your event realistically."
     }
   },
   "tech": {
@@ -212,14 +222,18 @@
   },
   "privacy": {
     "title": "Your Security & Privacy, Our Priority",
-    "body": "We understand our community's privacy and the sensitivity of guest numbers, so we built a system that gives you complete peace of mind.",
+    "body": "Your event's privacy and guest numbers are a trust we hold, a principle we never compromise on.",
     "item0": {
-      "title": "Data Encryption",
-      "body": "All lists and numbers are encrypted — no one can access them in any way. Your guests' data stays fully secure."
+      "title": "Protected Data",
+      "body": "Your guest lists and numbers are secured with the latest encryption on safe servers."
     },
     "item1": {
-      "title": "Automatic Deletion",
-      "body": "Guest data is automatically and permanently deleted from our servers after the event, guaranteeing 100% privacy."
+      "title": "For Your Event Only",
+      "body": "Your guest data belongs to you, used solely for your event and kept within its scope."
+    },
+    "item2": {
+      "title": "We Erase the Unneeded",
+      "body": "Once your event is over, we delete the guest contact files — keeping nothing after its purpose is met."
     }
   },
   "finalCta": {
@@ -286,18 +300,18 @@
     "step5Body": "Before and during your occasion, follow your guests' attendance and your invitation's results moment by moment through your own dashboard, with our team on hand to support you with any update you need for your occasion to go smoothly."
   },
   "demoForm": {
-    "heading": "Try Our Service Free Now",
-    "infoTitle": "Don't wait to hear about us,<br>be the first to experience it.",
-    "infoBody": "We know you're not just looking for a way to send your invitations — you're looking for a presence worthy of you and your occasion. We're here to end your indecision between repetitive templates and ordinary options, giving you a smart system that crafts an impressive presence and gives your guests an exceptional visual experience from the very first moment.",
+    "heading": "Try your invitation before deciding",
+    "infoTitle": "See for yourself how your invitation is delivered on WhatsApp in your name, with the same quality your guests see.",
+    "infoBody": "One minute, and you will receive a free trial invitation.",
     "infoCta": "And now you can try all of this before making any decision!",
-    "nameLabel": "Name",
-    "namePlaceholder": "John Smith",
+    "nameLabel": "Name (Optional)",
+    "namePlaceholder": "e.g., John Smith",
     "phoneLabel": "WhatsApp Number",
-    "phonePlaceholder": "5xxxxxxxx",
+    "phonePlaceholder": "Enter number without country code",
     "phoneHint": "Enter the number without the country code and without +",
     "cardSelectedNote": "✓ Design selected — it will be sent to you on WhatsApp",
-    "cardNotSelectedNote": "* You can choose a specific card design from the section above",
-    "submitBtn": "Send Verification Code",
+    "cardNotSelectedNote": "Note: You can choose a specific design from the designs above",
+    "submitBtn": "Send me a trial invitation",
     "submitBtnLoading": "Sending...",
     "otpSentTitle": "Verification Code Sent",
     "otpSentSub": "Check WhatsApp at:",
@@ -308,8 +322,10 @@
     "successTitle": "Your Trial Invitation Is On Its Way",
     "successBody": "Open WhatsApp now to see your invitation with the same design and quality your guests will see.",
     "successCta": "Choose Your Package Now",
+    "consentNote": "By submitting you agree to receive one WhatsApp message from Special Cards.",
     "errors": {
       "nameAndPhoneRequired": "Name and WhatsApp number are required",
+      "phoneRequired": "WhatsApp number is required",
       "genericError": "An error occurred, please try again",
       "allFieldsRequired": "Please fill in all required fields.",
       "otpRequired": "Enter the verification code",
@@ -347,6 +363,7 @@
     "kickerPlain": "Get In Touch",
     "titlePlain": "Let's Plan Your Event",
     "intro": "Fill in the form and our Riyadh team will reach out within hours to arrange every detail of your event.",
+    "demoCta": "Try the service for free",
     "locationLabel": "Location",
     "phoneLabel": "Phone",
     "emailLabel": "Email",

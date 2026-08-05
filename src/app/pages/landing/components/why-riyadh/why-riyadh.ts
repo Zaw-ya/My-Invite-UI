@@ -9,5 +9,5 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './why-riyadh.css'
 })
 export class WhyRiyadhComponent {
-  readonly items = [0, 1, 2, 3];
+  readonly items = [0, 1, 2];
 }

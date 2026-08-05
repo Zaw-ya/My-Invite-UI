@@ -7,6 +7,7 @@ import { TranslocoService, TranslocoModule } from '@jsverse/transloco';
 import { environment } from '../../../../../environments/environment';
 import { ContentService } from '../../../../services/content.service';
 import { CountriesService, DisplayCountry } from '../../../../shared/countries.service';
+import { ScrollService } from '../../../../services/scroll.service';
 
 @Component({
   selector: 'app-contact',
@@ -18,6 +19,7 @@ import { CountriesService, DisplayCountry } from '../../../../shared/countries.s
 export class ContactComponent {
   contentService = inject(ContentService);
   settings = this.contentService.siteSettings;
+  readonly scrollService = inject(ScrollService);
   private http = inject(HttpClient);
   private countriesService = inject(CountriesService);
   private transloco = inject(TranslocoService);
