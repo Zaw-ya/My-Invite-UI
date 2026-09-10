@@ -56,8 +56,9 @@
   "hero": {
     "kicker": "RIYADH • SAUDI ARABIA",
     "heading": "<span>Digital invitation</span> cards for every occasion",
-    "title": "How many times did you need to know who confirmed, and who still hasn't replied?",
-    "subtitle": "Your digital invitation with Special Cards isn't just an elegant design — it's a complete experience for sending invites, tracking RSVPs, and managing your guests, all from one place.",
+    "title": "Your Event Starts With Your Invitation",
+    "subtitle": "A luxurious invitation, easier RSVP confirmation, and complete guest management for your event",
+    "description": "Special Cards isn't just a digital invitation... it's a complete platform for managing your invitation, guests, and event — from designing the invitation to tracking attendance.",
     "cta1": "Order Your Invite",
     "cta2": "View Designs",
     "mockPlaceholder": "Drop a card design shot here",
@@ -267,8 +268,8 @@
     "cta": "Contact Us Now"
   },
   "portfolioSlider": {
-    "title": "Designs By Occasion",
-    "subtitle": "An exclusive, ever-refreshed library to suit all your occasions",
+    "title": "Elegant Invitations... One Click Away",
+    "subtitle": "Pick the design that fits your event, and add your invitation details with ease.",
     "newBadge": "New",
     "quickPreview": "Quick Preview",
     "emptyState": "No designs match your selected filters.",
@@ -301,8 +302,8 @@
   },
   "howItWorks": {
     "kicker": "Your Journey With Us",
-    "title": "How <span>Your Invitation Begins</span>",
-    "titlePlain": "How The System Works",
+    "title": "From Design To Delivery... All In Your Hands",
+    "titlePlain": "From Design To Delivery... All In Your Hands",
     "subtitle": "From the first conversation to the final moment of your occasion — a clear journey, no surprises",
     "step0": {
       "title": "Design Your Invite",
