@@ -1,9 +1,11 @@
-import { Injectable, signal, inject } from '@angular/core';
+import { Injectable, signal, inject, computed } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Service, Package, InvitationCard, Supervisor, Testimonial, BlogPost, EventType, SiteSettings } from '../models/content.interface';
 import { DesignOrderService } from './design-order.service';
+import { LanguageService } from '../i18n/language.service';
+import { containsArabic } from '../i18n/backend-content';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,16 @@ export class ContentService {
 
   // Arabic Blog Posts
   blogPosts = signal<BlogPost[]>([]);
+
+  // Posts to list for the active language. The backend has no translated
+  // posts yet, so non-Arabic pages hide Arabic-only articles instead of
+  // showing them untranslated.
+  private languageService = inject(LanguageService);
+  localizedBlogPosts = computed(() => {
+    const posts = this.blogPosts();
+    if (this.languageService.activeLanguage().code === 'ar') return posts;
+    return posts.filter(p => !containsArabic(p.title));
+  });
 
   // Arabic Testimonials
   testimonials = signal<Testimonial[]>([]);

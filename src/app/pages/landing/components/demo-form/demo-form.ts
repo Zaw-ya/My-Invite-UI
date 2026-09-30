@@ -7,13 +7,14 @@ import { CountriesService, DisplayCountry } from '../../../../shared/countries.s
 import { ScrollService } from '../../../../services/scroll.service';
 import { ContentService } from '../../../../services/content.service';
 import { MetaTrackingService } from '../../../../services/meta-tracking.service';
+import { LocalizeContentPipe } from '../../../../i18n/backend-content';
 
 type Step = 'form' | 'otp' | 'success';
 
 @Component({
   selector: 'app-demo-form',
   standalone: true,
-  imports: [FormsModule, LucideAngularModule, TranslocoModule],
+  imports: [FormsModule, LucideAngularModule, TranslocoModule, LocalizeContentPipe],
   templateUrl: './demo-form.html',
   styleUrl: './demo-form.css'
 })

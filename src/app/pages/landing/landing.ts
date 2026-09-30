@@ -64,7 +64,7 @@ export class LandingPageComponent implements OnInit {
   carouselCards = this.contentService.carouselCards;
   supervisors = this.contentService.supervisors;
   eventTypes = this.contentService.eventTypes;
-  blogPosts = this.contentService.blogPosts;
+  blogPosts = this.contentService.localizedBlogPosts;
 
   // Backend-provided category names only — the "All" filter option is
   // UI-owned and handled inside PortfolioSliderComponent via a stable

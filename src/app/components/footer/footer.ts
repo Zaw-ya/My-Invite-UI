@@ -7,11 +7,12 @@ import { ContentService } from '../../services/content.service';
 import { LanguageService } from '../../i18n/language.service';
 import { ScrollService } from '../../services/scroll.service';
 import { BrandLogoComponent } from '../brand-logo/brand-logo';
+import { LocalizeContentPipe } from '../../i18n/backend-content';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, RouterModule, LucideAngularModule, TranslocoModule, BrandLogoComponent],
+  imports: [CommonModule, RouterModule, LucideAngularModule, TranslocoModule, BrandLogoComponent, LocalizeContentPipe],
   templateUrl: './footer.html',
   styleUrl: './footer.css'
 })

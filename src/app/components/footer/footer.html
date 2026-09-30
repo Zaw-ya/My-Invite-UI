@@ -23,7 +23,7 @@
       <div class="footer-col">
         <span class="footer-col-title">{{ 'footer.categoriesTitle' | transloco }}</span>
         @for (cat of categories(); track cat) {
-          <span class="footer-static-item">{{ cat }}</span>
+          <span class="footer-static-item">{{ cat | localizeContent }}</span>
         }
       </div>
 

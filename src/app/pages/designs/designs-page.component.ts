@@ -8,11 +8,12 @@ import { DesignOrderService } from '../../services/design-order.service';
 import { SeoService } from '../../services/seo.service';
 import { OrderModalComponent } from '../../components/order-modal/order-modal.component';
 import { InvitationCard } from '../../models/content.interface';
+import { LocalizeContentPipe } from '../../i18n/backend-content';
 
 @Component({
   selector: 'app-designs-page',
   standalone: true,
-  imports: [LucideAngularModule, TranslocoModule, NavbarComponent, FooterComponent, OrderModalComponent],
+  imports: [LucideAngularModule, TranslocoModule, NavbarComponent, FooterComponent, OrderModalComponent, LocalizeContentPipe],
   templateUrl: './designs-page.component.html',
   styleUrl: './designs-page.component.css'
 })

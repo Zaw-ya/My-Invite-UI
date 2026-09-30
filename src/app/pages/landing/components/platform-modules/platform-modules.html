@@ -7,54 +7,14 @@
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-5">
-      <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
-        <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
-          💍
+      @for (category of categories; track category.key) {
+        <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
+          <div class="platform-card-icon w-14 h-14 rounded-full bg-amber-50 flex items-center justify-center">
+            <lucide-icon [name]="category.icon" [size]="26" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <h3 class="platform-card-title text-base font-bold text-slate-900">{{ category.key | transloco }}</h3>
         </div>
-        <h3 class="platform-card-title text-base font-bold text-slate-900">{{ 'platform.categories.c0' | transloco }}</h3>
-      </div>
-
-      <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
-        <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
-          💎
-        </div>
-        <h3 class="platform-card-title text-base font-bold text-slate-900">{{ 'platform.categories.c1' | transloco }}</h3>
-      </div>
-
-      <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
-        <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
-          🎓
-        </div>
-        <h3 class="platform-card-title text-base font-bold text-slate-900">{{ 'platform.categories.c2' | transloco }}</h3>
-      </div>
-
-      <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
-        <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
-          👶
-        </div>
-        <h3 class="platform-card-title text-base font-bold text-slate-900">{{ 'platform.categories.c3' | transloco }}</h3>
-      </div>
-
-      <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
-        <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
-          🎂
-        </div>
-        <h3 class="platform-card-title text-base font-bold text-slate-900">{{ 'platform.categories.c4' | transloco }}</h3>
-      </div>
-
-      <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
-        <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
-          🏢
-        </div>
-        <h3 class="platform-card-title text-base font-bold text-slate-900">{{ 'platform.categories.c5' | transloco }}</h3>
-      </div>
-
-      <div class="platform-card bg-white border border-slate-200/80 rounded-2xl p-6 text-center flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer">
-        <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
-          🎁
-        </div>
-        <h3 class="platform-card-title text-base font-bold text-slate-900">{{ 'platform.categories.c6' | transloco }}</h3>
-      </div>
+      }
     </div>
   </div>
 </section>

@@ -5,6 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { InvitationCard } from '../../../../models/content.interface';
 import { DesignOrderService } from '../../../../services/design-order.service';
 import { LanguageService } from '../../../../i18n/language.service';
+import { LocalizeContentPipe } from '../../../../i18n/backend-content';
 
 // Reference's card is a fixed 260px + 22px gap, not a responsive
 // "N cards visible" width — matched here rather than kept dynamic.
@@ -14,7 +15,7 @@ const CARD_GAP = 22;
 @Component({
   selector: 'app-portfolio-slider',
   standalone: true,
-  imports: [RouterModule, LucideAngularModule, TranslocoModule],
+  imports: [RouterModule, LucideAngularModule, TranslocoModule, LocalizeContentPipe],
   templateUrl: './portfolio-slider.html',
   styleUrl: './portfolio-slider.css'
 })

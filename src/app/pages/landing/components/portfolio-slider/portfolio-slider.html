@@ -11,7 +11,7 @@
     </button>
     @for (cat of categories(); track cat) {
     <button class="filter-pill" [class.active-gold]="activeCategory() === cat" (click)="setCategory(cat)">
-      {{ cat }}
+      {{ cat | localizeContent }}
     </button>
     }
   </div>
@@ -39,11 +39,11 @@
       @for (card of filteredInvitations(); track card.id) {
       <div class="slider-card" (click)="openPreview(card)">
         <div class="card-image-wrapper">
-          <img [src]="card.imageUrl" [alt]="card.title" loading="lazy">
+          <img [src]="card.imageUrl" [alt]="card.title | localizeContent" loading="lazy">
         </div>
-        <div class="card-caption" dir="rtl">
-          <span class="card-title">{{ card.title }}</span>
-          <span class="card-tag">{{ card.category }}</span>
+        <div class="card-caption" dir="auto">
+          <span class="card-title">{{ card.title | localizeContent }}</span>
+          <span class="card-tag">{{ card.category | localizeContent }}</span>
         </div>
       </div>
       }
@@ -89,20 +89,20 @@
         @if (previewCard()!.isNew) {
         <span class="lb-badge-new">{{ 'portfolioSlider.newBadge' | transloco }}</span>
         }
-        <img [src]="previewCard()!.imageUrl" [alt]="previewCard()!.title" class="lightbox-img">
+        <img [src]="previewCard()!.imageUrl" [alt]="previewCard()!.title | localizeContent" class="lightbox-img">
       </div>
 
-      <!-- Backend-provided design details (title/category/gender) stay in
-           their original Arabic, per confirmed decision — only the
-           surrounding labels below are translated UI chrome. -->
-      <div class="lightbox-details" dir="rtl">
-        <span class="lb-category">{{ previewCard()!.category }}</span>
-        <h3 class="lb-title">{{ previewCard()!.title }}</h3>
+      <!-- Backend-provided design details (title/category/gender) are
+           Arabic from the API; localizeContent translates known values
+           for display (filters still compare the raw values). -->
+      <div class="lightbox-details" dir="auto">
+        <span class="lb-category">{{ previewCard()!.category | localizeContent }}</span>
+        <h3 class="lb-title">{{ previewCard()!.title | localizeContent }}</h3>
 
         @if (previewCard()!.gender) {
         <div class="lb-gender" [class.male]="previewCard()!.gender === 'ذكوري'">
           <lucide-icon name="user" class="w-4 h-4"></lucide-icon>
-          {{ previewCard()!.gender }}
+          {{ previewCard()!.gender | localizeContent }}
         </div>
         }
 

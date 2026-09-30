@@ -22,8 +22,10 @@
       <div class="hero-badges-row">
         @for (badge of badges; track badge.key) {
           <span class="hero-badge">
-            <lucide-icon [name]="badge.icon" class="hero-badge-icon"></lucide-icon>
-            {{ badge.key | transloco }}
+            <span class="hero-badge-icon">
+              <lucide-icon [name]="badge.icon" [size]="16" [strokeWidth]="1.8"></lucide-icon>
+            </span>
+            <span class="hero-badge-label">{{ badge.key | transloco }}</span>
           </span>
         }
       </div>
@@ -33,7 +35,7 @@
       <div class="hero-phone">
         <div class="hero-phone-notch"></div>
         @if (mockCard(); as card) {
-          <img [src]="card.imageUrl" [alt]="card.title" class="hero-phone-shot">
+          <img [src]="card.imageUrl" [alt]="card.title | localizeContent" class="hero-phone-shot">
         } @else {
           <div class="hero-phone-placeholder">{{ 'hero.mockPlaceholder' | transloco }}</div>
         }

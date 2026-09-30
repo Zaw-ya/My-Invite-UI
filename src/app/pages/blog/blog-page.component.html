@@ -56,7 +56,7 @@
                  [alt]="filteredPosts()[0].altText || filteredPosts()[0].title"
                  class="featured-img group-hover:scale-105">
             <div class="featured-gradient"></div>
-            <span class="blog-cat-badge" dir="rtl">{{ filteredPosts()[0].category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
+            <span class="blog-cat-badge" dir="auto">{{ filteredPosts()[0].category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
           </div>
           <div class="featured-content">
             <div class="blog-meta-row">
@@ -66,8 +66,8 @@
               <span class="blog-dot">•</span>
               <span class="blog-author">{{ filteredPosts()[0].author || ('blogPostDetail.defaultAuthor' | transloco) }}</span>
             </div>
-            <h2 class="featured-title" dir="rtl">{{ filteredPosts()[0].title }}</h2>
-            <p class="featured-excerpt" dir="rtl">{{ filteredPosts()[0].excerpt }}</p>
+            <h2 class="featured-title" dir="auto">{{ filteredPosts()[0].title }}</h2>
+            <p class="featured-excerpt" dir="auto">{{ filteredPosts()[0].excerpt }}</p>
             <div class="featured-footer">
               @if (filteredPosts()[0].tags) {
                 <div class="tag-list">
@@ -95,7 +95,7 @@
                    [alt]="post.altText || post.title"
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <div class="blog-img-gradient"></div>
-              <span class="blog-cat-badge" dir="rtl">{{ post.category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
+              <span class="blog-cat-badge" dir="auto">{{ post.category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
             </div>
 
             <!-- Content -->
@@ -106,8 +106,8 @@
                 <span class="blog-read-time">{{ 'blogPostDetail.readTimeTemplate' | transloco: { count: post.readMinutes } }}</span>
               </div>
 
-              <h3 class="blog-title" dir="rtl">{{ post.title }}</h3>
-              <p class="blog-excerpt" dir="rtl">{{ post.excerpt }}</p>
+              <h3 class="blog-title" dir="auto">{{ post.title }}</h3>
+              <p class="blog-excerpt" dir="auto">{{ post.excerpt }}</p>
 
               <div class="blog-card-footer">
                 <span class="blog-author-chip">

@@ -4,14 +4,14 @@
     <div class="app-img">
       <div class="app-phone-main">
         @if (mockCard(); as card) {
-          <img [src]="card.imageUrl" [alt]="card.title">
+          <img [src]="card.imageUrl" [alt]="card.title | localizeContent">
         } @else {
           <div class="app-phone-placeholder">{{ 'app.mockPlaceholder' | transloco }}</div>
         }
       </div>
       <div class="app-phone-secondary">
         @if (mockCard(); as card) {
-          <img [src]="card.imageUrl" [alt]="card.title">
+          <img [src]="card.imageUrl" [alt]="card.title | localizeContent">
         } @else {
           <div class="app-phone-placeholder">{{ 'app.mockPlaceholder' | transloco }}</div>
         }

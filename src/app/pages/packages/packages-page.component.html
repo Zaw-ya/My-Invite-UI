@@ -51,9 +51,9 @@
               }
 
               <div class="package-card-header">
-                <h2 class="package-name font-display">{{ plan.name }}</h2>
+                <h2 class="package-name font-display">{{ plan.name | localizeContent }}</h2>
                 @if (plan.description) {
-                  <p class="package-desc">{{ plan.description }}</p>
+                  <p class="package-desc">{{ plan.description | localizeContent }}</p>
                 }
               </div>
 
@@ -109,7 +109,7 @@
                   @for (feat of plan.features; track feat) {
                     <li>
                       <lucide-icon name="check" class="w-4 h-4 check-icon"></lucide-icon>
-                      <span>{{ feat }}</span>
+                      <span>{{ feat | localizeContent }}</span>
                     </li>
                   }
                 </ul>
@@ -119,7 +119,7 @@
               <div class="package-action-footer">
                 <button (click)="orderPackage(plan)" class="package-cta-btn font-display">
                   <span>{{ plan.ctaLabelKey | transloco }}</span>
-                  <lucide-icon name="arrow-left" class="w-4 h-4"></lucide-icon>
+                  <lucide-icon [name]="activeLanguage().direction === 'rtl' ? 'arrow-left' : 'arrow-right'" class="w-4 h-4"></lucide-icon>
                 </button>
               </div>
 

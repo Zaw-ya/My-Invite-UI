@@ -7,6 +7,7 @@ import { ContentService } from '../../../../services/content.service';
 import { ScrollService } from '../../../../services/scroll.service';
 import { LanguageService } from '../../../../i18n/language.service';
 import { DesignOrderService } from '../../../../services/design-order.service';
+import { LocalizeContentPipe } from '../../../../i18n/backend-content';
 
 interface PricingTier {
   count: number;
@@ -26,7 +27,7 @@ interface PlanData {
 @Component({
   selector: 'app-pricing',
   standalone: true,
-  imports: [CommonModule, RouterModule, LucideAngularModule, TranslocoModule],
+  imports: [CommonModule, RouterModule, LucideAngularModule, TranslocoModule, LocalizeContentPipe],
   templateUrl: './pricing.html',
   styleUrl: './pricing.css'
 })
@@ -98,9 +99,6 @@ export class PricingComponent {
 
   orderPlan(plan: PlanData, event?: Event) {
     if (event) event.preventDefault();
-    const tier = this.selectedTierFor(plan);
-    const countLabel = tier.count > 0 ? ` (${tier.count} دعوة - السعر: ${tier.price} ر.س)` : '';
-    const message = `أود طلب باقة "${plan.label}"${countLabel}.`;
-    this.designOrderService.openModalWithMessage(message, 'طلب الباقة');
+    this.designOrderService.openPackageOrder(plan.label, this.selectedTierFor(plan));
   }
 }

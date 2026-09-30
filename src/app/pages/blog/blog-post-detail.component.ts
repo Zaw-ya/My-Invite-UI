@@ -121,7 +121,7 @@ export class BlogPostDetailComponent implements OnInit {
   }
 
   getRelatedPosts() {
-    const allPosts = this.contentService.blogPosts();
+    const allPosts = this.contentService.localizedBlogPosts();
     const current = this.currentPost();
     return allPosts
       .filter(p => p.id !== this.postId() && p.id !== current?.id)

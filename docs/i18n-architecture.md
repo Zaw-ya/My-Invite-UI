@@ -32,7 +32,11 @@ Two consumption patterns exist, used deliberately for different cases:
 - `'key' | transloco` in templates, and `TranslocoService.translate('key')` for synchronous one-off reads (safe only when the language is already guaranteed loaded).
 - `TranslocoService.selectTranslate('key')` (observable) for anything constructed at app/service startup before the translation file is guaranteed loaded (e.g. `SeoService`) — `translate()` there would race the initial HTTP fetch and return the raw key.
 
-Rule of thumb baked into the codebase: **frontend-owned UI chrome is translated; backend-provided dynamic content (blog posts, invitation card titles/categories, supervisor/city names) is not** — it is rendered exactly as received from the API, in its original language, on both `/ar` and `/en`. Filter/comparison logic never uses a translated display string as its key; it uses stable IDs, enums, or `null` sentinels instead (see `PortfolioSliderComponent.activeCategory`).
+Rule of thumb baked into the codebase: **frontend-owned UI chrome is translated through keys; backend-provided dynamic content arrives in Arabic only** (the API ignores `Accept-Language`). Until the backend localizes it, non-Arabic pages handle it in two ways:
+- **Known, fixed values** (event types, package names/descriptions/features, card titles like `تصميم 3`, gender) go through the `localizeContent` pipe (`src/app/i18n/backend-content.ts`), which looks the exact Arabic text up in the active language's `backendContent` map (plus regex `backendContentPatterns`) and falls back to the original text. When the backend adds or renames one of these values, add its English entry to `en.json → backendContent`.
+- **Free-form content** (blog posts, testimonials) is hidden on non-Arabic pages when it contains Arabic script (`ContentService.localizedBlogPosts`, `TestimonialsComponent`) instead of being shown untranslated.
+
+Filter/comparison logic never uses a translated display string as its key; it keeps the raw backend value (or stable IDs, enums, `null` sentinels — see `PortfolioSliderComponent.activeCategory`) and only the displayed text is localized.
 
 ## 4. FontService
 
@@ -60,6 +64,5 @@ On first load with no `/:lang` in the URL, the server reads the `Accept-Language
 
 ## 7. Known gaps (tracked, not fixed in this pass)
 
-- **`/designs` page** (`designs-page.component.*`) was never migrated: it is fully hardcoded Arabic UI chrome and uses Arabic display strings (`'كل التصميمات'`, `'تصميمات ذكورية'`, `'تصميمات أنثوية'`) as filter/comparison keys, unlike every other filtered list in the app. A `designsPage` translation namespace already exists in `ar.json`/`en.json` (unused). Left untouched at the user's explicit direction — needs a dedicated pass to translate the template and refactor `activeCategory`/`activeGender` to stable IDs, matching the pattern already used in `PortfolioSliderComponent`.
 - Read-time and OTP-timer strings are localized via single Transloco calls with `{{count}}` params, but true grammatical pluralization (Arabic singular/dual/plural forms, English "1 minute" vs "2 minutes") is not implemented — would require the `transloco-messageformat` plugin.
 - Pre-existing accessibility findings from Lighthouse (`color-contrast`, `heading-order`, `link-name`) predate the i18n migration and are unrelated to it; not addressed here.

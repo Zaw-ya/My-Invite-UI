@@ -27,7 +27,7 @@
             class="tag-pill"
             [class.active]="activeCategory() === cat"
             (click)="activeCategory.set(cat)"
-          >{{ cat }}</button>
+          >{{ cat | localizeContent }}</button>
         }
       </div>
     </div>
@@ -78,10 +78,10 @@
               }
               @if (card.gender) {
                 <span class="design-badge-gender" [class.male]="card.gender === 'ذكوري'">
-                  {{ card.gender === 'ذكوري' ? '♂' : '♀' }} {{ card.gender }}
+                  {{ card.gender === 'ذكوري' ? '♂' : '♀' }} {{ card.gender | localizeContent }}
                 </span>
               }
-              <img [src]="card.imageUrl" [alt]="card.title"
+              <img [src]="card.imageUrl" [alt]="card.title | localizeContent"
                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                    loading="lazy">
               <div class="design-overlay">
@@ -94,8 +94,8 @@
 
             <!-- Info -->
             <div class="design-card-info">
-              <span class="design-card-category">{{ card.category }}</span>
-              <h4 class="design-card-title">{{ card.title }}</h4>
+              <span class="design-card-category">{{ card.category | localizeContent }}</span>
+              <h4 class="design-card-title">{{ card.title | localizeContent }}</h4>
               <div class="design-card-footer">
                 <span class="design-card-price">#{{ card.id }}</span>
                 <button class="design-card-cta" (click)="$event.stopPropagation(); openPreview(card)">
@@ -133,23 +133,23 @@
         <lucide-icon name="x" class="w-5 h-5"></lucide-icon>
       </button>
 
-      <div class="lightbox-inner" dir="rtl">
+      <div class="lightbox-inner" dir="auto">
 
         <div class="lightbox-img-wrap">
           @if (previewCard()!.isNew) {
             <span class="lb-badge-new">{{ 'designsPage.newBadge' | transloco }}</span>
           }
-          <img [src]="previewCard()!.imageUrl" [alt]="previewCard()!.title" class="lightbox-img">
+          <img [src]="previewCard()!.imageUrl" [alt]="previewCard()!.title | localizeContent" class="lightbox-img">
         </div>
 
         <div class="lightbox-details">
-          <span class="lb-category">{{ previewCard()!.category }}</span>
-          <h3 class="lb-title">{{ previewCard()!.title }}</h3>
+          <span class="lb-category">{{ previewCard()!.category | localizeContent }}</span>
+          <h3 class="lb-title">{{ previewCard()!.title | localizeContent }}</h3>
 
           @if (previewCard()!.gender) {
             <div class="lb-gender" [class.male]="previewCard()!.gender === 'ذكوري'">
               <lucide-icon name="user" class="w-4 h-4"></lucide-icon>
-              {{ previewCard()!.gender }}
+              {{ previewCard()!.gender | localizeContent }}
             </div>
           }
 

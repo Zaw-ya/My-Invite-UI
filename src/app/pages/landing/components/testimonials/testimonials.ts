@@ -1,6 +1,18 @@
 import { Component, inject, computed } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ContentService } from '../../../../services/content.service';
+import { LanguageService } from '../../../../i18n/language.service';
+import { containsArabic } from '../../../../i18n/backend-content';
+
+interface TestimonialView {
+  id: string;
+  name: string;
+  role: string;
+  content: string;
+  rating: number;
+  /** When true, name/role/content are translation keys rather than text. */
+  translate?: boolean;
+}
 
 @Component({
   selector: 'app-testimonials',
@@ -11,34 +23,25 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class TestimonialsComponent {
   private readonly contentService = inject(ContentService);
-  
-  readonly defaultTestimonials = [
-    {
-      id: '1',
-      name: 'سارة الشهري',
-      role: 'الدمام',
-      content: 'خدمة فخمة واهتمام بالتفاصيل. التجربة كانت أسهل وأجمل مما توقعت.',
-      rating: 5
-    },
-    {
-      id: '2',
-      name: 'نورة المطيري',
-      role: 'جدة',
-      content: 'سرعة في التنفيذ ودقة في التفاصيل، وكل شيء كان مرتب وواضح.',
-      rating: 5
-    },
-    {
-      id: '3',
-      name: 'أمل العتيبي',
-      role: 'الرياض',
-      content: 'التصميم كان أكثر من رائع، وظهور الباركود ريّحنا كثير عند القاعة.',
-      rating: 5
-    }
-  ];
+  private readonly languageService = inject(LanguageService);
 
-  readonly testimonials = computed(() => {
-    const list = this.contentService.testimonials();
-    return list && list.length > 0 ? list : this.defaultTestimonials;
+  readonly defaultTestimonials: TestimonialView[] = [0, 1, 2].map(i => ({
+    id: `default-${i}`,
+    name: `testimonialsSection.defaults.t${i}.name`,
+    role: `testimonialsSection.defaults.t${i}.city`,
+    content: `testimonialsSection.defaults.t${i}.content`,
+    rating: 5,
+    translate: true,
+  }));
+
+  readonly testimonials = computed<TestimonialView[]>(() => {
+    let list: TestimonialView[] = this.contentService.testimonials() ?? [];
+    // Backend reviews are Arabic-only today — keep them off other
+    // languages' pages rather than mixing Arabic into the English site.
+    if (this.languageService.activeLanguage().code !== 'ar') {
+      list = list.filter(t => !containsArabic(t.content));
+    }
+    return list.length > 0 ? list : this.defaultTestimonials;
   });
 
   readonly stars = [0, 1, 2, 3, 4];

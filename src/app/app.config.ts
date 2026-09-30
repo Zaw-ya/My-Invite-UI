@@ -23,7 +23,7 @@ import {
   CheckCheck, HeartHandshake, Copy,
   CircleCheck, CircleX,
   QrCode, Bell, BarChart3, UserPlus, ScanLine, ShieldCheck, Gift, Quote, Building2, LayoutDashboard,
-  Lightbulb, UserCheck
+  Lightbulb, UserCheck, Gem, Baby, Cake
 } from 'lucide-angular';
 
 import { routes } from './app.routes';
@@ -61,7 +61,7 @@ export const appConfig: ApplicationConfig = {
       CheckCheck, HeartHandshake, Copy,
       CircleCheck, CircleX,
       QrCode, Bell, BarChart3, UserPlus, ScanLine, ShieldCheck, Gift, Quote, Building2, LayoutDashboard,
-      Lightbulb, UserCheck
+      Lightbulb, UserCheck, Gem, Baby, Cake
     }))
   ]
 };

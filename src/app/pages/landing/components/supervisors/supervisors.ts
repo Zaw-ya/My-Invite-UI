@@ -43,23 +43,19 @@ export class SupervisorsComponent {
     return COUNTRY_REGISTRY.find(c => c.nameEn.toLowerCase() === name.trim().toLowerCase());
   }
 
-  // Map API cities to display groups. The loading-time placeholder below
-  // mimics backend country/city data shape-for-shape, so it deliberately
-  // stays Arabic like the real data would — only the "coming soon" filler
-  // text for a country with no cities yet is frontend-owned UI copy.
+  // Map API cities to display groups. Until the API responds, a
+  // translated placeholder (supervisors.coverage.*) is shown instead.
   dynamicCities = computed(() => {
     const countries = this.contentService.countries();
     const allCities = this.contentService.cities();
     const isAr = this.languageService.activeLanguage().code === 'ar';
 
     if (countries.length === 0) {
-      return [
-        { country: 'السعودية', cities: 'الرياض - مكة - المدينة - جدة - القصيم - الدمام - الخبر - الظهران - الأحساء - حائل.', flagUrl: 'https://flagcdn.com/w320/sa.png' },
-        { country: 'الإمارات', cities: 'أبوظبي - دبي.', flagUrl: 'https://flagcdn.com/w320/ae.png' },
-        { country: 'الكويت',   cities: 'الكويت.', flagUrl: 'https://flagcdn.com/w320/kw.png' },
-        { country: 'قطر',      cities: 'الدوحة.', flagUrl: 'https://flagcdn.com/w320/qa.png' },
-        { country: 'البحرين',  cities: 'المنامة.', flagUrl: 'https://flagcdn.com/w320/bh.png' },
-      ];
+      return ['sa', 'ae', 'kw', 'qa', 'bh'].map((flag, i) => ({
+        country: this.transloco.translate(`supervisors.coverage.c${i}.country`),
+        cities: this.transloco.translate(`supervisors.coverage.c${i}.cities`),
+        flagUrl: `https://flagcdn.com/w320/${flag}.png`,
+      }));
     }
 
     return countries.map(country => {

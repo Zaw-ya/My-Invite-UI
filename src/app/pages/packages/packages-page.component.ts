@@ -10,6 +10,7 @@ import { DesignOrderService } from '../../services/design-order.service';
 import { LanguageService } from '../../i18n/language.service';
 import { SeoService } from '../../services/seo.service';
 import { OrderModalComponent } from '../../components/order-modal/order-modal.component';
+import { LocalizeContentPipe } from '../../i18n/backend-content';
 
 interface PricingTier {
   count: number;
@@ -38,7 +39,8 @@ interface ProcessedPackage {
     TranslocoModule,
     NavbarComponent,
     FooterComponent,
-    OrderModalComponent
+    OrderModalComponent,
+    LocalizeContentPipe
   ],
   templateUrl: './packages-page.component.html',
   styleUrl: './packages-page.component.css'
@@ -129,9 +131,6 @@ export class PackagesPageComponent implements OnInit {
   }
 
   orderPackage(pkg: ProcessedPackage) {
-    const tier = this.selectedTierFor(pkg);
-    const countLabel = tier.count > 0 ? ` (${tier.count} دعوة - السعر: ${tier.price} ر.س)` : '';
-    const message = `أود طلب باقة "${pkg.name}"${countLabel}.`;
-    this.designOrderService.openModalWithMessage(message, 'طلب الباقة');
+    this.designOrderService.openPackageOrder(pkg.name, this.selectedTierFor(pkg));
   }
 }

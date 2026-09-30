@@ -23,14 +23,14 @@
             <div class="blog-img-gradient"></div>
 
             <!-- Category badge (backend content) -->
-            <div class="blog-cat-badge" dir="rtl">{{ post.category || ('blogPostDetail.defaultCategory' | transloco) }}</div>
+            <div class="blog-cat-badge" dir="auto">{{ post.category || ('blogPostDetail.defaultCategory' | transloco) }}</div>
           </div>
 
           <!-- Content -->
            <div class="blog-content space-y-3 text-start">
              <p class="text-sm font-bold" style="color: var(--gold);">{{ post.date | date:'yyyy/MM/dd' }}</p>
-             <h4 class="blog-title group-hover:text-gold transition-colors" dir="rtl">{{ post.title }}</h4>
-             <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt" dir="rtl">{{ post.excerpt }}</p>
+             <h4 class="blog-title group-hover:text-gold transition-colors" dir="auto">{{ post.title }}</h4>
+             <p class="text-sm leading-relaxed line-clamp-2 blog-excerpt" dir="auto">{{ post.excerpt }}</p>
              <span class="blog-read-more">
                {{ 'blog.readMore' | transloco }}
                <lucide-icon [name]="readMoreIcon()" class="w-4 h-4"></lucide-icon>

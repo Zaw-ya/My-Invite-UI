@@ -31,8 +31,8 @@
            stay Arabic regardless of UI language; the meta row (date, read
            time) is chrome and already follows the active language. -->
       <header class="blog-article-header mb-10">
-        <span class="blog-category-tag" dir="rtl">{{ getPost().category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
-        <h1 class="blog-article-title mt-4" dir="rtl">{{ getPost().title }}</h1>
+        <span class="blog-category-tag" dir="auto">{{ getPost().category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
+        <h1 class="blog-article-title mt-4" dir="auto">{{ getPost().title }}</h1>
 
         <div class="blog-meta">
           <span class="meta-item">
@@ -53,7 +53,7 @@
 
         <!-- Tags (backend content) -->
         @if (getTags().length > 0) {
-          <div class="post-tags mt-4" dir="rtl">
+          <div class="post-tags mt-4" dir="auto">
             @for (tag of getTags(); track tag) {
               <span class="post-tag"># {{ tag }}</span>
             }
@@ -73,7 +73,7 @@
       <!-- Article Content -->
       <article class="blog-article-content">
         <!-- Backend-authored article body, stays Arabic regardless of UI language -->
-        <div class="blog-text" dir="rtl" [innerHTML]="getPost().content"></div>
+        <div class="blog-text" dir="auto" [innerHTML]="getPost().content"></div>
 
         <!-- Share Buttons -->
         <div class="blog-share-section mt-12 pt-8 border-t" style="border-color: var(--border);">
@@ -111,7 +111,7 @@
                        [alt]="related.altText || related.title"
                        class="w-full h-full object-cover">
                 </div>
-                <div class="related-content" dir="rtl">
+                <div class="related-content" dir="auto">
                   <span class="related-category">{{ related.category || ('blogPostDetail.defaultCategory' | transloco) }}</span>
                   <h4 class="related-title-text group-hover:text-gold transition-colors">{{ related.title }}</h4>
                   <span class="related-author">{{ related.author || ('blogPostDetail.defaultAuthor' | transloco) }}</span>

@@ -72,7 +72,7 @@
               <select class="demo-input" [(ngModel)]="eventType" name="eventType">
                 <option value="" disabled selected>{{ 'demoForm.eventTypePlaceholder' | transloco }}</option>
                 @for (et of eventTypes(); track et.id) {
-                  <option [value]="et.name">{{ et.name }}</option>
+                  <option [value]="et.name">{{ et.name | localizeContent }}</option>
                 }
               </select>
             </div>

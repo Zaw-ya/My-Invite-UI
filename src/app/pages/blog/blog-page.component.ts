@@ -22,7 +22,7 @@ export class BlogPageComponent implements OnInit {
   private seoService = inject(SeoService);
   private languageService = inject(LanguageService);
 
-  blogPosts = this.contentService.blogPosts;
+  blogPosts = this.contentService.localizedBlogPosts;
 
   // `null` = "All" — a stable sentinel, not a localized display string, so
   // switching languages never affects the active filter's identity.

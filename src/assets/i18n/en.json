@@ -56,11 +56,11 @@
   "hero": {
     "kicker": "Your Event Starts With Your Invitation",
     "heading": "<span>Digital invitation</span> cards for every occasion",
-    "title": "A luxurious invitation, easier RSVP confirmation, and complete guest management for your event",
+    "title": "Luxury invitations. Effortless RSVPs. Every guest, organized.",
     "subtitle": "Special Cards isn't just a digital invitation... it's a complete platform for managing your invitation, guests, and event — from designing the invitation to tracking attendance.",
-    "cta1": "Order Your Invite",
-    "cta2": "View Designs",
-    "mockPlaceholder": "Drop a card design shot here",
+    "cta1": "Try Your Invitation Free",
+    "cta2": "Preview It With Your Name",
+    "mockPlaceholder": "Digital invitation preview",
     "trust": {
       "invitations": { "value": "+10,000", "label": "Invitations Sent" },
       "clients": { "value": "+5,000", "label": "Happy Clients" },
@@ -68,10 +68,10 @@
       "support": { "value": "Continuous Support", "label": "Before & After Your Order" }
     },
     "badges": {
-      "b0": "Scan Entry Codes",
-      "b1": "Send via WhatsApp",
-      "b2": "Automatic Reminder",
-      "b3": "Attendance Stats"
+      "b0": "RSVP Confirmation",
+      "b1": "QR Entry",
+      "b2": "WhatsApp",
+      "b3": "Live Statistics"
     }
   },
   "about": {
@@ -92,15 +92,15 @@
   },
   "platform": {
     "kicker": "We serve every occasion",
-    "title": "Whatever your occasion... it deserves an invitation worthy of it",
-    "description": "From wedding parties to corporate conferences, we design, send, and manage attendance with the same professionalism.",
+    "title": "Whatever your occasion...",
+    "description": "From weddings to family occasions and corporate events, we design, send, and manage attendance with the same professionalism.",
     "categories": {
       "c0": "Weddings",
       "c1": "Engagements",
       "c2": "Graduations",
       "c3": "Newborns",
       "c4": "Birthdays",
-      "c5": "Companies",
+      "c5": "Corporate",
       "c6": "Other Occasions"
     },
     "item0": {
@@ -108,7 +108,7 @@
       "body": "An invitation worthy of the night of a lifetime, with a design reflecting your taste and organization that gives you peace of mind."
     },
     "item1": {
-      "title": "Banquet & Family Events",
+      "title": "Family Occasions",
       "body": "No matter the guest count, the invitation reaches them organized and personalized by name."
     },
     "item2": {
@@ -118,79 +118,78 @@
     "item3": {
       "title": "Graduation & University Events",
       "body": "A moment to celebrate, with organized entry via barcode no matter how large the crowd."
-    }
+    },
+    "viewAll": "View All Occasions"
   },
   "why": {
     "title": "Why Choose Special Cards?",
     "item0": {
       "title": "Visual Luxury",
-      "body": "4K quality designs turn your invitation into a distinctive art piece reflecting refined taste."
+      "body": "High-quality designs worthy of your occasion — a work of art that reflects your refined taste."
     },
     "item1": {
       "title": "Guaranteed Delivery",
-      "body": "Official, verified WhatsApp servers ensure every guest receives their named message, unblocked."
+      "body": "Invitations sent via WhatsApp and SMS in an official, reliable way."
     },
     "item2": {
-      "title": "Precision & Order",
-      "body": "A unique barcode per guest ensures smooth, fast entrance without crowding."
+      "title": "RSVP Confirmation",
+      "body": "Every guest can confirm attendance with ease, and you see the results instantly."
     },
     "item3": {
-      "title": "Early Reminder",
-      "body": "Automated reminders sent to guests 2 days before the event for final RSVP confirmation."
+      "title": "Smart Entry",
+      "body": "A unique QR code for every guest ensures smooth entry into the venue."
     },
     "item4": {
-      "title": "Speed & Response",
-      "body": "Because we value your choice, we provide what you aspire to with speed and flexibility."
+      "title": "On-Site Scanning Team",
+      "body": "A complete team (men and women) in a unified formal uniform, carefully trained in reception protocols."
     },
-    "item5": {
-      "title": "Field Coverage",
-      "body": "Riyadh is our stage, and our hosts are with you at the hall to manage reception professionally."
-    }
+    "cta": "Discover All Features"
   },
   "smart": {
     "kicker": "Guest Experience",
-    "title": "Your guests know everything... without you calling anyone",
+    "title": "Your guest's experience starts with the first message",
     "item0": {
-      "title": "Named Invitation",
-      "body": "Each guest receives the invite in their name, offering a sense of luxury and special care."
+      "title": "Invitation in Their Name",
+      "body": "Every guest receives the invitation in their own name, conveying luxury and personal care."
     },
     "item1": {
-      "title": "Knows the Way",
-      "body": "A direct link to the venue map is sent to every guest so they never lose their way."
+      "title": "Finds the Venue",
+      "body": "Every guest receives a direct link to the venue on the map for easy arrival."
     },
     "item2": {
-      "title": "One-Tap RSVP",
-      "body": "Guests can confirm or decline in one click, and results are shown to you instantly."
+      "title": "Confirms Attendance",
+      "body": "Guests confirm attendance with a single tap, and you see the results instantly."
     },
     "item3": {
-      "title": "Easy Entrance",
-      "body": "A custom barcode is scanned at the gate, letting the guest and their companions in without delays."
-    }
+      "title": "Enters with QR",
+      "body": "A personal QR code is scanned at the gate, so every guest enters smoothly and securely."
+    },
+    "subtitle": "Invitation in their name → Finds the venue → Confirms attendance → Enters with QR"
   },
   "reception": {
     "kicker": "SPECIAL CARDS / RECEPTION MANAGEMENT SYSTEM",
     "title": "On Your Event Day... Reception is Under Control",
     "item0": {
       "title": "Barcode Scanning",
-      "body": "Verify guest identity in under half a second with an encrypted system preventing duplication or tampering."
+      "body": "Verify each guest's identity in under a second with a secure, encrypted system."
     },
     "item1": {
       "title": "Our Hosts at the Gate",
-      "body": "A welcoming front at the gate — scanning immediately displays the guest's name and table number."
+      "body": "A polished welcome at the gate, guiding and directing guests right after scanning."
     },
     "item2": {
       "title": "Instant Post-Event Report",
-      "body": "Know exactly who attended and who apologized, with names and contact numbers ready right after the event."
+      "body": "Know exactly who attended and who declined, with a complete, detailed report."
     }
   },
   "app": {
     "kicker": "SPECIAL CARDS APP",
-    "title": "We do the work... and you track from your mobile",
-    "body": "We don't ask you to design, upload, or adjust anything — we receive your event details and handle the rest, while the app gives you live tracking.",
-    "mockPlaceholder": "Drop an app screenshot here",
-    "f0": "High-resolution 4K quality invitation card",
-    "f1": "Encrypted, verified QR entry code for every guest",
-    "f2": "Direct link to the venue's geographic location",
+    "title": "Your occasion, organized... from the first invitation to the last guest",
+    "body": "An all-in-one platform that helps you manage your guests, track attendance, and organize your occasion with ease — all from one place.",
+    "mockPlaceholder": "Special Cards app screenshot",
+    "f0": "Track RSVP confirmations",
+    "f1": "Manage your guest list with ease",
+    "f2": "View live reports",
     "appStore": "App Store",
     "googlePlay": "Google Play"
   },
@@ -201,28 +200,28 @@
     },
     "item1": {
       "title": "Reminder Service",
-      "body": "Reminder messages for confirmed guests 24 hours before the event."
+      "body": "Add reminder messages for confirmed guests before the event."
     },
     "item2": {
-      "title": "Extra Hosts",
-      "body": "Request additional hosts (male/female) to boost entry management efficiency."
+      "title": "Extra Supervisors",
+      "body": "Request additional supervisors to make entry management more efficient."
     }
   },
   "riyadh": {
     "kicker": "RIYADH FOCUS",
-    "title": "Why Riyadh, Specifically?",
-    "body": "We chose to dedicate ourselves to a single city rather than spreading our efforts thin — so every event in Riyadh gets full focus.",
+    "title": "Riyadh Is Our Focus",
+    "body": "We know its venues and their details, and our team is on the ground to serve you.",
     "item0": {
-      "title": "Focus, Not Distraction",
-      "body": "We don't split our attention across cities, so every event gets our full time and follow-up."
+      "title": "Faster Response",
+      "body": "Our team is on the ground in Riyadh to respond quickly to any request."
     },
     "item1": {
-      "title": "Faster Response",
-      "body": "Based in the heart of Riyadh, any modification or urgent request is handled immediately."
+      "title": "We Know the Venues",
+      "body": "Our knowledge of Riyadh's venues lets us organize professional, tailored entry."
     },
     "item2": {
-      "title": "We Know Its Venues",
-      "body": "Our knowledge of Riyadh halls and their details allows us to prepare your event realistically."
+      "title": "On-Site Support",
+      "body": "Supervisors available whenever needed to manage your guests' reception."
     }
   },
   "tech": {
@@ -246,25 +245,26 @@
     }
   },
   "privacy": {
-    "title": "Your Security & Privacy, Our Priority",
-    "body": "Your event's privacy and guest numbers are a trust we hold, a principle we never compromise on.",
+    "title": "Your Guests' Data Is Safe",
+    "body": "Advanced data protection — secure, limited use — data deleted once your occasion ends",
     "item0": {
-      "title": "Protected Data",
-      "body": "Your guest lists and numbers are secured with the latest encryption on safe servers."
+      "title": "Data Protection",
+      "body": "Your guest lists and phone numbers are secured with the latest encryption technology."
     },
     "item1": {
-      "title": "For Your Event Only",
-      "body": "Your guest data belongs to you, used solely for your event and kept within its scope."
+      "title": "Limited Use",
+      "body": "Data is used only for your occasion and is never shared with anyone."
     },
     "item2": {
-      "title": "We Erase the Unneeded",
-      "body": "Once your event is over, we delete the guest contact files — keeping nothing after its purpose is met."
-    }
+      "title": "Deleted When Your Occasion Ends",
+      "body": "We erase guest phone numbers as soon as your occasion ends to protect privacy."
+    },
+    "cta": "Read Our Privacy Policy"
   },
   "finalCta": {
-    "title": "Let Special.. Speak For Your Occasion",
-    "body": "Riyadh, Kingdom of Saudi Arabia",
-    "cta": "Contact Us Now"
+    "title": "Be Special... and Let Your Invitation Speak for You",
+    "body": "Start your invitation now and enjoy a digital experience worthy of your occasion.",
+    "cta": "Order Your Invitation"
   },
   "portfolioSlider": {
     "title": "Elegant Invitations... One Click Away",
@@ -303,18 +303,18 @@
     "kicker": "Your Journey With Us",
     "title": "From Design To Delivery... All In Your Hands",
     "titlePlain": "From Design To Delivery... All In Your Hands",
-    "subtitle": "From the first conversation to the final moment of your occasion — a clear journey, no surprises",
+    "subtitle": "4 simple steps to turn your invitation into a luxury digital experience",
     "step0": {
-      "title": "Design Your Invite",
-      "body": "Choose from our luxury library or request a custom design matching your taste and event theme."
+      "title": "01 — Send Your Request",
+      "body": "Enter your details and choose the right design through the form on our website."
     },
     "step1": {
-      "title": "Upload The List",
-      "body": "Provide guest names or numbers, the system auto-issues a unique barcode for every guest."
+      "title": "02 — We Contact You",
+      "body": "Our customer service team contacts you to confirm your order and coordinate the details."
     },
     "step2": {
-      "title": "Send & Track",
-      "body": "One tap sends invitations via WhatsApp — track confirmations live through the app."
+      "title": "03 — Receive Your Login",
+      "body": "You receive the username and password for your occasion's dashboard."
     },
     "step1Title": "Tell Us About Your Occasion",
     "step1Body": "Share your occasion's details and guest count, and choose the package closest to your vision — whether through a free trial or by reaching out to us directly.",
@@ -328,22 +328,27 @@
     "step5Body": "Before and during your occasion, follow your guests' attendance and your invitation's results moment by moment through your own dashboard, with our team on hand to support you with any update you need for your occasion to go smoothly.",
     "stepTag": "Step {{number}}",
     "zoomLabel": "Zoom In",
-    "closeLabel": "Close"
+    "closeLabel": "Close",
+    "summary": "Send your request → We contact you → Receive your login → Open the app",
+    "step3": {
+      "title": "04 — Open the App",
+      "body": "Sign in and follow your guests' attendance moment by moment, with ease."
+    }
   },
   "demoForm": {
-    "heading": "Try your invitation before deciding",
-    "infoTitle": "Try your invitation in your name with the same quality before ordering",
-    "infoBody": "A free demo invitation will reach you on WhatsApp within a minute, and if you like it, you can easily complete your order",
+    "heading": "Try Your Invitation Free",
+    "infoTitle": "Try your invitation in your name... and see the quality for yourself",
+    "infoBody": "Choose your occasion type and send your details, and we'll prepare a trial invitation designed just for you on WhatsApp.",
     "nameLabel": "Name (Optional)",
-    "namePlaceholder": "e.g., John Smith",
+    "namePlaceholder": "e.g., Mohammed Ahmed",
     "phoneLabel": "WhatsApp Number",
     "phonePlaceholder": "Enter number without country code",
-    "phoneHint": "Enter the number without the country code and without +",
+    "phoneHint": "Enter the number without the country code or +",
     "eventTypeLabel": "Event Type",
     "eventTypePlaceholder": "Select an event type",
     "cardSelectedNote": "✓ Design selected — it will be sent to you on WhatsApp",
-    "cardNotSelectedNote": "Note: You can choose a specific design from the designs above",
-    "submitBtn": "Send me a trial invitation",
+    "cardNotSelectedNote": "Tip: you can pick a design from the gallery above",
+    "submitBtn": "Try Your Invitation Free",
     "submitBtnLoading": "Sending...",
     "otpSentTitle": "Verification Code Sent",
     "otpSentSub": "Check WhatsApp at:",
@@ -359,7 +364,6 @@
       "nameAndPhoneRequired": "Name and WhatsApp number are required",
       "phoneRequired": "WhatsApp number is required",
       "genericError": "An error occurred, please try again",
-      "allFieldsRequired": "Please fill in all required fields.",
       "otpRequired": "Enter the verification code",
       "otpInvalid": "Incorrect verification code"
     }
@@ -377,7 +381,9 @@
     "ctaContactUs": "Contact Us",
     "currency": "SAR",
     "popularBadge": "MOST POPULAR",
-    "viewAllPackages": "View All Packages"
+    "viewAllPackages": "View All Packages",
+    "orderMessage": "I'd like to order the \"{{name}}\" package{{details}}.",
+    "orderMessageDetails": " ({{count}} invitations – price: {{price}} SAR)"
   },
   "platformFeatures": {
     "kicker": "App Features",
@@ -404,9 +410,26 @@
 
   "testimonialsSection": {
     "kicker": "Client Reviews",
-    "title": "Trust we're proud of, from hundreds of families and companies",
-    "subtitle": "Real testimonials from clients who used Special Cards for their events",
-    "emptyMessage": "No reviews are available right now."
+    "title": "Feedback that matters... experiences we're proud of",
+    "subtitle": "Our clients' experiences with Special Cards, from invitation design to attendance management.",
+    "emptyMessage": "No reviews are available right now.",
+    "defaults": {
+      "t0": {
+        "name": "Sarah Al-Shehri",
+        "city": "Dammam",
+        "content": "A premium service with real attention to detail. The experience was easier and more beautiful than I expected."
+      },
+      "t1": {
+        "name": "Noura Al-Mutairi",
+        "city": "Jeddah",
+        "content": "Fast delivery and precise details — everything was organized and clear."
+      },
+      "t2": {
+        "name": "Amal Al-Otaibi",
+        "city": "Riyadh",
+        "content": "The design was beyond amazing, and the barcode made things so much easier for us at the venue."
+      }
+    }
   },
   "faq": {
     "kicker": "FAQ",
@@ -437,7 +460,29 @@
     "viewAll": "View All Supervisors",
     "errorMessage": "We couldn't load the supervisors. Please try again.",
     "retryLabel": "Retry",
-    "emptyMessage": "No supervisors are available right now."
+    "emptyMessage": "No supervisors are available right now.",
+    "coverage": {
+      "c0": {
+        "country": "Saudi Arabia",
+        "cities": "Riyadh - Makkah - Madinah - Jeddah - Qassim - Dammam - Khobar - Dhahran - Al-Ahsa - Hail."
+      },
+      "c1": {
+        "country": "UAE",
+        "cities": "Abu Dhabi - Dubai."
+      },
+      "c2": {
+        "country": "Kuwait",
+        "cities": "Kuwait City."
+      },
+      "c3": {
+        "country": "Qatar",
+        "cities": "Doha."
+      },
+      "c4": {
+        "country": "Bahrain",
+        "cities": "Manama."
+      }
+    }
   },
   "blog": {
     "title": "Blog <span style=\"color: var(--gold);\">&amp; Tips</span>",
@@ -464,7 +509,8 @@
     "errors": {
       "allFieldsRequired": "Please fill in all required fields.",
       "genericError": "An error occurred while sending, please try again."
-    }
+    },
+    "designMessage": "I like the card design with code \"{{id}}\""
   },
   "designsPage": {
     "heading": "Explore <span>All Designs</span>",
@@ -493,7 +539,7 @@
   "blogPage": {
     "label": "Blog",
     "heading": "Ideas <span>For Your Occasion</span>",
-    "subtitle": "Tips, designs, and ideas from the My Invite team to organize your occasion in style",
+    "subtitle": "Tips, designs, and ideas from the Special Cards team to organize your occasion in style",
     "categoryAll": "All",
     "readArticle": "Read Article",
     "readMore": "Read More",
@@ -761,5 +807,39 @@
     "title": "Page Not Found",
     "message": "The link you're trying to reach is invalid or the page has been moved.",
     "linkText": "Return to the Home Page"
+  },
+  "backendContent": {
+    "زفاف": "Weddings",
+    "خطوبة": "Engagements",
+    "تخرج": "Graduations",
+    "مواليد": "Newborns",
+    "أعياد ميلاد": "Birthdays",
+    "مناسبات أخرى": "Other Occasions",
+    "شركات": "Corporate",
+    "عام": "General",
+    "بدون عنوان": "Untitled",
+    "ذكوري": "Men's",
+    "أنثوي": "Women's",
+    "الباقة الأولى": "First Package",
+    "الباقة الثانية": "Second Package",
+    "الباقة الثالثة": "Third Package",
+    "الباقة الأساسية المثالية للمناسبات الصغيرة والمتوسطة": "The essential package, ideal for small and medium occasions",
+    "الأكثر طلباً — توازن مثالي بين المميزات والسعر": "Most popular — the perfect balance of features and price",
+    "الباقة الفاخرة الشاملة لمناسبات لا تُنسى": "The all-inclusive luxury package for unforgettable occasions",
+    "تصميم بطاقة الدعوة والدخول": "Invitation and entry card design",
+    "إضافة باركود الدخول للبطاقات": "Entry barcode added to every card",
+    "خدمة تأكيد الحضور والاعتذار": "RSVP confirmation and decline service",
+    "تقرير نهائي شامل للمناسبة": "Comprehensive final event report",
+    "كل مميزات الباقة الأولى": "All First Package features",
+    "خدمة التذكير للمؤكد حضورهم": "Reminders for confirmed guests",
+    "حضور مشرفين اثنين لتنظيم الدخول": "Two on-site supervisors to manage entry",
+    "كتابة أسماء الضيوف على البطاقات": "Guest names printed on invitations",
+    "كل مميزات الباقة الثانية": "All Second Package features",
+    "خدمة رسائل الشكر والتبريكات": "Thank-you and congratulations messages",
+    "حضور 3 مشرفين لتنظيم الدخول": "Three on-site supervisors to manage entry",
+    "دعم فني مباشر طوال الحفل": "Live technical support throughout the event"
+  },
+  "backendContentPatterns": {
+    "design": "Design {{number}}"
   }
 }

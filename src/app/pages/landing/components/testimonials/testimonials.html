@@ -9,7 +9,7 @@
     @if (testimonials().length > 0) {
       <div class="testimonials-grid">
         @for (t of testimonials(); track t.id) {
-          <div class="testimonial-card sc-hover-card" dir="rtl">
+          <div class="testimonial-card sc-hover-card" dir="auto">
             <div class="testimonial-stars">
               @for (s of stars; track s) {
                 <svg
@@ -23,11 +23,11 @@
                 </svg>
               }
             </div>
-            <p class="testimonial-content">"{{ t.content }}"</p>
+            <p class="testimonial-content">"{{ t.translate ? (t.content | transloco) : t.content }}"</p>
             <div class="testimonial-footer">
-              <span class="testimonial-name">{{ t.name }}</span>
+              <span class="testimonial-name">{{ t.translate ? (t.name | transloco) : t.name }}</span>
               @if (t.role) {
-                <span class="testimonial-role">{{ t.role }}</span>
+                <span class="testimonial-role">{{ t.translate ? (t.role | transloco) : t.role }}</span>
               }
             </div>
           </div>

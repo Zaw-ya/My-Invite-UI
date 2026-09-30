@@ -68,9 +68,11 @@
   </div>
 
   <!-- 16. BLOG / المدونة -->
+  @if (blogPosts().length > 0) {
   <div appScrollReveal revealDirection="right" [revealDelay]="50">
     <app-blog [blogPosts]="blogPosts()"></app-blog>
   </div>
+  }
 
   <!-- 17. FAQ / الأسئلة الشائعة -->
   <div id="faq" appScrollReveal revealDirection="right" [revealDelay]="50">
