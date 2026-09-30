@@ -109,12 +109,13 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  height: 48px;
 }
 
+/* Height lives on each badge, not the row — a fixed row height made the
+   wrapped second row on mobile overflow into the bottom bar. */
 .footer-payment-badge {
   width: 151px;
-  height: 100%;
+  height: 48px;
   flex: none;
   display: flex;
   align-items: center;
@@ -261,8 +262,42 @@
   .footer-payment-col {
     grid-column: span 1;
   }
+  .footer-payment-col {
+    align-items: center;
+    text-align: center;
+  }
+  .footer-payment-badges {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 340px;
+  }
+  .footer-payment-badge {
+    width: auto;
+    min-width: 0;
+    padding-inline: 10px;
+  }
+  .footer-payment-badge .pay-label {
+    white-space: nowrap;
+  }
   .footer-bottom-bar {
+    flex-direction: column;
     justify-content: center;
     text-align: center;
+    gap: 14px;
+  }
+  .footer-legal-links {
+    justify-content: center;
+    column-gap: 18px;
+    row-gap: 10px;
+  }
+  /* Rights line on its own row, links centered beneath it. */
+  .footer-rights {
+    flex-basis: 100%;
+  }
+  /* Keep the fixed back-to-top / WhatsApp buttons (52px + 20px offset)
+     from covering the last lines of the footer. */
+  .site-footer {
+    padding: 48px 20px 96px;
   }
 }
