@@ -561,7 +561,7 @@
   },
   "privacyPolicy": {
     "title": "Privacy Policy",
-    "updateDate": "Last updated: September 6, 2026",
+    "updateDate": "Last updated: November 3, 2026",
     "intro": "At {{siteName}}, we respect your privacy and are committed to handling your personal data responsibly and transparently. This policy briefly explains how we collect, use, and safeguard your data.",
     "section1": {
       "title": "1. Data We Collect",
@@ -589,7 +589,9 @@
       "title": "3. Guest Data",
       "p1": "When using our guest-management services, data specific to your event's guests may be added.",
       "p2": "This data is used to provide services related to the invitation and attendance management, and only within the scope of the purpose for which it was collected.",
-      "p3": "The user is responsible for ensuring they have the right to enter and use guest data in accordance with the relevant regulatory requirements."
+      "p3": "The user is responsible for ensuring they have the right to enter and use guest data in accordance with the relevant regulatory requirements.",
+      "contactsLabel": "Contacts:",
+      "contacts": "If you choose to add guests from your contacts in the app, the app asks for your permission to access them. Your contacts are read on your device only so you can pick your guests. Only the names and phone numbers you select and add to your event's guest list are uploaded to our servers. We never upload your full contact list, use it for any other purpose, or share it with third parties. You can revoke this permission at any time in your device settings."
     },
     "section4": {
       "title": "4. Data Sharing",
